@@ -9,7 +9,7 @@ namespace SolidWorks_ASsembly_Instructor
 {
     public class CoreManager
     {
-        private AssambleyManager assambleyManager;
+        private AssemblyManager assambleyManager;
         public CoreManager(SldWorks App)
         {
            // assambleyMmanager = new AssambleyManager(App);

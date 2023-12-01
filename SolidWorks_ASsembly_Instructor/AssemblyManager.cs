@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace SolidWorks_ASsembly_Instructor
 {
-    internal class AssambleyManager
+    internal class AssemblyManager
     {
         ModelDoc2 activeDoc;
-        public AssambleyManager(SldWorks App) 
+        public AssemblyManager(SldWorks App) 
         {
             activeDoc = App.ActiveDoc as ModelDoc2;
             App.SendMsgToUser(activeDoc.ToString());
