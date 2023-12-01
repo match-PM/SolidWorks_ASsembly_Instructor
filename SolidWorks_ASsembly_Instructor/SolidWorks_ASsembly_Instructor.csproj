@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>m.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -99,8 +102,6 @@
     <Compile Include="utils\FeatureTypes.cs" />
     <Compile Include="Json\AssamblyDescription.cs" />
     <Compile Include="Json\CoordinatesystemDescription.cs" />
-    <Compile Include="CoreManager.cs" />
-    <Compile Include="JsonExporter.cs" />
     <Compile Include="Json\ParentDescription.cs" />
     <Compile Include="Json\PartDescription.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -131,6 +132,7 @@
     <Content Include="face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="m.ico" />
     <Content Include="match_logo.png" />
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">

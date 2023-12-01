@@ -36,10 +36,6 @@ namespace SolidWorks_ASsembly_Instructor
         private SldWorks mSolidWorksApplication;
 
         public const string SWTASKPANE_PROGID = "Match.pm_Robot.SolidWorks_ASsembly_Instructor";
-        /// <summary>
-        /// Verwaltet die eigentliche Anwendung
-        /// </summary>
-        CoreManager mCoreManager;
 
         public bool ConnectToSW(object ThisSW, int Cookie)
         {
@@ -54,7 +50,6 @@ namespace SolidWorks_ASsembly_Instructor
                 LoadUI();
                 //mSolidWorksApplication.SendMsgToUser("ConnectionDone");
 
-                mCoreManager = new CoreManager(mSolidWorksApplication);
                 return true;
             }
             else
