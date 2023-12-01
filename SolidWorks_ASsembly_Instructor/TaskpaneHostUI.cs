@@ -104,10 +104,13 @@ namespace SolidWorks_ASsembly_Instructor
 
         #region Extraction Assembly data and creating objects for Json
         // Extract assamblyModel to assemblys and parts
+
+        //ToDo: Current System so integrieren, dass die Korrekte Berechnung durchgeführt wird
+        CoordinateSystemDescription currentSystem = new CoordinateSystemDescription();
         public ChildrenDescription ExtractAssambley(ModelDoc2 assemblyModel)
         {
             ChildrenDescription SubAssembly = new ChildrenDescription();
-            SubAssembly.Name = assemblyModel.GetTitle();
+            SubAssembly.Name = assemblyModel.GetTitle().Split('.')[0];
 
             if (assemblyModel != null)
             {
@@ -128,8 +131,8 @@ namespace SolidWorks_ASsembly_Instructor
                         {
                             int componentType = componentModel.GetType();   //is it an assembly or a part?
 
-                            CoordinateSystemDescription currentSystem = GetOrigin(component);
                             
+                            GetOrigin(component);
                             if (componentType == (int)swDocumentTypes_e.swDocASSEMBLY)
                             {
 
@@ -141,7 +144,7 @@ namespace SolidWorks_ASsembly_Instructor
                                     subSubAssembly.originTransform.fromMatrix4x4(Matrix4x4.Multiply(currentSystem.AsMatrix4x4(), subSubAssembly.assemblyTransform.AsMatrix4x4()));
                                     SubAssembly.children.Add(subSubAssembly);
                                     SubAssembly.Type = ((int)swDocumentTypes_e.swDocASSEMBLY).ToString();
-                                    
+                                    currentSystem = subSubAssembly.assemblyTransform;
                                 }
                                 else
                                 {
@@ -163,6 +166,7 @@ namespace SolidWorks_ASsembly_Instructor
                             }
                         }
                     }
+                    currentSystem = SubAssembly.assemblyTransform;
                     return SubAssembly; // Return the current AssemblyDescrition
                 }
 
@@ -174,7 +178,7 @@ namespace SolidWorks_ASsembly_Instructor
         public ChildrenDescription ExtractPartShort(ModelDoc2 partModel, Component2 component)
         {
             ChildrenDescription subpart = new ChildrenDescription();
-            subpart.Name = partModel.GetTitle();
+            subpart.Name = partModel.GetTitle().Split('.')[0];
             subpart.Type = ((int)swDocumentTypes_e.swDocPART).ToString();
             subpart.assemblyTransform = GetOrigin(component);
             return subpart;
