@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace JsonExporter_2
+namespace SolidWorks_ASsembly_Instructor
 {
     public class CoordinateSystemDescription
     {

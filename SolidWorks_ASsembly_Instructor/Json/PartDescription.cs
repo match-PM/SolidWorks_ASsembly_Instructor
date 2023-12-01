@@ -11,7 +11,7 @@ using SolidWorks.Interop.sldworks;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace JsonExporter_2
+namespace SolidWorks_ASsembly_Instructor
 {
     public class PartDescription
     {

@@ -1,4 +1,4 @@
-﻿namespace JsonExporter_2
+﻿namespace SolidWorks_ASsembly_Instructor
 {
     partial class TaskpaneHostUI
     {
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TaskpaneHostUI));
             this.exportJson = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.label2 = new System.Windows.Forms.Label();
@@ -70,12 +71,14 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 0);
+            this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(339, 31);
+            this.label3.Size = new System.Drawing.Size(308, 31);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Json Assambly exporter by";
+            this.label3.Text = "SW ASsembly Instructor";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // refreshPartList
             // 
@@ -97,7 +100,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::JsonExporter_2.Properties.Resources.match_logo;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(3, 34);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(333, 49);

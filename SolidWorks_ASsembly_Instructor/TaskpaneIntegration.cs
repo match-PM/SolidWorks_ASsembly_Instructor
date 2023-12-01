@@ -4,7 +4,7 @@ using System;
 using System.Net;
 using System.Runtime.InteropServices;
 
-namespace JsonExporter_2
+namespace SolidWorks_ASsembly_Instructor
 {
     /// <summary>
     /// Adaptet from https://www.youtube.com/watch?v=7DlG6OQeJP0
@@ -35,7 +35,7 @@ namespace JsonExporter_2
         /// </summary>
         private SldWorks mSolidWorksApplication;
 
-        public const string SWTASKPANE_PROGID = "Match.pm_Robot.JsonExporter";
+        public const string SWTASKPANE_PROGID = "Match.pm_Robot.SolidWorks_ASsembly_Instructor";
         /// <summary>
         /// Verwaltet die eigentliche Anwendung
         /// </summary>
@@ -72,7 +72,7 @@ namespace JsonExporter_2
 
         private void LoadUI()
         {
-            mTaskpaneView = mSolidWorksApplication.CreateTaskpaneView2(@"./face.png", "bla");
+            mTaskpaneView = mSolidWorksApplication.CreateTaskpaneView2(@"./face.png", "SolidWorks_ASsembly_Instructor");
 
             mTaskpaneHost = (TaskpaneHostUI)mTaskpaneView.AddControl(TaskpaneIntegration.SWTASKPANE_PROGID, string.Empty);
             mTaskpaneHost.app = mSolidWorksApplication;
@@ -100,8 +100,8 @@ namespace JsonExporter_2
 
                 //set Titel and description
 
-                rk.SetValue("Title", "JsonExporter");
-                rk.SetValue("Description", "Add fancy description here");
+                rk.SetValue("Title", "SWASI");
+                rk.SetValue("Description", "SolidWorks_ASsembly_Instructor");
             }
         }
 

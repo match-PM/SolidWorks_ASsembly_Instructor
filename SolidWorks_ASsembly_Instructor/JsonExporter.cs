@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JsonExporter_2
+namespace SolidWorks_ASsembly_Instructor
 {
     public class JsonExporter
     {

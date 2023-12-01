@@ -1,5 +1,5 @@
-﻿using JsonExporter_2;
-using JsonExporter_2.Properties;
+﻿using SolidWorks_ASsembly_Instructor;
+using SolidWorks_ASsembly_Instructor.Properties;
 using Newtonsoft.Json;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
@@ -22,7 +22,7 @@ using System.Media;
 using System.Drawing.Drawing2D;
 using System.Xml.Linq;
 
-namespace JsonExporter_2
+namespace SolidWorks_ASsembly_Instructor
 {
 
     /// TODO:
@@ -81,7 +81,7 @@ namespace JsonExporter_2
                 {
                     app.SendMsgToUser("No active document found.");
                 }
-                mainAssamblyName = activeDoc.GetTitle();    // Name of folder
+                mainAssamblyName = activeDoc.GetTitle().Split('.')[0];    // Name of folder
                 int componentType = activeDoc.GetType();
 
                 if (componentType == (int)swDocumentTypes_e.swDocASSEMBLY)

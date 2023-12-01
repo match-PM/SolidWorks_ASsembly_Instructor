@@ -7,8 +7,7 @@
     <ProjectGuid>{40C224B7-A2AD-4719-B86B-574A851CD011}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace>SolidWorks_ASsembly_Instructor</RootNamespace>
     <AssemblyName>SolidWorks_ASsembly_Instructor</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -92,6 +91,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssambleyManager.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="utils\FeatureTypes.cs" />
     <Compile Include="Json\AssamblyDescription.cs" />
     <Compile Include="Json\CoordinatesystemDescription.cs" />
@@ -99,11 +103,6 @@
     <Compile Include="JsonExporter.cs" />
     <Compile Include="Json\ParentDescription.cs" />
     <Compile Include="Json\PartDescription.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -121,6 +120,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="TaskpaneHostUI.resx">
