@@ -1,0 +1,105 @@
+{
+  "Name": "Platform_10001",
+  "GUID": "63253060",
+  "Type": "1",
+  "CreationDateTime": "2023-10-13T13:26:21.4176715+02:00",
+  "LastModifiedDateTime": "0001-01-01T00:00:00",
+  "CoordinanteSystems": [
+    {
+      "Name": "ASS_Vision_Point_1",
+      "Id": -99,
+      "Translation": {
+        "X": 0.026,
+        "Y": 0.015,
+        "Z": 0.00345
+      },
+      "Rotation": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0,
+        "W": 1.0,
+        "IsIdentity": true
+      }
+    },
+    {
+      "Name": "ASS_Vision_Point_2",
+      "Id": -99,
+      "Translation": {
+        "X": 0.026,
+        "Y": -4.89858737E-19,
+        "Z": 0.00345
+      },
+      "Rotation": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0,
+        "W": 1.0,
+        "IsIdentity": true
+      }
+    },
+    {
+      "Name": "ASS_Vision_Point_3",
+      "Id": -99,
+      "Translation": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.005
+      },
+      "Rotation": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0,
+        "W": 1.0,
+        "IsIdentity": true
+      }
+    },
+    {
+      "Name": "ASS_Vision_Point_4",
+      "Id": -99,
+      "Translation": {
+        "X": 0.0,
+        "Y": 0.015,
+        "Z": 0.005
+      },
+      "Rotation": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0,
+        "W": 1.0,
+        "IsIdentity": true
+      }
+    },
+    {
+      "Name": "ASS_Chuck_Alignment_Point",
+      "Id": -99,
+      "Translation": {
+        "X": 0.026,
+        "Y": 0.015,
+        "Z": 0.0
+      },
+      "Rotation": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0,
+        "W": 1.0,
+        "IsIdentity": true
+      }
+    },
+    {
+      "Name": "STL_Export_Link",
+      "Id": -99,
+      "Translation": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Rotation": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0,
+        "W": 1.0,
+        "IsIdentity": true
+      }
+    }
+  ]
+}

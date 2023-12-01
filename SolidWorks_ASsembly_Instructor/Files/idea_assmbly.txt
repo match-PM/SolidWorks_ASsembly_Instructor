@@ -1,0 +1,24 @@
+		Assemblyname
+			id (GUID)
+			Date
+			Origin
+				translation
+					x
+					y
+					z
+				rotation
+					x
+					y
+					z
+					w
+			parent (relative from origin to parent origin)
+				translation
+					x
+					y
+					z
+				rotation
+					x
+					y
+					z
+					w
+

@@ -1,0 +1,39 @@
+Assambley
+	name
+	id (GUID)
+	Date
+	translation
+		x
+		y
+		z
+	rotation
+		x
+		y
+		z
+		w
+	children[]
+		Partname
+			type
+			id (GUID)
+			type
+			translation (relative from origin to part origin)
+				x
+				y
+				z
+			rotation
+				x
+				y
+				z
+				w
+		Assemblyname
+			id (GUID)
+			Date
+			translation (relative from origin to part origin)
+				x
+				y
+				z
+			rotation
+				x
+				y
+				z
+				w

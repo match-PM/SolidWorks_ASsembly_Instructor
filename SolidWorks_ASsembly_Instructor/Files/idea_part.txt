@@ -1,0 +1,26 @@
+Part
+	name
+	Date
+	ID (GUID)
+	origin	(Wahrscheinlich immer 0)
+		translation
+			x
+			y
+			z
+		rotation
+			x
+			y
+			z
+			w
+	coordinateSystems[]
+		ASS_XX
+		ID / Name
+		translation (relative to part origin)
+			x
+			y
+			z
+		rotation
+			x
+			y
+			z
+			w
