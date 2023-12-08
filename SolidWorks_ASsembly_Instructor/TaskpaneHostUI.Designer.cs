@@ -42,9 +42,10 @@
             // 
             // exportJson
             // 
-            this.exportJson.Location = new System.Drawing.Point(3, 157);
+            this.exportJson.Location = new System.Drawing.Point(4, 193);
+            this.exportJson.Margin = new System.Windows.Forms.Padding(4);
             this.exportJson.Name = "exportJson";
-            this.exportJson.Size = new System.Drawing.Size(333, 23);
+            this.exportJson.Size = new System.Drawing.Size(444, 28);
             this.exportJson.TabIndex = 0;
             this.exportJson.Text = "Export as Json";
             this.exportJson.UseVisualStyleBackColor = true;
@@ -53,17 +54,19 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 115);
+            this.label2.Location = new System.Drawing.Point(8, 142);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 13);
+            this.label2.Size = new System.Drawing.Size(89, 16);
             this.label2.TabIndex = 3;
             this.label2.Text = "Save location";
             // 
             // tb_BrowseFolder
             // 
-            this.tb_BrowseFolder.Location = new System.Drawing.Point(3, 131);
+            this.tb_BrowseFolder.Location = new System.Drawing.Point(4, 161);
+            this.tb_BrowseFolder.Margin = new System.Windows.Forms.Padding(4);
             this.tb_BrowseFolder.Name = "tb_BrowseFolder";
-            this.tb_BrowseFolder.Size = new System.Drawing.Size(333, 20);
+            this.tb_BrowseFolder.Size = new System.Drawing.Size(443, 22);
             this.tb_BrowseFolder.TabIndex = 4;
             this.tb_BrowseFolder.Text = "Browse folder";
             this.tb_BrowseFolder.Click += new System.EventHandler(this.tb_BrowseFolder_Click);
@@ -74,17 +77,19 @@
             this.label3.Dock = System.Windows.Forms.DockStyle.Top;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(0, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(308, 31);
+            this.label3.Size = new System.Drawing.Size(385, 39);
             this.label3.TabIndex = 5;
             this.label3.Text = "SW ASsembly Instructor";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // refreshPartList
             // 
-            this.refreshPartList.Location = new System.Drawing.Point(3, 89);
+            this.refreshPartList.Location = new System.Drawing.Point(4, 110);
+            this.refreshPartList.Margin = new System.Windows.Forms.Padding(4);
             this.refreshPartList.Name = "refreshPartList";
-            this.refreshPartList.Size = new System.Drawing.Size(333, 23);
+            this.refreshPartList.Size = new System.Drawing.Size(444, 28);
             this.refreshPartList.TabIndex = 9;
             this.refreshPartList.Text = "Referesh part list";
             this.refreshPartList.UseVisualStyleBackColor = true;
@@ -92,25 +97,27 @@
             // 
             // rtDebug
             // 
-            this.rtDebug.Location = new System.Drawing.Point(3, 186);
+            this.rtDebug.Location = new System.Drawing.Point(4, 229);
+            this.rtDebug.Margin = new System.Windows.Forms.Padding(4);
             this.rtDebug.Name = "rtDebug";
-            this.rtDebug.Size = new System.Drawing.Size(333, 929);
+            this.rtDebug.Size = new System.Drawing.Size(443, 1142);
             this.rtDebug.TabIndex = 10;
             this.rtDebug.Text = "";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(3, 34);
+            this.pictureBox1.Location = new System.Drawing.Point(4, 42);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(333, 49);
+            this.pictureBox1.Size = new System.Drawing.Size(444, 60);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
             // TaskpaneHostUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.rtDebug);
             this.Controls.Add(this.refreshPartList);
@@ -119,8 +126,9 @@
             this.Controls.Add(this.tb_BrowseFolder);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.exportJson);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TaskpaneHostUI";
-            this.Size = new System.Drawing.Size(339, 1118);
+            this.Size = new System.Drawing.Size(452, 1376);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

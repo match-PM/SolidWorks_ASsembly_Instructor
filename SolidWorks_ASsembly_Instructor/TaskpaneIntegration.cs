@@ -1,6 +1,8 @@
 ﻿using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swpublished;
+using SolidWorks_ASsembly_Instructor.Properties;
 using System;
+using System.Configuration.Assemblies;
 using System.Net;
 using System.Runtime.InteropServices;
 
@@ -67,7 +69,7 @@ namespace SolidWorks_ASsembly_Instructor
 
         private void LoadUI()
         {
-            mTaskpaneView = mSolidWorksApplication.CreateTaskpaneView2(@"./face.png", "SolidWorks_ASsembly_Instructor");
+            mTaskpaneView = mSolidWorksApplication.CreateTaskpaneView2($@".\face.bmp", "SolidWorks_ASsembly_Instructor");
 
             mTaskpaneHost = (TaskpaneHostUI)mTaskpaneView.AddControl(TaskpaneIntegration.SWTASKPANE_PROGID, string.Empty);
             mTaskpaneHost.app = mSolidWorksApplication;
