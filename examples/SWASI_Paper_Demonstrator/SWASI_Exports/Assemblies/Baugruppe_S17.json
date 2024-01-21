@@ -4,7 +4,7 @@
     "guid": "guid_baugruppe_S17",
     "type": "assembly",
     "saveDate": "2024-01-16T12:25:41.2474585+01:00",
-    "cad_path": "Baugruppe_S17.json",
+    "cad_path": "Baugruppe_S17.STL",
     "mounting_description": {
         "components": [
             {
@@ -48,23 +48,24 @@
             {
                 "component_1": "Glas_Platelet_Paper",
                 "component_2": "UFC_Paper",
+                "move_component_1": false,
                 "description":{
                     "name":"assembly_description_Platelet_UFC",
                     "plane_match_1":{
-                        "plane_name_component_1":"test",
-                        "plane_name_component_2":"Test",
+                        "plane_name_component_1":"Alignment_Plane_1",
+                        "plane_name_component_2":"Alignment_Plane_1",
                         "plane_offset": 0.0,
                         "inv_normal_vector": false
                     },
                     "plane_match_2":{
-                        "plane_name_component_1":"test",
-                        "plane_name_component_2":"Test",
+                        "plane_name_component_1":"Alignment_Plane_2",
+                        "plane_name_component_2":"Alignment_Plane_2",
                         "plane_offset": 0.0,
                         "inv_normal_vector": false
                     },
                     "plane_match_3":{
-                        "plane_name_component_1":"test",
-                        "plane_name_component_2":"Test",
+                        "plane_name_component_1":"Alignment_Plane_3",
+                        "plane_name_component_2":"Alignment_Plane_3",
                         "plane_offset": 0.0,
                         "inv_normal_vector": false
                     }
@@ -73,6 +74,19 @@
         ],
         "mounting_references": {
             "spawning_origin": "Origin_Assembly_Origin",
+            "spawning_transformation": {
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "orientation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
             "ref_frames": [
                 {
                     "name": "Glue_Frame_1",
@@ -91,7 +105,7 @@
                             "w": 1.0
                         }
                     },
-                    "constraints": ""
+                    "constraints": {}
                 },
                 {
                     "name": "Glue_Frame_2",
@@ -110,7 +124,7 @@
                             "w": 1.0
                         }
                     },
-                    "constraints": ""
+                    "constraints": {}
                 },
                 {
                     "name": "Glue_Frame_3",
@@ -129,7 +143,7 @@
                             "w": 1.0
                         }
                     },
-                    "constraints": ""
+                    "constraints": {}
                 },
                 {
                     "name": "Glue_Frame_4",
@@ -148,7 +162,7 @@
                             "w": 1.0
                         }
                     },
-                    "constraints": ""
+                    "constraints": {}
                 }
             ],
             "ref_axis": [],

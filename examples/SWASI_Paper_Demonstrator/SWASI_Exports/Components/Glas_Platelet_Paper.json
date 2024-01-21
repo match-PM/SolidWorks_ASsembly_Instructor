@@ -4,316 +4,338 @@
     "guid": "guid_glas_platelet_paper",
     "type": "component",
     "saveDate": "2024-01-16T12:25:41.2474585+01:00",
-    "cad_path": "Glas_Platelet_Paper.json",
-    "mounting_references": {
-        "spawning_origin": "Gonio_Left_Part_Origin",
-        "ref_frames": [
-            {
-                "name": "Laser_Mes_Frame_1",
-                "type": "frame",
-                "parent_frame": "UFC_Paper",
-                "transformation": {
-                    "position": {
-                        "x": 1.5,
-                        "y": 1.5,
-                        "z": 0.0
-                    },
-                    "orientation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    }
+    "cad_path": "Glas_Platelet_Paper.STL",
+    "document_units": "mm",
+    "mounting_description": {
+        "mounting_references": {
+            "spawning_origin": "Z_Axis",
+            "spawning_transformation": {
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
                 },
-                "constraints": ""
+                "orientation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
             },
-            {
-                "name": "Laser_Mes_Frame_2",
-                "type": "frame",
-                "parent_frame": "UFC_Paper",
-                "transformation": {
-                    "position": {
-                        "x": 1.5,
-                        "y": 19.5,
-                        "z": 0.0
+            "ref_frames": [
+                {
+                    "name": "Laser_Mes_Frame_1",
+                    "type": "frame",
+                    "parent_frame": "UFC_Paper",
+                    "transformation": {
+                        "position": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": 0.0
+                        },
+                        "orientation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0,
+                            "w": 1.0
+                        }
                     },
-                    "orientation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    }
+                    "constraints": {}
                 },
-                "constraints": ""
-            },
-            {
-                "name": "Laser_Mes_Frame_3",
-                "type": "frame",
-                "parent_frame": "UFC_Paper",
-                "transformation": {
-                    "position": {
-                        "x": 29.5,
-                        "y": 19.5,
-                        "z": 0.0
+                {
+                    "name": "Laser_Mes_Frame_2",
+                    "type": "frame",
+                    "parent_frame": "UFC_Paper",
+                    "transformation": {
+                        "position": {
+                            "x": -1.5,
+                            "y": -19.5,
+                            "z": 0.0
+                        },
+                        "orientation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0,
+                            "w": 1.0
+                        }
                     },
-                    "orientation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    }
+                    "constraints": {}
                 },
-                "constraints": ""
-            },
-            {
-                "name": "Laser_Mes_Frame_4",
-                "type": "frame",
-                "parent_frame": "UFC_Paper",
-                "transformation": {
-                    "position": {
-                        "x": 29.5,
-                        "y": 1.5,
-                        "z": 0.0
+                {
+                    "name": "Laser_Mes_Frame_3",
+                    "type": "frame",
+                    "parent_frame": "UFC_Paper",
+                    "transformation": {
+                        "position": {
+                            "x": -29.5,
+                            "y": -19.5,
+                            "z": 0.0
+                        },
+                        "orientation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0,
+                            "w": 1.0
+                        }
                     },
-                    "orientation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    }
+                    "constraints": {}
                 },
-                "constraints": ""
-            },
-            {
-                "name": "Vision_Point_1",
-                "type": "point",
-                "parent_frame": "UFC_Paper",
-                "transformation": {
-                    "position": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 2.0
+                {
+                    "name": "Laser_Mes_Frame_4",
+                    "type": "frame",
+                    "parent_frame": "UFC_Paper",
+                    "transformation": {
+                        "position": {
+                            "x": -29.5,
+                            "y": -1.5,
+                            "z": 0.0
+                        },
+                        "orientation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0,
+                            "w": 1.0
+                        }
                     },
-                    "orientation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    }
+                    "constraints": {}
                 },
-                "constraints": ""
-            },
-            {
-                "name": "Vision_Point_1_helper",
-                "type": "point",
-                "parent_frame": "UFC_Paper",
-                "transformation": {
-                    "position": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0
+                {
+                    "name": "Vision_Point_1",
+                    "type": "point",
+                    "parent_frame": "UFC_Paper",
+                    "transformation": {
+                        "position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 2.0
+                        },
+                        "orientation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0,
+                            "w": 1.0
+                        }
                     },
-                    "orientation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    }
+                    "constraints": {}
                 },
-                "constraints": ""
-            },
-            {
-                "name": "Vision_Point_2",
-                "type": "point",
-                "parent_frame": "UFC_Paper",
-                "transformation": {
-                    "position": {
-                        "x": 0.0,
-                        "y": 20.0,
-                        "z": 2.0
+                {
+                    "name": "Vision_Point_1_helper",
+                    "type": "point",
+                    "parent_frame": "UFC_Paper",
+                    "transformation": {
+                        "position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "orientation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0,
+                            "w": 1.0
+                        }
                     },
-                    "orientation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    }
+                    "constraints": {}
                 },
-                "constraints": ""
-            },
-            {
-                "name": "Vision_Point_2_helper",
-                "type": "point",
-                "parent_frame": "UFC_Paper",
-                "transformation": {
-                    "position": {
-                        "x": 0.0,
-                        "y": 20.0,
-                        "z": 0.0
+                {
+                    "name": "Vision_Point_2",
+                    "type": "point",
+                    "parent_frame": "UFC_Paper",
+                    "transformation": {
+                        "position": {
+                            "x": 0.0,
+                            "y": -20.0,
+                            "z": 2.0
+                        },
+                        "orientation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0,
+                            "w": 1.0
+                        }
                     },
-                    "orientation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    }
+                    "constraints": {}
                 },
-                "constraints": ""
-            },
-            {
-                "name": "Vision_Point_3",
-                "type": "point",
-                "parent_frame": "UFC_Paper",
-                "transformation": {
-                    "position": {
-                        "x": 30.0,
-                        "y": 20.0,
-                        "z": 2.0
+                {
+                    "name": "Vision_Point_2_helper",
+                    "type": "point",
+                    "parent_frame": "UFC_Paper",
+                    "transformation": {
+                        "position": {
+                            "x": 0.0,
+                            "y": -20.0,
+                            "z": 0.0
+                        },
+                        "orientation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0,
+                            "w": 1.0
+                        }
                     },
-                    "orientation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    }
+                    "constraints": {}
                 },
-                "constraints": ""
-            },
-            {
-                "name": "Vision_Point_3_helper",
-                "type": "point",
-                "parent_frame": "UFC_Paper",
-                "transformation": {
-                    "position": {
-                        "x": 30.0,
-                        "y": 20.0,
-                        "z": 0.0
+                {
+                    "name": "Vision_Point_3",
+                    "type": "point",
+                    "parent_frame": "UFC_Paper",
+                    "transformation": {
+                        "position": {
+                            "x": -30.0,
+                            "y": -20.0,
+                            "z": 2.0
+                        },
+                        "orientation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0,
+                            "w": 1.0
+                        }
                     },
-                    "orientation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    }
+                    "constraints": {}
                 },
-                "constraints": ""
-            },
-            {
-                "name": "Vision_Point_4",
-                "type": "point",
-                "parent_frame": "UFC_Paper",
-                "transformation": {
-                    "position": {
-                        "x": 30.0,
-                        "y": 0.0,
-                        "z": 2.0
+                {
+                    "name": "Vision_Point_3_helper",
+                    "type": "point",
+                    "parent_frame": "UFC_Paper",
+                    "transformation": {
+                        "position": {
+                            "x": -30.0,
+                            "y": -20.0,
+                            "z": 0.0
+                        },
+                        "orientation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0,
+                            "w": 1.0
+                        }
                     },
-                    "orientation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    }
+                    "constraints": {}
                 },
-                "constraints": ""
-            },
-            {
-                "name": "Vision_Point_4_helper",
-                "type": "point",
-                "parent_frame": "UFC_Paper",
-                "transformation": {
-                    "position": {
-                        "x": 30.0,
-                        "y": 0.0,
-                        "z": 0.0
+                {
+                    "name": "Vision_Point_4",
+                    "type": "point",
+                    "parent_frame": "UFC_Paper",
+                    "transformation": {
+                        "position": {
+                            "x": -30.0,
+                            "y": 0.0,
+                            "z": 2.0
+                        },
+                        "orientation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0,
+                            "w": 1.0
+                        }
                     },
-                    "orientation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    }
+                    "constraints": {}
                 },
-                "constraints": ""
-            },
-            {
-                "name": "Surface_Center_Point",
-                "type": "point",
-                "parent_frame": "UFC_Paper",
-                "transformation": {
-                    "position": {
-                        "x": 15.0,
-                        "y": 20.0,
-                        "z": 1.0
+                {
+                    "name": "Vision_Point_4_helper",
+                    "type": "point",
+                    "parent_frame": "UFC_Paper",
+                    "transformation": {
+                        "position": {
+                            "x": -30.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "orientation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0,
+                            "w": 1.0
+                        }
                     },
-                    "orientation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    }
+                    "constraints": {}
                 },
-                "constraints": ""
-            },
-            {
-                "name": "Gripping_Point",
-                "type": "frame",
-                "parent_frame": "UFC_Paper",
-                "transformation": {
-                    "position": {
-                        "x": 15.0,
-                        "y": 10.0,
-                        "z": 2.0
+                {
+                    "name": "Surface_Center_Point",
+                    "type": "point",
+                    "parent_frame": "UFC_Paper",
+                    "transformation": {
+                        "position": {
+                            "x": -15.0,
+                            "y": -20.0,
+                            "z": 1.0
+                        },
+                        "orientation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0,
+                            "w": 1.0
+                        }
                     },
-                    "orientation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    }
+                    "constraints": {}
                 },
-                "constraints": ""
-            }
-        ],
-        "ref_axis": [
-            {
-                "name": "Norm_Alignment_Plane_3",
-                "ref_frame_names": [
-                    "Vision_Point_2_helper",
-                    "Vision_Point_3_helper"
-                ],
-                "ref_frame_name_1": "Vision_Point_2_helper",
-                "ref_frame_name_2": "Vision_Point_3_helper"
-            }
-        ],
-        "ref_planes": [
-            {
-                "name": "Alignment_Plane_1",
-                "ref_frame_names": [
-                    "Vision_Point_2_helper",
-                    "Vision_Point_2",
-                    "Vision_Point_3"
-                ],
-                "ref_axis_names": []
-            },
-            {
-                "name": "Alignment_Plane_2",
-                "ref_frame_names": [
-                    "Vision_Point_2",
-                    "Vision_Point_3",
-                    "Vision_Point_2"
-                ],
-                "ref_axis_names": []
-            },
-            {
-                "name": "Alignment_Plane_3",
-                "ref_frame_names": [
-                    "Surface_Center_Point"
-                ],
-                "ref_axis_names": [
-                    "Norm_Alignment_Plane_3"
-                ]
-            }
-        ]
+                {
+                    "name": "Gripping_Point",
+                    "type": "frame",
+                    "parent_frame": "UFC_Paper",
+                    "transformation": {
+                        "position": {
+                            "x": -15.0,
+                            "y": -10.0,
+                            "z": 2.0
+                        },
+                        "orientation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0,
+                            "w": 1.0
+                        }
+                    },
+                    "constraints": {}
+                }
+            ],
+            "ref_axis": [
+                {
+                    "name": "Norm_Alignment_Plane_3",
+                    "ref_frame_names": [
+                        "Vision_Point_2_helper",
+                        "Vision_Point_3_helper"
+                    ],
+                    "ref_frame_name_1": "Vision_Point_2_helper",
+                    "ref_frame_name_2": "Vision_Point_3_helper"
+                }
+            ],
+            "ref_planes": [
+                {
+                    "name": "Alignment_Plane_1",
+                    "ref_frame_names": [
+                        "Vision_Point_2_helper",
+                        "Vision_Point_2",
+                        "Vision_Point_3"
+                    ],
+                    "ref_axis_names": [
+                        ""
+                    ]
+                },
+                {
+                    "name": "Alignment_Plane_2",
+                    "ref_frame_names": [
+                        "Vision_Point_2",
+                        "Vision_Point_3",
+                        "Vision_Point_1"
+                    ],
+                    "ref_axis_names": [
+                        ""
+                    ]
+                },
+                {
+                    "name": "Alignment_Plane_3",
+                    "ref_frame_names": [
+                        "Surface_Center_Point",
+                        "",
+                        ""
+                    ],
+                    "ref_axis_names": [
+                        "Norm_Alignment_Plane_3"
+                    ]
+                }
+            ]
+        }
     }
 }
