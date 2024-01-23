@@ -336,7 +336,12 @@
                     ],
                     "ref_axis_names": [
                         ""
-                    ]
+                    ],
+                    "ideal_norm_vector":{
+                        "x": 0.0,
+                        "y": 1.0,
+                        "z": 0.0
+                    }
                 },
                 {
                     "name": "Alignment_Plane_2",
@@ -347,7 +352,12 @@
                     ],
                     "ref_axis_names": [
                         ""
-                    ]
+                    ],
+                    "ideal_norm_vector":{
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 1.0
+                    }
                 },
                 {
                     "name": "Alignment_Plane_3",
@@ -358,7 +368,12 @@
                     ],
                     "ref_axis_names": [
                         "Norm_Alignment_Plane_3"
-                    ]
+                    ],
+                    "ideal_norm_vector":{
+                        "x": 1.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    }
                 }
             ]
         }
