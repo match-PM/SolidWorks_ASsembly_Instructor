@@ -9,19 +9,25 @@ namespace SolidWorks_ASsembly_Instructor
 {
     public class AssemblyDescription
     {
-        public string Name { get; set; }
+        public string name { get; set; }
 
-        public string Description { get; set; }
+        public string description { get; set; }
 
-        public Guid GUID { get; set; }
+        public Guid guid { get; set; }
 
-        public string Type { get; set; }
+        public string type { get; set; }
 
         public DateTime saveDate { get; set; }
 
         public CoordinateSystemDescription origin { get; set; }
 
         public List<ChildrenDescription> children { get; set; }
+
+        public MountingDescription mountingDescription;
+
+        public string documentUnits;
+
+        public string cadPath;
 
         //public DateTime CreationDateTime { get; set; }
 
@@ -31,17 +37,21 @@ namespace SolidWorks_ASsembly_Instructor
         public AssemblyDescription()
         {
             saveDate = DateTime.Now;
-            GUID = Guid.NewGuid();
-            children = new List<ChildrenDescription>();
-            Description = string.Empty;
+            guid = Guid.NewGuid();
+            description = string.Empty;
+            mountingDescription = new MountingDescription();
+            type = "Assembly";
+            documentUnits = "mm";
+            cadPath = string.Empty;
         }
+
     }
 
     public class ChildrenDescription
     {
-        public string Name { get; set; }
-        public Guid GUID { get; set; }
-        public string Type { get; set; }
+        public string name { get; set; }
+        public Guid guid { get; set; }
+        public string type { get; set; }
 
         public List<ChildrenDescription> children { get; set; }
         public CoordinateSystemDescription originTransform { get; set; }
@@ -50,16 +60,11 @@ namespace SolidWorks_ASsembly_Instructor
 
         public ChildrenDescription()
         {
-            Name = "Subpart blubb";
-            GUID = Guid.NewGuid();
+            name = "Subpart blubb";
+            guid = Guid.NewGuid();
             originTransform = new CoordinateSystemDescription();
             assemblyTransform = new CoordinateSystemDescription();
             children = new List<ChildrenDescription>();
-        }
-
-        public AssemblyDescription ToMainAssambly()
-        {
-            return new AssemblyDescription { Name = Name, GUID = GUID, Type = Type, children = children };
         }
 
         public void calcRelativeCoordinates(Vector3 parentTranslation, Quaternion parentQuaternion, Vector3 partTranslation, Quaternion partQuaternion)

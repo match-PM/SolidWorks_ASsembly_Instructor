@@ -15,11 +15,11 @@ namespace SolidWorks_ASsembly_Instructor
 {
     public class PartDescription
     {
-        public string Name { get; set; }
-        public Guid GUID { get; set; }
-        public string Type { get; set; }
-        public DateTime CreationDateTime { get; set; }
-        public DateTime LastModifiedDateTime { get; set; }
+        public string name { get; set; }
+        public Guid guid { get; set; }
+        public string type { get; set; }
+        public DateTime creationDateTime { get; set; }
+        public DateTime lastModifiedDateTime { get; set; }
         //public Vector3 WorldCoordinates { get; set; }
         //public Vector3 relativeCoordinates { get; set; }
         //public Coordinatesystem WorldCoordinatesystem { get; set; }
@@ -40,16 +40,16 @@ namespace SolidWorks_ASsembly_Instructor
 
         public ParentDescription parent;
 
-        public List<CoordinateSystemDescription>CoordinanteSystems { get; set; }
+        public List<CoordinateSystemDescription> coordinanteSystems { get; set; }
 
 
         public PartDescription()
         {
-            CoordinanteSystems = new List<CoordinateSystemDescription>();
+            coordinanteSystems = new List<CoordinateSystemDescription>();
             //WorldCoordinatesystem = new Coordinatesystem();
             //relativeCoordinateSystem = new Coordinatesystem();
-            CreationDateTime = DateTime.Now;
-            GUID = Guid.NewGuid();
+            creationDateTime = DateTime.Now;
+            guid = Guid.NewGuid();
         }
 
 
@@ -58,14 +58,14 @@ namespace SolidWorks_ASsembly_Instructor
     }
     public class PartDescriptionShort
     {
-        public string Name { get; set; }
-        public Guid GUID { get; set; }
+        public string name { get; set; }
+        public Guid guid { get; set; }
         public CoordinateSystemDescription relativeCoordinates { get; set; }
 
         public PartDescriptionShort()
         {
-            Name = "Subpart blubb";
-            GUID = Guid.NewGuid();
+            name = "Subpart blubb";
+            guid = Guid.NewGuid();
             relativeCoordinates = new CoordinateSystemDescription();
 
         }

@@ -94,6 +94,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyManager.cs" />
+    <Compile Include="Json\ComponentDescription.cs" />
+    <Compile Include="Json\MountingReferences.cs" />
+    <Compile Include="Json\MountingDescription.cs" />
+    <Compile Include="Json\AssemblyComponentDescription.cs" />
+    <Compile Include="Json\PlaneMatchDescription.cs" />
+    <Compile Include="Json\PlaneMateDescription.cs" />
+    <Compile Include="Json\RefFrameDescription.cs" />
+    <Compile Include="Json\RefAxisDescription.cs" />
+    <Compile Include="Json\RefPlaneDescription.cs" />
+    <Compile Include="Json\AssemblyConstraintDescription.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
