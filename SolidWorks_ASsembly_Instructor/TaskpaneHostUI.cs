@@ -134,7 +134,8 @@ namespace SolidWorks_ASsembly_Instructor
                         else
                         {
                             Component.mountingDescription = mountingDescription;
-                            Component.name = mainAssamblyName + ".STL";
+                            Component.cadPath = mainAssamblyName + ".STL";
+                            Component.name = mainAssamblyName;
                             ExportObject = Component;
                         }
                     }
@@ -478,7 +479,7 @@ namespace SolidWorks_ASsembly_Instructor
                         }
 
                         // Set the plane names to the Description, returns the index at which the Plane match has been inserted (could only be 1,2,3, zero in case it could not be added)
-                        var Output = MountingDesc.assemblyConstraints[ConstraintIndex].description.SetPlaneMatch(PlaneNames[0], PlaneNames[1]);
+                        var Output = MountingDesc.assemblyConstraints[ConstraintIndex].description.SetPlaneMatch(PlaneNames[0].Replace(swasi_identificator, ""), PlaneNames[1].Replace(swasi_identificator, ""));
                         PlaneMatchIndex = Output.Item1;
                         SetSuccess = Output.Item2;
                         //logDebug($"{swMate.FlipDimension}");

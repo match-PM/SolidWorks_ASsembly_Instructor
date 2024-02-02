@@ -319,10 +319,10 @@
     }
   },
   "documentUnits": "mm",
-  "cadPath": "",
-  "name": "UFC_Paper.STL",
+  "cadPath": "UFC_Paper.STL",
+  "name": "UFC_Paper",
   "description": "",
-  "guid": "7d29b716-b1fa-4f0d-8e41-de94299042eb",
+  "guid": "3e019816-340a-407f-8cf7-331318f0f18b",
   "type": "Component",
-  "saveDate": "2024-02-01T15:06:16.1381498+01:00"
+  "saveDate": "2024-02-02T13:58:31.8126392+01:00"
 }

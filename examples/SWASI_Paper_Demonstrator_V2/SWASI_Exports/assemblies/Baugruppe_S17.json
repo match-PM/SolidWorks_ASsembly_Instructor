@@ -2,13 +2,13 @@
   "mountingDescription": {
     "components": [
       {
-        "name": "Glas_Platelet_Paper-1",
+        "name": "UFC_Paper-2",
         "type": "component",
         "transformation": {
           "translation": {
             "X": -22.3656273,
-            "Y": -19.649437,
-            "Z": 26.97531
+            "Y": -18.649437,
+            "Z": 29.47531
           },
           "rotation": {
             "X": 0.0,
@@ -21,13 +21,13 @@
         "guid": ""
       },
       {
-        "name": "UFC_Paper-2",
+        "name": "Glas_Platelet_Paper-1",
         "type": "component",
         "transformation": {
           "translation": {
             "X": -22.3656273,
-            "Y": -18.649437,
-            "Z": 29.47531
+            "Y": -19.649437,
+            "Z": 26.97531
           },
           "rotation": {
             "X": 0.0,
@@ -48,14 +48,14 @@
         "moveComponent_1": false,
         "description": {
           "planeMatch_1": {
-            "planeNameComponent_1": "SWASI_Alignment_Plane_1",
-            "planeNameComponent_2": "SWASI_Alignment_Plane_1",
+            "planeNameComponent_1": "Alignment_Plane_1",
+            "planeNameComponent_2": "Alignment_Plane_1",
             "planeOffset": -1.0,
             "invertNormalVector": false
           },
           "planeMatch_2": {
-            "planeNameComponent_1": "SWASI_Alignment_Plane_2",
-            "planeNameComponent_2": "SWASI_Alignment_Plane_2ddasd",
+            "planeNameComponent_1": "Alignment_Plane_2",
+            "planeNameComponent_2": "Alignment_Plane_2ddasd",
             "planeOffset": -0.5,
             "invertNormalVector": true
           },
@@ -166,7 +166,7 @@
   "cadPath": "Baugruppe_S17.STL",
   "name": "Baugruppe_S17",
   "description": "",
-  "guid": "27cc460f-bcbc-43c0-bdbe-44915d56d591",
+  "guid": "cc1bb85d-c78e-4038-a850-87576495d2ec",
   "type": "Assembly",
-  "saveDate": "2024-02-01T15:05:47.761056+01:00"
+  "saveDate": "2024-02-02T13:57:24.2679277+01:00"
 }

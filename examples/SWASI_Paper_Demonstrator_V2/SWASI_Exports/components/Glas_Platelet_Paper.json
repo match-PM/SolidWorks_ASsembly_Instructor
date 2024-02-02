@@ -301,10 +301,10 @@
     }
   },
   "documentUnits": "mm",
-  "cadPath": "",
-  "name": "Glas_Platelet_Paper.STL",
+  "cadPath": "Glas_Platelet_Paper.STL",
+  "name": "Glas_Platelet_Paper",
   "description": "",
-  "guid": "523752c7-e57d-47e8-b2dd-b05e8f9ff292",
+  "guid": "d03c1d54-bf3d-439a-be96-5efe495502b1",
   "type": "Component",
-  "saveDate": "2024-02-01T15:05:57.7475653+01:00"
+  "saveDate": "2024-02-02T13:58:13.1860416+01:00"
 }
