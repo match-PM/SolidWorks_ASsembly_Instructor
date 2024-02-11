@@ -1,0 +1,172 @@
+{
+  "mountingDescription": {
+    "components": [
+      {
+        "name": "UFC_Paper_MODTOL-2",
+        "type": "component",
+        "transformation": {
+          "translation": {
+            "X": -22.3656273,
+            "Y": -18.649437,
+            "Z": 29.47531
+          },
+          "rotation": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": 0.0,
+            "W": 1.0,
+            "IsIdentity": true
+          }
+        },
+        "guid": ""
+      },
+      {
+        "name": "Glas_Platelet_Paper_MODTOL-1",
+        "type": "component",
+        "transformation": {
+          "translation": {
+            "X": -22.3656273,
+            "Y": -19.649437,
+            "Z": 26.97531
+          },
+          "rotation": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": 0.0,
+            "W": 1.0,
+            "IsIdentity": true
+          }
+        },
+        "guid": ""
+      }
+    ],
+    "assemblyConstraints": [
+      {
+        "name": "Description_Glas_Platelet_Paper-1_UFC_Paper-2",
+        "component_1": "Glas_Platelet_Paper_MODTOL-1",
+        "component_2": "UFC_Paper_MODTOL-2",
+        "moveComponent_1": false,
+        "description": {
+          "planeMatch_1": {
+            "planeNameComponent_1": "Alignment_Plane_1",
+            "planeNameComponent_2": "Alignment_Plane_1",
+            "planeOffset": 0.0,
+            "invertNormalVector": false
+          },
+          "planeMatch_2": {
+            "planeNameComponent_1": "Alignment_Plane_2",
+            "planeNameComponent_2": "Alignment_Plane_2ddasd",
+            "planeOffset": 0.0,
+            "invertNormalVector": true
+          },
+          "planeMatch_3": {
+            "planeNameComponent_1": "Alignment_Plane_3_G",
+            "planeNameComponent_2": "Alignment_Plane_3",
+            "planeOffset": 0.0,
+            "invertNormalVector": false
+          }
+        }
+      }
+    ],
+    "mountingReferences": {
+      "spawningOrigin": "Assembly_Origin",
+      "spawningTransformation": {
+        "translation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0,
+          "W": 1.0,
+          "IsIdentity": true
+        }
+      },
+      "ref_planes": [],
+      "ref_axes": [],
+      "ref_frames": [
+        {
+          "name": "Glue_Frame_1",
+          "type": "frame",
+          "transformation": {
+            "translation": {
+              "X": -2.45953369,
+              "Y": -2.00167537,
+              "Z": 1.99999809
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          }
+        },
+        {
+          "name": "Glue_Frame_2",
+          "type": "frame",
+          "transformation": {
+            "translation": {
+              "X": -2.45953369,
+              "Y": -16.0016766,
+              "Z": 1.99999809
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          }
+        },
+        {
+          "name": "Glue_Frame_3",
+          "type": "frame",
+          "transformation": {
+            "translation": {
+              "X": -26.4595337,
+              "Y": -16.0016766,
+              "Z": 1.99999809
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          }
+        },
+        {
+          "name": "Glue_Frame_4",
+          "type": "frame",
+          "transformation": {
+            "translation": {
+              "X": -26.4595337,
+              "Y": -2.00167537,
+              "Z": 1.99999809
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          }
+        }
+      ]
+    }
+  },
+  "documentUnits": "mm",
+  "cadPath": "Baugruppe_S17.STL",
+  "name": "Baugruppe_S17",
+  "description": "",
+  "guid": "cc1bb85d-c78e-4038-a850-87576495d2ec",
+  "type": "Assembly",
+  "saveDate": "2024-02-02T13:57:24.2679277+01:00"
+}

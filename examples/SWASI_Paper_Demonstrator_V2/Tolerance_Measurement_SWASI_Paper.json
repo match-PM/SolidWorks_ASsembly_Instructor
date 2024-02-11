@@ -1,0 +1,41 @@
+{
+    "name": "Tolerance_Measurement_SWASI_Paper",
+    "saved_at": "2024-02-08 20:36:55.387186",
+    "action_list": [
+        {
+            "action_position": 0,
+            "action_type": "ServiceAction",
+            "name": "Create Assembly Instruction",
+            "service_client": "/assembly_manager/create_assembly_instruction_from_description",
+            "service_type": "assembly_manager_interfaces/srv/CreateAssemblyInstructionFromDescription",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {
+                "file_path": "/home/niklas/Documents/SolidWorks_ASsembly_Instructor/examples/SWASI_Paper_Demonstrator_V2/SWASI_Exports/assemblies/Baugruppe_S17_MODTOL.json",
+                "spawn_components": true
+            }
+        },
+        {
+            "action_position": 1,
+            "action_type": "ServiceAction",
+            "name": "Calculate Assembly Instruction",
+            "service_client": "/assembly_manager/calculate_assembly_instructions",
+            "service_type": "assembly_manager_interfaces/srv/CalculateAssemblyInstructions",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {
+                "instruction_id": "Description_Glas_Platelet_Paper-1_UFC_Paper-2"
+            }
+        },
+        {
+            "action_position": 2,
+            "action_type": "ServiceAction",
+            "name": "Get Scene",
+            "service_client": "/assembly_manager/get_scene",
+            "service_type": "assembly_manager_interfaces/srv/GetScene",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {}
+        }
+    ]
+}

@@ -1,0 +1,342 @@
+{
+    "mountingDescription": {
+        "components": [],
+        "assemblyConstraints": [],
+        "mountingReferences": {
+            "spawningOrigin": "Camera_Station_TCP",
+            "spawningTransformation": {
+                "translation": {
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 0.0
+                },
+                "rotation": {
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "W": 1.0,
+                    "IsIdentity": true
+                }
+            },
+            "ref_planes": [
+                {
+                    "name": "Alignment_Plane_1",
+                    "refPointNames": [
+                        "Vision_Point_2_helper",
+                        "Vision_Point_2",
+                        "Vision_Point_3"
+                    ],
+                    "refAxisNames": [
+                        "",
+                        ""
+                    ],
+                    "normalVector": {
+                        "X": -1.64540865e-17,
+                        "Y": -1.0,
+                        "Z": 6.519618e-30
+                    }
+                },
+                {
+                    "name": "Alignment_Plane_2ddasd",
+                    "refPointNames": [
+                        "Vision_Point_3_helper",
+                        "Vision_Point_2_helper",
+                        "Vision_Point_1_helper"
+                    ],
+                    "refAxisNames": [
+                        "",
+                        ""
+                    ],
+                    "normalVector": {
+                        "X": 0.0,
+                        "Y": 0.0,
+                        "Z": 1.0
+                    }
+                },
+                {
+                    "name": "Alignment_Plane_3",
+                    "refPointNames": [
+                        "Surface_Center_Point",
+                        "",
+                        ""
+                    ],
+                    "refAxisNames": [
+                        "Norm_Alignment_Plane_3",
+                        ""
+                    ],
+                    "normalVector": {
+                        "X": -1.0,
+                        "Y": 1.64540865e-17,
+                        "Z": 0.0
+                    }
+                }
+            ],
+            "ref_axes": [
+                {
+                    "name": "Norm_Alignment_Plane_3",
+                    "refPointNames": [
+                        "Vision_Point_2_helper",
+                        "Vision_Point_3_helper"
+                    ]
+                }
+            ],
+            "ref_frames": [
+                {
+                    "name": "Vision_Point_1",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -0.0005379268121073232,
+                            "Y": 0.0017775617330173126,
+                            "Z": 2.001310912909179
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    }
+                },
+                {
+                    "name": "Vision_Point_1_helper",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -0.0013002160064073702,
+                            "Y": -9.795531058821578e-05,
+                            "Z": 0.0006960994981099482
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    }
+                },
+                {
+                    "name": "Vision_Point_2",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": 0.0007551330335800496,
+                            "Y": -19.999031768720723,
+                            "Z": 1.9992089002070315
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    }
+                },
+                {
+                    "name": "Vision_Point_2_helper",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": 0.0006610418612315941,
+                            "Y": -20.001741945389266,
+                            "Z": 0.0017488186809297692
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    }
+                },
+                {
+                    "name": "Vision_Point_3",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -30.000762492243652,
+                            "Y": -19.999213695854255,
+                            "Z": 2.001543184415103
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    }
+                },
+                {
+                    "name": "Vision_Point_3_helper",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -29.99856973160361,
+                            "Y": -20.00064485538897,
+                            "Z": -0.0013589335292615336
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    }
+                },
+                {
+                    "name": "Vision_Point_4",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -29.998193957595284,
+                            "Y": 0.9999910853623022,
+                            "Z": 1.9980888469028995
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    }
+                },
+                {
+                    "name": "Surface_Center_Point",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -15.0,
+                            "Y": -20.0,
+                            "Z": 1.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "ref_frame_names": [
+                                "Vision_Point_2_helper",
+                                "Vision_Point_3_helper"
+                            ],
+                            "dim": "xyz",
+                            "offset_values": [
+                                0,
+                                0,
+                                0
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Gripping_Point",
+                    "type": "frame",
+                    "transformation": {
+                        "translation": {
+                            "X": -15.333334,
+                            "Y": -9.5,
+                            "Z": 2.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    }
+                },
+                {
+                    "name": "Laser_Mes_Frame_1",
+                    "type": "frame",
+                    "transformation": {
+                        "translation": {
+                            "X": -1.0,
+                            "Y": -1.0,
+                            "Z": 2.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    }
+                },
+                {
+                    "name": "Laser_Mes_Frame_2",
+                    "type": "frame",
+                    "transformation": {
+                        "translation": {
+                            "X": -1.0,
+                            "Y": -19.0,
+                            "Z": 2.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    }
+                },
+                {
+                    "name": "Laser_Mes_Frame_3",
+                    "type": "frame",
+                    "transformation": {
+                        "translation": {
+                            "X": -29.0,
+                            "Y": -19.0,
+                            "Z": 2.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    }
+                },
+                {
+                    "name": "Laser_Mes_Frame_4",
+                    "type": "frame",
+                    "transformation": {
+                        "translation": {
+                            "X": -29.0,
+                            "Y": -1.0,
+                            "Z": 2.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "documentUnits": "mm",
+    "cadPath": "UFC_Paper.STL",
+    "name": "UFC_Paper",
+    "description": "",
+    "guid": "3e019816-340a-407f-8cf7-331318f0f18b",
+    "type": "Component",
+    "saveDate": "2024-02-02T13:58:31.8126392+01:00"
+}
