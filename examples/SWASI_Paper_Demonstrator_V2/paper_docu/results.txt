@@ -1,0 +1,13 @@
+Standard deviation transform x: 1.193760083299842 um
+Standard deviation transform y: 1.6654636385559702 um
+Standard deviation transform z: 1.161382293856857 um
+Standard deviation roll: 0.029602339815518894 deg
+Standard deviation pitch: 0.0037855129362421897 deg
+Standard deviation yaw: 0.003157939168229772 deg
+
+
+self.random_max_x = 0.002
+self.random_max_y = 0.002
+self.random_max_z = 0.002
+
+n=100

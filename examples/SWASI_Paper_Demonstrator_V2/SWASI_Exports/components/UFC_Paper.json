@@ -3,12 +3,12 @@
     "components": [],
     "assemblyConstraints": [],
     "mountingReferences": {
-      "spawningOrigin": "Gonio_Right_Part_Origin",
+      "spawningOrigin": "Gonio_Left_Part_Origin",
       "spawningTransformation": {
         "translation": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": 0.0
+          "X": 0.447053257,
+          "Y": 0.500000051,
+          "Z": 3.000000032
         },
         "rotation": {
           "X": 0.0,
@@ -223,6 +223,20 @@
               "W": 1.0,
               "IsIdentity": true
             }
+          },
+          "constraints": {
+              "centroid": {
+                  "ref_frame_names": [
+                      "Vision_Point_2_helper",
+                      "Vision_Point_3_helper"
+                  ],
+                  "dim": "xyz",
+                  "offset_values": [
+                      0,
+                      0,
+                      0
+                  ]
+              }
           }
         },
         {
@@ -241,6 +255,22 @@
               "W": 1.0,
               "IsIdentity": true
             }
+          },
+          "constraints": {
+              "centroid": {
+                  "ref_frame_names": [
+                      "Vision_Point_1",
+                      "Vision_Point_2",
+                      "Vision_Point_3",
+                      "Vision_Point_4"
+                  ],
+                  "dim": "xyz",
+                  "offset_values": [
+                      0,
+                      0,
+                      0
+                  ]
+              }
           }
         },
         {
