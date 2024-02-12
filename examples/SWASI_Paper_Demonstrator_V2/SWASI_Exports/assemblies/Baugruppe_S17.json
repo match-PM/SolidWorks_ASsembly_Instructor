@@ -6,7 +6,7 @@
         "type": "component",
         "transformation": {
           "translation": {
-            "X": -22.3656273,
+            "X": -21.418129,
             "Y": -18.649437,
             "Z": 29.47531
           },
@@ -92,8 +92,8 @@
           "type": "frame",
           "transformation": {
             "translation": {
-              "X": -2.45953369,
-              "Y": -2.00167537,
+              "X": -1.82159758,
+              "Y": -3.20855951,
               "Z": 1.99999809
             },
             "rotation": {
@@ -110,8 +110,8 @@
           "type": "frame",
           "transformation": {
             "translation": {
-              "X": -2.45953369,
-              "Y": -16.0016766,
+              "X": -1.82159758,
+              "Y": -17.208559,
               "Z": 1.99999809
             },
             "rotation": {
@@ -128,8 +128,8 @@
           "type": "frame",
           "transformation": {
             "translation": {
-              "X": -26.4595337,
-              "Y": -16.0016766,
+              "X": -25.8215981,
+              "Y": -17.208559,
               "Z": 1.99999809
             },
             "rotation": {
@@ -146,8 +146,8 @@
           "type": "frame",
           "transformation": {
             "translation": {
-              "X": -26.4595337,
-              "Y": -2.00167537,
+              "X": -25.8215981,
+              "Y": -3.20855951,
               "Z": 1.99999809
             },
             "rotation": {
@@ -166,7 +166,7 @@
   "cadPath": "Baugruppe_S17.STL",
   "name": "Baugruppe_S17",
   "description": "",
-  "guid": "cc1bb85d-c78e-4038-a850-87576495d2ec",
+  "guid": "9f3b5195-b333-4dd6-b6e1-c3b30ee331da",
   "type": "Assembly",
-  "saveDate": "2024-02-02T13:57:24.2679277+01:00"
+  "saveDate": "2024-02-12T16:34:50.959384+01:00"
 }
