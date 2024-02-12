@@ -86,8 +86,8 @@
           "type": "point",
           "transformation": {
             "translation": {
-              "X": 0.0,
-              "Y": 0.0,
+              "X": -1.36904907,
+              "Y": -2.46658325,
               "Z": 2.0
             },
             "rotation": {
@@ -104,8 +104,8 @@
           "type": "point",
           "transformation": {
             "translation": {
-              "X": 0.0,
-              "Y": 0.0,
+              "X": -1.36904907,
+              "Y": -2.46658325,
               "Z": 0.0
             },
             "rotation": {
@@ -122,7 +122,7 @@
           "type": "point",
           "transformation": {
             "translation": {
-              "X": 0.0,
+              "X": -1.77000046,
               "Y": -20.0,
               "Z": 2.0
             },
@@ -140,7 +140,7 @@
           "type": "point",
           "transformation": {
             "translation": {
-              "X": 0.0,
+              "X": -1.77000046,
               "Y": -20.0,
               "Z": 0.0
             },
@@ -194,8 +194,8 @@
           "type": "point",
           "transformation": {
             "translation": {
-              "X": -30.0,
-              "Y": 1.0,
+              "X": -30.3424168,
+              "Y": -0.382987976,
               "Z": 2.0
             },
             "rotation": {
@@ -212,7 +212,7 @@
           "type": "point",
           "transformation": {
             "translation": {
-              "X": -15.0,
+              "X": -15.885,
               "Y": -20.0,
               "Z": 1.0
             },
@@ -230,8 +230,8 @@
           "type": "frame",
           "transformation": {
             "translation": {
-              "X": -15.333334,
-              "Y": -9.5,
+              "X": -16.4689827,
+              "Y": -9.952321,
               "Z": 2.0
             },
             "rotation": {
@@ -248,8 +248,8 @@
           "type": "frame",
           "transformation": {
             "translation": {
-              "X": -1.0,
-              "Y": -1.0,
+              "X": -1.85573387,
+              "Y": -2.23329163,
               "Z": 2.0
             },
             "rotation": {
@@ -266,8 +266,8 @@
           "type": "frame",
           "transformation": {
             "translation": {
-              "X": -1.0,
-              "Y": -19.0,
+              "X": -1.85573387,
+              "Y": -20.2332916,
               "Z": 2.0
             },
             "rotation": {
@@ -284,8 +284,8 @@
           "type": "frame",
           "transformation": {
             "translation": {
-              "X": -29.0,
-              "Y": -19.0,
+              "X": -29.855732,
+              "Y": -20.2332916,
               "Z": 2.0
             },
             "rotation": {
@@ -302,8 +302,8 @@
           "type": "frame",
           "transformation": {
             "translation": {
-              "X": -29.0,
-              "Y": -1.0,
+              "X": -29.855732,
+              "Y": -2.23329163,
               "Z": 2.0
             },
             "rotation": {
@@ -322,7 +322,7 @@
   "cadPath": "UFC_Paper.STL",
   "name": "UFC_Paper",
   "description": "",
-  "guid": "3e019816-340a-407f-8cf7-331318f0f18b",
+  "guid": "dbdb513f-1037-4e04-94fb-e9d661243ce9",
   "type": "Component",
-  "saveDate": "2024-02-02T13:58:31.8126392+01:00"
+  "saveDate": "2024-02-12T19:12:06.6551163+01:00"
 }

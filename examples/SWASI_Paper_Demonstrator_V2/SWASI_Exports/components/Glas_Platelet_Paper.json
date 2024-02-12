@@ -86,8 +86,8 @@
           "type": "point",
           "transformation": {
             "translation": {
-              "X": -0.3839531,
-              "Y": 1.99664879,
+              "X": 0.0566425323,
+              "Y": -0.41711998,
               "Z": 2.0
             },
             "rotation": {
@@ -104,8 +104,8 @@
           "type": "point",
           "transformation": {
             "translation": {
-              "X": -0.3839531,
-              "Y": 1.99664879,
+              "X": 0.0566425323,
+              "Y": -0.41711998,
               "Z": 0.0
             },
             "rotation": {
@@ -122,7 +122,7 @@
           "type": "point",
           "transformation": {
             "translation": {
-              "X": 0.0,
+              "X": 0.125,
               "Y": -20.0,
               "Z": 2.0
             },
@@ -140,7 +140,7 @@
           "type": "point",
           "transformation": {
             "translation": {
-              "X": 0.0,
+              "X": 0.125,
               "Y": -20.0,
               "Z": 0.0
             },
@@ -194,8 +194,8 @@
           "type": "point",
           "transformation": {
             "translation": {
-              "X": -28.5351143,
-              "Y": 0.9488468,
+              "X": -27.6998367,
+              "Y": -0.4196415,
               "Z": 2.0
             },
             "rotation": {
@@ -212,7 +212,7 @@
           "type": "point",
           "transformation": {
             "translation": {
-              "X": -15.0,
+              "X": -14.9375,
               "Y": -20.0,
               "Z": 1.0
             },
@@ -230,8 +230,8 @@
           "type": "frame",
           "transformation": {
             "translation": {
-              "X": -0.4595337,
-              "Y": -0.0016746521,
+              "X": 0.178403854,
+              "Y": -1.208559,
               "Z": 2.0
             },
             "rotation": {
@@ -248,8 +248,8 @@
           "type": "frame",
           "transformation": {
             "translation": {
-              "X": -0.4595337,
-              "Y": -18.0016747,
+              "X": 0.178403854,
+              "Y": -19.208559,
               "Z": 2.0
             },
             "rotation": {
@@ -266,8 +266,8 @@
           "type": "frame",
           "transformation": {
             "translation": {
-              "X": -28.4595337,
-              "Y": -18.0016747,
+              "X": -27.8215961,
+              "Y": -19.208559,
               "Z": 2.0
             },
             "rotation": {
@@ -284,8 +284,8 @@
           "type": "frame",
           "transformation": {
             "translation": {
-              "X": -28.4595337,
-              "Y": -0.0016746521,
+              "X": -27.8215961,
+              "Y": -1.208559,
               "Z": 2.0
             },
             "rotation": {
@@ -304,7 +304,7 @@
   "cadPath": "Glas_Platelet_Paper.STL",
   "name": "Glas_Platelet_Paper",
   "description": "",
-  "guid": "d03c1d54-bf3d-439a-be96-5efe495502b1",
+  "guid": "632c8a7f-feb2-4307-a8d9-0ff6f4aa2515",
   "type": "Component",
-  "saveDate": "2024-02-02T13:58:13.1860416+01:00"
+  "saveDate": "2024-02-12T19:11:48.6644356+01:00"
 }
