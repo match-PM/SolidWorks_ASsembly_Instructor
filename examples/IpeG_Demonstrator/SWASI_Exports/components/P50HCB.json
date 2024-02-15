@@ -1,0 +1,281 @@
+{
+  "mountingDescription": {
+    "components": [],
+    "assemblyConstraints": [],
+    "mountingReferences": {
+      "spawningOrigin": "Part_Spawn",
+      "spawningTransformation": {
+        "translation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0,
+          "W": 1.0,
+          "IsIdentity": true
+        }
+      },
+      "ref_planes": [
+        {
+          "name": "Horizontal_Plane",
+          "refPointNames": [
+            "Vision_Point_2",
+            "Vision_Point_4",
+            "Vision_Point_3"
+          ],
+          "refAxisNames": [
+            "",
+            ""
+          ],
+          "normalVector": {
+            "X": 1.0,
+            "Y": 0.0,
+            "Z": 0.0
+          }
+        },
+        {
+          "name": "Center_Plane",
+          "refPointNames": [
+            "Gripping_Point",
+            "",
+            ""
+          ],
+          "refAxisNames": [
+            "Optical_Axis",
+            ""
+          ],
+          "normalVector": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": -1.0
+          }
+        },
+        {
+          "name": "Vertical_Plane",
+          "refPointNames": [
+            "Gripping_Point",
+            "",
+            ""
+          ],
+          "refAxisNames": [
+            "Vision_Center_Axis",
+            ""
+          ],
+          "normalVector": {
+            "X": 0.0,
+            "Y": -1.0,
+            "Z": 0.0
+          }
+        }
+      ],
+      "ref_axes": [
+        {
+          "name": "Optical_Axis",
+          "refPointNames": [
+            "Center_Point_2",
+            "Center_Point_1"
+          ]
+        },
+        {
+          "name": "Vision_Center_Axis",
+          "refPointNames": [
+            "Vision_Center_14",
+            "Vision_Center_23"
+          ]
+        }
+      ],
+      "ref_frames": [
+        {
+          "name": "Vision_Point_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": 6.35,
+              "Y": -1.27,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          }
+        },
+        {
+          "name": "Vision_Point_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -6.35,
+              "Y": -1.27,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          }
+        },
+        {
+          "name": "Vision_Point_3",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -6.35,
+              "Y": 1.27,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          }
+        },
+        {
+          "name": "Vision_Point_4",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": 6.35,
+              "Y": 1.27,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          }
+        },
+        {
+          "name": "Gripping_Point",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          }
+        },
+        {
+          "name": "Laser_Measurement_Point",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 6.35
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          }
+        },
+        {
+          "name": "Center_Point_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": 0.0,
+              "Y": -1.27,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          }
+        },
+        {
+          "name": "Center_Point_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": 0.0,
+              "Y": 1.27,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          }
+        },
+        {
+          "name": "Vision_Center_14",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": 6.35,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          }
+        },
+        {
+          "name": "Vision_Center_23",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -6.35,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          }
+        }
+      ]
+    }
+  },
+  "documentUnits": "mm",
+  "cadPath": "P50HCB.STL",
+  "name": "P50HCB",
+  "description": "",
+  "guid": "5716643d-f11d-4e80-902c-c88847fdd9fa",
+  "type": "Component",
+  "saveDate": "2024-02-13T20:14:15.4762968+01:00"
+}
