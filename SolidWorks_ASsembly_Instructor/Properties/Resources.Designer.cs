@@ -72,16 +72,6 @@ namespace SolidWorks_ASsembly_Instructor.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap face {
-            get {
-                object obj = ResourceManager.GetObject("face", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap match_logo {
             get {
                 object obj = ResourceManager.GetObject("match_logo", resourceCulture);
