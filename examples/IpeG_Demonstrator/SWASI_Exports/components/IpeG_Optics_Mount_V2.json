@@ -1,0 +1,1179 @@
+{
+  "mountingDescription": {
+    "components": [],
+    "assemblyConstraints": [],
+    "mountingReferences": {
+      "spawningOrigin": "Gonio_Left_Spawn",
+      "spawningTransformation": {
+        "translation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0,
+          "W": 1.0,
+          "IsIdentity": true
+        }
+      },
+      "ref_planes": [
+        {
+          "name": "Vertical_Plane_Position_1",
+          "refPointNames": [
+            "Vision_Point_2_Position_1",
+            "Vision_Point_Center_Position_1",
+            "Vision_Point_1_Position_1"
+          ],
+          "refAxisNames": [
+            "",
+            ""
+          ],
+          "normalVector": {
+            "X": 0.0,
+            "Y": -1.0,
+            "Z": 0.0
+          }
+        },
+        {
+          "name": "Vertical_Plane_Position_2",
+          "refPointNames": [
+            "Vision_Point_2_Position_2",
+            "Vision_Point_Center_Position_2",
+            "Vision_Point_1_Position_2"
+          ],
+          "refAxisNames": [
+            "",
+            ""
+          ],
+          "normalVector": {
+            "X": 0.0,
+            "Y": -1.0,
+            "Z": 0.0
+          }
+        },
+        {
+          "name": "Horizontal_Plane_Position_1",
+          "refPointNames": [
+            "Center_Position_1",
+            "",
+            ""
+          ],
+          "refAxisNames": [
+            "Vertical_Axis_Position_1",
+            ""
+          ],
+          "normalVector": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": -1.0
+          }
+        },
+        {
+          "name": "Center_Plane_Position_1",
+          "refPointNames": [
+            "Center_Position_1",
+            "Vision_Point_Center_Position_1",
+            "Vision_Point_Center_Position_2"
+          ],
+          "refAxisNames": [
+            "",
+            ""
+          ],
+          "normalVector": {
+            "X": 1.0,
+            "Y": 0.0,
+            "Z": 0.0
+          }
+        },
+        {
+          "name": "Horizontal_Plane_Position_2",
+          "refPointNames": [
+            "Center_Position_2",
+            "",
+            ""
+          ],
+          "refAxisNames": [
+            "Vertical_Axis_Position_2",
+            ""
+          ],
+          "normalVector": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": -1.0
+          }
+        }
+      ],
+      "ref_axes": [
+        {
+          "name": "Vertical_Axis_Position_1",
+          "refPointNames": [
+            "Center_Position_1",
+            "Vision_Point_Center_Position_1"
+          ]
+        },
+        {
+          "name": "Vertical_Axis_Position_2",
+          "refPointNames": [
+            "Center_Position_2",
+            "Vision_Point_Center_Position_2"
+          ]
+        }
+      ],
+      "ref_frames": [
+        {
+          "name": "Vision_Point_Center_Position_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -10.0,
+              "Y": -20.0,
+              "Z": 3.95
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Vision_Point_1_Position_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -3.54999971,
+              "Y": -20.0,
+              "Z": 5.67827225
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Vision_Point_2_Position_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -16.45,
+              "Y": -20.0,
+              "Z": 5.67827225
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Vision_Point_Center_Position_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -10.0,
+              "Y": -5.0,
+              "Z": 4.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Vision_Point_1_Position_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -3.60000038,
+              "Y": -5.0,
+              "Z": 5.714875
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Vision_Point_2_Position_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -16.4,
+              "Y": -5.0,
+              "Z": 5.714875
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Center_Point_2_Position_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -11.0,
+              "Y": -21.0,
+              "Z": 3.95
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Center_Point_3_Position_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -11.0,
+              "Y": -19.0,
+              "Z": 3.95
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Center_Point_4_Position_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -9.0,
+              "Y": -19.0,
+              "Z": 3.95
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Center_Point_1_Position_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -9.0,
+              "Y": -21.0,
+              "Z": 3.95
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Center_Position_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -10.0,
+              "Y": -20.0,
+              "Z": 10.4
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Adhesive_Point_1_Position_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -13.225,
+              "Y": -20.0,
+              "Z": 4.814136
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Adhesive_Point_2_Position_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -6.77499962,
+              "Y": -20.0,
+              "Z": 4.814136
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Top_1_Point_2_Position_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -17.45,
+              "Y": -21.0,
+              "Z": 5.67827225
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Top_1_Point_3_Position_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -17.45,
+              "Y": -19.0,
+              "Z": 5.67827225
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Top_1_Point_4_Position_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -15.4500008,
+              "Y": -19.0,
+              "Z": 5.67827225
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Top_1_Point_1_Position_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -15.4500008,
+              "Y": -21.0,
+              "Z": 5.67827225
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Top_2_Point_1_Position_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -2.55000019,
+              "Y": -21.0,
+              "Z": 5.67827225
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Top_2_Point_2_Position_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -4.54999971,
+              "Y": -21.0,
+              "Z": 5.67827225
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Top_2_Point_3_Position_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -4.54999971,
+              "Y": -19.0,
+              "Z": 5.67827225
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Top_2_Point_4_Position_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -2.55000019,
+              "Y": -19.0,
+              "Z": 5.67827225
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Top_1_Point_2_Position_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -17.4,
+              "Y": -6.0,
+              "Z": 5.714875
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Top_1_Point_3_Position_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -17.4,
+              "Y": -4.0,
+              "Z": 5.714875
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Top_1_Point_4_Position_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -15.4,
+              "Y": -4.0,
+              "Z": 5.714875
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Top_1_Point_1_Position_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -15.4,
+              "Y": -6.0,
+              "Z": 5.714875
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Top_2_Point_2_Position_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -4.6,
+              "Y": -6.0,
+              "Z": 5.714875
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Top_2_Point_3_Position_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -4.6,
+              "Y": -4.0,
+              "Z": 5.714875
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Top_2_Point_4_Position_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -2.6,
+              "Y": -4.0,
+              "Z": 5.714875
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Top_2_Point_1_Position_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -2.6,
+              "Y": -6.0,
+              "Z": 5.714875
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Center_Point_2_Position_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -11.0,
+              "Y": -6.0,
+              "Z": 4.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Center_Point_3_Position_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -11.0,
+              "Y": -4.0,
+              "Z": 4.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Center_Point_4_Position_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -9.0,
+              "Y": -4.0,
+              "Z": 4.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Mes_Center_Point_1_Position_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -9.0,
+              "Y": -6.0,
+              "Z": 4.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Center_Position_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -10.0,
+              "Y": -5.0,
+              "Z": 10.4
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Adhesive_Point_1_Position_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -13.2,
+              "Y": -5.0,
+              "Z": 4.857437
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Adhesive_Point_2_Position_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -6.8,
+              "Y": -5.0,
+              "Z": 4.857437
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "documentUnits": "mm",
+  "cadPath": "IpeG_Optics_Mount_V2.STL",
+  "name": "IpeG_Optics_Mount_V2",
+  "description": "",
+  "guid": "dc452b86-ecc0-49cb-bc08-9c543aca4880",
+  "type": "Component",
+  "saveDate": "2024-02-13T20:39:11.5192187+01:00"
+}

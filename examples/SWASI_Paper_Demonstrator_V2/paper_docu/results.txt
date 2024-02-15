@@ -6,6 +6,7 @@ Standard deviation pitch: 0.0037855129362421897 deg
 Standard deviation yaw: 0.003157939168229772 deg
 
 
+
 self.random_max_x = 0.002
 self.random_max_y = 0.002
 self.random_max_z = 0.002
