@@ -67,6 +67,7 @@
             this.tb_BrowseFolder.TabIndex = 4;
             this.tb_BrowseFolder.Text = "Browse folder";
             this.tb_BrowseFolder.Click += new System.EventHandler(this.tb_BrowseFolder_Click);
+            this.tb_BrowseFolder.TextChanged += new System.EventHandler(this.tb_BrowseFolder_TextChanged);
             // 
             // label3
             // 

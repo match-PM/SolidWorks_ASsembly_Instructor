@@ -1,7 +1,7 @@
-﻿using SolidWorks_ASsembly_Instructor.Properties;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
+using SolidWorks_ASsembly_Instructor.Properties;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,12 +10,6 @@ using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using System.Diagnostics;
-using System.Runtime.InteropServices.ComTypes;
-using System.Security.AccessControl;
-using System.Xml.Linq;
-using System.Reflection;
-using static System.Windows.Forms.AxHost;
 
 namespace SolidWorks_ASsembly_Instructor
 {
@@ -59,9 +53,8 @@ namespace SolidWorks_ASsembly_Instructor
             assamblyList = new List<AssemblyDescription>();
             savepath = Settings.Default.savePath;
             tb_BrowseFolder.Text = savepath;
-            componentsPath = Path.Combine(tb_BrowseFolder.Text, "components");
-            assembliesPath = Path.Combine(tb_BrowseFolder.Text, "assemblies");
-            
+            _CombineOutputPaths(savepath);
+
         }
 
         AssemblyDescription mainAssembly;   // Representation of the Assembly given in SolidWorks
@@ -998,16 +991,12 @@ namespace SolidWorks_ASsembly_Instructor
         {
             // Clear log
             rtDebug.Clear();
+
+            // Auf gültigen Speicherort prüfen und gegebenenfalls schon die Unterordner erstellen.
+            if (!createFolder()) return;
+
             // Hauptverarbeitung durchführen
             MainWork();
-
-            // Überprüfen, ob der ausgewählte Ordner existiert
-            if (!Directory.Exists(tb_BrowseFolder.Text))
-            {
-                app.SendMsgToUser("Folder does not exist!");
-                return;
-            }
-            createFolder();
 
             if ((int)activeDoc.GetType() == (int)swDocumentTypes_e.swDocASSEMBLY)
             {
@@ -1029,14 +1018,34 @@ namespace SolidWorks_ASsembly_Instructor
             // Loggen Sie eine Erfolgsmeldung in der Debug-Ausgabe
             logDebug("Json erfolgreich geschrieben");
         }
+
+        private void tb_BrowseFolder_TextChanged(object sender, EventArgs e)
+        {
+            savepath = tb_BrowseFolder.Text;
+            _CombineOutputPaths(savepath);
+            Settings.Default.savePath = savepath;
+            Settings.Default.Save();
+        }
+
         #endregion
         public bool createFolder()
         {
             // Überprüfen, ob der ausgewählte Ordner existiert
             if (!Directory.Exists(tb_BrowseFolder.Text))
             {
-                app.SendMsgToUser("Error:Folder does not exist!");
-                return false;
+                DialogResult result = MessageBox.Show("Der Ausgabeordner existiert nicht. Möchten Sie ihn erstellen?", "Ordner erstellen", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    // Erstellen Sie den Ausgabeordner
+                    Directory.CreateDirectory(tb_BrowseFolder.Text);
+                }
+                else
+                {
+                    // Der Benutzer hat "Nein" ausgewählt, brechen Sie ab
+                    app.SendMsgToUser("Vorgang abgebrochen.");
+                    return false;
+                }
             }
             // Create assemblies directory
             if (!Directory.Exists(assembliesPath))
@@ -1050,6 +1059,13 @@ namespace SolidWorks_ASsembly_Instructor
             }
             return true;
         }
+
+        private void _CombineOutputPaths(string savepath)
+        {
+            componentsPath = Path.Combine(savepath, "components");
+            assembliesPath = Path.Combine(savepath, "assemblies");
+        }
+
     }
 
 
