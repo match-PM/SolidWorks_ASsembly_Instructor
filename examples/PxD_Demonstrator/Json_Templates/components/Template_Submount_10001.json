@@ -1,0 +1,58 @@
+{
+  "id": "MangoDB_Template_ID",
+  "Template_Name": "Template_Submount_10001",
+  "Component_Name": "Submount_10001",
+  "Status": "Template",
+  "Date_Template_Creation": "Timestamp",
+  "Production_Date": "None",
+  "Inherit_Template": "None",
+  "Component_Status": "None",
+  "Component_Type": "Submount",
+  "Metadata": {
+    "Reseller": "match"
+  },
+  "Geometrical_Properties": {
+    "Length": {
+      "Value": 10,
+      "Unit": "mm"
+    },
+    "Hight": {
+      "Value": 7.5,
+      "Unit": "mm"
+    },
+    "Width": {
+      "Value": 10,
+      "Unit": "mm"
+    }
+
+  },
+  "Assembly": {
+    "Assembly_Properties": {
+    "origin": {
+      "Unit_trans": "m",
+      "Unit_rot": "rad",
+      "xyz": [ -0.1, -0.15, 0 ],
+      "rpy": [ -0.1, -0.15, 0 ]
+    },
+    "inertia": {
+      "Unit": "XX",
+      "values": {
+        "ixx": 5,
+        "ixy": 5,
+        "ixz": 5,
+        "iyy": 5,
+        "iyz": 5,
+        "izz": 5
+      }
+    }
+  }
+  },
+  "Physical_Properties": {
+    "Material": "Copper",
+    "mass": {
+      "unit": "kg",
+      "value": 0.1
+    }
+  }
+
+}

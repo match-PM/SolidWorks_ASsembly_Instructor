@@ -1,0 +1,384 @@
+{
+  "mountingDescription": {
+    "components": [],
+    "assemblyConstraints": [],
+    "mountingReferences": {
+      "spawningOrigin": "Gonio_Right_Part_2_Origin",
+      "spawningTransformation": {
+        "translation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0,
+          "W": 1.0,
+          "IsIdentity": true
+        }
+      },
+      "ref_planes": [
+        {
+          "name": "Center_Plane",
+          "refPointNames": [
+            "Gripping_Point",
+            "",
+            ""
+          ],
+          "refAxisNames": [
+            "Optical_Axis",
+            ""
+          ],
+          "normalVector": {
+            "X": 0.0,
+            "Y": 1.0,
+            "Z": 5.960465E-08
+          }
+        },
+        {
+          "name": "Vertical_Plane",
+          "refPointNames": [
+            "Center_Point_1",
+            "Center_Point_2",
+            "Laser_Measurement_Point"
+          ],
+          "refAxisNames": [
+            "",
+            ""
+          ],
+          "normalVector": {
+            "X": 1.0,
+            "Y": 0.0,
+            "Z": 0.0
+          }
+        },
+        {
+          "name": "Horizontal_Plane",
+          "refPointNames": [
+            "Camera_Measurement_Point_1",
+            "Camera_Measurement_Point_2",
+            "Camera_Measurement_Point_3"
+          ],
+          "refAxisNames": [
+            "",
+            ""
+          ],
+          "normalVector": {
+            "X": 0.0,
+            "Y": -5.960465E-08,
+            "Z": 1.0
+          }
+        }
+      ],
+      "ref_axes": [
+        {
+          "name": "Optical_Axis",
+          "refPointNames": [
+            "Center_Point_2",
+            "Center_Point_1"
+          ]
+        }
+      ],
+      "ref_frames": [
+        {
+          "name": "Camera_Measurement_Point_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": 6.35,
+              "Y": -0.8967677,
+              "Z": 5.34515259E-08
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Camera_Measurement_Point_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -6.35,
+              "Y": -0.8967677,
+              "Z": 5.34515259E-08
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Camera_Measurement_Point_3",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -6.35,
+              "Y": 0.8967677,
+              "Z": -5.34515259E-08
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Camera_Measurement_Point_4",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": 6.35,
+              "Y": 0.8967677,
+              "Z": -5.34515259E-08
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Center_Point_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": 0.0,
+              "Y": -0.8967677,
+              "Z": 5.34515259E-08
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Center_Point_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": 0.0,
+              "Y": 0.8967677,
+              "Z": -5.34515259E-08
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Measurement_Point",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": 0.0,
+              "Y": 3.78489545E-07,
+              "Z": 6.35
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Gripping_Point",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Camera_Center_Point_14",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": 6.35,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Camera_Center_Point_23",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -6.35,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "documentUnits": "mm",
+  "cadPath": "LB1092.STL",
+  "name": "LB1092",
+  "description": "",
+  "guid": "09d72981-d49e-4bce-a757-b8adf6f99456",
+  "type": "Component",
+  "saveDate": "2024-02-15T14:24:29.3828949+01:00"
+}

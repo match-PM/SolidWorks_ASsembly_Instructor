@@ -90,7 +90,7 @@
         "name": "Description_LB1092-1_P50HCB-1",
         "component_1": "LB1092-1",
         "component_2": "P50HCB-1",
-        "moveComponent_1": true,
+        "moveComponent_1": false,
         "description": {
           "planeMatch_1": {
             "planeNameComponent_1": "Center_Plane",

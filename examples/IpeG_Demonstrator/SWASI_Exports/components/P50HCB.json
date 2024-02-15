@@ -3,7 +3,7 @@
     "components": [],
     "assemblyConstraints": [],
     "mountingReferences": {
-      "spawningOrigin": "Part_Spawn",
+      "spawningOrigin": "Gonio_Right_Part_1_Origin",
       "spawningTransformation": {
         "translation": {
           "X": 0.0,

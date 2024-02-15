@@ -1,0 +1,109 @@
+{
+    "id": "MangoDB_Template_ID",
+    "Template_Name": "Template_L375P70MLD",
+    "Component_Name": "L375P70MLD",
+    "Status": "Template",
+    "Date_Template_Creation": "Timestamp",
+    "Production_Date": "None",
+    "Inherit_Template": "None",
+    "Component_Status": "None",
+    "Metadata":{
+        "Reseller": "Thorlabs GmbH",
+        "URL":"https://www.thorlabs.com/thorproduct.cfm?partnumber=L375P70MLD"
+    },
+    "Optical_Properties": {
+        "Component_Type": "Laser Diode",
+        "Center_Wavelength": {
+            "Min": "370",
+            "Value": "375",
+            "Max": "380",
+            "Unit": "nm"
+        },
+        "Output_Power": {
+            "Min": "N/A",
+            "Value": "70",
+            "Max": "85",
+            "Unit": "mW"
+        },
+        "Beam_Divergence_Parallel": {
+            "Min": "6",
+            "Value": "9",
+            "Max": "11",
+            "Unit": "°"
+        },
+        "Beam_Divergence_Perpendicular": {
+            "Min": "19",
+            "Value": "22.5",
+            "Max": "26",
+            "Unit": "°"
+        },
+        "Beam_Pointing_Accuracy_Angle_Parallel": {
+            "Min": "-3",
+            "Value": "N/A",
+            "Max": "3",
+            "Unit": "°"
+        },
+        "Beam_Pointing_Accuracy_Angle_Perpendicualar": {
+            "Min": "-3",
+            "Value": "N/A",
+            "Max": "3",
+            "Unit": "°"
+        }
+    },
+    "Electrical_Properties": {
+        "Operating Current": {
+            "Min": "80",
+            "Value": "110",
+            "Max": "140",
+            "Unit": "mA"
+        },
+        "Threshold_Current": {
+            "Min": "30",
+            "Value": "50",
+            "Max": "75",
+            "Unit": "mA"
+        },
+        "Monitor_Current": {
+            "Min": "0.05",
+            "Value": "0.2",
+            "Max": "2",
+            "Unit": "mA"
+        },
+        "Operating_Voltage": {
+            "Min": "4.6",
+            "Value": "5.4",
+            "Max": "6",
+            "Unit": "V"
+        },
+        "Slope Efficiency": {
+            "Min": "0.9",
+            "Value": "1.2",
+            "Max": "1.6",
+            "Unit": "W/A"
+        },
+        "LD_Reverse_Current": {
+            "Min": "N/A",
+            "Value": "N/A",
+            "Max": "85",
+            "Unit": "mA"
+        },
+        "PD_Reverse_Voltage": {
+            "Min": "N/A",
+            "Value": "N/A",
+            "Max": "5",
+            "Unit": "V"
+        }
+    },
+    "Operation": {
+        "Operating_Case_Temperature": {
+            "Min": "10",
+            "Max": "25",
+            "Unit": "°C"
+        },
+        "Storage_Temperature": {
+            "Min": "-40",
+            "Max": "85",
+            "Unit": "°C"
+        }
+    }
+}

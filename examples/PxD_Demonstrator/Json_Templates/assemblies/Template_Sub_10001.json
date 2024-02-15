@@ -1,0 +1,51 @@
+{
+    "id": "MangoDB_Template_ID",
+    "Template_Name":"Template_Sub_10001",
+    "Assembly_Name": "Sub_10001",
+    "Status": "Template",
+    "Date_Template_Creation": "Timestamp",
+    "Date_Assembly": "None",
+    "Assembly": {
+        "Assembly_STL": "STL of Assembly",
+        "Assembly_Recipe": [
+            {
+                "Part_1": {
+                    "Category": "Compontent",
+                    "Part_Name": "Submount_10001",
+                    "Components_IDs":"None"
+                },
+                "Part_2": {
+                    "Category": "Assembly",
+                    "Part_Name": "L275P70MLD",
+                    "Components_IDs":"None"
+                }
+            }
+        ],
+      "Assembly_Part_Locations": {
+        "Part_1": {
+          "Unit_Trans": "m",
+          "Unit_Rot": "rad",
+          "T": {
+            "x": "2",
+            "y": "3",
+            "z": "3",
+            "Rx": "90",
+            "Ry": "90",
+            "Rz": "90"
+          }
+        },
+        "Part_2": {
+          "Unit_Trans": "m",
+          "Unit_Rot": "rad",
+          "T": {
+            "x": "2",
+            "y": "3",
+            "z": "3",
+            "Rx": "90",
+            "Ry": "90",
+            "Rz": "90"
+          }
+        }
+      }
+    }
+}
