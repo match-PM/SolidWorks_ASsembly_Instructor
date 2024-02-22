@@ -6,8 +6,8 @@
       "spawningOrigin": "Gonio_Left_Part_Origin",
       "spawningTransformation": {
         "translation": {
-          "X": 0.0,
-          "Y": 0.0,
+          "X": -0.1,
+          "Y": -0.1,
           "Z": 0.0
         },
         "rotation": {
