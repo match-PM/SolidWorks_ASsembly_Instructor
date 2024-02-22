@@ -200,6 +200,15 @@ namespace SolidWorks_ASsembly_Instructor
             return save_success;
         }
 
+        public void PrintTransform(Matrix4x4 Transform)
+        {
+            logDebug($"{Transform.M11}, {Transform.M12}, {Transform.M13}, {Transform.M14}\n{Transform.M21}, {Transform.M22}, {Transform.M23}, {Transform.M24}\n{Transform.M31}, {Transform.M32}, {Transform.M33}, {Transform.M34}\n{Transform.M41}, {Transform.M42}, {Transform.M43}, {Transform.M44}");
+        }
+        public void PrintVector(Vector3 Position)
+        {
+            logDebug($"X: {Position.X}, Y: {Position.Y}, Z: {Position.Z}");
+        }
+
         public Vector3 GetReferencePlaneNormal(IRefPlane referencePlane, Matrix4x4 RelTransform)
         {
             // Get the transformation matrix of the reference plane
@@ -211,8 +220,9 @@ namespace SolidWorks_ASsembly_Instructor
             normalVector.Z = (float)transform.ArrayData[8]; // Z component
             Vector4 normalVector4 = new Vector4(normalVector, 1f);
             Vector4 ResultVector = new Vector4();
-            ResultVector = Vector4.Transform(normalVector4, RelTransform);
-            
+            Matrix4x4 InvertedTransform;
+            Matrix4x4.Invert(RelTransform, out InvertedTransform);
+            ResultVector = Vector4.Transform(normalVector4, InvertedTransform);
             normalVector.X = ResultVector.X;
             normalVector.Y = ResultVector.Y;
             normalVector.Z = ResultVector.Z;
@@ -629,7 +639,7 @@ namespace SolidWorks_ASsembly_Instructor
             IRefPlane referencePlane = (IRefPlane)specificFeature;
             refPlaneDescription.normalVector = GetReferencePlaneNormal(referencePlane, RelTransform);
 
-            //logDebug($"Reference Plane Normal Vector: {refPlaneDescription.NormalVector.X},{refPlaneDescription.NormalVector.Y}, {refPlaneDescription.NormalVector.Z}");
+            logDebug($"Reference Plane Normal Vector: {refPlaneDescription.normalVector.X},{refPlaneDescription.normalVector.Y}, {refPlaneDescription.normalVector.Z}");
 
             // Get plane definition
             RefPlaneFeatureData swRefPlaneFeatureData = (RefPlaneFeatureData)plane_feature.GetDefinition();
