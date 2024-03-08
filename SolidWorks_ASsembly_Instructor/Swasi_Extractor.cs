@@ -28,7 +28,10 @@ namespace SolidWorks_ASsembly_Instructor
         private string mainAssamblyName;
 
         // Event zur Aktualisierung von Lognachrichten
+        public event Action<string> DebugLogMessageUpdated;
         public event Action<string> LogMessageUpdated;
+        public event Action<string> WarningLogMessageUpdated;
+        public event Action<string> ErrorLogMessageUpdated;
 
         public Swasi_Extractor(SldWorks app, string componentsPath, string assembliesPath)
         {
@@ -129,16 +132,19 @@ namespace SolidWorks_ASsembly_Instructor
                             file.WriteLine(json);
                         }
                     }
+                    else
+                    {
+                        return false;
+                    }
                 }
-                return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                logDebug(ex.Message);
-                logDebug(ex.StackTrace);
+                Log(ex.Message, "Error");
+                Log(ex.StackTrace, "Error");
+                return false;
             }
-            return false;
+            return true;
         }
 
         /// <summary>
@@ -201,6 +207,7 @@ namespace SolidWorks_ASsembly_Instructor
                             // Extract the coordinate system information
                             swasiOrigin.fromArrayData(coordSys.Transform.ArrayData);
                             swasiOrigin.name = feature.Name.Replace(SWASI_ORIGIN_IDENTIFIER, "");
+                            Log($"Found SWASI Origin: {swasiOrigin.name}");
 
                             coordSys.ReleaseSelectionAccess();
                             extractSuccess = true;
@@ -211,20 +218,22 @@ namespace SolidWorks_ASsembly_Instructor
 
                             if (!saveSuccess)
                             {
-                                logDebug($"Error saving STL for SWASI Origin: {feature.Name}");
+                                Log($"Error saving STL for SWASI Origin: {feature.Name}", "Error");
                             }
                         }
                         else
                         {
                             // The for loop should only find one SWASI origin. If it finds two, it should return false
-                            logDebug($"Error finding SWASI Origin. There have been defined two origins with the naming convention.");
+                            Log($"Error finding SWASI Origin. There have been defined two origins with the naming convention.", "Error");
                             return (false, swasiOrigin);
                         }
                     }
                 }
             }
-
-            logDebug($"Found SWASI Origin: {swasiOrigin.name}");
+            if (!extractSuccess)
+            {
+                Log("No SWASI Origin found", "Warning");
+            }
             return (extractSuccess, swasiOrigin);
         }
 
@@ -292,7 +301,7 @@ namespace SolidWorks_ASsembly_Instructor
             coordSys.ReleaseSelectionAccess();
             refFrame.name = feature.Name.Replace(SWASI_IDENTIFIER, "");
 
-            logDebug($"Extracted data for: {refFrame.name}");
+            Log($"Extracted data for: {refFrame.name}");
 
             return (true, refFrame);
         }
@@ -376,7 +385,7 @@ namespace SolidWorks_ASsembly_Instructor
             refPointDescription.transformation.rotation = Quaternion.Identity;
 
             refPointDescription.name = point_feature.Name.Replace(SWASI_IDENTIFIER, "");
-            logDebug($"Extracted data for: {refPointDescription.name}");
+            Log($"Extracted data for: {refPointDescription.name}");
 
             return (extractSuccess, refPointDescription);
         }
@@ -481,7 +490,7 @@ namespace SolidWorks_ASsembly_Instructor
 
                     if (ComponentNames[0] == null || ComponentNames[1] == null)
                     {
-                        logDebug($"Error while extracting feature {Feature.Name}");
+                        Log($"Error while extracting feature {Feature.Name}", "Error");
                         return MountingDesc;
                     }
 
@@ -527,7 +536,7 @@ namespace SolidWorks_ASsembly_Instructor
 
                         if (!SetSuccess)
                         {
-                            logDebug($"Error while extracting feature {Feature.Name}");
+                            Log($"Error while extracting feature {Feature.Name}", "Error");
                             return MountingDesc;
                         }
                     }
@@ -559,7 +568,7 @@ namespace SolidWorks_ASsembly_Instructor
 
                         if (!SetSuccess)
                         {
-                            logDebug($"Error while extracting feature {Feature.Name}");
+                            Log($"Error while extracting feature {Feature.Name}", "Error");
                             return MountingDesc;
                         }
 
@@ -594,7 +603,7 @@ namespace SolidWorks_ASsembly_Instructor
 
             if (!ExtractSuccess)
             {
-                logDebug("Error extracting assembly constraints");
+                Log("Error extracting assembly constraints", "Error");
             }
 
             return MountingDesc;
@@ -648,7 +657,7 @@ namespace SolidWorks_ASsembly_Instructor
                     if (output.Item1)
                     {
                         RefPlaneDescriptions.Add(output.Item2);
-                        logDebug($"Found Plane: {output.Item2.name}");
+                        Log($"Found Plane: {output.Item2.name}");
                     }
                 }
             }
@@ -701,7 +710,7 @@ namespace SolidWorks_ASsembly_Instructor
                 if (!(constraint_type != (int)swRefPlaneReferenceConstraints_e.swRefPlaneReferenceConstraint_Coincident ||
                     constraint_type != (int)swRefPlaneReferenceConstraints_e.swRefPlaneReferenceConstraint_Perpendicular))
                 {
-                    logDebug($"Plane is tagged with 'SWASI_' but the given reference constraints are currently not supported!");
+                    Log($"Plane is tagged with 'SWASI_' but the given reference constraints are currently not supported!", "Error");
                     return (false, refPlaneDescription);
                 }
             }
@@ -714,7 +723,7 @@ namespace SolidWorks_ASsembly_Instructor
             }
             else
             {
-                logDebug("Unexpected! Not Constraint-based");
+                Log("Unexpected! Not Constraint-based", "Error");
             }
 
             int planeType = swRefPlaneFeatureData.Type;
@@ -738,7 +747,7 @@ namespace SolidWorks_ASsembly_Instructor
 
             if (!access_success)
             {
-                logDebug($"Error! Could not access: {plane_feature.Name}!");
+                Log($"Error! Could not access: {plane_feature.Name}!", "Error");
                 return (false, refPlaneDescription);
             }
             else
@@ -757,7 +766,7 @@ namespace SolidWorks_ASsembly_Instructor
                         // CHeck if the name is valid
                         if (!_plane_sub_feature.Name.Contains(SWASI_IDENTIFIER))
                         {
-                            logDebug($"Plane '{plane_feature.Name}' is defined by '{_plane_sub_feature.Name}'. However, this does not adhere to the naming convention of SWASI!");
+                            Log($"Plane '{plane_feature.Name}' is defined by '{_plane_sub_feature.Name}'. However, this does not adhere to the naming convention of SWASI!", "Error");
                             return (false, refPlaneDescription);
                         }
 
@@ -779,13 +788,13 @@ namespace SolidWorks_ASsembly_Instructor
 
                 if (planeType == 3 && points_ind != 3)
                 {
-                    logDebug($"Error! Plane '{plane_feature.Name}' is defined by three points, but not all of the points adhere to the swasi naming convention!");
+                    Log($"Error! Plane '{plane_feature.Name}' is defined by three points, but not all of the points adhere to the swasi naming convention!", "Error");
                     return (false, refPlaneDescription);
                 }
 
                 if (planeType == 2 && axis_ind != 1 && points_ind != 1)
                 {
-                    logDebug($"Error! Plane '{plane_feature.Name}' is defined by one point and an axis, but neither the point nor the axis adhere to the swasi naming convention!");
+                    Log($"Error! Plane '{plane_feature.Name}' is defined by one point and an axis, but neither the point nor the axis adhere to the swasi naming convention!", "Error");
                     return (false, refPlaneDescription);
                 }
             }
@@ -816,7 +825,7 @@ namespace SolidWorks_ASsembly_Instructor
                     if (output.Item1)
                     {
                         RefAxes.Add(output.Item2);
-                        logDebug($"Extracted axis: {output.Item2.name}");
+                        Log($"Extracted axis: {output.Item2.name}");
                     }
                 }
             }
@@ -860,7 +869,7 @@ namespace SolidWorks_ASsembly_Instructor
 
             if (!accessSuccess)
             {
-                logDebug($"Error! Could not access: {feature.Name}!");
+                Log($"Error! Could not access: {feature.Name}!", "Error");
                 return (false, refAxisDescription);
             }
             else
@@ -885,14 +894,14 @@ namespace SolidWorks_ASsembly_Instructor
                         if (pointInd == 2)
                         {
                             // This theoretically should never happen
-                            logDebug($"Unexpected error happened in extracting axis {_feat.Name}");
+                            Log($"Unexpected error happened in extracting axis {_feat.Name}", "Error");
                             return (false, refAxisDescription);
                         }
 
                         // Check if the name is valid
                         if (!_feat.Name.Contains(SWASI_IDENTIFIER))
                         {
-                            logDebug($"Axis '{_feat.Name}' is defined by '{_feat.Name}'. However, this does not adhere to the naming convention of SWASI!");
+                            Log($"Axis '{_feat.Name}' is defined by '{_feat.Name}'. However, this does not adhere to the naming convention of SWASI!", "Warning");
                             return (false, refAxisDescription);
                         }
 
@@ -908,7 +917,7 @@ namespace SolidWorks_ASsembly_Instructor
 
                 if (pointInd < 2)
                 {
-                    logDebug($"Axis could not be extracted. Not enough Swasi RefPoints given to define axis.");
+                    Log($"Axis could not be extracted. Not enough Swasi RefPoints given to define axis.", "Error");
                     return (false, refAxisDescription);
                 }
 
@@ -916,11 +925,6 @@ namespace SolidWorks_ASsembly_Instructor
             }
         }
 
-        private void logDebug(string message)
-        {
-            // Benachrichtigen Sie über das Event, wenn jemand auf das Event abonniert hat
-            LogMessageUpdated?.Invoke(message);
-        }
 
         /// <summary>
         /// Saves the model document to an STL file with the specified parameters.
@@ -962,14 +966,30 @@ namespace SolidWorks_ASsembly_Instructor
 
             if (saveSuccess)
             {
-                logDebug($"STL exported to: {filepath}");
+                Log($"STL exported to: {filepath}");
             }
             else
             {
-                logDebug($"Error saving file to: {filepath}");
+                Log($"Error saving STL file to: {filepath}", "Error");
             }
 
             return saveSuccess;
         }
+
+        #region Logging
+        private void Log(string message, string logType = "Log")
+        {
+            // Benachrichtigen Sie über das Event, wenn jemand auf das Event abonniert hat
+            switch (logType.ToLower())
+            {
+                case "log": LogMessageUpdated?.Invoke(message); break;
+                case "debug": DebugLogMessageUpdated?.Invoke(message); break;
+                case "warning": WarningLogMessageUpdated?.Invoke(message); break;
+                case "error": ErrorLogMessageUpdated?.Invoke(message); break;
+                default:
+                    DebugLogMessageUpdated?.Invoke(message); break;
+            }
+        }
+        #endregion
     }
 }

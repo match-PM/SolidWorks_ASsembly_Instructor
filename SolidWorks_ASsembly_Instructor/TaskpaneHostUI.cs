@@ -5,6 +5,8 @@ using SolidWorks_ASsembly_Instructor.Properties;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Numerics;
@@ -13,31 +15,16 @@ using System.Windows.Forms;
 
 namespace SolidWorks_ASsembly_Instructor
 {
-
-    /// TODO:
-    /// Resourcedaten anlegen Speicherpfad gleichbelibenlassen
-    /// Relative Coordinaten jetzt alle zum eigenen Assembly. Noch zum gesamten Origen berechnen!
-    /// 
-    /// 
-    /// Nice introduction: https://cadbooster.com/solidworks-api-basics-sldworks-modeldoc2/
-    /// </summary>
-
-
     [ProgId(TaskpaneIntegration.SWTASKPANE_PROGID)]
     public partial class TaskpaneHostUI : UserControl
     {
-        ModelDoc2 activeDoc;
-        public SldWorks app = null;
+        public SldWorks app = null; // hanndle to Solid works
 
-
+        #region Path variables
         string componentsPath;
         string assembliesPath;
-        string fileExportPath;
-        #region // Variablen zum Spiechern später
-        string savepath;
-        string partsPath;
-        string assamblyPath;
-        string mainAssamblyName;
+
+        string savepath; // Save in settings
         #endregion
 
         /// <summary>
@@ -49,23 +36,39 @@ namespace SolidWorks_ASsembly_Instructor
             savepath = Settings.Default.savePath;
             tb_BrowseFolder.Text = savepath;
             _CombineOutputPaths(savepath);
-
         }
-        Swasi_Extractor Swasi_Extractor = null;
-
-
-        AssemblyDescription mainAssembly;   // Representation of the Assembly given in SolidWorks
-        ComponentDescription Component;
-        object ExportObject;
 
         #region Debug Log
         /// <summary>
         /// Loggt Debug-Nachrichten in das RichTextBox-Steuerelement.
         /// </summary>
         /// <param name="message">Die zu loggende Nachricht.</param>
-        public void logDebug(string message)
+        public void LogDebug(string message)
         {
-            rtDebug.AppendText(message + "\r\n");
+            AppendTextToRTB(message + "\r\n", Color.DarkGray);
+        }
+        public void Log(string message)
+        {
+           AppendTextToRTB(message + "\r\n", Color.Black);
+        }
+        public void WarningLog(string message)
+        {
+            AppendTextToRTB(message + "\r\n", Color.Orange);
+        }
+        public void ErrorLog(string message)
+        {
+            AppendTextToRTB(message + "\r\n", Color.Red);
+        }
+
+        public void AppendTextToRTB(string text, Color color, bool addNewLine = false)
+        {
+            rtDebug.SuspendLayout();
+            rtDebug.SelectionColor = color;
+            rtDebug.AppendText(addNewLine
+                ? $"{text}{System.Environment.NewLine}"
+                : text);
+            rtDebug.ScrollToCaret();
+            rtDebug.ResumeLayout();
         }
         #endregion
 
@@ -73,7 +76,7 @@ namespace SolidWorks_ASsembly_Instructor
         /// <summary>
         /// Ereignisbehandlung für die Aktualisierung der Debug-Ausgabe.
         /// </summary>
-        private void refreshPartList_Click(object sender, EventArgs e)
+        private void btn_clearLog_Click(object sender, EventArgs e)
         {
             rtDebug.Clear();
         }
@@ -102,20 +105,27 @@ namespace SolidWorks_ASsembly_Instructor
             rtDebug.Clear();
 
             // Auf gültigen Speicherort prüfen und gegebenenfalls schon die Unterordner erstellen.
-            if (!createFolder()) { logDebug("Error: Can not extract json because the root folder is not set correctly!"); return; }
+            if (!CreateFolder())
+            {
+                WarningLog("Can not extract json because the root folder is not set correctly!");
+                return;
+            }
 
             //erstelle Extractor
-            Swasi_Extractor = new Swasi_Extractor(app, componentsPath, assembliesPath);
-            Swasi_Extractor.LogMessageUpdated += logDebug;
+            Swasi_Extractor Swasi_Extractor = new Swasi_Extractor(app, componentsPath, assembliesPath);
+            Swasi_Extractor.LogMessageUpdated += Log;
+            Swasi_Extractor.DebugLogMessageUpdated += LogDebug;
+            Swasi_Extractor.WarningLogMessageUpdated += WarningLog;
+            Swasi_Extractor.ErrorLogMessageUpdated += ErrorLog;
 
             if (Swasi_Extractor.Run())
             {
                 // Loggen Sie eine Erfolgsmeldung in der Debug-Ausgabe
-                logDebug("Json erfolgreich geschrieben");
+                Log("Json erfolgreich geschrieben");
             }
             else
             {
-                logDebug("Fehler beim erstellen des JSON strings");
+                ErrorLog("Fehler beim erstellen des JSON strings");
             }
             Swasi_Extractor = null;
         }
@@ -131,7 +141,7 @@ namespace SolidWorks_ASsembly_Instructor
         #endregion
 
         #region Utilities
-        public bool createFolder()
+        public bool CreateFolder()
         {
             // Überprüfen, ob der ausgewählte Ordner existiert
             if (!Directory.Exists(tb_BrowseFolder.Text))
@@ -169,6 +179,11 @@ namespace SolidWorks_ASsembly_Instructor
             assembliesPath = Path.Combine(savepath, "assemblies");
         }
 
+        private void TaskpaneHostUI_Load(object sender, EventArgs e)
+        {
+            Version ver = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            lbl_Version_No.Text = "V" + ver.Major + "." + ver.Minor + "." + ver.Build;
+        }
     }
 
     #endregion

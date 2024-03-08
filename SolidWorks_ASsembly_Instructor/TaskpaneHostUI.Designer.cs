@@ -34,15 +34,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tb_BrowseFolder = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.refreshPartList = new System.Windows.Forms.Button();
+            this.btn_clearLog = new System.Windows.Forms.Button();
             this.rtDebug = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lbl_Version_No = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // exportJson
             // 
-            this.exportJson.Location = new System.Drawing.Point(4, 193);
+            this.exportJson.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.exportJson.Location = new System.Drawing.Point(4, 156);
             this.exportJson.Margin = new System.Windows.Forms.Padding(4);
             this.exportJson.Name = "exportJson";
             this.exportJson.Size = new System.Drawing.Size(444, 28);
@@ -54,16 +57,18 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 142);
+            this.label2.Location = new System.Drawing.Point(4, 106);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 16);
+            this.label2.Size = new System.Drawing.Size(133, 16);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Save location";
+            this.label2.Text = "Choose output folder:";
             // 
             // tb_BrowseFolder
             // 
-            this.tb_BrowseFolder.Location = new System.Drawing.Point(4, 161);
+            this.tb_BrowseFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_BrowseFolder.Location = new System.Drawing.Point(4, 126);
             this.tb_BrowseFolder.Margin = new System.Windows.Forms.Padding(4);
             this.tb_BrowseFolder.Name = "tb_BrowseFolder";
             this.tb_BrowseFolder.Size = new System.Drawing.Size(443, 22);
@@ -85,23 +90,28 @@
             this.label3.Text = "SW ASsembly Instructor";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // refreshPartList
+            // btn_clearLog
             // 
-            this.refreshPartList.Location = new System.Drawing.Point(4, 110);
-            this.refreshPartList.Margin = new System.Windows.Forms.Padding(4);
-            this.refreshPartList.Name = "refreshPartList";
-            this.refreshPartList.Size = new System.Drawing.Size(444, 28);
-            this.refreshPartList.TabIndex = 9;
-            this.refreshPartList.Text = "Referesh part list";
-            this.refreshPartList.UseVisualStyleBackColor = true;
-            this.refreshPartList.Click += new System.EventHandler(this.refreshPartList_Click);
+            this.btn_clearLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_clearLog.Location = new System.Drawing.Point(4, 458);
+            this.btn_clearLog.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_clearLog.Name = "btn_clearLog";
+            this.btn_clearLog.Size = new System.Drawing.Size(390, 28);
+            this.btn_clearLog.TabIndex = 9;
+            this.btn_clearLog.Text = "Clear log";
+            this.btn_clearLog.UseVisualStyleBackColor = true;
+            this.btn_clearLog.Click += new System.EventHandler(this.btn_clearLog_Click);
             // 
             // rtDebug
             // 
-            this.rtDebug.Location = new System.Drawing.Point(4, 229);
+            this.rtDebug.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtDebug.Location = new System.Drawing.Point(4, 192);
             this.rtDebug.Margin = new System.Windows.Forms.Padding(4);
             this.rtDebug.Name = "rtDebug";
-            this.rtDebug.Size = new System.Drawing.Size(443, 1142);
+            this.rtDebug.Size = new System.Drawing.Size(443, 258);
             this.rtDebug.TabIndex = 10;
             this.rtDebug.Text = "";
             // 
@@ -116,12 +126,24 @@
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
+            // lbl_Version_No
+            // 
+            this.lbl_Version_No.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_Version_No.AutoSize = true;
+            this.lbl_Version_No.Location = new System.Drawing.Point(401, 470);
+            this.lbl_Version_No.Name = "lbl_Version_No";
+            this.lbl_Version_No.Size = new System.Drawing.Size(46, 16);
+            this.lbl_Version_No.TabIndex = 11;
+            this.lbl_Version_No.Text = "V 0.1.0";
+            this.lbl_Version_No.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // TaskpaneHostUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lbl_Version_No);
             this.Controls.Add(this.rtDebug);
-            this.Controls.Add(this.refreshPartList);
+            this.Controls.Add(this.btn_clearLog);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tb_BrowseFolder);
@@ -129,7 +151,8 @@
             this.Controls.Add(this.exportJson);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TaskpaneHostUI";
-            this.Size = new System.Drawing.Size(452, 1376);
+            this.Size = new System.Drawing.Size(452, 489);
+            this.Load += new System.EventHandler(this.TaskpaneHostUI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -144,7 +167,8 @@
         private System.Windows.Forms.TextBox tb_BrowseFolder;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button refreshPartList;
+        private System.Windows.Forms.Button btn_clearLog;
         private System.Windows.Forms.RichTextBox rtDebug;
+        private System.Windows.Forms.Label lbl_Version_No;
     }
 }
