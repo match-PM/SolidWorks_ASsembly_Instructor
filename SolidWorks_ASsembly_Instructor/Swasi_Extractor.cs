@@ -61,76 +61,93 @@ namespace SolidWorks_ASsembly_Instructor
                 }
                 activeDoc = app.ActiveDoc as ModelDoc2;
 
-                mainAssamblyName = activeDoc.GetTitle().Split('.')[0];    // Name of folder
-                int componentType = activeDoc.GetType();
+                IAssemblyDoc assemblyDoc = (IAssemblyDoc)activeDoc;
+                // Get Sub components
+                object[] componentsObj = assemblyDoc.GetComponents(true);
+                Component2[] components = componentsObj.Cast<Component2>().ToArray();
 
-                if (componentType == (int)swDocumentTypes_e.swDocPART || componentType == (int)swDocumentTypes_e.swDocASSEMBLY)
+                ModelDoc2[] modelDoc2s = new ModelDoc2[components.Length + 1]; // Größe um 1 für activeDoc erhöhen
+                modelDoc2s[0] = activeDoc; // activeDoc am Anfang des Arrays setzen
+                int index = 1;
+                foreach (Component2 component in components)
                 {
-                    FeatureManager swFeatureManager = activeDoc.FeatureManager;
-
-                    // Get all features in the feature manager
-                    object[] features = (object[])swFeatureManager.GetFeatures(false);
-
-                    var Output = ExtractOrigin(features);
-                    // If extraction of Swasi origin is successful
-                    if (Output.Item1)
+                    ModelDoc2 componentModelDoc = component.GetModelDoc2();
+                    if (componentModelDoc != null)
                     {
-                        CoordinateSystemDescription Origin = Output.Item2;
-                        mountingDescription.mountingReferences.spawningOrigin = Output.Item2.name;
-                        mountingDescription.mountingReferences.ref_planes.AddRange(ExtractRefPlanes(features, Output.Item2.GetInverted4x4Matrix()));
-                        mountingDescription.mountingReferences.ref_frames.AddRange(ExtractRefPoints(features, Output.Item2.GetInverted4x4Matrix()));
-                        mountingDescription.mountingReferences.ref_frames.AddRange(ExtractRefFrames(features, Output.Item2.GetInverted4x4Matrix()));
-                        mountingDescription.mountingReferences.ref_axes.AddRange(ExtractRefAxes(features));
-
-                        // If an assembly, extract assembly mates
-                        if (componentType == (int)swDocumentTypes_e.swDocASSEMBLY)
-                        {
-                            AssemblyDoc swAssembly = (AssemblyDoc)activeDoc;
-                            object[] Components = (Object[])swAssembly.GetComponents(true);
-                            Component2 swComponent;
-
-                            foreach (Object SingleComponent in Components)
-                            {
-                                swComponent = (Component2)SingleComponent;
-                            }
-                            //AssemblyDescription assemblyDescription = new AssemblyDescription();
-                            mountingDescription = ExtractAssemblyComponents(mountingDescription, activeDoc);
-                            mountingDescription = ExtractAssemblyMates(mountingDescription, features);
-                            mainAssembly.mountingDescription = mountingDescription;
-                            mainAssembly.name = mainAssamblyName;
-                            mainAssembly.cadPath = mainAssamblyName + ".STL";
-                            ExportObject = mainAssembly;
-                            //List<AssemblyConstraintDescription> assemblyConstraints = ExtractAssemblyMates(features);
-                        }
-                        // else it must be a component
-                        else
-                        {
-                            Component.mountingDescription = mountingDescription;
-                            Component.cadPath = mainAssamblyName + ".STL";
-                            Component.name = mainAssamblyName;
-                            ExportObject = Component;
-                        }
-                        if ((int)activeDoc.GetType() == (int)swDocumentTypes_e.swDocASSEMBLY)
-                        {
-                            fileExportPath = assembliesPath;
-                        }
-                        else
-                        {
-                            fileExportPath = componentsPath;
-                        }
-
-                        // Serialize the main model to JSON
-                        //string json = JsonConvert.SerializeObject(mainAssembly, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                        string json = JsonConvert.SerializeObject(ExportObject, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                        // Write the JSON to a file in the Assembly folder
-                        using (StreamWriter file = File.CreateText(Path.Combine(fileExportPath, mainAssamblyName + ".json")))
-                        {
-                            file.WriteLine(json);
-                        }
+                        modelDoc2s[index] = componentModelDoc;
+                        index++;
                     }
-                    else
+                }
+                // Check each subcomponent
+                foreach (ModelDoc2 ModDoc in modelDoc2s)
+                {
+                    mainAssamblyName = ModDoc.GetTitle().Split('.')[0];    // Name of folder
+                    int componentType = ModDoc.GetType();
+
+                    if (componentType == (int)swDocumentTypes_e.swDocPART || componentType == (int)swDocumentTypes_e.swDocASSEMBLY)
                     {
-                        return false;
+                        FeatureManager swFeatureManager = ModDoc.FeatureManager;
+
+                        // Get all features in the feature manager
+                        object[] features = (object[])swFeatureManager.GetFeatures(false);
+
+                        var Output = ExtractOrigin(features, ModDoc);
+                        // If extraction of Swasi origin is successful
+                        if (Output.Item1)
+                        {
+                            CoordinateSystemDescription Origin = Output.Item2;
+                            mountingDescription.mountingReferences.spawningOrigin = Output.Item2.name;
+                            mountingDescription.mountingReferences.ref_planes.AddRange(ExtractRefPlanes(features, Output.Item2.GetInverted4x4Matrix()));
+                            mountingDescription.mountingReferences.ref_frames.AddRange(ExtractRefPoints(features, Output.Item2.GetInverted4x4Matrix()));
+                            mountingDescription.mountingReferences.ref_frames.AddRange(ExtractRefFrames(features, Output.Item2.GetInverted4x4Matrix()));
+                            mountingDescription.mountingReferences.ref_axes.AddRange(ExtractRefAxes(features));
+
+                            // If an assembly, extract assembly mates
+                            if (componentType == (int)swDocumentTypes_e.swDocASSEMBLY)
+                            {
+                                fileExportPath = assembliesPath;
+                                AssemblyDoc swAssembly = (AssemblyDoc)ModDoc;
+                                object[] Components = (Object[])swAssembly.GetComponents(true);
+                                Component2 swComponent;
+
+                                foreach (Object SingleComponent in Components)
+                                {
+                                    swComponent = (Component2)SingleComponent;
+                                }
+                                //AssemblyDescription assemblyDescription = new AssemblyDescription();
+                                mountingDescription = ExtractAssemblyComponents(mountingDescription, ModDoc);
+                                mountingDescription = ExtractAssemblyMates(mountingDescription, features);
+                                mainAssembly.mountingDescription = mountingDescription;
+                                mainAssembly.name = mainAssamblyName;
+                                mainAssembly.cadPath = mainAssamblyName + ".STL";
+                                ExportObject = mainAssembly;
+                                //List<AssemblyConstraintDescription> assemblyConstraints = ExtractAssemblyMates(features);
+                            }
+                            // else it must be a component
+                            else
+                            {
+                                fileExportPath = componentsPath;
+                                Component.mountingDescription = mountingDescription;
+                                Component.cadPath = mainAssamblyName + ".STL";
+                                Component.name = mainAssamblyName;
+                                ExportObject = Component;
+                            }
+
+                            // Serialize the main model to JSON
+                            //string json = JsonConvert.SerializeObject(mainAssembly, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                            string json = JsonConvert.SerializeObject(ExportObject, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                            // Write the JSON to a file in the Assembly folder
+                            using (StreamWriter file = File.CreateText(Path.Combine(fileExportPath, mainAssamblyName + ".json")))
+                            {
+                                file.WriteLine(json);
+                                Log($"Json exported for {mainAssamblyName}");
+                                Log("---------------------------------------------------------");
+                            }
+                        }
+                        else
+                        {
+                            continue;
+                        }
                     }
                 }
             }
@@ -181,8 +198,9 @@ namespace SolidWorks_ASsembly_Instructor
         /// <returns>
         /// A tuple containing a boolean indicating whether the extraction was successful and the extracted coordinate system description.
         /// </returns>
-        public (bool, CoordinateSystemDescription) ExtractOrigin(object[] features)
+        public (bool, CoordinateSystemDescription) ExtractOrigin(object[] features, ModelDoc2 currentModelDoc)
         {
+            Log($"Extracting {(currentModelDoc is AssemblyDoc ? "Assembly" : "Component")} {currentModelDoc.GetTitle()}");
             CoordinateSystemDescription swasiOrigin = new CoordinateSystemDescription();
             bool extractSuccess = false;
 
@@ -198,7 +216,7 @@ namespace SolidWorks_ASsembly_Instructor
                         if (!extractSuccess)
                         {
                             ICoordinateSystemFeatureData coordSys = (ICoordinateSystemFeatureData)feature.GetDefinition();
-                            coordSys.AccessSelections(activeDoc, null);
+                            coordSys.AccessSelections(currentModelDoc, null);
 
                             // Extract the coordinate system information
                             swasiOrigin.fromArrayData(coordSys.Transform.ArrayData);
@@ -208,9 +226,9 @@ namespace SolidWorks_ASsembly_Instructor
                             coordSys.ReleaseSelectionAccess();
                             extractSuccess = true;
 
-                            string exportPath = ((int)activeDoc.GetType() == (int)swDocumentTypes_e.swDocPART) ? componentsPath : assembliesPath;
+                            string exportPath = ((int)currentModelDoc.GetType() == (int)swDocumentTypes_e.swDocPART) ? componentsPath : assembliesPath;
 
-                            bool saveSuccess = SaveToSTL(app, activeDoc, exportPath, mainAssamblyName, feature.Name, (int)swLengthUnit_e.swMETER);
+                            bool saveSuccess = SaveToSTL(app, currentModelDoc, exportPath, mainAssamblyName, feature.Name, (int)swLengthUnit_e.swMETER);
 
                             if (!saveSuccess)
                             {
@@ -899,7 +917,7 @@ namespace SolidWorks_ASsembly_Instructor
 
                 // Release the access to the features from swRefAxisFeatureData!
                 swRefAxisFeatureData.ReleaseSelectionAccess();
-                
+
                 int pointInd = 0;
                 foreach (object feat in obj)
                 {
@@ -907,7 +925,7 @@ namespace SolidWorks_ASsembly_Instructor
                     if (feat is Feature)
                     {
                         Feature _feat = (Feature)feat;
-                   
+
                         if (pointInd == 2)
                         {
                             // This theoretically should never happen
