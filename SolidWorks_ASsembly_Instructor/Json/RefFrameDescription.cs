@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace SolidWorks_ASsembly_Instructor
+﻿namespace SolidWorks_ASsembly_Instructor
 {
-        public class RefFrameDescription
+    public class RefFrameDescription
         {
             public string name;
             public string type;

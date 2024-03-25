@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System;
-
-namespace SolidWorks_ASsembly_Instructor
+﻿namespace SolidWorks_ASsembly_Instructor
 {
     public class AssemblyComponentDescription
     {

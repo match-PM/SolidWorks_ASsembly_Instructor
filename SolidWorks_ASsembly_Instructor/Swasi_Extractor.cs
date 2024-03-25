@@ -3,14 +3,10 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Schema;
 
 namespace SolidWorks_ASsembly_Instructor
 {
@@ -284,10 +280,19 @@ namespace SolidWorks_ASsembly_Instructor
             }
 
             // Check if the frame is tagged with the SWASI_IDENTIFIER or SWASI_ORIGIN_IDENTIFIER
-            if (!feature.Name.Contains(SWASI_IDENTIFIER) || feature.Name.Contains(SWASI_ORIGIN_IDENTIFIER))
+            //if (!feature.Name.Contains(SWASI_IDENTIFIER) || !feature.Name.Contains(SWASI_ORIGIN_IDENTIFIER))
+            //{
+            //    // pops up on SW-Frames
+            //    Log($"RefFrame ({feature.Name}) was ignored. Wrong Identifier?", "warning");
+            //    return (false, refFrame);
+            //}
+            if (!feature.Name.Contains(SWASI_IDENTIFIER) && !feature.Name.Contains(SWASI_ORIGIN_IDENTIFIER))
             {
+                // Pops up on SW-Frames
+                Log($"RefFrame ({feature.Name}) was ignored. Either Identifier is required.", "warning");
                 return (false, refFrame);
             }
+
 
             ICoordinateSystemFeatureData coordSys = (ICoordinateSystemFeatureData)feature.GetDefinition();
             coordSys.AccessSelections(activeDoc, null);
@@ -365,6 +370,7 @@ namespace SolidWorks_ASsembly_Instructor
             // Check if RefPoint is tagged with the SWASI_IDENTIFIER
             if (!point_feature.Name.Contains(SWASI_IDENTIFIER))
             {
+                Log($"RefPoint ({point_feature.Name}) was ignored. Wrong Identifier?", "warning");
                 return (false, refPointDescription);
             }
 
@@ -402,12 +408,14 @@ namespace SolidWorks_ASsembly_Instructor
             // Execute this only if the document is an assembly
             if (assemblyModel == null)
             {
+                Log("Can't extract assembly components, because document is not an assembly", "warning");
                 return MountingDesc;
             }
 
             // Check if the current Assembly is actually an assembly
             if (!(assemblyModel is IAssemblyDoc assemblyDoc))
             {
+                Log("Current assembly is not an assembly", "warning");
                 return MountingDesc;
             }
 
@@ -499,8 +507,15 @@ namespace SolidWorks_ASsembly_Instructor
 
                     // This method extracts if component 1 or component 2 should be moved, it does so by looking at the transformations in the components list and returns true if component 1 has a higher z-value, else false
                     // Make sure that the MountingDescription holds the components before you call ExtractAssemblyMates
-                    bool moveComponent_1 = IdentifyComponent1MovingPart(MountingDesc.components, ComponentNames[0], ComponentNames[1]);
-                    MountingDesc.assemblyConstraints[ConstraintIndex].moveComponent_1 = moveComponent_1;
+                    try
+                    {
+                        bool moveComponent_1 = IdentifyComponent1MovingPart(MountingDesc.components, ComponentNames[0], ComponentNames[1]);
+                        MountingDesc.assemblyConstraints[ConstraintIndex].moveComponent_1 = moveComponent_1;
+                    }
+                    catch (Exception ex)
+                    {
+                        Log($"Can't determin moveComponent_1, because of {ex.Message}", "Error");
+                    }
 
                     object _Feature = Feature.GetDefinition();
                     string[] PlaneNames = new string[] { null, null };
@@ -657,7 +672,7 @@ namespace SolidWorks_ASsembly_Instructor
                     if (output.Item1)
                     {
                         RefPlaneDescriptions.Add(output.Item2);
-                        Log($"Found Plane: {output.Item2.name}");
+                        Log($"Extracted Plane: {output.Item2.name}");
                     }
                 }
             }
@@ -686,9 +701,10 @@ namespace SolidWorks_ASsembly_Instructor
                 return (false, refPlaneDescription);
             }
 
-            // Check if RefFrame is Tagged with the SWASI_IDENTIFIER
+            // Check if RefPlane is Tagged with the SWASI_IDENTIFIER
             if (!plane_feature.Name.Contains(SWASI_IDENTIFIER))
             {
+                Log($"RefPlane ({plane_feature.Name}) was ignored. Wrong Identifier?", "warning");
                 return (false, refPlaneDescription);
             }
 
@@ -710,7 +726,7 @@ namespace SolidWorks_ASsembly_Instructor
                 if (!(constraint_type != (int)swRefPlaneReferenceConstraints_e.swRefPlaneReferenceConstraint_Coincident ||
                     constraint_type != (int)swRefPlaneReferenceConstraints_e.swRefPlaneReferenceConstraint_Perpendicular))
                 {
-                    Log($"Plane is tagged with 'SWASI_' but the given reference constraints are currently not supported!", "Error");
+                    Log($"Plane is tagged with '{SWASI_IDENTIFIER}' but the given reference constraints are currently not supported!", "Error");
                     return (false, refPlaneDescription);
                 }
             }
@@ -731,13 +747,13 @@ namespace SolidWorks_ASsembly_Instructor
             // if plane is a Line Point definition - see documentation for other types of definitions
             if (planeType == 2)
             {
-                //logDebug("Line Point");
+                //Log("Line Point", "debug");
             }
 
             // if plane is a three points definition - see documentation for other types of definitions
             if (planeType == 3)
             {
-                //logDebug("Three Points");
+                //Log("Three Points", "debug");
             }
 
             bool reverse_direction = swRefPlaneFeatureData.ReversedReferenceDirection[0];
@@ -766,7 +782,7 @@ namespace SolidWorks_ASsembly_Instructor
                         // CHeck if the name is valid
                         if (!_plane_sub_feature.Name.Contains(SWASI_IDENTIFIER))
                         {
-                            Log($"Plane '{plane_feature.Name}' is defined by '{_plane_sub_feature.Name}'. However, this does not adhere to the naming convention of SWASI!", "Error");
+                            Log($"Plane ({plane_feature.Name}) is defined by ({_plane_sub_feature.Name}). Defining Axes and Points must have SWASI_Identifier ({SWASI_IDENTIFIER}), too!", "Warning");
                             return (false, refPlaneDescription);
                         }
 
@@ -851,6 +867,7 @@ namespace SolidWorks_ASsembly_Instructor
             // Check if RefAxis is tagged with the SWASI_IDENTIFIER
             if (!feature.Name.Contains(SWASI_IDENTIFIER))
             {
+                Log($"RefAxis ({feature.Name}) was ignored. Wrong Identifier?", "warning");
                 return (false, refAxisDescription);
             }
 
@@ -882,7 +899,7 @@ namespace SolidWorks_ASsembly_Instructor
 
                 // Release the access to the features from swRefAxisFeatureData!
                 swRefAxisFeatureData.ReleaseSelectionAccess();
-
+                
                 int pointInd = 0;
                 foreach (object feat in obj)
                 {
@@ -890,7 +907,7 @@ namespace SolidWorks_ASsembly_Instructor
                     if (feat is Feature)
                     {
                         Feature _feat = (Feature)feat;
-
+                   
                         if (pointInd == 2)
                         {
                             // This theoretically should never happen
@@ -901,7 +918,7 @@ namespace SolidWorks_ASsembly_Instructor
                         // Check if the name is valid
                         if (!_feat.Name.Contains(SWASI_IDENTIFIER))
                         {
-                            Log($"Axis '{_feat.Name}' is defined by '{_feat.Name}'. However, this does not adhere to the naming convention of SWASI!", "Warning");
+                            Log($"Axis ({feature.Name}) is defined by '{_feat.Name}'. Defining Points must have SWASI_Identifier ({SWASI_IDENTIFIER}), too!", "warning");
                             return (false, refAxisDescription);
                         }
 
@@ -917,7 +934,7 @@ namespace SolidWorks_ASsembly_Instructor
 
                 if (pointInd < 2)
                 {
-                    Log($"Axis could not be extracted. Not enough Swasi RefPoints given to define axis.", "Error");
+                    Log($"Axis ({feature.Name}) could not be extracted. Not enough Swasi RefPoints given to define axis.", "Error");
                     return (false, refAxisDescription);
                 }
 

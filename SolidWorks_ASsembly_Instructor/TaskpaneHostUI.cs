@@ -1,15 +1,8 @@
-﻿using Newtonsoft.Json;
-using SolidWorks.Interop.sldworks;
-using SolidWorks.Interop.swconst;
+﻿using SolidWorks.Interop.sldworks;
 using SolidWorks_ASsembly_Instructor.Properties;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 

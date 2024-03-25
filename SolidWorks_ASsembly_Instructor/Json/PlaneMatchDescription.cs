@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-
-
-namespace SolidWorks_ASsembly_Instructor
+﻿namespace SolidWorks_ASsembly_Instructor
 {
     public class PlaneMatchDescription
     {

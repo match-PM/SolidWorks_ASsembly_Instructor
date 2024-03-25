@@ -1,9 +1,6 @@
 ﻿using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swpublished;
-using SolidWorks_ASsembly_Instructor.Properties;
 using System;
-using System.Configuration.Assemblies;
-using System.Net;
 using System.Runtime.InteropServices;
 
 namespace SolidWorks_ASsembly_Instructor
