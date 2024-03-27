@@ -17,6 +17,7 @@ namespace SolidWorks_ASsembly_Instructor
 
         private SldWorks app = null;
         private ModelDoc2 activeDoc = null;
+        private ModelDoc2 currentDoc = null;
 
         private string componentsPath;
         private string assembliesPath;
@@ -81,17 +82,18 @@ namespace SolidWorks_ASsembly_Instructor
                 // Check each subcomponent
                 foreach (ModelDoc2 ModDoc in modelDoc2s)
                 {
-                    mainAssamblyName = ModDoc.GetTitle().Split('.')[0];    // Name of folder
-                    int componentType = ModDoc.GetType();
+                    currentDoc = ModDoc;
+                    mainAssamblyName = currentDoc.GetTitle().Split('.')[0];    // Name of folder
+                    int componentType = currentDoc.GetType();
 
                     if (componentType == (int)swDocumentTypes_e.swDocPART || componentType == (int)swDocumentTypes_e.swDocASSEMBLY)
                     {
-                        FeatureManager swFeatureManager = ModDoc.FeatureManager;
+                        FeatureManager swFeatureManager = currentDoc.FeatureManager;
 
                         // Get all features in the feature manager
                         object[] features = (object[])swFeatureManager.GetFeatures(false);
 
-                        var Output = ExtractOrigin(features, ModDoc);
+                        var Output = ExtractOrigin(features);
                         // If extraction of Swasi origin is successful
                         if (Output.Item1)
                         {
@@ -198,9 +200,9 @@ namespace SolidWorks_ASsembly_Instructor
         /// <returns>
         /// A tuple containing a boolean indicating whether the extraction was successful and the extracted coordinate system description.
         /// </returns>
-        public (bool, CoordinateSystemDescription) ExtractOrigin(object[] features, ModelDoc2 currentModelDoc)
+        public (bool, CoordinateSystemDescription) ExtractOrigin(object[] features)
         {
-            Log($"Extracting {(currentModelDoc is AssemblyDoc ? "Assembly" : "Component")} {currentModelDoc.GetTitle()}");
+            Log($"Extracting {(currentDoc is AssemblyDoc ? "Assembly" : "Component")} {currentDoc.GetTitle()}");
             CoordinateSystemDescription swasiOrigin = new CoordinateSystemDescription();
             bool extractSuccess = false;
 
@@ -216,7 +218,7 @@ namespace SolidWorks_ASsembly_Instructor
                         if (!extractSuccess)
                         {
                             ICoordinateSystemFeatureData coordSys = (ICoordinateSystemFeatureData)feature.GetDefinition();
-                            coordSys.AccessSelections(currentModelDoc, null);
+                            coordSys.AccessSelections(currentDoc, null);
 
                             // Extract the coordinate system information
                             swasiOrigin.fromArrayData(coordSys.Transform.ArrayData);
@@ -226,9 +228,9 @@ namespace SolidWorks_ASsembly_Instructor
                             coordSys.ReleaseSelectionAccess();
                             extractSuccess = true;
 
-                            string exportPath = ((int)currentModelDoc.GetType() == (int)swDocumentTypes_e.swDocPART) ? componentsPath : assembliesPath;
+                            string exportPath = ((int)currentDoc.GetType() == (int)swDocumentTypes_e.swDocPART) ? componentsPath : assembliesPath;
 
-                            bool saveSuccess = SaveToSTL(app, currentModelDoc, exportPath, mainAssamblyName, feature.Name, (int)swLengthUnit_e.swMETER);
+                            bool saveSuccess = SaveToSTL(app, currentDoc, exportPath, mainAssamblyName, feature.Name, (int)swLengthUnit_e.swMETER);
 
                             if (!saveSuccess)
                             {
@@ -313,7 +315,7 @@ namespace SolidWorks_ASsembly_Instructor
 
 
             ICoordinateSystemFeatureData coordSys = (ICoordinateSystemFeatureData)feature.GetDefinition();
-            coordSys.AccessSelections(activeDoc, null);
+            coordSys.AccessSelections(currentDoc, null);
 
             // Set the transformation from Array Data in Solidworks Coordinate System
             refFrame.transformation.fromArrayData(coordSys.Transform.ArrayData);
@@ -777,11 +779,12 @@ namespace SolidWorks_ASsembly_Instructor
             bool reverse_direction = swRefPlaneFeatureData.ReversedReferenceDirection[0];
 
             // Access the features that define the RefPlane
-            bool access_success = swRefPlaneFeatureData.AccessSelections(activeDoc, null);
+            bool access_success = swRefPlaneFeatureData.AccessSelections(currentDoc, null);
 
             if (!access_success)
             {
                 Log($"Error! Could not access: {plane_feature.Name}!", "Error");
+                swRefPlaneFeatureData.ReleaseSelectionAccess();
                 return (false, refPlaneDescription);
             }
             else
@@ -896,7 +899,7 @@ namespace SolidWorks_ASsembly_Instructor
 
             // Access the features that define the RefAxis
             // If a part
-            bool accessSuccess = swRefAxisFeatureData.AccessSelections(activeDoc, null);
+            bool accessSuccess = swRefAxisFeatureData.AccessSelections(currentDoc, null);
 
             // if an assembly
             // AccessSelections need to be modified if an assembly
@@ -905,6 +908,7 @@ namespace SolidWorks_ASsembly_Instructor
             if (!accessSuccess)
             {
                 Log($"Error! Could not access: {feature.Name}!", "Error");
+                swRefAxisFeatureData.ReleaseSelectionAccess();
                 return (false, refAxisDescription);
             }
             else
