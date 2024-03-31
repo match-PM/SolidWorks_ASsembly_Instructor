@@ -3,11 +3,11 @@
     "components": [],
     "assemblyConstraints": [],
     "mountingReferences": {
-      "spawningOrigin": "Gonio_Left_Spawn",
+      "spawningOrigin": "Gonio_Left_Part_Origin",
       "spawningTransformation": {
         "translation": {
-          "X": 0.0,
-          "Y": 0.0,
+          "X": -0.1,
+          "Y": -0.1,
           "Z": 0.0
         },
         "rotation": {
@@ -1173,7 +1173,7 @@
   "cadPath": "IpeG_Optics_Mount_V2.STL",
   "name": "IpeG_Optics_Mount_V2",
   "description": "",
-  "guid": "dc452b86-ecc0-49cb-bc08-9c543aca4880",
+  "guid": "dd75882f-1c10-4398-a668-ece64779a65f",
   "type": "Component",
-  "saveDate": "2024-02-13T20:39:11.5192187+01:00"
+  "saveDate": "2024-02-22T14:00:18.8100378+01:00"
 }

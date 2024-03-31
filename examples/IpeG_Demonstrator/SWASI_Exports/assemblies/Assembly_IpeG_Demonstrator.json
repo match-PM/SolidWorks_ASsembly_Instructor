@@ -2,25 +2,6 @@
   "mountingDescription": {
     "components": [
       {
-        "name": "IpeG_Optics_Mount_V2-1",
-        "type": "component",
-        "transformation": {
-          "translation": {
-            "X": -26.8293018,
-            "Y": 4.83322,
-            "Z": 27.6425629
-          },
-          "rotation": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Z": 0.0,
-            "W": 1.0,
-            "IsIdentity": true
-          }
-        },
-        "guid": ""
-      },
-      {
         "name": "LB1092-1",
         "type": "component",
         "transformation": {
@@ -35,6 +16,25 @@
             "Z": 3.925231E-17,
             "W": 0.707106769,
             "IsIdentity": false
+          }
+        },
+        "guid": ""
+      },
+      {
+        "name": "IpeG_Optics_Mount_V2-1",
+        "type": "component",
+        "transformation": {
+          "translation": {
+            "X": -26.8293018,
+            "Y": 4.83322,
+            "Z": 27.6425629
+          },
+          "rotation": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": 0.0,
+            "W": 1.0,
+            "IsIdentity": true
           }
         },
         "guid": ""
@@ -90,7 +90,7 @@
         "name": "Description_LB1092-1_P50HCB-1",
         "component_1": "LB1092-1",
         "component_2": "P50HCB-1",
-        "moveComponent_1": true,
+        "moveComponent_1": false,
         "description": {
           "planeMatch_1": {
             "planeNameComponent_1": "Center_Plane",
@@ -138,7 +138,7 @@
   "cadPath": "Assembly_IpeG_Demonstrator.STL",
   "name": "Assembly_IpeG_Demonstrator",
   "description": "",
-  "guid": "f79d79aa-784d-494e-8484-792b8358e8c2",
+  "guid": "9c42a3e5-1271-4187-b16f-da6db7b2869b",
   "type": "Assembly",
-  "saveDate": "2024-02-13T20:17:37.7689272+01:00"
+  "saveDate": "2024-02-22T14:00:39.8600756+01:00"
 }

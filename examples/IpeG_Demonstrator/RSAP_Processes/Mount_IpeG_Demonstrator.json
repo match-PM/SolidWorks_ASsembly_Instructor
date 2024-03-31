@@ -1,0 +1,381 @@
+{
+    "name": "Mount_IpeG_Demonstrator",
+    "saved_at": "2024-02-22 20:11:23.532435",
+    "action_list": [
+        {
+            "action_position": 0,
+            "action_type": "ServiceAction",
+            "name": "Spawn Assembly From Description",
+            "service_client": "/assembly_manager/create_assembly_instruction_from_description",
+            "service_type": "assembly_manager_interfaces/srv/CreateAssemblyInstructionFromDescription",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {
+                "file_path": "/home/niklas/Documents/SolidWorks_ASsembly_Instructor/examples/IpeG_Demonstrator/SWASI_Exports/assemblies/Assembly_IpeG_Demonstrator.json",
+                "spawn_components": true
+            }
+        },
+        {
+            "action_position": 1,
+            "action_type": "ServiceAction",
+            "name": "Move to Lens_z_offset",
+            "service_client": "/pm_moveit_server/move_tool_to_frame",
+            "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {
+                "endeffector_frame_override": "use_default_frame",
+                "target_frame": "LB1092-1",
+                "translation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.01
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "execute_movement": true
+            }
+        },
+        {
+            "action_position": 2,
+            "action_type": "ServiceAction",
+            "name": "Move to Lens",
+            "service_client": "/pm_moveit_server/move_tool_to_frame",
+            "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {
+                "endeffector_frame_override": "use_default_frame",
+                "target_frame": "LB1092-1_Gripping_Point",
+                "translation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "execute_movement": true
+            }
+        },
+        {
+            "action_position": 3,
+            "action_type": "ServiceAction",
+            "name": "Grip Lens",
+            "service_client": "/assembly_manager/change_obj_parent_frame",
+            "service_type": "assembly_manager_interfaces/srv/ChangeParentFrame",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {
+                "obj_name": "LB1092-1",
+                "new_parent_frame": "PM_Robot_Tool_TCP"
+            }
+        },
+        {
+            "action_position": 4,
+            "action_type": "ServiceAction",
+            "name": "Move to Lens_z_offset",
+            "service_client": "/pm_moveit_server/move_tool_to_frame",
+            "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {
+                "endeffector_frame_override": "use_default_frame",
+                "target_frame": "LB1092-1",
+                "translation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.01
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "execute_movement": true
+            }
+        },
+        {
+            "action_position": 5,
+            "action_type": "ServiceAction",
+            "name": "Move to Assembly Location Lens_z_offset",
+            "service_client": "/pm_moveit_server/move_tool_to_frame",
+            "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {
+                "endeffector_frame_override": "assembly_frame_Description_IpeG_Optics_Mount_V2-1_LB1092-1",
+                "target_frame": "target_frame_Description_IpeG_Optics_Mount_V2-1_LB1092-1",
+                "translation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.01
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "execute_movement": true
+            }
+        },
+        {
+            "action_position": 6,
+            "action_type": "ServiceAction",
+            "name": "Move to Assembly Location Lens",
+            "service_client": "/pm_moveit_server/move_tool_to_frame",
+            "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {
+                "endeffector_frame_override": "assembly_frame_Description_IpeG_Optics_Mount_V2-1_LB1092-1",
+                "target_frame": "target_frame_Description_IpeG_Optics_Mount_V2-1_LB1092-1",
+                "translation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "execute_movement": true
+            }
+        },
+        {
+            "action_position": 7,
+            "action_type": "ServiceAction",
+            "name": "Release Lens",
+            "service_client": "/assembly_manager/change_obj_parent_frame",
+            "service_type": "assembly_manager_interfaces/srv/ChangeParentFrame",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {
+                "obj_name": "LB1092-1",
+                "new_parent_frame": "IpeG_Optics_Mount_V2-1"
+            }
+        },
+        {
+            "action_position": 8,
+            "action_type": "ServiceAction",
+            "name": "Move to Assembly Location Lens_z_offset",
+            "service_client": "/pm_moveit_server/move_tool_to_frame",
+            "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {
+                "endeffector_frame_override": "use_default_frame",
+                "target_frame": "target_frame_Description_IpeG_Optics_Mount_V2-1_LB1092-1",
+                "translation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.01
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "execute_movement": true
+            }
+        },
+        {
+            "action_position": 9,
+            "action_type": "ServiceAction",
+            "name": "Move to Pinhole_z_offset",
+            "service_client": "/pm_moveit_server/move_tool_to_frame",
+            "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {
+                "endeffector_frame_override": "use_default_frame",
+                "target_frame": "P50HCB-1",
+                "translation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.01
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "execute_movement": true
+            }
+        },
+        {
+            "action_position": 10,
+            "action_type": "ServiceAction",
+            "name": "Move to Pinhole_z",
+            "service_client": "/pm_moveit_server/move_tool_to_frame",
+            "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {
+                "endeffector_frame_override": "use_default_frame",
+                "target_frame": "P50HCB-1",
+                "translation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "execute_movement": true
+            }
+        },
+        {
+            "action_position": 11,
+            "action_type": "ServiceAction",
+            "name": "Grip Pinhole",
+            "service_client": "/assembly_manager/change_obj_parent_frame",
+            "service_type": "assembly_manager_interfaces/srv/ChangeParentFrame",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {
+                "obj_name": "P50HCB-1",
+                "new_parent_frame": "PM_Robot_Tool_TCP"
+            }
+        },
+        {
+            "action_position": 12,
+            "action_type": "ServiceAction",
+            "name": "Move to Pinhole_z_offset",
+            "service_client": "/pm_moveit_server/move_tool_to_frame",
+            "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {
+                "endeffector_frame_override": "use_default_frame",
+                "target_frame": "P50HCB-1",
+                "translation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.01
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "execute_movement": true
+            }
+        },
+        {
+            "action_position": 13,
+            "action_type": "ServiceAction",
+            "name": "Move To Assembly Location Pinhole_z_offset",
+            "service_client": "/pm_moveit_server/move_tool_to_frame",
+            "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {
+                "endeffector_frame_override": "assembly_frame_Description_LB1092-1_P50HCB-1",
+                "target_frame": "target_frame_Description_LB1092-1_P50HCB-1",
+                "translation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.01
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "execute_movement": true
+            }
+        },
+        {
+            "action_position": 14,
+            "action_type": "ServiceAction",
+            "name": "Move To Assembly Location Pinhole",
+            "service_client": "/pm_moveit_server/move_tool_to_frame",
+            "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {
+                "endeffector_frame_override": "assembly_frame_Description_LB1092-1_P50HCB-1",
+                "target_frame": "target_frame_Description_LB1092-1_P50HCB-1",
+                "translation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "execute_movement": true
+            }
+        },
+        {
+            "action_position": 15,
+            "action_type": "ServiceAction",
+            "name": "Release Pinhole",
+            "service_client": "/assembly_manager/change_obj_parent_frame",
+            "service_type": "assembly_manager_interfaces/srv/ChangeParentFrame",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {
+                "obj_name": "P50HCB-1",
+                "new_parent_frame": "IpeG_Optics_Mount_V2-1"
+            }
+        },
+        {
+            "action_position": 16,
+            "action_type": "ServiceAction",
+            "name": "Move To Assembly Location Pinhole_z_offset",
+            "service_client": "/pm_moveit_server/move_tool_to_frame",
+            "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {
+                "endeffector_frame_override": "use_default_frame",
+                "target_frame": "target_frame_Description_LB1092-1_P50HCB-1",
+                "translation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.01
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "execute_movement": true
+            }
+        },
+        {
+            "action_position": 17,
+            "action_type": "ServiceAction",
+            "name": "/assembly_manager/get_scene",
+            "service_client": "/assembly_manager/get_scene",
+            "service_type": "assembly_manager_interfaces/srv/GetScene",
+            "error_identifier": "success",
+            "description": "",
+            "service_request": {}
+        }
+    ]
+}

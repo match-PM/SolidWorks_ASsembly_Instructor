@@ -1,0 +1,68 @@
+{
+    "id": "MangoDB_Template_ID",
+    "Template_Name": "Template_LA1116-A",
+    "Component_Name": "LA1116-A",
+    "Status": "Template",
+    "Date_Template_Creation": "Timestamp",
+    "Production_Date": "None",
+    "Inherit_Template": "None",
+    "Component_Status": "None",
+    "Component_Type": "Plano-Convex Sperical Lens",
+    "Metadata":{
+        "Reseller": "Thorlabs GmbH",
+        "URL":"https://www.thorlabs.com/thorproduct.cfm?partnumber=LA1116"
+    },
+    "Geometrical_Properties": {
+        "Diameter": {
+            "Value": "6",
+            "Unit": "mm"
+        }
+    },
+    "Physical_Properties": {
+        "Material": "N-BK7"
+    },
+    "Optical_Properties": {
+        "Wavelength_Design": {
+            "Value": "587.6",
+            "Unit": "nm"
+        },
+        "Focal_Length": {
+            "Value": "10",
+            "Tolerance_Percantage": "1",
+            "Unit": "mm"
+        },
+        "Back_Focal_Length_Ref": {
+            "Value": "8.3",
+            "Unit": "mm"
+        },
+        "Clear_Aperature": {
+            "Value_Lowest_Boarder": "90",
+            "Value_Highest_Boarder": "100",
+            "Unit": "%"
+        },
+        "Surface_Quality": {
+            "Value": "40-20 Scratch-Dig"
+        },
+        "Centration": {
+            "Value_Lowest_Boarder": "0",
+            "Value_Highest_Boarder": "3",
+            "Unit": "arcmin"
+        },
+        "Diameter_Tolerance": {
+            "Value_Lowest_Boarder": "-1",
+            "Value_Highest_Boarder": "0",
+            "Unit": "mm"
+        },
+        "Thickness_Tolerance": {
+            "Value_Lowest_Boarder": "0.1",
+            "Value_Highest_Boarder": "0.1",
+            "Unit": "mm"
+        },
+        "Coating": {
+            "Value": "BBAR Ravg<0.5%",
+            "Value_Lowest_Boarder": "350",
+            "Value_Highest_Boarder": "700",
+            "Unit": "nm"
+        }
+    }
+}

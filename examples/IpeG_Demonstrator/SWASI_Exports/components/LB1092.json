@@ -3,7 +3,7 @@
     "components": [],
     "assemblyConstraints": [],
     "mountingReferences": {
-      "spawningOrigin": "Gonio_Right_Part_1_Origin",
+      "spawningOrigin": "Gonio_Right_Part_2_Origin",
       "spawningTransformation": {
         "translation": {
           "X": 0.0,
@@ -20,23 +20,6 @@
       },
       "ref_planes": [
         {
-          "name": "Horizontal_Plane",
-          "refPointNames": [
-            "Vision_Point_2",
-            "Vision_Point_4",
-            "Vision_Point_3"
-          ],
-          "refAxisNames": [
-            "",
-            ""
-          ],
-          "normalVector": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Z": 1.0
-          }
-        },
-        {
           "name": "Center_Plane",
           "refPointNames": [
             "Gripping_Point",
@@ -50,24 +33,41 @@
           "normalVector": {
             "X": 0.0,
             "Y": -1.0,
-            "Z": 0.0
+            "Z": 5.960465E-08
           }
         },
         {
           "name": "Vertical_Plane",
           "refPointNames": [
-            "Gripping_Point",
+            "Center_Point_1",
+            "Center_Point_2",
+            "Laser_Measurement_Point"
+          ],
+          "refAxisNames": [
             "",
             ""
           ],
+          "normalVector": {
+            "X": 1.0,
+            "Y": 0.0,
+            "Z": 0.0
+          }
+        },
+        {
+          "name": "Horizontal_Plane",
+          "refPointNames": [
+            "Camera_Measurement_Point_1",
+            "Camera_Measurement_Point_2",
+            "Camera_Measurement_Point_3"
+          ],
           "refAxisNames": [
-            "Vision_Center_Axis",
+            "",
             ""
           ],
           "normalVector": {
-            "X": -1.0,
-            "Y": 0.0,
-            "Z": 0.0
+            "X": 0.0,
+            "Y": -5.960465E-08,
+            "Z": -1.0
           }
         }
       ],
@@ -78,24 +78,17 @@
             "Center_Point_2",
             "Center_Point_1"
           ]
-        },
-        {
-          "name": "Vision_Center_Axis",
-          "refPointNames": [
-            "Vision_Center_14",
-            "Vision_Center_23"
-          ]
         }
       ],
       "ref_frames": [
         {
-          "name": "Vision_Point_1",
+          "name": "Camera_Measurement_Point_1",
           "type": "point",
           "transformation": {
             "translation": {
               "X": 6.35,
-              "Y": -1.27,
-              "Z": 0.0
+              "Y": -0.8967677,
+              "Z": 5.34515259E-08
             },
             "rotation": {
               "X": 0.0,
@@ -118,13 +111,13 @@
           }
         },
         {
-          "name": "Vision_Point_2",
+          "name": "Camera_Measurement_Point_2",
           "type": "point",
           "transformation": {
             "translation": {
               "X": -6.35,
-              "Y": -1.27,
-              "Z": 0.0
+              "Y": -0.8967677,
+              "Z": 5.34515259E-08
             },
             "rotation": {
               "X": 0.0,
@@ -147,13 +140,13 @@
           }
         },
         {
-          "name": "Vision_Point_3",
+          "name": "Camera_Measurement_Point_3",
           "type": "point",
           "transformation": {
             "translation": {
               "X": -6.35,
-              "Y": 1.27,
-              "Z": 0.0
+              "Y": 0.8967677,
+              "Z": -5.34515259E-08
             },
             "rotation": {
               "X": 0.0,
@@ -176,13 +169,100 @@
           }
         },
         {
-          "name": "Vision_Point_4",
+          "name": "Camera_Measurement_Point_4",
           "type": "point",
           "transformation": {
             "translation": {
               "X": 6.35,
-              "Y": 1.27,
-              "Z": 0.0
+              "Y": 0.8967677,
+              "Z": -5.34515259E-08
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Center_Point_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": 0.0,
+              "Y": -0.8967677,
+              "Z": 5.34515259E-08
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Center_Point_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": 0.0,
+              "Y": 0.8967677,
+              "Z": -5.34515259E-08
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "name": "Laser_Measurement_Point",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": 0.0,
+              "Y": 3.78489545E-07,
+              "Z": 6.35
             },
             "rotation": {
               "X": 0.0,
@@ -234,94 +314,7 @@
           }
         },
         {
-          "name": "Laser_Measurement_Point",
-          "type": "point",
-          "transformation": {
-            "translation": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Z": 6.35
-            },
-            "rotation": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Z": 0.0,
-              "W": 1.0,
-              "IsIdentity": true
-            }
-          },
-          "constraints": {
-            "centroid": {
-              "refFrameNames": [],
-              "dim": "",
-              "offsetValues": [
-                0.0,
-                0.0,
-                0.0
-              ]
-            }
-          }
-        },
-        {
-          "name": "Center_Point_1",
-          "type": "point",
-          "transformation": {
-            "translation": {
-              "X": 0.0,
-              "Y": -1.27,
-              "Z": 0.0
-            },
-            "rotation": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Z": 0.0,
-              "W": 1.0,
-              "IsIdentity": true
-            }
-          },
-          "constraints": {
-            "centroid": {
-              "refFrameNames": [],
-              "dim": "",
-              "offsetValues": [
-                0.0,
-                0.0,
-                0.0
-              ]
-            }
-          }
-        },
-        {
-          "name": "Center_Point_2",
-          "type": "point",
-          "transformation": {
-            "translation": {
-              "X": 0.0,
-              "Y": 1.27,
-              "Z": 0.0
-            },
-            "rotation": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Z": 0.0,
-              "W": 1.0,
-              "IsIdentity": true
-            }
-          },
-          "constraints": {
-            "centroid": {
-              "refFrameNames": [],
-              "dim": "",
-              "offsetValues": [
-                0.0,
-                0.0,
-                0.0
-              ]
-            }
-          }
-        },
-        {
-          "name": "Vision_Center_14",
+          "name": "Camera_Center_Point_14",
           "type": "point",
           "transformation": {
             "translation": {
@@ -350,7 +343,7 @@
           }
         },
         {
-          "name": "Vision_Center_23",
+          "name": "Camera_Center_Point_23",
           "type": "point",
           "transformation": {
             "translation": {
@@ -382,10 +375,10 @@
     }
   },
   "documentUnits": "mm",
-  "cadPath": "P50HCB.STL",
-  "name": "P50HCB",
+  "cadPath": "LB1092.STL",
+  "name": "LB1092",
   "description": "",
-  "guid": "992a252b-4ef7-4b57-9203-3582dbbb9f94",
+  "guid": "cfb59900-3aa5-4863-b3a2-f5b1827ce168",
   "type": "Component",
-  "saveDate": "2024-02-22T13:58:37.6630044+01:00"
+  "saveDate": "2024-02-22T13:59:17.2827898+01:00"
 }

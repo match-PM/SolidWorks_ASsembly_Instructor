@@ -1,0 +1,149 @@
+{
+    "id": "Template_ID",
+    "Status": "Template",
+    "Template_Name":"Template_LAS_20001",
+    "Assembly_Name": "LAS_20001",
+    "Date_Template_Creation": "Timestamp",
+    "Date_Assembly": "None",
+    "Opitcal_Properties": {
+        "Optical_Power_Target": {
+            "Value": "100",
+            "Unit": "mW"
+        },
+        "Optical_Power": {
+            "Value": "None",
+            "Unit": "mW"
+        }
+    },
+  "Assembly": {
+    "Assembly_STL": "STL of Assembly",
+    "Assembly_Recipe": [
+      {
+        "Part_1": {
+          "Category": "Compontent",
+          "Part_Name": "LA1116-A",
+          "Components_IDs": "None"
+        },
+        "Part_2": {
+          "Category": "Compontent",
+          "Part_Name": "LD2746",
+          "Components_IDs": "None"
+        },
+        "Part_3": {
+          "Category": "Compontent",
+          "Part_Name": "LD2746",
+          "Components_IDs": "None"
+        },
+        "Part_4": {
+          "Category": "Compontent",
+          "Part_Name": "LA1116-A",
+          "Components_IDs": "None"
+        },
+        "Part_5": {
+          "Category": "Assembly",
+          "Part_Name": "Sub_10001",
+          "Components_IDs": "None"
+        }
+      }
+    ],
+    "Assembly_Part_Locations": {
+      "Part_1": {
+        "Unit_Trans": "m",
+        "Unit_Rot": "rad",
+        "T": {
+          "x": "2",
+          "y": "3",
+          "z": "3",
+          "Rx": "90",
+          "Ry": "90",
+          "Rz": "90"
+        }
+      },
+      "Part_2": {
+        "Unit_Trans": "m",
+        "Unit_Rot": "rad",
+        "T": {
+          "x": "2",
+          "y": "3",
+          "z": "3",
+          "Rx": "90",
+          "Ry": "90",
+          "Rz": "90"
+        }
+      },
+      "Part_3": {
+        "Unit_Trans": "m",
+        "Unit_Rot": "rad",
+        "T": {
+          "x": "2",
+          "y": "3",
+          "z": "3",
+          "Rx": "90",
+          "Ry": "90",
+          "Rz": "90"
+        }
+      },
+      "Part_4": {
+        "Unit_Trans": "m",
+        "Unit_Rot": "rad",
+        "T": {
+          "x": "2",
+          "y": "3",
+          "z": "3",
+          "Rx": "90",
+          "Ry": "90",
+          "Rz": "90"
+        }
+      },
+      "Part_5": {
+        "Unit_Trans": "m",
+        "Unit_Rot": "rad",
+        "T": {
+          "x": "2",
+          "y": "3",
+          "z": "3",
+          "Rx": "90",
+          "Ry": "90",
+          "Rz": "90"
+        }
+      }
+    },
+    "Assembly_Process_Information": [
+      {
+        "Part_1": {
+          "Adhesive_Points": {
+            "Unit_Trans": "m",
+            "Unit_Rot": "rad",
+            "Point_1": {
+              "x": "2",
+              "y": "3",
+              "z": "3",
+              "Rx": "90",
+              "Ry": "90",
+              "Rz": "90"
+            },
+            "Point_2": {
+              "x": "2",
+              "y": "3",
+              "z": "3",
+              "Rx": "90",
+              "Ry": "90",
+              "Rz": "90"
+            }
+          }
+        },
+        "Part_2": {
+
+        },
+        "Part_3": {
+
+        },
+        "Part_4": {
+        },
+        "Part_5": {
+
+        }
+      }
+    ]
+  }
+}

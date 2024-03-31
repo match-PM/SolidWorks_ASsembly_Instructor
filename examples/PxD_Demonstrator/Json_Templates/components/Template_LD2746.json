@@ -1,0 +1,65 @@
+{
+  "id": "MangoDB_Template_ID",
+  "Template_Name": "Template_LD2746",
+  "Component_Name": "LD2746",
+  "Status": "Template",
+  "Date_Template_Creation": "Timestamp",
+  "Production_Date": "None",
+  "Inherit_Template": "None",
+  "Component_Status": "None",
+  "Component_Type": "Bi-Concave Lens",
+  "Metadata": {
+    "Reseller": "Thorlabs GmbH",
+    "URL": "https://www.thorlabs.com/thorproduct.cfm?partnumber=LD2746"
+  },
+  "Geometrical_Properties": {
+    "Diameter": {
+      "Value": "6",
+      "Unit": "mm"
+    }
+  },
+  "Physical_Properties": {
+    "Material": "N-SF11"
+  },
+  "Optical_Properties": {
+    "Wavelength_Design": {
+      "Value": "587.6",
+      "Unit": "nm"
+    },
+    "Focal_Length": {
+      "Value": "6",
+      "Tolerance_Percantage": "1",
+      "Unit": "mm"
+    },
+    "Back_Focal_Length_Ref": {
+      "Value": "-6.4",
+      "Unit": "mm"
+    },
+    "Clear_Aperature": {
+      "Value_Lowest_Boarder": "90",
+      "Value_Highest_Boarder": "100",
+      "Unit": "%"
+    },
+    "Surface_Quality": {
+      "Value": "40-20 Scratch-Dig"
+    },
+    "Centration": {
+      "Value_Lowest_Boarder": "0",
+      "Value_Highest_Boarder": "3",
+      "Unit": "arcmin"
+    },
+    "Diameter_Tolerance": {
+      "Value_Lowest_Boarder": "-1",
+      "Value_Highest_Boarder": "0",
+      "Unit": "mm"
+    },
+    "Thickness_Tolerance": {
+      "Value_Lowest_Boarder": "0.1",
+      "Value_Highest_Boarder": "0.1",
+      "Unit": "mm"
+    }
+  },
+  "Assembly": {
+    "STL_Bin": "N-SF11"
+        }
+}
