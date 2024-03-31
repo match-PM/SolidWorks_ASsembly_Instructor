@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Windows.Forms;
+using System.Xml.Xsl;
 
 namespace SolidWorks_ASsembly_Instructor
 {
@@ -202,7 +203,11 @@ namespace SolidWorks_ASsembly_Instructor
             Vector4 normalVector4 = new Vector4(normalVector, 1f);
 
             // Transform the normal vector using the relative transformation matrix
-            Vector4 resultVector = Vector4.Transform(normalVector4, relTransform);
+            Vector4 resultVector = new Vector4();
+
+            Matrix4x4 InvertedTransform;
+            Matrix4x4.Invert(relTransform, out InvertedTransform);
+            resultVector = Vector4.Transform(normalVector4, InvertedTransform);
 
             // Update the normal vector with the transformed values
             normalVector.X = resultVector.X;
