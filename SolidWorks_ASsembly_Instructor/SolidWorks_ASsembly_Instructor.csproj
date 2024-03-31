@@ -93,6 +93,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JsonCompare.cs" />
     <Compile Include="Swasi_Extractor.cs" />
     <Compile Include="Json\ComponentDescription.cs" />
     <Compile Include="Json\MountingReferences.cs" />

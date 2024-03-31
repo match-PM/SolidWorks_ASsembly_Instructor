@@ -136,10 +136,29 @@ namespace SolidWorks_ASsembly_Instructor
                             }
 
                             // Serialize the main model to JSON
-                            //string json = JsonConvert.SerializeObject(mainAssembly, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                            string json = JsonConvert.SerializeObject(ExportObject, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                            // string json = JsonConvert.SerializeObject(mainAssembly, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                            string json = null;
+                            string jsonNew = JsonConvert.SerializeObject(ExportObject, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+
+                            // Create filePath
+                            string filePath = Path.Combine(fileExportPath, mainAssamblyName + ".json");
+                            string jsonExist;
+
+                            //check, if a file with this name is already existing
+                            // if yes, merge both objects
+                            if (JsonCompare.CheckFileExists(filePath, out jsonExist))
+                            {
+                                json = JsonCompare.CompareNested(jsonNew, jsonExist);
+                                Log($"{filePath} File already exists");
+                                Log("---------------------------------------------------------");
+                            }
+                            //if not, create new one
+                            else
+                            {
+                                json = jsonNew;
+                            }
                             // Write the JSON to a file in the Assembly folder
-                            using (StreamWriter file = File.CreateText(Path.Combine(fileExportPath, mainAssamblyName + ".json")))
+                            using (StreamWriter file = File.CreateText(filePath))
                             {
                                 file.WriteLine(json);
                                 Log($"Json exported for {mainAssamblyName}");
