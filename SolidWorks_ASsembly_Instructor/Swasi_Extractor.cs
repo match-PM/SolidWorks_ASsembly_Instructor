@@ -3,6 +3,7 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Numerics;
@@ -118,7 +119,7 @@ namespace SolidWorks_ASsembly_Instructor
                                     swComponent = (Component2)SingleComponent;
                                 }
                                 //AssemblyDescription assemblyDescription = new AssemblyDescription();
-                                mountingDescription = ExtractAssemblyComponents(mountingDescription, ModDoc);
+                                mountingDescription = ExtractAssemblyComponents(mountingDescription, ModDoc, Matrix4x4.Identity );
                                 mountingDescription = ExtractAssemblyMates(mountingDescription, features);
                                 mainAssembly.mountingDescription = mountingDescription;
                                 mainAssembly.name = mainAssamblyName;
@@ -149,6 +150,7 @@ namespace SolidWorks_ASsembly_Instructor
                             // if yes, merge both objects
                             if (JsonCompare.CheckFileExists(filePath, out jsonExist))
                             {
+                                Debug.Write($"{mainAssamblyName}\r\n");
                                 json = JsonCompare.CompareNested(jsonNew, jsonExist);
                                 Log($"{filePath} File already exists");
                                 Log("---------------------------------------------------------");
@@ -447,7 +449,7 @@ namespace SolidWorks_ASsembly_Instructor
         /// <param name="MountingDesc">The MountingDescription to be populated with assembly components.</param>
         /// <param name="assemblyModel">The SolidWorks assembly model to extract components from.</param>
         /// <returns>The updated MountingDescription.</returns>
-        public MountingDescription ExtractAssemblyComponents(MountingDescription MountingDesc, ModelDoc2 assemblyModel)
+        public MountingDescription ExtractAssemblyComponents(MountingDescription MountingDesc, ModelDoc2 assemblyModel, Matrix4x4 RelTransform)
         {
             // Execute this only if the document is an assembly
             if (assemblyModel == null)
@@ -486,6 +488,8 @@ namespace SolidWorks_ASsembly_Instructor
 
                 // ################### Currently, this is not the correct transformation. We need the transformation from the Assembly SWASI Origin to the SWASI Origin of the individual components
                 // ##############################################
+
+                //Ursprung(Baugruppe) -> SWASI_Origin (Baugruppe) - Ursprung(componente) -> SWASI_Origin_Gonio
                 MathTransform swXForm = component.Transform2;
                 componentDescription.transformation.fromArrayData(swXForm.ArrayData);
 
