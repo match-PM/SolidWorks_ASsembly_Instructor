@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 using System;
@@ -119,7 +120,7 @@ namespace SolidWorks_ASsembly_Instructor
                                     swComponent = (Component2)SingleComponent;
                                 }
                                 //AssemblyDescription assemblyDescription = new AssemblyDescription();
-                                mountingDescription = ExtractAssemblyComponents(mountingDescription, ModDoc, Matrix4x4.Identity );
+                                mountingDescription = ExtractAssemblyComponents(mountingDescription, ModDoc, Matrix4x4.Identity);
                                 mountingDescription = ExtractAssemblyMates(mountingDescription, features);
                                 mainAssembly.mountingDescription = mountingDescription;
                                 mainAssembly.name = mainAssamblyName;
@@ -148,10 +149,16 @@ namespace SolidWorks_ASsembly_Instructor
 
                             //check, if a file with this name is already existing
                             // if yes, merge both objects
-                            if (JsonCompare.CheckFileExists(filePath, out jsonExist))
+                            if (JsonPathExtractor.CheckFileExists(filePath, out jsonExist))
                             {
                                 Debug.Write($"{mainAssamblyName}\r\n");
-                                json = JsonCompare.CompareNested(jsonNew, jsonExist);
+
+                                JObject obj1 = JObject.Parse(jsonNew);
+                                JObject obj2 = JObject.Parse(jsonExist);
+
+                                JToken output = obj1 as JToken;
+                                JsonPathValidator.ValidateAndAddMissingProperties(obj2, ref output);
+                                json = output.ToString();
                                 Log($"{filePath} File already exists");
                                 Log("---------------------------------------------------------");
                             }
