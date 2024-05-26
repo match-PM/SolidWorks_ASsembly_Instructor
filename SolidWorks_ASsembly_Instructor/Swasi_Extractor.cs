@@ -120,7 +120,7 @@ namespace SolidWorks_ASsembly_Instructor
                                     swComponent = (Component2)SingleComponent;
                                 }
                                 //AssemblyDescription assemblyDescription = new AssemblyDescription();
-                                mountingDescription = ExtractAssemblyComponents(mountingDescription, ModDoc, Matrix4x4.Identity);
+                                mountingDescription = ExtractAssemblyComponents(mountingDescription, ModDoc, Origin.GetInverted4x4Matrix()); //ToDo: Was muss hier übergeben werden?
                                 mountingDescription = ExtractAssemblyMates(mountingDescription, features);
                                 mainAssembly.mountingDescription = mountingDescription;
                                 mainAssembly.name = mainAssamblyName;
@@ -498,7 +498,10 @@ namespace SolidWorks_ASsembly_Instructor
 
                 //Ursprung(Baugruppe) -> SWASI_Origin (Baugruppe) - Ursprung(componente) -> SWASI_Origin_Gonio
                 MathTransform swXForm = component.Transform2;
-                componentDescription.transformation.fromArrayData(swXForm.ArrayData);
+                // Set the transformation after transforming it to the SWASI origin
+                componentDescription.transformation.fromMatrix4x4(Matrix4x4.Multiply(RelTransform, componentDescription.transformation.AsMatrix4x4()));
+
+                //componentDescription.transformation.fromArrayData(swXForm.ArrayData);
 
                 // Insert the component description at the beginning of the list
                 MountingDesc.components.Insert(0, componentDescription);
@@ -1012,10 +1015,19 @@ namespace SolidWorks_ASsembly_Instructor
         /// <returns>True if the STL file is successfully saved; otherwise, false.</returns>
         private bool SaveToSTL(SldWorks swApp, ModelDoc2 modelDoc, string filePath, string fileName, string exportCSName, int lengthUnit)
         {
-            if (modelDoc.GetType() == (int)swDocumentTypes_e.swDocASSEMBLY)
+
+            //hier wird irgendwie das Assembly richtg gespeichert, beim Part scheint die EInstellung nicht zu wirken
+            switch (modelDoc.GetType())
             {
-                // Set Pref to export all stl into a single file
-                swApp.SetUserPreferenceToggle((int)swUserPreferenceToggle_e.swSTLComponentsIntoOneFile, true);
+                case (int)swDocumentTypes_e.swDocASSEMBLY:
+                    swApp.SetUserPreferenceToggle((int)swUserPreferenceToggle_e.swSTLComponentsIntoOneFile, true);
+                    break;
+                case (int)swDocumentTypes_e.swDocPART:
+                    swApp.SetUserPreferenceToggle((int)swUserPreferenceToggle_e.swSTLComponentsIntoOneFile, true);
+                    break;
+                default:
+                    break;
+                    // Set Pref to export all stl into a single file
             }
 
             int errors = 0;
@@ -1034,9 +1046,14 @@ namespace SolidWorks_ASsembly_Instructor
 
             // Change Export CS
             bool changeFrameSuccess = modelDoc.SetUserPreferenceStringValue((int)swUserPreferenceStringValue_e.swFileSaveAsCoordinateSystem, exportCSName);
+            
+            Log($"vor: {swApp.GetUserPreferenceToggle((int)swUserPreferenceToggle_e.swSTLComponentsIntoOneFile)}");
 
             // Save File
             bool saveSuccess = modelDoc.Extension.SaveAs(filepath, (int)swSaveAsVersion_e.swSaveAsCurrentVersion, (int)swSaveAsOptions_e.swSaveAsOptions_Silent, null, ref errors, ref warnings);
+
+            Log($"nach: {swApp.GetUserPreferenceToggle((int)swUserPreferenceToggle_e.swSTLComponentsIntoOneFile)}");
+
 
             if (saveSuccess)
             {
