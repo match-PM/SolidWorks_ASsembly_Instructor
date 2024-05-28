@@ -339,10 +339,12 @@ namespace SolidWorks_ASsembly_Instructor
             //    Log($"RefFrame ({feature.Name}) was ignored. Wrong Identifier?", "warning");
             //    return (false, refFrame);
             //}
-            if (!feature.Name.Contains(SWASI_IDENTIFIER) && !feature.Name.Contains(SWASI_ORIGIN_IDENTIFIER))
+
+
+            if (!feature.Name.Contains(SWASI_IDENTIFIER) || feature.Name.Contains(SWASI_ORIGIN_IDENTIFIER))
             {
                 // Pops up on SW-Frames
-                Log($"RefFrame ({feature.Name}) was ignored. Either Identifier is required.", "warning");
+                Log($"RefFrame ({feature.Name}) was ignored. Either Identifier is required or is Origin Identifier", "warning");
                 return (false, refFrame);
             }
 
