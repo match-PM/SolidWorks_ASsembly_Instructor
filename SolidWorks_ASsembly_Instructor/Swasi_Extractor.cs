@@ -53,7 +53,7 @@ namespace SolidWorks_ASsembly_Instructor
             object ExportObject;
 
             mainAssembly = new AssemblyDescription();
-            MountingDescription mountingDescription = new MountingDescription();
+            
             Component = new ComponentDescription();
             try
             {
@@ -92,7 +92,7 @@ namespace SolidWorks_ASsembly_Instructor
                     if (componentType == (int)swDocumentTypes_e.swDocPART || componentType == (int)swDocumentTypes_e.swDocASSEMBLY)
                     {
                         FeatureManager swFeatureManager = currentDoc.FeatureManager;
-
+                        MountingDescription mountingDescription = new MountingDescription();
                         // Get all features in the feature manager
                         object[] features = (object[])swFeatureManager.GetFeatures(false);
 
