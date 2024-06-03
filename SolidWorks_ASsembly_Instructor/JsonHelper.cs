@@ -85,7 +85,7 @@ namespace SolidWorks_ASsembly_Instructor
 
             // Path for the reference frames within the JSON structure
             string refFramesPath = "mountingDescription.mountingReferences.ref_frames";
-
+            string componentsPath = "mountingDescription.components"; // for part Guid
 
             // Try to extract the reference frame arrays from both JSON tokens
             JArray tkn2RefFrameArray;
@@ -94,12 +94,12 @@ namespace SolidWorks_ASsembly_Instructor
             {
                 tkn2RefFrameArray = tkn2.SelectToken(refFramesPath) as JArray;
             }
-            catch (Exception ex) { return;} // If the path is not found in tkn2, exit the function
+            catch (Exception ex) { return; } // If the path is not found in tkn2, exit the function
             try
             {
                 tkn1RefFrameArray = tkn1.SelectToken(refFramesPath) as JArray;
             }
-            catch (Exception ex) { return;} // If the path is not found in tkn1, exit the function
+            catch (Exception ex) { return; } // If the path is not found in tkn1, exit the function
 
             // Sort the reference frame arrays by the "name" property
             JArray tkn2RefFrameArraysorted = new JArray(tkn2RefFrameArray.OrderBy(obj => (string)obj["name"]));
@@ -160,6 +160,31 @@ namespace SolidWorks_ASsembly_Instructor
                     outputTkn.Add(nameTkn2);
                 }
             }
+
+            // Handle the components array to keep an existing GUID
+            JArray tkn1ComponentsArray = tkn1.SelectToken(componentsPath) as JArray;
+            JArray tkn2ComponentsArray = tkn2.SelectToken(componentsPath) as JArray;
+
+            if (tkn1ComponentsArray != null && tkn2ComponentsArray != null)
+            {
+                foreach (JObject tkn2Component in tkn2ComponentsArray)
+                {
+                    string componentName = tkn2Component.SelectToken("name").ToString();
+                    JToken tkn1Component = tkn1ComponentsArray.FirstOrDefault(t => (string)t["name"] == componentName);
+
+                    if (tkn1Component != null)
+                    {
+                        // Overwrite the GUID in tkn2Component with the GUID from tkn1Component
+                        tkn1Component["guid"] = tkn2Component["guid"];
+                    }
+                }
+
+                // Override the components array in tkn1 with the updated components from tkn2
+                overridePropertyAtPath(tkn1, tkn2ComponentsArray, componentsPath);
+            }
+
+
+
 
             // Override the reference frames, GUID, and save date properties in tkn1 with those from tkn2
             overridePropertyAtPath(tkn1, outputTkn, refFramesPath);

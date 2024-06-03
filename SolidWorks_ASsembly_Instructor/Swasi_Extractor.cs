@@ -53,7 +53,7 @@ namespace SolidWorks_ASsembly_Instructor
             object ExportObject;
 
             mainAssembly = new AssemblyDescription();
-            
+
             Component = new ComponentDescription();
             try
             {
@@ -83,6 +83,14 @@ namespace SolidWorks_ASsembly_Instructor
                     }
                 }
                 // Check each subcomponent
+                Dictionary<string, string> guidMap = new Dictionary<string, string>();
+                foreach (ModelDoc2 ModDoc in modelDoc2s)
+                {
+                    if (!guidMap.ContainsKey(ModDoc.GetTitle().Split('.')[0]))
+                    {
+                        guidMap.Add(ModDoc.GetTitle().Split('.')[0], Guid.NewGuid().ToString());
+                    }
+                }
                 foreach (ModelDoc2 ModDoc in modelDoc2s)
                 {
                     currentDoc = ModDoc;
@@ -125,6 +133,7 @@ namespace SolidWorks_ASsembly_Instructor
                                 mainAssembly.mountingDescription = mountingDescription;
                                 mainAssembly.name = mainAssamblyName;
                                 mainAssembly.cadPath = mainAssamblyName + ".STL";
+                                mainAssembly.guid = Guid.Parse(guidMap[mainAssamblyName]);
                                 ExportObject = mainAssembly;
                                 //List<AssemblyConstraintDescription> assemblyConstraints = ExtractAssemblyMates(features);
                             }
@@ -135,6 +144,7 @@ namespace SolidWorks_ASsembly_Instructor
                                 Component.mountingDescription = mountingDescription;
                                 Component.cadPath = mainAssamblyName + ".STL";
                                 Component.name = mainAssamblyName;
+                                Component.guid = Guid.Parse(guidMap[mainAssamblyName]);
                                 ExportObject = Component;
                             }
 
@@ -142,6 +152,29 @@ namespace SolidWorks_ASsembly_Instructor
                             // string json = JsonConvert.SerializeObject(mainAssembly, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
                             string json = null;
                             string jsonNew = JsonConvert.SerializeObject(ExportObject, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                            string pathToComponents = "mountingDescription.components";
+                            JToken tmpJson = JObject.Parse(jsonNew);
+                            JArray componentsArray = tmpJson.SelectToken(pathToComponents) as JArray;
+
+                            foreach (JObject comp in componentsArray)
+                            {
+                                string currentName = comp.SelectToken("name").ToString();
+                                // shorten the name. cutting off "-*"
+                                int dashIndex = currentName.LastIndexOf('-');
+                                if (dashIndex >= 0)
+                                {
+                                    currentName = currentName.Substring(0, dashIndex);
+                                }
+                                if (guidMap.ContainsKey(currentName))
+                                {
+                                    comp["guid"] = guidMap[currentName];
+                                }
+                            }
+
+
+                            tmpJson.SelectToken(pathToComponents).Replace(componentsArray);
+                            jsonNew = tmpJson.ToString();
+
 
                             // Create filePath
                             string filePath = Path.Combine(fileExportPath, mainAssamblyName + ".json");
@@ -1048,11 +1081,11 @@ namespace SolidWorks_ASsembly_Instructor
 
             // Change Export CS
             bool changeFrameSuccess = modelDoc.SetUserPreferenceStringValue((int)swUserPreferenceStringValue_e.swFileSaveAsCoordinateSystem, exportCSName);
-            
-            Log($"vor: {swApp.GetUserPreferenceToggle((int)swUserPreferenceToggle_e.swSTLComponentsIntoOneFile)}");
 
+            Log($"vor: {swApp.GetUserPreferenceToggle((int)swUserPreferenceToggle_e.swSTLComponentsIntoOneFile)}");
+            bool saveSuccess = false;
             // Save File
-            bool saveSuccess = modelDoc.Extension.SaveAs(filepath, (int)swSaveAsVersion_e.swSaveAsCurrentVersion, (int)swSaveAsOptions_e.swSaveAsOptions_Silent, null, ref errors, ref warnings);
+            saveSuccess = modelDoc.Extension.SaveAs(filepath, (int)swSaveAsVersion_e.swSaveAsCurrentVersion, (int)swSaveAsOptions_e.swSaveAsOptions_Silent, null, ref errors, ref warnings);
 
             Log($"nach: {swApp.GetUserPreferenceToggle((int)swUserPreferenceToggle_e.swSTLComponentsIntoOneFile)}");
 
