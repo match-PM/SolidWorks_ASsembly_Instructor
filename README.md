@@ -41,13 +41,13 @@ First, a storage location for the JSON files must be selected under "Save locati
 
 | folder or file | description |
 | ----------- | ----------- |
-| TaskpaneHostUI.cs | Contains both the graphical user interface and the main functionality (switch with (Shift) + F7) |
-| TaskpaneIntegration.cs | Enables communication with SolidWorks (adapted from [here](https://www.youtube.com/watch?v=7DlG6OQeJP0) with the help of [here](https://stackoverflow.com/questions/74966397/making-c-sharp-class-library-com-visible-in-visual-studio-2022)) |
+| Swasi_Extractor.cs | Main entry point of the application |
 | Json/* | Contains the JSON structure as classes |
-| AssemblyManager.cs | Main entry point of the application |
-| utils/FeatureTypes.cs | Structure for easier extraction of features |
+| JsonHelper.cs | Helperfunctions to handle Json |
+| TaskpaneIntegration.cs | Enables communication with SolidWorks (adapted from [here](https://www.youtube.com/watch?v=7DlG6OQeJP0) with the help of [here](https://stackoverflow.com/questions/74966397/making-c-sharp-class-library-com-visible-in-visual-studio-2022)) |
+| TaskpaneHostUI.cs | Contains both the graphical user interface and the main functionality (switch with (Shift) + F7) |
 
-## 6. nomenclature for assembly features
+## 6. Nomenclature for assembly features
 
 To ensure the extraction of assembly features, certain naming standards must be adhered to. These apply to all types of features:
 
@@ -61,6 +61,21 @@ The names of the reference features must always begin with the prefix "SWASI_" (
 The identifier "SWASI_Origin_" must be used for the assembly origin (example: SWASI_Origin_Assembly_Origin).
 
 Features without the correct designation or with the wrong designation are not extracted!
+
+There are some special features of RefPlanes and RefAxis:
+
+### RefPlanes
+
+Reference planes can be described in two different ways.
+
+1. by a line and a SWASI_Point
+2. by three SWASI_Points
+
+### RefAxis
+
+Reference axes can only be described in one way.
+
+1. by two SWASI_Points
 
 # Deutsche Version
 
@@ -107,11 +122,11 @@ Um die DLL zu debuggen, muss in Visual Studio unter "Debuggen" -> "An den Prozes
 
 | Ordner oder Datei | Beschreibung |
 | ----------- | ----------- |
-| TaskpaneHostUI.cs | Enthält sowohl die grafische Oberfläche als auch die Hauptfunktionalität (Wechseln mit (Shift) + F7) |
-| TaskpaneIntegration.cs | Ermöglicht die Kommunikation mit SolidWorks (adaptiert von [hier](https://www.youtube.com/watch?v=7DlG6OQeJP0) mit Hilfe von [hier](https://stackoverflow.com/questions/74966397/making-c-sharp-class-library-com-visible-in-visual-studio-2022)) |
+| Swasi_Extractor.cs | Haupteinstiegspunkt der Anwendung |
 | Json/* | Enthält die JSON-Struktur als Klassen |
-| AssemblyManager.cs | Haupt-Einstiegspunkt der Anwendung |
-| utils/FeatureTypes.cs | Struct zur einfacheren Extraktion von Features |
+| JsonHelper.cs | Hilfsfunktionen zum Umgang mit Json |
+| TaskpaneIntegration.cs | Ermöglicht die Kommunikation mit SolidWorks (angepasst von [hier](https://www.youtube.com/watch?v=7DlG6OQeJP0) mit Hilfe von [hier](https://stackoverflow.com/questions/74966397/making-c-sharp-class-library-com-visible-in-visual-studio-2022)) |
+| TaskpaneHostUI.cs | Enthält sowohl die grafische Benutzeroberfläche als auch die Hauptfunktionalität (Umschalten mit (Shift) + F7) |
 
 ## 6. Nomenklatur für Baugruppenfeatures
 
@@ -127,3 +142,18 @@ Die Namen der Referenzfeatures müssen zwingend mit dem Präfix "SWASI_" beginne
 Für den Baugruppenursprung muss der Identifizierer "SWASI_Origin_" verwendet werden (Beispiel: SWASI_Origin_Assembly_Origin).
 
 Features ohne korrekte Benennung oder mit falscher Bezeichnung werden nicht extrahiert!
+
+Es gibt einige Besonderheiten von RefPlanes und RefAxis:
+
+### RefPlanes
+
+Referenzebenen können auf zwei verschiedene Arten beschrieben werden.
+
+1. durch eine Linie und einen SWASI_Point
+2. durch drei SWASI_Points
+
+### RefAxis
+
+Referenzachsen können nur auf eine Weise beschrieben werden.
+
+1. durch 2 SWASI_Points
