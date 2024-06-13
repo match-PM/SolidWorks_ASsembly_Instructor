@@ -48,6 +48,7 @@ namespace SolidWorks_ASsembly_Instructor
         /// <returns>Returns true if the export process is successful, otherwise false.</returns>
         public bool Run()
         {
+            // Müsste das hier nicht eigentlich auch in die For-Each-Schleife?
             AssemblyDescription mainAssembly;   // Representation of the Assembly given in SolidWorks
             ComponentDescription Component;
             object ExportObject;
@@ -91,6 +92,8 @@ namespace SolidWorks_ASsembly_Instructor
                         guidMap.Add(ModDoc.GetTitle().Split('.')[0], Guid.NewGuid().ToString());
                     }
                 }
+
+                int iterator = 0;
                 foreach (ModelDoc2 ModDoc in modelDoc2s)
                 {
                     currentDoc = ModDoc;
@@ -114,6 +117,16 @@ namespace SolidWorks_ASsembly_Instructor
                             mountingDescription.mountingReferences.ref_frames.AddRange(ExtractRefPoints(features, Output.Item2.GetInverted4x4Matrix()));
                             mountingDescription.mountingReferences.ref_frames.AddRange(ExtractRefFrames(features, Output.Item2.GetInverted4x4Matrix()));
                             mountingDescription.mountingReferences.ref_axes.AddRange(ExtractRefAxes(features));
+
+                            //Save STL
+                            string exportPath = ((int)currentDoc.GetType() == (int)swDocumentTypes_e.swDocPART) ? componentsPath : assembliesPath;
+                            bool saveSuccess = SaveToSTL(app, currentDoc, exportPath, mainAssamblyName, Origin.name, (int)swLengthUnit_e.swMETER);
+                            iterator = iterator + 1;
+                            Log($"{iterator}");
+                            if (!saveSuccess)
+                            {
+                                Log($"Error saving STL for SWASI Origin: {Origin.name}", "Error");
+                            }
 
                             // If an assembly, extract assembly mates
                             if (componentType == (int)swDocumentTypes_e.swDocASSEMBLY)
@@ -294,14 +307,15 @@ namespace SolidWorks_ASsembly_Instructor
                             coordSys.ReleaseSelectionAccess();
                             extractSuccess = true;
 
-                            string exportPath = ((int)currentDoc.GetType() == (int)swDocumentTypes_e.swDocPART) ? componentsPath : assembliesPath;
+                            //Moved to somewhere else
+                            //string exportPath = ((int)currentDoc.GetType() == (int)swDocumentTypes_e.swDocPART) ? componentsPath : assembliesPath;
 
-                            bool saveSuccess = SaveToSTL(app, currentDoc, exportPath, mainAssamblyName, feature.Name, (int)swLengthUnit_e.swMETER);
+                            //bool saveSuccess = SaveToSTL(app, currentDoc, exportPath, mainAssamblyName, feature.Name, (int)swLengthUnit_e.swMETER);
 
-                            if (!saveSuccess)
-                            {
-                                Log($"Error saving STL for SWASI Origin: {feature.Name}", "Error");
-                            }
+                            //if (!saveSuccess)
+                            //{
+                            //    Log($"Error saving STL for SWASI Origin: {feature.Name}", "Error");
+                            //}
                         }
                         else
                         {
@@ -507,6 +521,14 @@ namespace SolidWorks_ASsembly_Instructor
                 return MountingDesc;
             }
 
+            Matrix4x4 SA_T_OA = RelTransform; // Transformation from the Origin of the Assembly to the SWASI Origin of the Assembly
+
+            // For logging only
+            //CoordinateSystemDescription SA_T_OA_D = new CoordinateSystemDescription();
+            //SA_T_OA_D.fromMatrix4x4(SA_T_OA);
+            //Log($"-----Transformation Assembly Origin - SWASI Assembly Origin---------");
+            //Log($"{SA_T_OA_D}");
+
             // Get Sub components
             object[] componentsObj = assemblyDoc.GetComponents(true);
             Component2[] components = componentsObj.Cast<Component2>().ToArray();
@@ -533,8 +555,49 @@ namespace SolidWorks_ASsembly_Instructor
 
                 //Ursprung(Baugruppe) -> SWASI_Origin (Baugruppe) - Ursprung(componente) -> SWASI_Origin_Gonio
                 MathTransform swXForm = component.Transform2;
+                CoordinateSystemDescription OA_T_OB = new CoordinateSystemDescription();
+
+                OA_T_OB.fromArrayData(swXForm.ArrayData);
+                Matrix4x4 OA_T_OB_matrix = OA_T_OB.AsMatrix4x4();
+
+                //Log($"-----Transformation Assembly Origin - Bauteil Origin {component.Name}---------");
+                //Log($"{OA_T_OB}"); // ist richtig oder invertieren???
+
+                FeatureManager swFeatureManager = componentModel.FeatureManager;
+                // Get all features in the feature manager
+                object[] features = (object[])swFeatureManager.GetFeatures(false);
+
+                // Get Origin
+                var Output = ExtractOrigin(features);
+                CoordinateSystemDescription OB_T_SB = new CoordinateSystemDescription();
+                Matrix4x4 OB_T_SB_matrix = new Matrix4x4();
+                // If extraction of Swasi origin is successful
+                if (Output.Item1)
+                {
+                    OB_T_SB = Output.Item2;
+                    OB_T_SB_matrix = OB_T_SB.AsMatrix4x4();
+                    //log
+                    //Log($"-----Transformation Bauteil Origin - Swasi Bauteil Origin {component.Name}---------");
+                    //Log($"{Output.Item2}");
+                }
+                else
+                {
+                    // In this case we can't extract the origin, the transformation will just be emtpy
+                }
+
+                //Matrix4x4 OA_T_SB_matrix = Matrix4x4.Multiply(OA_T_OB_matrix, OB_T_SB_matrix);
+                //Matrix4x4 SA_T_SB_matrix = Matrix4x4.Multiply(SA_T_OA, OA_T_SB_matrix);
+
+                Matrix4x4 SA_T_OB_matrix = Matrix4x4.Multiply(SA_T_OA, OA_T_OB_matrix);
+                Matrix4x4 SA_T_SB_matrix = Matrix4x4.Multiply(SA_T_OB_matrix, OB_T_SB_matrix);
+
+                //CoordinateSystemDescription OB_T_SB = new CoordinateSystemDescription(Output.Item2.AsMatrix4x4());
+                // Print the transformation matrix
+                //Log($"Transformation Matrix from Origin of the Assembly to the Origin of the Component: {OA_T_OB_Matrix}");
+
                 // Set the transformation after transforming it to the SWASI origin
-                componentDescription.transformation.fromMatrix4x4(Matrix4x4.Multiply(RelTransform, componentDescription.transformation.AsMatrix4x4()));
+                //componentDescription.transformation.fromMatrix4x4(Matrix4x4.Multiply(RelTransform, componentDescription.transformation.AsMatrix4x4()));
+                componentDescription.transformation.fromMatrix4x4(SA_T_SB_matrix);
 
                 //componentDescription.transformation.fromArrayData(swXForm.ArrayData);
 
@@ -1067,6 +1130,13 @@ namespace SolidWorks_ASsembly_Instructor
 
             int errors = 0;
             int warnings = 0;
+            
+            // Test
+            SelectionMgr manager = modelDoc.SelectionManager;
+            SelectData data = manager.CreateSelectData();
+            data.Mark = 1; // or -1
+
+
 
             // Change STL Binary Format
             swApp.SetUserPreferenceToggle((int)swUserPreferenceToggle_e.swSTLBinaryFormat, true);
@@ -1078,15 +1148,41 @@ namespace SolidWorks_ASsembly_Instructor
             swApp.SetUserPreferenceIntegerValue((int)swUserPreferenceIntegerValue_e.swSTLQuality, (int)swSTLQuality_e.swSTLQuality_Fine);
 
             string filepath = $"{filePath}\\{fileName}.stl";
-
+            Log(fileName);
             // Change Export CS
             bool changeFrameSuccess = modelDoc.SetUserPreferenceStringValue((int)swUserPreferenceStringValue_e.swFileSaveAsCoordinateSystem, exportCSName);
 
             Log($"vor: {swApp.GetUserPreferenceToggle((int)swUserPreferenceToggle_e.swSTLComponentsIntoOneFile)}");
             bool saveSuccess = false;
             // Save File
-            saveSuccess = modelDoc.Extension.SaveAs(filepath, (int)swSaveAsVersion_e.swSaveAsCurrentVersion, (int)swSaveAsOptions_e.swSaveAsOptions_Silent, null, ref errors, ref warnings);
+            //saveSuccess = modelDoc.Extension.SaveAs(filepath, 
+            //    (int)swSaveAsVersion_e.swSaveAsCurrentVersion, 
+            //    (int)swSaveAsOptions_e.swSaveAsOptions_Silent, 
+            //    null, 
+            //    ref errors, 
+            //    ref warnings);
+            //saveSuccess = modelDoc.Extension.SaveAs2(
+            //    filepath,
+            //    (int)swSaveAsVersion_e.swSaveAsCurrentVersion,
+            //    (int)swSaveAsOptions_e.swSaveAsOptions_Silent,
+            //    null,
+            //    "",
+            //    false,
+            //    ref errors,
+            //    ref warnings);
+            saveSuccess = modelDoc.Extension.SaveAs3(
+                filepath,
+                (int)swSaveAsVersion_e.swSaveAsCurrentVersion,
+                (int)swSaveAsOptions_e.swSaveAsOptions_Silent,
+                null,
+                null,
+                ref errors,
+                ref warnings);
 
+            //RenameStlFiles(filePath, fileName, fileName);
+
+            Log("Errors: " + errors);
+            Log("Warnings: " + warnings);
             Log($"nach: {swApp.GetUserPreferenceToggle((int)swUserPreferenceToggle_e.swSTLComponentsIntoOneFile)}");
 
 
@@ -1100,6 +1196,59 @@ namespace SolidWorks_ASsembly_Instructor
             }
 
             return saveSuccess;
+        }
+
+        private void RenameStlFiles(string directoryPath, string searchString, string newString)
+        {
+            // Get all STL files in the directory
+            string[] stlFiles = Directory.GetFiles(directoryPath, "*.stl", SearchOption.TopDirectoryOnly);
+
+            // Iterate through the STL files
+            foreach (string filePath in stlFiles)
+            {
+                string fileName = Path.GetFileName(filePath);
+                string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
+                string fileExtension = Path.GetExtension(fileName);
+
+                // Check if the file name contains the search string
+                //if (fileName.Contains(searchString))
+                if (fileNameWithoutExtension.Length >= searchString.Length + 2 &&
+                    fileNameWithoutExtension.Substring(fileNameWithoutExtension.Length - searchString.Length - 2, searchString.Length) == searchString)
+                {
+                    // Generate the new file name
+                    string newFileName = searchString + ".STL";
+
+                    string newFilePath = Path.Combine(directoryPath, newFileName);
+
+                    Log(newFilePath);
+                    Log(filePath);
+
+                    if (!File.Exists(newFilePath))
+                    {
+                        // Rename the file
+                        File.Move(filePath, newFilePath);
+                    }
+
+                    if (filePath == newFilePath)
+                    {
+                        Log("File was not renamed!!!!!");
+                    }
+
+                    else
+                    {
+                        // Delete the existing file
+                        File.Delete(filePath);
+                    }  
+                    
+
+                    // Output the renaming action
+                    Console.WriteLine($"Renamed: {fileName} to {newFileName}");
+                }
+                else if (fileName.Contains(searchString)  && !(searchString == fileName))
+                {
+                    File.Delete(filePath);
+                }   
+            }
         }
 
         #region Logging
