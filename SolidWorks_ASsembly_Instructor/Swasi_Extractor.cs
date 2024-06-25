@@ -66,23 +66,39 @@ namespace SolidWorks_ASsembly_Instructor
                 }
                 activeDoc = app.ActiveDoc as ModelDoc2;
 
-                IAssemblyDoc assemblyDoc = (IAssemblyDoc)activeDoc;
-                // Get Sub components
-                object[] componentsObj = assemblyDoc.GetComponents(true);
-                Component2[] components = componentsObj.Cast<Component2>().ToArray();
+                ModelDoc2[] modelDoc2s;
 
-                ModelDoc2[] modelDoc2s = new ModelDoc2[components.Length + 1]; // Größe um 1 für activeDoc erhöhen
-                modelDoc2s[0] = activeDoc; // activeDoc am Anfang des Arrays setzen
-                int index = 1;
-                foreach (Component2 component in components)
+                // Check if the active document is an assembly
+                if (activeDoc.GetType() == (int)swDocumentTypes_e.swDocASSEMBLY)
                 {
-                    ModelDoc2 componentModelDoc = component.GetModelDoc2();
-                    if (componentModelDoc != null)
+                    //app.SendMsgToUser("Active document is an assembly.");
+                    IAssemblyDoc assemblyDoc = (IAssemblyDoc)activeDoc;
+
+                    // Get Sub components
+                    object[] componentsObj = assemblyDoc.GetComponents(true);
+                    Component2[] components = componentsObj.Cast<Component2>().ToArray();
+
+                    modelDoc2s = new ModelDoc2[components.Length + 1]; // Größe um 1 für activeDoc erhöhen
+                    modelDoc2s[0] = activeDoc; // activeDoc am Anfang des Arrays setzen
+                    int index = 1;
+                    foreach (Component2 component in components)
                     {
-                        modelDoc2s[index] = componentModelDoc;
-                        index++;
+                        ModelDoc2 componentModelDoc = component.GetModelDoc2();
+                        if (componentModelDoc != null)
+                        {
+                            modelDoc2s[index] = componentModelDoc;
+                            index++;
+                        }
                     }
                 }
+                // if not an assemby
+                else
+                {
+                    //app.SendMsgToUser("Active document is not an assembly.");
+                    modelDoc2s = new ModelDoc2[1];
+                    modelDoc2s[0] = activeDoc;
+                }
+
                 // Check each subcomponent
                 Dictionary<string, string> guidMap = new Dictionary<string, string>();
                 foreach (ModelDoc2 ModDoc in modelDoc2s)
@@ -539,6 +555,7 @@ namespace SolidWorks_ASsembly_Instructor
                 AssemblyComponentDescription componentDescription = new AssemblyComponentDescription();
 
                 ModelDoc2 componentModel = component.GetModelDoc2();
+
                 if (componentModel == null)
                 {
                     continue;
@@ -1135,7 +1152,6 @@ namespace SolidWorks_ASsembly_Instructor
             SelectionMgr manager = modelDoc.SelectionManager;
             SelectData data = manager.CreateSelectData();
             data.Mark = 1; // or -1
-
 
 
             // Change STL Binary Format
