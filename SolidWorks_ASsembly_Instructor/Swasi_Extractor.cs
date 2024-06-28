@@ -48,7 +48,6 @@ namespace SolidWorks_ASsembly_Instructor
         /// <returns>Returns true if the export process is successful, otherwise false.</returns>
         public bool Run()
         {
-            // Müsste das hier nicht eigentlich auch in die For-Each-Schleife?
             AssemblyDescription mainAssembly;   // Representation of the Assembly given in SolidWorks
             ComponentDescription Component;
             object ExportObject;
@@ -64,39 +63,23 @@ namespace SolidWorks_ASsembly_Instructor
                 {
                     app.SendMsgToUser("No active document found.");
                 }
-                activeDoc = app.ActiveDoc as ModelDoc2;
 
                 IAssemblyDoc assemblyDoc = (IAssemblyDoc)activeDoc;
+
                 // Get Sub components
-                object[] componentsObj = assemblyDoc.GetComponents(true);
-                Component2[] components = componentsObj.Cast<Component2>().ToArray();
+                Component2[] components = GetSubComponents(assemblyDoc);
+                ModelDoc2[] modelDoc2s = CastComponentsToModelDoc(components);
 
-                ModelDoc2[] modelDoc2s = new ModelDoc2[components.Length + 1]; // Größe um 1 für activeDoc erhöhen
-                modelDoc2s[0] = activeDoc; // activeDoc am Anfang des Arrays setzen
-                int index = 1;
-                foreach (Component2 component in components)
-                {
-                    ModelDoc2 componentModelDoc = component.GetModelDoc2();
-                    if (componentModelDoc != null)
-                    {
-                        modelDoc2s[index] = componentModelDoc;
-                        index++;
-                    }
-                }
                 // Check each subcomponent
-                Dictionary<string, string> guidMap = new Dictionary<string, string>();
-                foreach (ModelDoc2 ModDoc in modelDoc2s)
-                {
-                    if (!guidMap.ContainsKey(ModDoc.GetTitle().Split('.')[0]))
-                    {
-                        guidMap.Add(ModDoc.GetTitle().Split('.')[0], Guid.NewGuid().ToString());
-                    }
-                }
+                Dictionary<string, string> guidMap = GetGUIDMap(modelDoc2s);
 
-                int iterator = 0;
                 foreach (ModelDoc2 ModDoc in modelDoc2s)
                 {
                     currentDoc = ModDoc;
+
+                    // if this ModDoc is the first in list, it is the main assembly and is treated normaly
+                    bool isMainAssembly = checkIfMainAssembly(modelDoc2s, ModDoc);
+
                     mainAssamblyName = currentDoc.GetTitle().Split('.')[0];    // Name of folder
                     int componentType = currentDoc.GetType();
 
@@ -104,9 +87,10 @@ namespace SolidWorks_ASsembly_Instructor
                     {
                         FeatureManager swFeatureManager = currentDoc.FeatureManager;
                         MountingDescription mountingDescription = new MountingDescription();
+
                         // Get all features in the feature manager
                         object[] features = (object[])swFeatureManager.GetFeatures(false);
-
+                        swFeatureManager = null;
                         var Output = ExtractOrigin(features);
                         // If extraction of Swasi origin is successful
                         if (Output.Item1)
@@ -118,41 +102,81 @@ namespace SolidWorks_ASsembly_Instructor
                             mountingDescription.mountingReferences.ref_frames.AddRange(ExtractRefFrames(features, Output.Item2.GetInverted4x4Matrix()));
                             mountingDescription.mountingReferences.ref_axes.AddRange(ExtractRefAxes(features));
 
-                            //Save STL
-                            string exportPath = ((int)currentDoc.GetType() == (int)swDocumentTypes_e.swDocPART) ? componentsPath : assembliesPath;
-                            bool saveSuccess = SaveToSTL(app, currentDoc, exportPath, mainAssamblyName, Origin.name, (int)swLengthUnit_e.swMETER);
-                            iterator = iterator + 1;
-                            Log($"{iterator}");
-                            if (!saveSuccess)
-                            {
-                                Log($"Error saving STL for SWASI Origin: {Origin.name}", "Error");
-                            }
-
                             // If an assembly, extract assembly mates
                             if (componentType == (int)swDocumentTypes_e.swDocASSEMBLY)
                             {
                                 fileExportPath = assembliesPath;
                                 AssemblyDoc swAssembly = (AssemblyDoc)ModDoc;
                                 object[] Components = (Object[])swAssembly.GetComponents(true);
-                                Component2 swComponent;
 
-                                foreach (Object SingleComponent in Components)
+                                // if its the main assembly, treat it normaly
+                                if (isMainAssembly)
                                 {
-                                    swComponent = (Component2)SingleComponent;
+                                    //AssemblyDescription assemblyDescription = new AssemblyDescription();
+                                    mountingDescription = ExtractAssemblyComponents(mountingDescription, ModDoc, Origin.GetInverted4x4Matrix()); //ToDo: Was muss hier übergeben werden?
+                                    mountingDescription = ExtractAssemblyMates(mountingDescription, features);
+                                    mainAssembly.mountingDescription = mountingDescription;
+                                    mainAssembly.name = mainAssamblyName;
+                                    mainAssembly.cadPath = mainAssamblyName + ".STL";
+                                    mainAssembly.guid = Guid.Parse(guidMap[mainAssamblyName]);
+                                    ExportObject = mainAssembly;
+
+                                    //Save STL
+                                    bool saveSuccess = SaveToSTL(app, currentDoc, assembliesPath, mainAssamblyName, Origin.name, (int)swLengthUnit_e.swMETER);
+
+                                    if (!saveSuccess)
+                                    {
+                                        Log($"error saving stl for swasi origin: {Origin.name}", "error");
+                                    }
                                 }
-                                //AssemblyDescription assemblyDescription = new AssemblyDescription();
-                                mountingDescription = ExtractAssemblyComponents(mountingDescription, ModDoc, Origin.GetInverted4x4Matrix()); //ToDo: Was muss hier übergeben werden?
-                                mountingDescription = ExtractAssemblyMates(mountingDescription, features);
-                                mainAssembly.mountingDescription = mountingDescription;
-                                mainAssembly.name = mainAssamblyName;
-                                mainAssembly.cadPath = mainAssamblyName + ".STL";
-                                mainAssembly.guid = Guid.Parse(guidMap[mainAssamblyName]);
-                                ExportObject = mainAssembly;
-                                //List<AssemblyConstraintDescription> assemblyConstraints = ExtractAssemblyMates(features);
+                                // otherwise convert subassemblies to a part
+                                else
+                                {
+                                    PartDoc swPartRes;
+                                    swPartRes = ConvertCurrentDocToPart(); // XX Vielleicht etwas ungeschickt das mit der globalen Variable zu machen, sollte so aber erstmal funktionieren
+                                    modelDoc2s.Append(swPartRes as ModelDoc2);
+                                    if (swPartRes == null)
+                                    {
+                                        Log("Could'nt convert assembly to part");
+                                    }
+
+                                    fileExportPath = componentsPath;
+                                    Component.mountingDescription = mountingDescription;
+                                    Component.cadPath = mainAssamblyName + ".STL";
+                                    Component.name = mainAssamblyName;
+                                    Component.guid = Guid.Parse(guidMap[mainAssamblyName]);
+                                    Component.type = "Assembly";    // set manuelly as assembly
+                                    ExportObject = Component;
+                                    
+                                    // Close the assembly currentDoc
+                                    app.CloseDoc(currentDoc.GetTitle());
+                                    currentDoc = swPartRes as ModelDoc2;
+                                    // Open now Part as currentDoc
+                                    app.ActivateDoc2(currentDoc.GetTitle(), true, 0);
+                                    
+                                    //Save STL
+                                    bool saveSuccess = SaveToSTL(app, currentDoc, componentsPath, mainAssamblyName, Origin.name, (int)swLengthUnit_e.swMETER);
+
+                                    if (!saveSuccess)
+                                    {
+                                        Log($"error saving stl for swasi origin: {Origin.name}", "error");
+                                    }
+                                    // Closes the opened windows
+                                    app.CloseDoc(currentDoc.GetTitle());
+                                }
                             }
                             // else it must be a component
                             else
                             {
+                                // activate part for export
+                                app.ActivateDoc2(currentDoc.GetTitle(), true, 0);
+                                bool saveSuccess = SaveToSTL(app, currentDoc, componentsPath, mainAssamblyName, Origin.name, (int)swLengthUnit_e.swMETER);
+                                // close Part after export
+                                app.CloseDoc(currentDoc.GetTitle() );
+                                if (!saveSuccess)
+                                {
+                                    Log($"error saving stl for swasi origin: {Origin.name}", "error");
+                                }
                                 fileExportPath = componentsPath;
                                 Component.mountingDescription = mountingDescription;
                                 Component.cadPath = mainAssamblyName + ".STL";
@@ -227,6 +251,9 @@ namespace SolidWorks_ASsembly_Instructor
                         }
                     }
                 }
+                int error = 0;
+                int warning = 0;
+                activeDoc.Save3((int)swSaveAsOptions_e.swSaveAsOptions_Silent, ref error, ref warning);
             }
             catch (Exception ex)
             {
@@ -235,6 +262,149 @@ namespace SolidWorks_ASsembly_Instructor
                 return false;
             }
             return true;
+        }
+
+        private PartDoc ConvertCurrentDocToPart()
+        {
+            PartDoc swPartRes = null;
+            // Ensure the document is active
+            app.ActivateDoc2(currentDoc.GetTitle(), true, 0);
+
+            // Select all entities in the document
+            ModelDocExtension swCurrentDocExt = currentDoc.Extension;
+            swCurrentDocExt.SelectAll();
+
+            SelectionMgr swSelMgr = (SelectionMgr)currentDoc.SelectionManager;
+
+            int componentCount = swSelMgr.GetSelectedObjectCount2(-1);
+
+            List<Component2> swComponents = new List<Component2>();
+            for (int i = 1; i <= componentCount; i++)
+            {
+                Component2 swComp = (Component2)swSelMgr.GetSelectedObjectsComponent2(i);
+                if (swComp != null)
+                {
+                    swComponents.Add(swComp);
+                }
+            }
+
+            List<MathTransform> swXforms = new List<MathTransform>();
+            List<Body2> swBodys = new List<Body2>();
+            List<Body2> swBodyCopys = new List<Body2>();
+            List<bool> bRets = new List<bool>();
+
+            foreach (Component2 swComp in swComponents)
+            {
+                MathTransform swXform = swComp.Transform2;
+                swXforms.Add(swXform);
+
+                Body2 swBody = (Body2)swComp.GetBody();
+                swBodys.Add(swBody);
+
+                Body2 swBodyCopy = (Body2)swBody.Copy();
+                swBodyCopys.Add(swBodyCopy);
+
+                bool bRet = swBodyCopy.ApplyTransform(swXform);
+                bRets.Add(bRet);
+            }
+
+            object[] combBodyRes = null;
+
+            if (swBodyCopys.Count > 0)
+            {
+                Body2 combinedBody = swBodyCopys[0];
+
+                for (int i = 1; i < swBodyCopys.Count; i++)
+                {
+                    combBodyRes = (object[])combinedBody.Operations2((int)swBodyOperationType_e.SWBODYADD, swBodyCopys[i], out int nRetval);
+                }
+
+                if (combinedBody != null)
+                {
+                    Body2 swBody = default(Body2);
+                    swBody = (Body2)combBodyRes[0];
+
+                    //XX Hier muss der Pfad zum Template angepasst werden
+                    swPartRes = (PartDoc)app.NewDocument(@"C:\ProgramData\SolidWorks\SOLIDWORKS 2023\templates\Teil.prtdot", (int)swDwgPaperSizes_e.swDwgPaperA4size, 0, 0);
+
+                    Feature swFeatRes = swPartRes.CreateFeatureFromBody3(swBody, false, (int)swCreateFeatureBodyOpts_e.swCreateFeatureBodyCheck + (int)swCreateFeatureBodyOpts_e.swCreateFeatureBodySimplify);
+                    System.Diagnostics.Debug.Assert(swFeatRes != null);
+
+
+                    // set the main document active again
+                    //app.ActivateDoc2(activeDoc.GetTitle(), false, 0);
+                    Log("Baugruppe erfolgreich in ein Part umgewandelt.");
+                }
+                else
+                {
+                    Log("Fehler beim Kombinieren der Körper.");
+                }
+            }
+            else
+            {
+                Log("Keine gültigen Körper gefunden.");
+            }
+
+            return swPartRes;
+        }
+
+        private static bool checkIfMainAssembly(ModelDoc2[] modelDoc2s, ModelDoc2 ModDoc)
+        {
+            bool isMainAssembly = false;
+            if (Array.IndexOf(modelDoc2s, ModDoc) == 0)
+            {
+                isMainAssembly = true;
+            }
+
+            return isMainAssembly;
+        }
+
+        private static Dictionary<string, string> GetGUIDMap(ModelDoc2[] modelDoc2s)
+        {
+            Dictionary<string, string> guidMap = new Dictionary<string, string>();
+            foreach (ModelDoc2 ModDoc in modelDoc2s)
+            {
+                if (!guidMap.ContainsKey(ModDoc.GetTitle().Split('.')[0]))
+                {
+                    guidMap.Add(ModDoc.GetTitle().Split('.')[0], Guid.NewGuid().ToString());
+                }
+            }
+
+            return guidMap;
+        }
+
+        private ModelDoc2[] CastComponentsToModelDoc(Component2[] components)
+        {
+            ModelDoc2[] modelDoc2s = new ModelDoc2[components.Length + 1]; // Größe um 1 für activeDoc erhöhen
+            modelDoc2s[0] = activeDoc; // activeDoc am Anfang des Arrays setzen
+            int index = 1;
+            foreach (Component2 component in components)
+            {
+                ModelDoc2 componentModelDoc = component.GetModelDoc2();
+                if (componentModelDoc != null)
+                {
+                    modelDoc2s[index] = componentModelDoc;
+                    index++;
+                }
+            }
+
+            return modelDoc2s;
+        }
+
+        private Component2[] GetSubComponents(IAssemblyDoc assemblyDoc)
+        {
+            object[] componentsObj = assemblyDoc.GetComponents(true);
+            Component2[] components = new Component2[componentsObj.Length];
+            for (int i = 0; i < componentsObj.Length; i++)
+            {
+                components[i] = componentsObj[i] as Component2;
+                if (components[i] == null)
+                {
+                    Log($"Fehler beim Konvertieren des Elements {i} in Component2.");
+                }
+            }
+
+            return components;
         }
 
         /// <summary>
@@ -1130,7 +1300,7 @@ namespace SolidWorks_ASsembly_Instructor
 
             int errors = 0;
             int warnings = 0;
-            
+
             // Test
             SelectionMgr manager = modelDoc.SelectionManager;
             SelectData data = manager.CreateSelectData();
@@ -1152,7 +1322,6 @@ namespace SolidWorks_ASsembly_Instructor
             // Change Export CS
             bool changeFrameSuccess = modelDoc.SetUserPreferenceStringValue((int)swUserPreferenceStringValue_e.swFileSaveAsCoordinateSystem, exportCSName);
 
-            Log($"vor: {swApp.GetUserPreferenceToggle((int)swUserPreferenceToggle_e.swSTLComponentsIntoOneFile)}");
             bool saveSuccess = false;
             // Save File
             //saveSuccess = modelDoc.Extension.SaveAs(filepath, 
@@ -1170,6 +1339,7 @@ namespace SolidWorks_ASsembly_Instructor
             //    false,
             //    ref errors,
             //    ref warnings);
+           
             saveSuccess = modelDoc.Extension.SaveAs3(
                 filepath,
                 (int)swSaveAsVersion_e.swSaveAsCurrentVersion,
@@ -1178,13 +1348,7 @@ namespace SolidWorks_ASsembly_Instructor
                 null,
                 ref errors,
                 ref warnings);
-
             //RenameStlFiles(filePath, fileName, fileName);
-
-            Log("Errors: " + errors);
-            Log("Warnings: " + warnings);
-            Log($"nach: {swApp.GetUserPreferenceToggle((int)swUserPreferenceToggle_e.swSTLComponentsIntoOneFile)}");
-
 
             if (saveSuccess)
             {
@@ -1238,16 +1402,16 @@ namespace SolidWorks_ASsembly_Instructor
                     {
                         // Delete the existing file
                         File.Delete(filePath);
-                    }  
-                    
+                    }
+
 
                     // Output the renaming action
                     Console.WriteLine($"Renamed: {fileName} to {newFileName}");
                 }
-                else if (fileName.Contains(searchString)  && !(searchString == fileName))
+                else if (fileName.Contains(searchString) && !(searchString == fileName))
                 {
                     File.Delete(filePath);
-                }   
+                }
             }
         }
 
