@@ -709,6 +709,7 @@ namespace SolidWorks_ASsembly_Instructor
                 AssemblyComponentDescription componentDescription = new AssemblyComponentDescription();
 
                 ModelDoc2 componentModel = component.GetModelDoc2();
+
                 if (componentModel == null)
                 {
                     continue;
@@ -1305,7 +1306,6 @@ namespace SolidWorks_ASsembly_Instructor
             SelectionMgr manager = modelDoc.SelectionManager;
             SelectData data = manager.CreateSelectData();
             data.Mark = 1; // or -1
-
 
 
             // Change STL Binary Format
