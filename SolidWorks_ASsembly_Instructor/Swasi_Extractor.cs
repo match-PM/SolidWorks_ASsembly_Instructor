@@ -64,10 +64,22 @@ namespace SolidWorks_ASsembly_Instructor
                     app.SendMsgToUser("No active document found.");
                 }
 
-                IAssemblyDoc assemblyDoc = (IAssemblyDoc)activeDoc;
+                Component2[] components = null;
 
-                // Get Sub components
-                Component2[] components = GetSubComponents(assemblyDoc);
+                if (activeDoc.GetType() == (int)swDocumentTypes_e.swDocASSEMBLY)
+                {
+                    IAssemblyDoc assemblyDoc = (IAssemblyDoc)activeDoc;
+
+                    // Get Sub components
+                    components = GetSubComponents(assemblyDoc);
+                }
+                if (activeDoc.GetType() == (int)swDocumentTypes_e.swDocPART)
+                {
+                    components = new Component2[0];
+                }
+
+
+                // append the activeDoc to the components
                 ModelDoc2[] modelDoc2s = CastComponentsToModelDoc(components);
 
                 // Check each subcomponent
@@ -171,8 +183,7 @@ namespace SolidWorks_ASsembly_Instructor
                                 // activate part for export
                                 app.ActivateDoc2(currentDoc.GetTitle(), true, 0);
                                 bool saveSuccess = SaveToSTL(app, currentDoc, componentsPath, mainAssamblyName, Origin.name, (int)swLengthUnit_e.swMETER);
-                                // close Part after export
-                                app.CloseDoc(currentDoc.GetTitle() );
+                        
                                 if (!saveSuccess)
                                 {
                                     Log($"error saving stl for swasi origin: {Origin.name}", "error");
@@ -183,6 +194,12 @@ namespace SolidWorks_ASsembly_Instructor
                                 Component.name = mainAssamblyName;
                                 Component.guid = Guid.Parse(guidMap[mainAssamblyName]);
                                 ExportObject = Component;
+
+                                // close Part after export
+                                if (currentDoc.GetTitle() != activeDoc.GetTitle())
+                                {
+                                    app.CloseDoc(currentDoc.GetTitle());
+                                }
                             }
 
                             // Serialize the main model to JSON
@@ -253,7 +270,8 @@ namespace SolidWorks_ASsembly_Instructor
                 }
                 int error = 0;
                 int warning = 0;
-                activeDoc.Save3((int)swSaveAsOptions_e.swSaveAsOptions_Silent, ref error, ref warning);
+                // Weiß nicht warum Malte dies reingenommen hat, auskommentiert 04.07.2024
+                //activeDoc.Save3((int)swSaveAsOptions_e.swSaveAsOptions_Silent, ref error, ref warning);
             }
             catch (Exception ex)
             {
@@ -324,8 +342,19 @@ namespace SolidWorks_ASsembly_Instructor
                     Body2 swBody = default(Body2);
                     swBody = (Body2)combBodyRes[0];
 
+                    string revNumber = app.RevisionNumber();
+                    // split the revision number to get the last part
+                    string[] revNumberParts = revNumber.Split('.');
+
                     //XX Hier muss der Pfad zum Template angepasst werden
-                    swPartRes = (PartDoc)app.NewDocument(@"C:\ProgramData\SolidWorks\SOLIDWORKS 2023\templates\Teil.prtdot", (int)swDwgPaperSizes_e.swDwgPaperA4size, 0, 0);
+
+                    //convert string to int
+                    int version = Convert.ToInt32(revNumberParts[0])+2020-28;
+                    Log("Template version: " + version);
+                    string template_path = @"C:\ProgramData\SolidWorks\SOLIDWORKS " + Convert.ToString(version) + @"\templates\Teil.prtdot";
+
+                    swPartRes = (PartDoc)app.NewDocument(template_path, (int)swDwgPaperSizes_e.swDwgPaperA4size, 0, 0);
+
 
                     Feature swFeatRes = swPartRes.CreateFeatureFromBody3(swBody, false, (int)swCreateFeatureBodyOpts_e.swCreateFeatureBodyCheck + (int)swCreateFeatureBodyOpts_e.swCreateFeatureBodySimplify);
                     System.Diagnostics.Debug.Assert(swFeatRes != null);
@@ -333,7 +362,7 @@ namespace SolidWorks_ASsembly_Instructor
 
                     // set the main document active again
                     //app.ActivateDoc2(activeDoc.GetTitle(), false, 0);
-                    Log("Baugruppe erfolgreich in ein Part umgewandelt.");
+                    Log("Assembly converted to Part successfully!");
                 }
                 else
                 {
