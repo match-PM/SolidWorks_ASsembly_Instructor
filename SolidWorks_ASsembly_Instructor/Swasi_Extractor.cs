@@ -1332,9 +1332,9 @@ namespace SolidWorks_ASsembly_Instructor
             int warnings = 0;
 
             // Test
-            SelectionMgr manager = modelDoc.SelectionManager;
-            SelectData data = manager.CreateSelectData();
-            data.Mark = 1; // or -1
+            //SelectionMgr manager = modelDoc.SelectionManager;
+            //SelectData data = manager.CreateSelectData();
+            //data.Mark = 1; // or -1
 
 
             // Change STL Binary Format
@@ -1349,7 +1349,7 @@ namespace SolidWorks_ASsembly_Instructor
             string filepath = $"{filePath}\\{fileName}.stl";
             Log(fileName);
             // Change Export CS
-            bool changeFrameSuccess = modelDoc.SetUserPreferenceStringValue((int)swUserPreferenceStringValue_e.swFileSaveAsCoordinateSystem, exportCSName);
+            bool changeFrameSuccess = modelDoc.SetUserPreferenceStringValue((int)swUserPreferenceStringValue_e.swFileSaveAsCoordinateSystem, SWASI_ORIGIN_IDENTIFIER+exportCSName);
 
             bool saveSuccess = false;
             // Save File
