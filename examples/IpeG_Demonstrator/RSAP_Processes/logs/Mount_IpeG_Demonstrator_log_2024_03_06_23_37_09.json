@@ -1,0 +1,69 @@
+{
+    "action_sequence_name": "Mount_IpeG_Demonstrator",
+    "action_log": [
+        {
+            "18_/pm_vision_manager/StartVisionAssistant": {
+                "service_client": "/pm_vision_manager/StartVisionAssistant",
+                "service_type": "pm_vision_interfaces/srv/StartVisionAssistant",
+                "srv_start_time": "2024-03-06_23:37:05.192279",
+                "srv_end_time": "2024-03-06_23:37:05.227167",
+                "execution_time": "0:00:00.034888",
+                "srv_request": {
+                    "process_filename": "demo_pipeline.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "test",
+                    "db_cross_val_only": false,
+                    "run_cross_validation": true,
+                    "show_image_on_error": false,
+                    "step_through_images": true,
+                    "open_process_file": false
+                },
+                "srv_response": {
+                    "success": false,
+                    "process_uid": ""
+                },
+                "success": true,
+                "message": "Client not available! Exited with error!"
+            }
+        },
+        {
+            "18_/pm_vision_manager/StartVisionAssistant": {
+                "service_client": "/pm_vision_manager/StartVisionAssistant",
+                "service_type": "pm_vision_interfaces/srv/StartVisionAssistant",
+                "srv_start_time": "2024-03-06_23:37:05.192279",
+                "srv_end_time": "2024-03-06_23:37:05.227167",
+                "execution_time": "0:00:00.034888",
+                "srv_request": {
+                    "process_filename": "demo_pipeline.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "test",
+                    "db_cross_val_only": false,
+                    "run_cross_validation": true,
+                    "show_image_on_error": false,
+                    "step_through_images": true,
+                    "open_process_file": false
+                },
+                "srv_response": {
+                    "success": false,
+                    "process_uid": ""
+                },
+                "success": true,
+                "message": "Client not available! Exited with error!"
+            }
+        },
+        {
+            "20_/pm_vision_manager/GetRunningAssistants": {
+                "service_client": "/pm_vision_manager/GetRunningAssistants",
+                "service_type": "pm_vision_interfaces/srv/GetRunningAssistants",
+                "srv_start_time": "2024-03-06_23:37:09.489503",
+                "srv_end_time": "2024-03-06_23:37:09.490948",
+                "execution_time": "0:00:00.001445",
+                "srv_request": {},
+                "srv_response": {
+                    "running_assistants": []
+                },
+                "success": true
+            }
+        }
+    ]
+}

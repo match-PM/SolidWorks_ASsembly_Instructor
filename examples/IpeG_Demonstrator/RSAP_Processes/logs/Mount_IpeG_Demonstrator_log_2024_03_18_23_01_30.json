@@ -1,0 +1,40 @@
+{
+    "action_sequence_name": "Mount_IpeG_Demonstrator",
+    "action_log": [
+        {
+            "18_/pm_vision_manager/ExecuteVision": {
+                "service_client": "/pm_vision_manager/ExecuteVision",
+                "service_type": "pm_vision_interfaces/srv/ExecuteVision",
+                "srv_start_time": "2024-03-18_23:01:30.390087",
+                "srv_end_time": "2024-03-18_23:01:30.903083",
+                "execution_time": "0:00:00.512996",
+                "srv_request": {
+                    "process_filename": "process_demo.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "test",
+                    "image_display_time": 20,
+                    "run_cross_validation": true
+                },
+                "srv_response": {
+                    "success": false,
+                    "results_dict": "{'vision_process_name': 'process_demo.json', 'exec_timestamp': '18_03_2024_23_01_30', 'vision_OK': False, 'process_UID': 'test', 'VisionOK_cross_val': True, 'failed_images_cross_val': [], 'vision_results': [{'Lines': [{'Point_1': {'axis_1': 1260.0, 'axis_2': -223.0}, 'Point_2': {'axis_1': 1759.0, 'axis_2': -223.0}, 'axis_1_suffix': 'x', 'axis_2_suffix': 'y', 'angle': 'to be added', 'length': 'to be added', 'Unit': 'um', 'angle_unit': 'degree'}]}]}",
+                    "results_path": "/home/niklas/ros2_ws/src/pm_vision_manager/pm_vision_manager/vision_processes/process_demo_results_Webcam.json",
+                    "points": [
+                        {
+                            "x": 1.5,
+                            "y": 2.5,
+                            "z": 3.5
+                        },
+                        {
+                            "x": 4.5,
+                            "y": 5.5,
+                            "z": 6.5
+                        }
+                    ],
+                    "process_uid": "test"
+                },
+                "success": false
+            }
+        }
+    ]
+}

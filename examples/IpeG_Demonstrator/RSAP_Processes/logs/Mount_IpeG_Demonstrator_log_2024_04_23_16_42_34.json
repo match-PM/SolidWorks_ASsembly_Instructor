@@ -1,0 +1,65 @@
+{
+    "action_sequence_name": "Mount_IpeG_Demonstrator",
+    "action_log": [
+        {
+            "18_/pm_vision_manager/ExecuteVision": {
+                "service_client": "/pm_vision_manager/ExecuteVision",
+                "service_type": "pm_vision_interfaces/srv/ExecuteVision",
+                "srv_start_time": "2024-04-23_16:42:34.003532",
+                "srv_end_time": "2024-04-23_16:42:34.512257",
+                "execution_time": "0:00:00.508725",
+                "srv_request": {
+                    "process_filename": "process_demo.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "test",
+                    "image_display_time": 20,
+                    "run_cross_validation": false
+                },
+                "srv_response": {
+                    "success": true,
+                    "results_path": "/home/niklas/ros2_ws/src/pm_vision_manager/pm_vision_manager/vision_processes/process_demo_results_Webcam.json",
+                    "points": [],
+                    "vision_response": {
+                        "vision_ok": true,
+                        "process_name": "process_demo.json",
+                        "process_uid": "test",
+                        "exec_timestamp": "23_04_2024_16_42_34",
+                        "cross_validation": {
+                            "image_source_name": "",
+                            "vision_ok": false,
+                            "failed_images": [],
+                            "numb_images": 0,
+                            "counter_error": 0
+                        },
+                        "results": {
+                            "points": [],
+                            "lines": [],
+                            "areas": [],
+                            "circles": [
+                                {
+                                    "center_point": {
+                                        "axis_value_1": 225.0,
+                                        "axis_value_2": 80.0,
+                                        "axis_suffix_1": "x",
+                                        "axis_suffix_2": "y"
+                                    },
+                                    "radius": 330.0
+                                },
+                                {
+                                    "center_point": {
+                                        "axis_value_1": -775.0,
+                                        "axis_value_2": 230.0,
+                                        "axis_suffix_1": "x",
+                                        "axis_suffix_2": "y"
+                                    },
+                                    "radius": 330.0
+                                }
+                            ]
+                        }
+                    }
+                },
+                "success": true
+            }
+        }
+    ]
+}

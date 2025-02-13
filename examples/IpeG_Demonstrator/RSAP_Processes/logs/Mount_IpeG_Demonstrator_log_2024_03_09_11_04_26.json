@@ -1,0 +1,22 @@
+{
+    "action_sequence_name": "Mount_IpeG_Demonstrator",
+    "action_log": [
+        {
+            "19_/pm_vision_manager/StopVisionAssistant": {
+                "service_client": "/pm_vision_manager/StopVisionAssistant",
+                "service_type": "pm_vision_interfaces/srv/StopVisionAssistant",
+                "srv_start_time": "2024-03-09_11:04:26.044525",
+                "srv_end_time": "2024-03-09_11:04:26.046349",
+                "execution_time": "0:00:00.001824",
+                "srv_request": {
+                    "process_uid": "test"
+                },
+                "srv_response": {
+                    "success": false,
+                    "process_uid": "test"
+                },
+                "success": true
+            }
+        }
+    ]
+}

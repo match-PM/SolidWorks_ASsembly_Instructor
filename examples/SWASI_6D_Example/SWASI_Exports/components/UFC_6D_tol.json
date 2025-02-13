@@ -158,8 +158,9 @@
           },
           "constraints": {
             "centroid": {
-              "refFrameNames": [],
-              "dim": "",
+              "refFrameNames": ["Vision_Point_3_B",
+                                "Vision_Point_4_B"],
+              "dim": "xyz",
               "offsetValues": [
                 0.0,
                 0.0,
@@ -202,8 +203,9 @@
           },
           "constraints": {
             "centroid": {
-              "refFrameNames": [],
-              "dim": "",
+              "refFrameNames": ["Vision_Point_3_T",
+                                "Vision_Point_4_T"],
+              "dim": "xyz",
               "offsetValues": [
                 0.0,
                 0.0,

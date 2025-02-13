@@ -1,0 +1,19 @@
+{
+    "action_sequence_name": "Mount_IpeG_Demonstrator",
+    "action_log": [
+        {
+            "20_/pm_vision_manager/GetRunningAssistants": {
+                "service_client": "/pm_vision_manager/GetRunningAssistants",
+                "service_type": "pm_vision_interfaces/srv/GetRunningAssistants",
+                "srv_start_time": "2024-03-06_23:33:48.206908",
+                "srv_end_time": "2024-03-06_23:33:48.209254",
+                "execution_time": "0:00:00.002346",
+                "srv_request": {},
+                "srv_response": {
+                    "running_assistants": []
+                },
+                "success": true
+            }
+        }
+    ]
+}

@@ -1,0 +1,46 @@
+{
+    "action_sequence_name": "Mount_IpeG_Demonstrator",
+    "action_log": [
+        {
+            "18_/pm_vision_manager/ExecuteVision": {
+                "service_client": "/pm_vision_manager/ExecuteVision",
+                "service_type": "pm_vision_interfaces/srv/ExecuteVision",
+                "srv_start_time": "2024-04-23_16:16:52.715716",
+                "srv_end_time": "2024-04-23_16:17:25.716495",
+                "execution_time": "0:00:33.000779",
+                "srv_request": {
+                    "process_filename": "process_demo.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "test",
+                    "image_display_time": 20,
+                    "run_cross_validation": false
+                },
+                "srv_response": {
+                    "success": false,
+                    "results_dict": "{'vision_process_name': 'process_demo.json', 'exec_timestamp': '23_04_2024_16_06_53', 'vision_OK': False, 'process_UID': 'test', 'vision_results': []}",
+                    "results_path": "/home/niklas/ros2_ws/src/pm_vision_manager/pm_vision_manager/vision_processes/process_demo_results_Webcam.json",
+                    "points": [],
+                    "vision_results": {
+                        "vision_ok": false,
+                        "process_name": "process_demo.json",
+                        "process_uid": "test",
+                        "exec_timestamp": "23_04_2024_16_06_53",
+                        "cross_validation": {
+                            "image_source_name": "",
+                            "vision_ok": false,
+                            "failed_images": [],
+                            "numb_images": 0,
+                            "counter_error": 0
+                        },
+                        "points": [],
+                        "lines": [],
+                        "areas": [],
+                        "circles": []
+                    },
+                    "process_uid": "test"
+                },
+                "success": false
+            }
+        }
+    ]
+}

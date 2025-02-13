@@ -1,0 +1,66 @@
+{
+    "action_sequence_name": "Mount_IpeG_Demonstrator",
+    "action_log": [
+        {
+            "18_/pm_vision_manager/StartVisionAssistant": {
+                "service_client": "/pm_vision_manager/StartVisionAssistant",
+                "service_type": "pm_vision_interfaces/srv/StartVisionAssistant",
+                "srv_start_time": "2024-03-10_00:16:55.288250",
+                "srv_end_time": "2024-03-10_00:16:55.300091",
+                "execution_time": "0:00:00.011841",
+                "srv_request": {
+                    "process_filename": "process_demo.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "test",
+                    "db_cross_val_only": false,
+                    "run_cross_validation": true,
+                    "show_image_on_error": false,
+                    "step_through_images": true,
+                    "open_process_file": true
+                },
+                "srv_response": {
+                    "success": false,
+                    "process_uid": "test"
+                },
+                "success": true,
+                "message": "Client not available! Exited with error!"
+            }
+        },
+        {
+            "20_/pm_vision_manager/ExecuteVision": {
+                "service_client": "/pm_vision_manager/ExecuteVision",
+                "service_type": "pm_vision_interfaces/srv/ExecuteVision",
+                "srv_start_time": "2024-03-10_00:16:58.931573",
+                "srv_end_time": "2024-03-10_00:17:08.954418",
+                "execution_time": "0:00:10.022845",
+                "srv_request": {
+                    "process_filename": "process_demo.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "bla2",
+                    "db_cross_val_only": false,
+                    "image_display_time": 4,
+                    "run_cross_validation": false
+                },
+                "srv_response": {
+                    "success": true,
+                    "results_dict": "{}",
+                    "results_path": "None",
+                    "points": [
+                        {
+                            "x": 1.5,
+                            "y": 2.5,
+                            "z": 3.5
+                        },
+                        {
+                            "x": 4.5,
+                            "y": 5.5,
+                            "z": 6.5
+                        }
+                    ],
+                    "process_uid": "bla2"
+                },
+                "success": true
+            }
+        }
+    ]
+}

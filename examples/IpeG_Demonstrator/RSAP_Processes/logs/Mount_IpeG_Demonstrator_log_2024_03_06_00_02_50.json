@@ -1,0 +1,2109 @@
+{
+    "action_sequence_name": "Mount_IpeG_Demonstrator",
+    "action_log": [
+        {
+            "0_Spawn Assembly From Description": {
+                "service_client": "/assembly_manager/create_assembly_instruction_from_description",
+                "service_type": "assembly_manager_interfaces/srv/CreateAssemblyInstructionFromDescription",
+                "srv_start_time": "2024-03-05_23:58:06.612038",
+                "srv_end_time": "2024-03-05_23:58:15.603071",
+                "execution_time": "0:00:08.991033",
+                "srv_request": {
+                    "file_path": "/home/niklas/Documents/SolidWorks_ASsembly_Instructor/examples/IpeG_Demonstrator/SWASI_Exports/assemblies/Assembly_IpeG_Demonstrator.json",
+                    "spawn_components": true
+                },
+                "srv_response": {
+                    "instruction_id": "Description_LB1092-1_P50HCB-1",
+                    "success": true
+                },
+                "success": true
+            }
+        },
+        {
+            "1_Move to Lens_z_offset": {
+                "service_client": "/pm_moveit_server/move_tool_to_frame",
+                "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+                "srv_start_time": "2024-03-05_23:58:17.507506",
+                "srv_end_time": "2024-03-05_23:58:19.750694",
+                "execution_time": "0:00:02.243188",
+                "srv_request": {
+                    "endeffector_frame_override": "use_default_frame",
+                    "target_frame": "LB1092-1",
+                    "translation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.01
+                    },
+                    "rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "execute_movement": true
+                },
+                "srv_response": {
+                    "success": true,
+                    "joint_names": [
+                        "X_Axis_Joint",
+                        "Y_Axis_Joint",
+                        "Z_Axis_Joint",
+                        "T_Axis_Joint"
+                    ],
+                    "joint_values": [
+                        -0.07678227126598358,
+                        -0.05342249944806099,
+                        0.007826768793165684,
+                        0.0
+                    ],
+                    "message": ""
+                },
+                "success": true
+            }
+        },
+        {
+            "2_Move to Lens": {
+                "service_client": "/pm_moveit_server/move_tool_to_frame",
+                "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+                "srv_start_time": "2024-03-06_00:00:16.936529",
+                "srv_end_time": "2024-03-06_00:00:18.834573",
+                "execution_time": "0:00:01.898044",
+                "srv_request": {
+                    "endeffector_frame_override": "use_default_frame",
+                    "target_frame": "LB1092-1_Gripping_Point",
+                    "translation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "execute_movement": true
+                },
+                "srv_response": {
+                    "success": true,
+                    "joint_names": [
+                        "X_Axis_Joint",
+                        "Y_Axis_Joint",
+                        "Z_Axis_Joint",
+                        "T_Axis_Joint"
+                    ],
+                    "joint_values": [
+                        -0.07678227126598358,
+                        -0.05342249944806099,
+                        0.01782676950097084,
+                        0.0
+                    ],
+                    "message": ""
+                },
+                "success": true
+            }
+        },
+        {
+            "3_Grip Lens": {
+                "service_client": "/assembly_manager/change_obj_parent_frame",
+                "service_type": "assembly_manager_interfaces/srv/ChangeParentFrame",
+                "srv_start_time": "2024-03-06_00:00:32.749298",
+                "srv_end_time": "2024-03-06_00:00:32.758692",
+                "execution_time": "0:00:00.009394",
+                "srv_request": {
+                    "obj_name": "LB1092-1",
+                    "new_parent_frame": "PM_Robot_Tool_TCP"
+                },
+                "srv_response": {
+                    "success": true
+                },
+                "success": true
+            }
+        },
+        {
+            "4_Move to Lens_z_offset": {
+                "service_client": "/pm_moveit_server/move_tool_to_frame",
+                "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+                "srv_start_time": "2024-03-06_00:00:34.068190",
+                "srv_end_time": "2024-03-06_00:00:36.152400",
+                "execution_time": "0:00:02.084210",
+                "srv_request": {
+                    "endeffector_frame_override": "use_default_frame",
+                    "target_frame": "LB1092-1",
+                    "translation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.01
+                    },
+                    "rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "execute_movement": true
+                },
+                "srv_response": {
+                    "success": true,
+                    "joint_names": [
+                        "X_Axis_Joint",
+                        "Y_Axis_Joint",
+                        "Z_Axis_Joint",
+                        "T_Axis_Joint"
+                    ],
+                    "joint_values": [
+                        -0.07678227126598358,
+                        -0.05342249944806099,
+                        0.007826768793165684,
+                        1.509903313490213e-14
+                    ],
+                    "message": ""
+                },
+                "success": true
+            }
+        },
+        {
+            "5_Move to Assembly Location Lens_z_offset": {
+                "service_client": "/pm_moveit_server/move_tool_to_frame",
+                "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+                "srv_start_time": "2024-03-06_00:00:38.664354",
+                "srv_end_time": "2024-03-06_00:00:42.074981",
+                "execution_time": "0:00:03.410627",
+                "srv_request": {
+                    "endeffector_frame_override": "assembly_frame_Description_IpeG_Optics_Mount_V2-1_LB1092-1",
+                    "target_frame": "target_frame_Description_IpeG_Optics_Mount_V2-1_LB1092-1",
+                    "translation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.01
+                    },
+                    "rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "execute_movement": true
+                },
+                "srv_response": {
+                    "success": true,
+                    "joint_names": [
+                        "X_Axis_Joint",
+                        "Y_Axis_Joint",
+                        "Z_Axis_Joint",
+                        "T_Axis_Joint"
+                    ],
+                    "joint_values": [
+                        -0.5611000061035156,
+                        -0.050700001418590546,
+                        -0.0013699999544769526,
+                        -8.747271635911602e-07
+                    ],
+                    "message": ""
+                },
+                "success": true
+            }
+        },
+        {
+            "6_Move to Assembly Location Lens": {
+                "service_client": "/pm_moveit_server/move_tool_to_frame",
+                "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+                "srv_start_time": "2024-03-06_00:00:48.580251",
+                "srv_end_time": "2024-03-06_00:00:50.684221",
+                "execution_time": "0:00:02.103970",
+                "srv_request": {
+                    "endeffector_frame_override": "assembly_frame_Description_IpeG_Optics_Mount_V2-1_LB1092-1",
+                    "target_frame": "target_frame_Description_IpeG_Optics_Mount_V2-1_LB1092-1",
+                    "translation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "execute_movement": true
+                },
+                "srv_response": {
+                    "success": true,
+                    "joint_names": [
+                        "X_Axis_Joint",
+                        "Y_Axis_Joint",
+                        "Z_Axis_Joint",
+                        "T_Axis_Joint"
+                    ],
+                    "joint_values": [
+                        -0.5611000061035156,
+                        -0.05069999769330025,
+                        0.008630000054836273,
+                        -8.747271635911602e-07
+                    ],
+                    "message": ""
+                },
+                "success": true
+            }
+        },
+        {
+            "7_Release Lens": {
+                "service_client": "/assembly_manager/change_obj_parent_frame",
+                "service_type": "assembly_manager_interfaces/srv/ChangeParentFrame",
+                "srv_start_time": "2024-03-06_00:00:53.632652",
+                "srv_end_time": "2024-03-06_00:00:53.641899",
+                "execution_time": "0:00:00.009247",
+                "srv_request": {
+                    "obj_name": "LB1092-1",
+                    "new_parent_frame": "IpeG_Optics_Mount_V2-1"
+                },
+                "srv_response": {
+                    "success": true
+                },
+                "success": true
+            }
+        },
+        {
+            "8_Move to Assembly Location Lens_z_offset": {
+                "service_client": "/pm_moveit_server/move_tool_to_frame",
+                "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+                "srv_start_time": "2024-03-06_00:01:02.851390",
+                "srv_end_time": "2024-03-06_00:01:09.473035",
+                "execution_time": "0:00:06.621645",
+                "srv_request": {
+                    "endeffector_frame_override": "use_default_frame",
+                    "target_frame": "target_frame_Description_IpeG_Optics_Mount_V2-1_LB1092-1",
+                    "translation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.01
+                    },
+                    "rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "execute_movement": true
+                },
+                "srv_response": {
+                    "success": true,
+                    "joint_names": [
+                        "X_Axis_Joint",
+                        "Y_Axis_Joint",
+                        "Z_Axis_Joint",
+                        "T_Axis_Joint"
+                    ],
+                    "joint_values": [
+                        -0.5611000061035156,
+                        -0.05069999769330025,
+                        -0.0003700000233948231,
+                        -3.1415927410125732
+                    ],
+                    "message": ""
+                },
+                "success": true
+            }
+        },
+        {
+            "9_Move to Pinhole_z_offset": {
+                "service_client": "/pm_moveit_server/move_tool_to_frame",
+                "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+                "srv_start_time": "2024-03-06_00:01:10.224141",
+                "srv_end_time": "2024-03-06_00:01:16.870890",
+                "execution_time": "0:00:06.646749",
+                "srv_request": {
+                    "endeffector_frame_override": "use_default_frame",
+                    "target_frame": "P50HCB-1",
+                    "translation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.01
+                    },
+                    "rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "execute_movement": true
+                },
+                "srv_response": {
+                    "success": true,
+                    "joint_names": [
+                        "X_Axis_Joint",
+                        "Y_Axis_Joint",
+                        "Z_Axis_Joint",
+                        "T_Axis_Joint"
+                    ],
+                    "joint_values": [
+                        -0.05721772834658623,
+                        -0.05342249944806099,
+                        0.007826768793165684,
+                        0.0
+                    ],
+                    "message": ""
+                },
+                "success": true
+            }
+        },
+        {
+            "10_Move to Pinhole_z": {
+                "service_client": "/pm_moveit_server/move_tool_to_frame",
+                "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+                "srv_start_time": "2024-03-06_00:01:18.069204",
+                "srv_end_time": "2024-03-06_00:01:19.953251",
+                "execution_time": "0:00:01.884047",
+                "srv_request": {
+                    "endeffector_frame_override": "use_default_frame",
+                    "target_frame": "P50HCB-1",
+                    "translation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "execute_movement": true
+                },
+                "srv_response": {
+                    "success": true,
+                    "joint_names": [
+                        "X_Axis_Joint",
+                        "Y_Axis_Joint",
+                        "Z_Axis_Joint",
+                        "T_Axis_Joint"
+                    ],
+                    "joint_values": [
+                        -0.05721772834658623,
+                        -0.05342249944806099,
+                        0.01782676950097084,
+                        0.0
+                    ],
+                    "message": ""
+                },
+                "success": true
+            }
+        },
+        {
+            "11_Grip Pinhole": {
+                "service_client": "/assembly_manager/change_obj_parent_frame",
+                "service_type": "assembly_manager_interfaces/srv/ChangeParentFrame",
+                "srv_start_time": "2024-03-06_00:01:21.910440",
+                "srv_end_time": "2024-03-06_00:01:21.922805",
+                "execution_time": "0:00:00.012365",
+                "srv_request": {
+                    "obj_name": "P50HCB-1",
+                    "new_parent_frame": "PM_Robot_Tool_TCP"
+                },
+                "srv_response": {
+                    "success": true
+                },
+                "success": true
+            }
+        },
+        {
+            "12_Move to Pinhole_z_offset": {
+                "service_client": "/pm_moveit_server/move_tool_to_frame",
+                "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+                "srv_start_time": "2024-03-06_00:01:26.877152",
+                "srv_end_time": "2024-03-06_00:01:28.986125",
+                "execution_time": "0:00:02.108973",
+                "srv_request": {
+                    "endeffector_frame_override": "use_default_frame",
+                    "target_frame": "P50HCB-1",
+                    "translation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.01
+                    },
+                    "rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "execute_movement": true
+                },
+                "srv_response": {
+                    "success": true,
+                    "joint_names": [
+                        "X_Axis_Joint",
+                        "Y_Axis_Joint",
+                        "Z_Axis_Joint",
+                        "T_Axis_Joint"
+                    ],
+                    "joint_values": [
+                        -0.05721772834658623,
+                        -0.05342249944806099,
+                        0.007826768793165684,
+                        -5.329070518200751e-15
+                    ],
+                    "message": ""
+                },
+                "success": true
+            }
+        },
+        {
+            "13_Move To Assembly Location Pinhole_z_offset": {
+                "service_client": "/pm_moveit_server/move_tool_to_frame",
+                "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+                "srv_start_time": "2024-03-06_00:01:28.997938",
+                "srv_end_time": "2024-03-06_00:01:32.173562",
+                "execution_time": "0:00:03.175624",
+                "srv_request": {
+                    "endeffector_frame_override": "assembly_frame_Description_LB1092-1_P50HCB-1",
+                    "target_frame": "target_frame_Description_LB1092-1_P50HCB-1",
+                    "translation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.01
+                    },
+                    "rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "execute_movement": true
+                },
+                "srv_response": {
+                    "success": true,
+                    "joint_names": [
+                        "X_Axis_Joint",
+                        "Y_Axis_Joint",
+                        "Z_Axis_Joint",
+                        "T_Axis_Joint"
+                    ],
+                    "joint_values": [
+                        -0.5611000061035156,
+                        -0.0357000008225441,
+                        -0.0023700001183897257,
+                        8.178417374438141e-07
+                    ],
+                    "message": ""
+                },
+                "success": true
+            }
+        },
+        {
+            "14_Move To Assembly Location Pinhole": {
+                "service_client": "/pm_moveit_server/move_tool_to_frame",
+                "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+                "srv_start_time": "2024-03-06_00:01:32.183815",
+                "srv_end_time": "2024-03-06_00:01:34.030630",
+                "execution_time": "0:00:01.846815",
+                "srv_request": {
+                    "endeffector_frame_override": "assembly_frame_Description_LB1092-1_P50HCB-1",
+                    "target_frame": "target_frame_Description_LB1092-1_P50HCB-1",
+                    "translation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "execute_movement": true
+                },
+                "srv_response": {
+                    "success": true,
+                    "joint_names": [
+                        "X_Axis_Joint",
+                        "Y_Axis_Joint",
+                        "Z_Axis_Joint",
+                        "T_Axis_Joint"
+                    ],
+                    "joint_values": [
+                        -0.5611000061035156,
+                        -0.0357000008225441,
+                        0.0076299998909235,
+                        8.178417374438141e-07
+                    ],
+                    "message": ""
+                },
+                "success": true
+            }
+        },
+        {
+            "15_Release Pinhole": {
+                "service_client": "/assembly_manager/change_obj_parent_frame",
+                "service_type": "assembly_manager_interfaces/srv/ChangeParentFrame",
+                "srv_start_time": "2024-03-06_00:01:36.658330",
+                "srv_end_time": "2024-03-06_00:01:36.668230",
+                "execution_time": "0:00:00.009900",
+                "srv_request": {
+                    "obj_name": "P50HCB-1",
+                    "new_parent_frame": "IpeG_Optics_Mount_V2-1"
+                },
+                "srv_response": {
+                    "success": true
+                },
+                "success": true
+            }
+        },
+        {
+            "16_Move To Assembly Location Pinhole_z_offset": {
+                "service_client": "/pm_moveit_server/move_tool_to_frame",
+                "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+                "srv_start_time": "2024-03-06_00:01:53.864400",
+                "srv_end_time": "2024-03-06_00:01:55.624107",
+                "execution_time": "0:00:01.759707",
+                "srv_request": {
+                    "endeffector_frame_override": "use_default_frame",
+                    "target_frame": "target_frame_Description_LB1092-1_P50HCB-1",
+                    "translation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.01
+                    },
+                    "rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "execute_movement": true
+                },
+                "srv_response": {
+                    "success": true,
+                    "joint_names": [
+                        "X_Axis_Joint",
+                        "Y_Axis_Joint",
+                        "Z_Axis_Joint",
+                        "T_Axis_Joint"
+                    ],
+                    "joint_values": [
+                        -0.5611000061035156,
+                        -0.0357000008225441,
+                        -0.0013700001873075962,
+                        -3.1415908336639404
+                    ],
+                    "message": ""
+                },
+                "success": true
+            }
+        },
+        {
+            "17_/assembly_manager/get_scene": {
+                "service_client": "/assembly_manager/get_scene",
+                "service_type": "assembly_manager_interfaces/srv/GetScene",
+                "srv_start_time": "2024-03-06_00:01:44.561458",
+                "srv_end_time": "2024-03-06_00:01:44.567756",
+                "execution_time": "0:00:00.006298",
+                "srv_request": {},
+                "srv_response": {
+                    "scene": {
+                        "objects_in_scene": [
+                            {
+                                "obj_name": "LB1092-1",
+                                "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                "obj_pose": {
+                                    "position": {
+                                        "x": -0.009999999884538702,
+                                        "y": -0.020000000018890685,
+                                        "z": 0.011399999999342159
+                                    },
+                                    "orientation": {
+                                        "x": 2.7552725863422705e-09,
+                                        "y": 8.291270120033226e-09,
+                                        "z": 9.565325798444467e-07,
+                                        "w": 0.9999999999995425
+                                    }
+                                },
+                                "cad_data": "/home/niklas/Documents/SolidWorks_ASsembly_Instructor/examples/IpeG_Demonstrator/SWASI_Exports/components/LB1092.STL",
+                                "ref_frames": [
+                                    {
+                                        "frame_name": "LB1092-1_Camera_Measurement_Point_1",
+                                        "parent_frame": "LB1092-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": 0.00635,
+                                                "y": -0.0008967676999999999,
+                                                "z": 5.34515259e-11
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "LB1092-1_Camera_Measurement_Point_2",
+                                        "parent_frame": "LB1092-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.00635,
+                                                "y": -0.0008967676999999999,
+                                                "z": 5.34515259e-11
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "LB1092-1_Camera_Measurement_Point_3",
+                                        "parent_frame": "LB1092-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.00635,
+                                                "y": 0.0008967676999999999,
+                                                "z": -5.34515259e-11
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "LB1092-1_Camera_Measurement_Point_4",
+                                        "parent_frame": "LB1092-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": 0.00635,
+                                                "y": 0.0008967676999999999,
+                                                "z": -5.34515259e-11
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "LB1092-1_Center_Point_1",
+                                        "parent_frame": "LB1092-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": 0.0,
+                                                "y": -0.0008967676999999999,
+                                                "z": 5.34515259e-11
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "LB1092-1_Center_Point_2",
+                                        "parent_frame": "LB1092-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": 0.0,
+                                                "y": 0.0008967676999999999,
+                                                "z": -5.34515259e-11
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "LB1092-1_Laser_Measurement_Point",
+                                        "parent_frame": "LB1092-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": 0.0,
+                                                "y": 3.78489545e-10,
+                                                "z": 0.00635
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "LB1092-1_Gripping_Point",
+                                        "parent_frame": "LB1092-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "LB1092-1_Camera_Center_Point_14",
+                                        "parent_frame": "LB1092-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": 0.00635,
+                                                "y": 0.0,
+                                                "z": 0.0
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "LB1092-1_Camera_Center_Point_23",
+                                        "parent_frame": "LB1092-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.00635,
+                                                "y": 0.0,
+                                                "z": 0.0
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "assembly_frame_Description_IpeG_Optics_Mount_V2-1_LB1092-1",
+                                        "parent_frame": "LB1092-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": 8.848477506262498e-14,
+                                                "y": -2.142730437526552e-14,
+                                                "z": 1.432187701766452e-13
+                                            },
+                                            "orientation": {
+                                                "x": -4.1359030627651384e-25,
+                                                "y": -7.703719777548943e-34,
+                                                "z": 1.0,
+                                                "w": 0.0
+                                            }
+                                        },
+                                        "constraints_dict": "{}"
+                                    },
+                                    {
+                                        "frame_name": "target_frame_Description_LB1092-1_P50HCB-1",
+                                        "parent_frame": "LB1092-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -3.4638958368304884e-14,
+                                                "y": 0.01499999966474902,
+                                                "z": 3.941380555261276e-11
+                                            },
+                                            "orientation": {
+                                                "x": -4.1359030627651384e-25,
+                                                "y": -7.703719777548943e-34,
+                                                "z": 1.0,
+                                                "w": 0.0
+                                            }
+                                        },
+                                        "constraints_dict": "{}"
+                                    }
+                                ],
+                                "ref_axis": [
+                                    {
+                                        "axis_name": "LB1092-1_Optical_Axis",
+                                        "point_names": [
+                                            "LB1092-1_Center_Point_2",
+                                            "LB1092-1_Center_Point_1"
+                                        ]
+                                    }
+                                ],
+                                "ref_planes": [
+                                    {
+                                        "ref_plane_name": "LB1092-1_Center_Plane",
+                                        "point_names": [
+                                            "LB1092-1_Gripping_Point",
+                                            "",
+                                            ""
+                                        ],
+                                        "axis_names": [
+                                            "LB1092-1_Optical_Axis"
+                                        ],
+                                        "ideal_norm_vector": {
+                                            "x": 0.0,
+                                            "y": -1.0,
+                                            "z": 5.960465e-08
+                                        }
+                                    },
+                                    {
+                                        "ref_plane_name": "LB1092-1_Vertical_Plane",
+                                        "point_names": [
+                                            "LB1092-1_Center_Point_1",
+                                            "LB1092-1_Center_Point_2",
+                                            "LB1092-1_Laser_Measurement_Point"
+                                        ],
+                                        "axis_names": [
+                                            ""
+                                        ],
+                                        "ideal_norm_vector": {
+                                            "x": 1.0,
+                                            "y": 0.0,
+                                            "z": 0.0
+                                        }
+                                    },
+                                    {
+                                        "ref_plane_name": "LB1092-1_Horizontal_Plane",
+                                        "point_names": [
+                                            "LB1092-1_Camera_Measurement_Point_1",
+                                            "LB1092-1_Camera_Measurement_Point_2",
+                                            "LB1092-1_Camera_Measurement_Point_3"
+                                        ],
+                                        "axis_names": [
+                                            ""
+                                        ],
+                                        "ideal_norm_vector": {
+                                            "x": 0.0,
+                                            "y": -5.960465e-08,
+                                            "z": -1.0
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "obj_name": "IpeG_Optics_Mount_V2-1",
+                                "parent_frame": "Gonio_Left_Part_Origin",
+                                "obj_pose": {
+                                    "position": {
+                                        "x": -0.0001,
+                                        "y": -0.0001,
+                                        "z": 0.0
+                                    },
+                                    "orientation": {
+                                        "x": 0.0,
+                                        "y": 0.0,
+                                        "z": 0.0,
+                                        "w": 1.0
+                                    }
+                                },
+                                "cad_data": "/home/niklas/Documents/SolidWorks_ASsembly_Instructor/examples/IpeG_Demonstrator/SWASI_Exports/components/IpeG_Optics_Mount_V2.STL",
+                                "ref_frames": [
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Vision_Point_Center_Position_1",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.01,
+                                                "y": -0.02,
+                                                "z": 0.00395
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Vision_Point_1_Position_1",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.00354999971,
+                                                "y": -0.02,
+                                                "z": 0.005678272250000001
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Vision_Point_2_Position_1",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.01645,
+                                                "y": -0.02,
+                                                "z": 0.005678272250000001
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Vision_Point_Center_Position_2",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.01,
+                                                "y": -0.005,
+                                                "z": 0.004
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Vision_Point_1_Position_2",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.00360000038,
+                                                "y": -0.005,
+                                                "z": 0.005714875
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Vision_Point_2_Position_2",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.016399999999999998,
+                                                "y": -0.005,
+                                                "z": 0.005714875
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Center_Point_2_Position_1",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.011,
+                                                "y": -0.021,
+                                                "z": 0.00395
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Center_Point_3_Position_1",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.011,
+                                                "y": -0.019,
+                                                "z": 0.00395
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Center_Point_4_Position_1",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.009000000000000001,
+                                                "y": -0.019,
+                                                "z": 0.00395
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Center_Point_1_Position_1",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.009000000000000001,
+                                                "y": -0.021,
+                                                "z": 0.00395
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Center_Position_1",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.01,
+                                                "y": -0.02,
+                                                "z": 0.010400000000000001
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Adhesive_Point_1_Position_1",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.013225,
+                                                "y": -0.02,
+                                                "z": 0.004814136
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Adhesive_Point_2_Position_1",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.00677499962,
+                                                "y": -0.02,
+                                                "z": 0.004814136
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Top_1_Point_2_Position_1",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.01745,
+                                                "y": -0.021,
+                                                "z": 0.005678272250000001
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Top_1_Point_3_Position_1",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.01745,
+                                                "y": -0.019,
+                                                "z": 0.005678272250000001
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Top_1_Point_4_Position_1",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.0154500008,
+                                                "y": -0.019,
+                                                "z": 0.005678272250000001
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Top_1_Point_1_Position_1",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.0154500008,
+                                                "y": -0.021,
+                                                "z": 0.005678272250000001
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Top_2_Point_1_Position_1",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.00255000019,
+                                                "y": -0.021,
+                                                "z": 0.005678272250000001
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Top_2_Point_2_Position_1",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.00454999971,
+                                                "y": -0.021,
+                                                "z": 0.005678272250000001
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Top_2_Point_3_Position_1",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.00454999971,
+                                                "y": -0.019,
+                                                "z": 0.005678272250000001
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Top_2_Point_4_Position_1",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.00255000019,
+                                                "y": -0.019,
+                                                "z": 0.005678272250000001
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Top_1_Point_2_Position_2",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.0174,
+                                                "y": -0.006,
+                                                "z": 0.005714875
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Top_1_Point_3_Position_2",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.0174,
+                                                "y": -0.004,
+                                                "z": 0.005714875
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Top_1_Point_4_Position_2",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.0154,
+                                                "y": -0.004,
+                                                "z": 0.005714875
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Top_1_Point_1_Position_2",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.0154,
+                                                "y": -0.006,
+                                                "z": 0.005714875
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Top_2_Point_2_Position_2",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.0046,
+                                                "y": -0.006,
+                                                "z": 0.005714875
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Top_2_Point_3_Position_2",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.0046,
+                                                "y": -0.004,
+                                                "z": 0.005714875
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Top_2_Point_4_Position_2",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.0026000000000000003,
+                                                "y": -0.004,
+                                                "z": 0.005714875
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Top_2_Point_1_Position_2",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.0026000000000000003,
+                                                "y": -0.006,
+                                                "z": 0.005714875
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Center_Point_2_Position_2",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.011,
+                                                "y": -0.006,
+                                                "z": 0.004
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Center_Point_3_Position_2",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.011,
+                                                "y": -0.004,
+                                                "z": 0.004
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Center_Point_4_Position_2",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.009000000000000001,
+                                                "y": -0.004,
+                                                "z": 0.004
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Laser_Mes_Center_Point_1_Position_2",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.009000000000000001,
+                                                "y": -0.006,
+                                                "z": 0.004
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Center_Position_2",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.01,
+                                                "y": -0.005,
+                                                "z": 0.010400000000000001
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Adhesive_Point_1_Position_2",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.0132,
+                                                "y": -0.005,
+                                                "z": 0.004857437
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "IpeG_Optics_Mount_V2-1_Adhesive_Point_2_Position_2",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.0068,
+                                                "y": -0.005,
+                                                "z": 0.004857437
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "target_frame_Description_IpeG_Optics_Mount_V2-1_LB1092-1",
+                                        "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.010000000001631815,
+                                                "y": -0.020000000000012064,
+                                                "z": 0.010399999999997522
+                                            },
+                                            "orientation": {
+                                                "x": 4.5189767483577725e-09,
+                                                "y": 9.832281096764546e-18,
+                                                "z": 1.0,
+                                                "w": -3.452167440798348e-10
+                                            }
+                                        },
+                                        "constraints_dict": "{}"
+                                    }
+                                ],
+                                "ref_axis": [
+                                    {
+                                        "axis_name": "IpeG_Optics_Mount_V2-1_Vertical_Axis_Position_1",
+                                        "point_names": [
+                                            "IpeG_Optics_Mount_V2-1_Center_Position_1",
+                                            "IpeG_Optics_Mount_V2-1_Vision_Point_Center_Position_1"
+                                        ]
+                                    },
+                                    {
+                                        "axis_name": "IpeG_Optics_Mount_V2-1_Vertical_Axis_Position_2",
+                                        "point_names": [
+                                            "IpeG_Optics_Mount_V2-1_Center_Position_2",
+                                            "IpeG_Optics_Mount_V2-1_Vision_Point_Center_Position_2"
+                                        ]
+                                    }
+                                ],
+                                "ref_planes": [
+                                    {
+                                        "ref_plane_name": "IpeG_Optics_Mount_V2-1_Vertical_Plane_Position_1",
+                                        "point_names": [
+                                            "IpeG_Optics_Mount_V2-1_Vision_Point_2_Position_1",
+                                            "IpeG_Optics_Mount_V2-1_Vision_Point_Center_Position_1",
+                                            "IpeG_Optics_Mount_V2-1_Vision_Point_1_Position_1"
+                                        ],
+                                        "axis_names": [
+                                            ""
+                                        ],
+                                        "ideal_norm_vector": {
+                                            "x": 0.0,
+                                            "y": -1.0,
+                                            "z": 0.0
+                                        }
+                                    },
+                                    {
+                                        "ref_plane_name": "IpeG_Optics_Mount_V2-1_Vertical_Plane_Position_2",
+                                        "point_names": [
+                                            "IpeG_Optics_Mount_V2-1_Vision_Point_2_Position_2",
+                                            "IpeG_Optics_Mount_V2-1_Vision_Point_Center_Position_2",
+                                            "IpeG_Optics_Mount_V2-1_Vision_Point_1_Position_2"
+                                        ],
+                                        "axis_names": [
+                                            ""
+                                        ],
+                                        "ideal_norm_vector": {
+                                            "x": 0.0,
+                                            "y": -1.0,
+                                            "z": 0.0
+                                        }
+                                    },
+                                    {
+                                        "ref_plane_name": "IpeG_Optics_Mount_V2-1_Horizontal_Plane_Position_1",
+                                        "point_names": [
+                                            "IpeG_Optics_Mount_V2-1_Center_Position_1",
+                                            "",
+                                            ""
+                                        ],
+                                        "axis_names": [
+                                            "IpeG_Optics_Mount_V2-1_Vertical_Axis_Position_1"
+                                        ],
+                                        "ideal_norm_vector": {
+                                            "x": 0.0,
+                                            "y": 0.0,
+                                            "z": -1.0
+                                        }
+                                    },
+                                    {
+                                        "ref_plane_name": "IpeG_Optics_Mount_V2-1_Center_Plane_Position_1",
+                                        "point_names": [
+                                            "IpeG_Optics_Mount_V2-1_Center_Position_1",
+                                            "IpeG_Optics_Mount_V2-1_Vision_Point_Center_Position_1",
+                                            "IpeG_Optics_Mount_V2-1_Vision_Point_Center_Position_2"
+                                        ],
+                                        "axis_names": [
+                                            ""
+                                        ],
+                                        "ideal_norm_vector": {
+                                            "x": 1.0,
+                                            "y": 0.0,
+                                            "z": 0.0
+                                        }
+                                    },
+                                    {
+                                        "ref_plane_name": "IpeG_Optics_Mount_V2-1_Horizontal_Plane_Position_2",
+                                        "point_names": [
+                                            "IpeG_Optics_Mount_V2-1_Center_Position_2",
+                                            "",
+                                            ""
+                                        ],
+                                        "axis_names": [
+                                            "IpeG_Optics_Mount_V2-1_Vertical_Axis_Position_2"
+                                        ],
+                                        "ideal_norm_vector": {
+                                            "x": 0.0,
+                                            "y": 0.0,
+                                            "z": -1.0
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "obj_name": "P50HCB-1",
+                                "parent_frame": "IpeG_Optics_Mount_V2-1",
+                                "obj_pose": {
+                                    "position": {
+                                        "x": -0.010000028556765295,
+                                        "y": -0.005000000353949818,
+                                        "z": 0.012400000119844545
+                                    },
+                                    "orientation": {
+                                        "x": -4.494805939219468e-09,
+                                        "y": 6.849773255493275e-09,
+                                        "z": 1.5909667285620768e-06,
+                                        "w": 0.9999999999987343
+                                    }
+                                },
+                                "cad_data": "/home/niklas/Documents/SolidWorks_ASsembly_Instructor/examples/IpeG_Demonstrator/SWASI_Exports/components/P50HCB.STL",
+                                "ref_frames": [
+                                    {
+                                        "frame_name": "P50HCB-1_Vision_Point_1",
+                                        "parent_frame": "P50HCB-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": 0.00635,
+                                                "y": -0.00127,
+                                                "z": 0.0
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "P50HCB-1_Vision_Point_2",
+                                        "parent_frame": "P50HCB-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.00635,
+                                                "y": -0.00127,
+                                                "z": 0.0
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "P50HCB-1_Vision_Point_3",
+                                        "parent_frame": "P50HCB-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.00635,
+                                                "y": 0.00127,
+                                                "z": 0.0
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "P50HCB-1_Vision_Point_4",
+                                        "parent_frame": "P50HCB-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": 0.00635,
+                                                "y": 0.00127,
+                                                "z": 0.0
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "P50HCB-1_Gripping_Point",
+                                        "parent_frame": "P50HCB-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "P50HCB-1_Laser_Measurement_Point",
+                                        "parent_frame": "P50HCB-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.00635
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "P50HCB-1_Center_Point_1",
+                                        "parent_frame": "P50HCB-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": 0.0,
+                                                "y": -0.00127,
+                                                "z": 0.0
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "P50HCB-1_Center_Point_2",
+                                        "parent_frame": "P50HCB-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": 0.0,
+                                                "y": 0.00127,
+                                                "z": 0.0
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "P50HCB-1_Vision_Center_14",
+                                        "parent_frame": "P50HCB-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": 0.00635,
+                                                "y": 0.0,
+                                                "z": 0.0
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "P50HCB-1_Vision_Center_23",
+                                        "parent_frame": "P50HCB-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -0.00635,
+                                                "y": 0.0,
+                                                "z": 0.0
+                                            },
+                                            "orientation": {
+                                                "x": 0.0,
+                                                "y": 0.0,
+                                                "z": 0.0,
+                                                "w": 1.0
+                                            }
+                                        },
+                                        "constraints_dict": "{'constraints': {'centroid': {'refFrameNames': [], 'dim': '', 'offsetValues': [0.0, 0.0, 0.0]}, 'units': 'mm'}}"
+                                    },
+                                    {
+                                        "frame_name": "assembly_frame_Description_LB1092-1_P50HCB-1",
+                                        "parent_frame": "P50HCB-1",
+                                        "pose": {
+                                            "position": {
+                                                "x": -3.452793606584237e-14,
+                                                "y": 2.5146551507759796e-14,
+                                                "z": 5.573319583618286e-14
+                                            },
+                                            "orientation": {
+                                                "x": -4.1359030627651384e-25,
+                                                "y": -7.703719777548943e-34,
+                                                "z": 1.0,
+                                                "w": 0.0
+                                            }
+                                        },
+                                        "constraints_dict": "{}"
+                                    }
+                                ],
+                                "ref_axis": [
+                                    {
+                                        "axis_name": "P50HCB-1_Optical_Axis",
+                                        "point_names": [
+                                            "P50HCB-1_Center_Point_2",
+                                            "P50HCB-1_Center_Point_1"
+                                        ]
+                                    },
+                                    {
+                                        "axis_name": "P50HCB-1_Vision_Center_Axis",
+                                        "point_names": [
+                                            "P50HCB-1_Vision_Center_14",
+                                            "P50HCB-1_Vision_Center_23"
+                                        ]
+                                    }
+                                ],
+                                "ref_planes": [
+                                    {
+                                        "ref_plane_name": "P50HCB-1_Horizontal_Plane",
+                                        "point_names": [
+                                            "P50HCB-1_Vision_Point_2",
+                                            "P50HCB-1_Vision_Point_4",
+                                            "P50HCB-1_Vision_Point_3"
+                                        ],
+                                        "axis_names": [
+                                            ""
+                                        ],
+                                        "ideal_norm_vector": {
+                                            "x": 0.0,
+                                            "y": 0.0,
+                                            "z": 1.0
+                                        }
+                                    },
+                                    {
+                                        "ref_plane_name": "P50HCB-1_Center_Plane",
+                                        "point_names": [
+                                            "P50HCB-1_Gripping_Point",
+                                            "",
+                                            ""
+                                        ],
+                                        "axis_names": [
+                                            "P50HCB-1_Optical_Axis"
+                                        ],
+                                        "ideal_norm_vector": {
+                                            "x": 0.0,
+                                            "y": -1.0,
+                                            "z": 0.0
+                                        }
+                                    },
+                                    {
+                                        "ref_plane_name": "P50HCB-1_Vertical_Plane",
+                                        "point_names": [
+                                            "P50HCB-1_Gripping_Point",
+                                            "",
+                                            ""
+                                        ],
+                                        "axis_names": [
+                                            "P50HCB-1_Vision_Center_Axis"
+                                        ],
+                                        "ideal_norm_vector": {
+                                            "x": -1.0,
+                                            "y": 0.0,
+                                            "z": 0.0
+                                        }
+                                    }
+                                ]
+                            }
+                        ],
+                        "ref_frames_in_scene": [],
+                        "axis_in_scene": [],
+                        "planes_in_scene": [],
+                        "assembly_instructions": [
+                            {
+                                "id": "Description_IpeG_Optics_Mount_V2-1_LB1092-1",
+                                "component_1_is_moving_part": false,
+                                "plane_match_1": {
+                                    "plane_name_component_1": "IpeG_Optics_Mount_V2-1_Vertical_Plane_Position_1",
+                                    "plane_name_component_2": "LB1092-1_Center_Plane",
+                                    "plane_offset": 0.0,
+                                    "inv_normal_vector": false
+                                },
+                                "plane_match_2": {
+                                    "plane_name_component_1": "IpeG_Optics_Mount_V2-1_Horizontal_Plane_Position_1",
+                                    "plane_name_component_2": "LB1092-1_Horizontal_Plane",
+                                    "plane_offset": 0.0,
+                                    "inv_normal_vector": false
+                                },
+                                "plane_match_3": {
+                                    "plane_name_component_1": "IpeG_Optics_Mount_V2-1_Center_Plane_Position_1",
+                                    "plane_name_component_2": "LB1092-1_Vertical_Plane",
+                                    "plane_offset": 0.0,
+                                    "inv_normal_vector": false
+                                }
+                            },
+                            {
+                                "id": "Description_LB1092-1_P50HCB-1",
+                                "component_1_is_moving_part": false,
+                                "plane_match_1": {
+                                    "plane_name_component_1": "LB1092-1_Center_Plane",
+                                    "plane_name_component_2": "P50HCB-1_Center_Plane",
+                                    "plane_offset": -0.014999999664723873,
+                                    "inv_normal_vector": false
+                                },
+                                "plane_match_2": {
+                                    "plane_name_component_1": "LB1092-1_Vertical_Plane",
+                                    "plane_name_component_2": "P50HCB-1_Vertical_Plane",
+                                    "plane_offset": 0.0,
+                                    "inv_normal_vector": true
+                                },
+                                "plane_match_3": {
+                                    "plane_name_component_1": "LB1092-1_Horizontal_Plane",
+                                    "plane_name_component_2": "P50HCB-1_Horizontal_Plane",
+                                    "plane_offset": 0.0,
+                                    "inv_normal_vector": true
+                                }
+                            }
+                        ]
+                    },
+                    "success": true
+                },
+                "success": true
+            }
+        },
+        {
+            "16_Move To Assembly Location Pinhole_z_offset": {
+                "service_client": "/pm_moveit_server/move_tool_to_frame",
+                "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+                "srv_start_time": "2024-03-06_00:01:53.864400",
+                "srv_end_time": "2024-03-06_00:01:55.624107",
+                "execution_time": "0:00:01.759707",
+                "srv_request": {
+                    "endeffector_frame_override": "use_default_frame",
+                    "target_frame": "target_frame_Description_LB1092-1_P50HCB-1",
+                    "translation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.01
+                    },
+                    "rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "execute_movement": true
+                },
+                "srv_response": {
+                    "success": true,
+                    "joint_names": [
+                        "X_Axis_Joint",
+                        "Y_Axis_Joint",
+                        "Z_Axis_Joint",
+                        "T_Axis_Joint"
+                    ],
+                    "joint_values": [
+                        -0.5611000061035156,
+                        -0.0357000008225441,
+                        -0.0013700001873075962,
+                        -3.1415908336639404
+                    ],
+                    "message": ""
+                },
+                "success": true
+            }
+        },
+        {
+            "18_/pm_moveit_server/move_tool_to_frame": {
+                "service_client": "/pm_moveit_server/move_tool_to_frame",
+                "service_type": "pm_moveit_interfaces/srv/MoveToFrame",
+                "srv_start_time": "2024-03-06_00:02:44.090775",
+                "srv_end_time": "2024-03-06_00:02:50.942038",
+                "execution_time": "0:00:06.851263",
+                "srv_request": {
+                    "endeffector_frame_override": "use_default_frame",
+                    "target_frame": "Camera_Station_TCP",
+                    "translation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0,
+                        "w": 1.0
+                    },
+                    "execute_movement": true
+                },
+                "srv_response": {
+                    "success": true,
+                    "joint_names": [
+                        "X_Axis_Joint",
+                        "Y_Axis_Joint",
+                        "Z_Axis_Joint",
+                        "T_Axis_Joint"
+                    ],
+                    "joint_values": [
+                        -0.359499990940094,
+                        -0.045816998928785324,
+                        0.01408000010997057,
+                        0.0
+                    ],
+                    "message": ""
+                },
+                "success": true
+            }
+        }
+    ]
+}
