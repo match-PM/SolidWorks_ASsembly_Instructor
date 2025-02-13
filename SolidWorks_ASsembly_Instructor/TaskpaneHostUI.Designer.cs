@@ -45,10 +45,9 @@
             // 
             this.exportJson.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.exportJson.Location = new System.Drawing.Point(4, 156);
-            this.exportJson.Margin = new System.Windows.Forms.Padding(4);
+            this.exportJson.Location = new System.Drawing.Point(3, 127);
             this.exportJson.Name = "exportJson";
-            this.exportJson.Size = new System.Drawing.Size(444, 28);
+            this.exportJson.Size = new System.Drawing.Size(333, 23);
             this.exportJson.TabIndex = 0;
             this.exportJson.Text = "Export as Json";
             this.exportJson.UseVisualStyleBackColor = true;
@@ -57,10 +56,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 106);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(3, 86);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(133, 16);
+            this.label2.Size = new System.Drawing.Size(108, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Choose output folder:";
             // 
@@ -68,10 +66,9 @@
             // 
             this.tb_BrowseFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_BrowseFolder.Location = new System.Drawing.Point(4, 126);
-            this.tb_BrowseFolder.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_BrowseFolder.Location = new System.Drawing.Point(3, 102);
             this.tb_BrowseFolder.Name = "tb_BrowseFolder";
-            this.tb_BrowseFolder.Size = new System.Drawing.Size(443, 22);
+            this.tb_BrowseFolder.Size = new System.Drawing.Size(333, 20);
             this.tb_BrowseFolder.TabIndex = 4;
             this.tb_BrowseFolder.Text = "Browse folder";
             this.tb_BrowseFolder.Click += new System.EventHandler(this.tb_BrowseFolder_Click);
@@ -83,9 +80,8 @@
             this.label3.Dock = System.Windows.Forms.DockStyle.Top;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(0, 0);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(385, 39);
+            this.label3.Size = new System.Drawing.Size(308, 31);
             this.label3.TabIndex = 5;
             this.label3.Text = "SW ASsembly Instructor";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -94,10 +90,9 @@
             // 
             this.btn_clearLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_clearLog.Location = new System.Drawing.Point(4, 458);
-            this.btn_clearLog.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_clearLog.Location = new System.Drawing.Point(3, 372);
             this.btn_clearLog.Name = "btn_clearLog";
-            this.btn_clearLog.Size = new System.Drawing.Size(390, 28);
+            this.btn_clearLog.Size = new System.Drawing.Size(292, 23);
             this.btn_clearLog.TabIndex = 9;
             this.btn_clearLog.Text = "Clear log";
             this.btn_clearLog.UseVisualStyleBackColor = true;
@@ -108,20 +103,18 @@
             this.rtDebug.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtDebug.Location = new System.Drawing.Point(4, 192);
-            this.rtDebug.Margin = new System.Windows.Forms.Padding(4);
+            this.rtDebug.Location = new System.Drawing.Point(3, 156);
             this.rtDebug.Name = "rtDebug";
-            this.rtDebug.Size = new System.Drawing.Size(443, 258);
+            this.rtDebug.Size = new System.Drawing.Size(333, 210);
             this.rtDebug.TabIndex = 10;
             this.rtDebug.Text = "";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(4, 42);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 34);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(444, 60);
+            this.pictureBox1.Size = new System.Drawing.Size(333, 49);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
@@ -130,16 +123,17 @@
             // 
             this.lbl_Version_No.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_Version_No.AutoSize = true;
-            this.lbl_Version_No.Location = new System.Drawing.Point(401, 470);
+            this.lbl_Version_No.Location = new System.Drawing.Point(301, 382);
+            this.lbl_Version_No.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_Version_No.Name = "lbl_Version_No";
-            this.lbl_Version_No.Size = new System.Drawing.Size(46, 16);
+            this.lbl_Version_No.Size = new System.Drawing.Size(41, 13);
             this.lbl_Version_No.TabIndex = 11;
             this.lbl_Version_No.Text = "V 0.1.0";
             this.lbl_Version_No.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // TaskpaneHostUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lbl_Version_No);
             this.Controls.Add(this.rtDebug);
@@ -149,9 +143,8 @@
             this.Controls.Add(this.tb_BrowseFolder);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.exportJson);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TaskpaneHostUI";
-            this.Size = new System.Drawing.Size(452, 489);
+            this.Size = new System.Drawing.Size(339, 397);
             this.Load += new System.EventHandler(this.TaskpaneHostUI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

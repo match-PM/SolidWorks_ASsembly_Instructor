@@ -366,12 +366,12 @@ namespace SolidWorks_ASsembly_Instructor
                 }
                 else
                 {
-                    Log("Fehler beim Kombinieren der Körper.");
+                    Log("Error combining body meshes.");
                 }
             }
             else
             {
-                Log("Keine gültigen Körper gefunden.");
+                Log("No valid bodies found.");
             }
 
             return swPartRes;
@@ -527,7 +527,7 @@ namespace SolidWorks_ASsembly_Instructor
             }
             if (!extractSuccess)
             {
-                Log("No SWASI Origin found", "Warning");
+                Log($"No SWASI Origin found in '{currentDoc.GetTitle()}'! JSON will not be created!", "error");
             }
             return (extractSuccess, swasiOrigin);
         }

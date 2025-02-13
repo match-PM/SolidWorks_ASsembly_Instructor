@@ -1,0 +1,1076 @@
+{
+  "mountingDescription": {
+    "components": [],
+    "assemblyConstraints": [],
+    "mountingReferences": {
+      "spawningOrigin": "Gonio_Right_Part_1_Origin",
+      "spawningTransformation": {
+        "translation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0,
+          "W": 1.0,
+          "IsIdentity": true
+        }
+      },
+      "ref_planes": [
+        {
+          "name": "Top_Plane",
+          "refPointNames": [
+            "Vision_Point_1_T",
+            "Vision_Point_2_T",
+            "Vision_Point_3_T"
+          ],
+          "refAxisNames": [
+            "",
+            ""
+          ],
+          "normalVector": {
+            "X": 2.34283254E-18,
+            "Y": -0.0348994955,
+            "Z": -0.999390841
+          }
+        },
+        {
+          "name": "Bottom_Plane",
+          "refPointNames": [
+            "Vision_Point_1_B",
+            "Vision_Point_2_B",
+            "Vision_Point_3_B"
+          ],
+          "refAxisNames": [
+            "",
+            ""
+          ],
+          "normalVector": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": -1.0
+          }
+        },
+        {
+          "name": "Axis_T_Plane",
+          "refPointNames": [
+            "Axis_Center_T",
+            "",
+            ""
+          ],
+          "refAxisNames": [
+            "Top_Axis",
+            ""
+          ],
+          "normalVector": {
+            "X": -0.9998284,
+            "Y": -0.0185120981,
+            "Z": 0.000646456669
+          }
+        },
+        {
+          "name": "Axis_B_Plane",
+          "refPointNames": [
+            "Axis_Center_B",
+            "",
+            ""
+          ],
+          "refAxisNames": [
+            "Bottom_Axis",
+            ""
+          ],
+          "normalVector": {
+            "X": -0.9999774,
+            "Y": -0.00672280462,
+            "Z": 0.0
+          }
+        },
+        {
+          "name": "Front_Plane_B",
+          "refPointNames": [
+            "Front_Bottom_Reference",
+            "Vision_Point_3_B",
+            "Vision_Point_4_B"
+          ],
+          "refAxisNames": [
+            "",
+            ""
+          ],
+          "normalVector": {
+            "X": -0.00672280462,
+            "Y": 0.9999774,
+            "Z": -3.46897558E-15
+          }
+        },
+        {
+          "name": "Front_Plane_T",
+          "refPointNames": [
+            "Front_Top_Reference",
+            "Vision_Point_3_T",
+            "Vision_Point_4_T"
+          ],
+          "refAxisNames": [
+            "",
+            ""
+          ],
+          "normalVector": {
+            "X": 0.018523382,
+            "Y": -0.999219358,
+            "Z": 0.03489351
+          }
+        }
+      ],
+      "ref_axes": [
+        {
+          "name": "Bottom_Axis",
+          "refPointNames": [
+            "Vision_Point_3_B",
+            "Vision_Point_4_B"
+          ]
+        },
+        {
+          "name": "Top_Axis",
+          "refPointNames": [
+            "Vision_Point_3_T",
+            "Vision_Point_4_T"
+          ]
+        }
+      ],
+      "ref_frames": [
+        {
+          "name": "Axis_Center_B",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -16.9496613,
+              "Y": -21.9994926,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Axis_Center_T",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -16.6006737,
+              "Y": -21.919281,
+              "Z": 2.347617
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Front_Bottom_Reference",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -31.8993225,
+              "Y": -22.0999985,
+              "Z": 3.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Front_Top_Reference",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -1.553257,
+              "Y": -21.7453728,
+              "Z": -0.660284758
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Gripping_Point",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -16.8994923,
+              "Y": -11.9299469,
+              "Z": 1.99878168
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Laser_1_B",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -30.8994923,
+              "Y": -2.99974632,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Laser_1_T",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -30.8994923,
+              "Y": -2.93542957,
+              "Z": 1.68468618
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Laser_2_B",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -2.89949226,
+              "Y": -2.99974632,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Laser_2_T",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -2.89949226,
+              "Y": -2.93542957,
+              "Z": 1.68468618
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Laser_3_B",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -2.89949226,
+              "Y": -20.9997463,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Laser_3_T",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -2.89949226,
+              "Y": -20.9244652,
+              "Z": 2.31287718
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Laser_4_B",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -30.8994923,
+              "Y": -20.9997463,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Laser_4_T",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -30.8994923,
+              "Y": -20.9244652,
+              "Z": 2.31287718
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Vision_Point_1_B",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -31.8993225,
+              "Y": -1.999999,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Vision_Point_1_T",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -32.1483078,
+              "Y": -2.31629467,
+              "Z": 1.66306555
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Vision_Point_2_B",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -1.79932308,
+              "Y": -1.999999,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Vision_Point_2_T",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -2.24831,
+              "Y": -1.56493282,
+              "Z": 1.63682735
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Vision_Point_3_B",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -1.999999,
+              "Y": -21.8989868,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Vision_Point_3_T",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -1.553257,
+              "Y": -21.6406746,
+              "Z": 2.33788776
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Vision_Point_4_B",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -31.8993225,
+              "Y": -22.0999985,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Vision_Point_4_T",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -31.6480923,
+              "Y": -22.1978874,
+              "Z": 2.357346
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "",
+              "frame_2": "",
+              "frame_3": "",
+              "distance_from_f1": 0.0,
+              "unit_distance_from_f1": "%",
+              "distance_from_f1_f2_connection": 0.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "documentUnits": "mm",
+  "cadPath": "UFC_6D_tol.STL",
+  "name": "UFC_6D_tol",
+  "description": "",
+  "guid": "69035936-e30c-4a5f-90ca-740963742de3",
+  "type": "Component",
+  "saveDate": "2025-02-12T15:33:40.4534392+01:00"
+}

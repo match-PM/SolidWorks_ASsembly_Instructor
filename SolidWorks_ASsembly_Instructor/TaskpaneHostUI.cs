@@ -114,11 +114,11 @@ namespace SolidWorks_ASsembly_Instructor
             if (Swasi_Extractor.Run())
             {
                 // Loggen Sie eine Erfolgsmeldung in der Debug-Ausgabe
-                Log("Json erfolgreich geschrieben");
+                Log("Json written successfully");
             }
             else
             {
-                ErrorLog("Fehler beim erstellen des JSON strings");
+                ErrorLog("Error creating the JSON strings");
             }
             Swasi_Extractor = null;
         }
