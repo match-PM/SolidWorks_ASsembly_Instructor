@@ -249,7 +249,7 @@
           "constraints": {
             "centroid": {
               "refFrameNames": ["Vision_Point_3_B"],
-              "dim": "z",
+              "dim": "xyz",
               "offsetValues": [
                 0.0,
                 0.0,
@@ -293,7 +293,7 @@
           "constraints": {
             "centroid": {
               "refFrameNames": ["Vision_Point_3_T"],
-              "dim": "z",
+              "dim": "xyz",
               "offsetValues": [
                 0.0,
                 0.0,
