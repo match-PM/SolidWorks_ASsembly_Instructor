@@ -1062,6 +1062,182 @@
               "normalAxis": "z"
             }
           }
+        },,,,,
+        {
+          "name": "Glue_Point_1",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -1.0,
+              "Y": -1.0,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "Vision_Point_1_T",
+              "frame_2": "Vision_Point_2_T",
+              "frame_3": "Vision_Point_3_T",
+              "distance_from_f1": 3.0,
+              "unit_distance_from_f1": "mm",
+              "distance_from_f1_f2_connection": 3.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Glue_Point_2",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -1.0,
+              "Y": -1.0,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "Vision_Point_2_T",
+              "frame_2": "Vision_Point_3_T",
+              "frame_3": "Vision_Point_4_T",
+              "distance_from_f1": 3.0,
+              "unit_distance_from_f1": "mm",
+              "distance_from_f1_f2_connection": 3.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Glue_Point_3",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -1.0,
+              "Y": -1.0,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "Vision_Point_3_T",
+              "frame_2": "Vision_Point_4_T",
+              "frame_3": "Vision_Point_1_T",
+              "distance_from_f1": 3.0,
+              "unit_distance_from_f1": "mm",
+              "distance_from_f1_f2_connection": 3.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
+        },
+        {
+          "name": "Glue_Point_4",
+          "type": "point",
+          "transformation": {
+            "translation": {
+              "X": -1.0,
+              "Y": -1.0,
+              "Z": 0.0
+            },
+            "rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "W": 1.0,
+              "IsIdentity": true
+            }
+          },
+          "constraints": {
+            "centroid": {
+              "refFrameNames": [],
+              "dim": "",
+              "offsetValues": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "orthogonal": {
+              "frame_1": "Vision_Point_4_T",
+              "frame_2": "Vision_Point_1_T",
+              "frame_3": "Vision_Point_2_T",
+              "distance_from_f1": 3.0,
+              "unit_distance_from_f1": "mm",
+              "distance_from_f1_f2_connection": 3.0,
+              "frame_normal_plane_axis": "z",
+              "frame_orthogonal_connection_axis": "x"
+            },
+            "inPlane": {
+              "refFrameNames": [],
+              "planeOffset": 0.0,
+              "normalAxis": "z"
+            }
+          }
         }
       ]
     }
