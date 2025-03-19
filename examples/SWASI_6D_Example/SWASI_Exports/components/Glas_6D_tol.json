@@ -158,8 +158,10 @@
           },
           "constraints": {
             "centroid": {
-              "refFrameNames": ["Vision_Point_3_B",
-                                "Vision_Point_4_B"],
+              "refFrameNames": [
+                "Vision_Point_3_B",
+                "Vision_Point_4_B"
+              ],
               "dim": "xyz",
               "offsetValues": [
                 0.0,
@@ -203,8 +205,10 @@
           },
           "constraints": {
             "centroid": {
-              "refFrameNames": ["Vision_Point_3_T",
-                                "Vision_Point_4_T"],
+              "refFrameNames": [
+                "Vision_Point_3_T",
+                "Vision_Point_4_T"
+              ],
               "dim": "xyz",
               "offsetValues": [
                 0.0,
@@ -248,7 +252,9 @@
           },
           "constraints": {
             "centroid": {
-              "refFrameNames": ["Vision_Point_3_B"],
+              "refFrameNames": [
+                "Vision_Point_3_B"
+              ],
               "dim": "xyz",
               "offsetValues": [
                 0.0,
@@ -292,7 +298,9 @@
           },
           "constraints": {
             "centroid": {
-              "refFrameNames": ["Vision_Point_3_T"],
+              "refFrameNames": [
+                "Vision_Point_3_T"
+              ],
               "dim": "xyz",
               "offsetValues": [
                 0.0,
@@ -336,10 +344,12 @@
           },
           "constraints": {
             "centroid": {
-              "refFrameNames": ["Vision_Point_1_T",
-                              "Vision_Point_2_T",
-                              "Vision_Point_3_T",
-                              "Vision_Point_4_T"],
+              "refFrameNames": [
+                "Vision_Point_1_T",
+                "Vision_Point_2_T",
+                "Vision_Point_3_T",
+                "Vision_Point_4_T"
+              ],
               "dim": "xyz",
               "offsetValues": [
                 0.0,
@@ -754,10 +764,12 @@
               "frame_orthogonal_connection_axis": "x"
             },
             "inPlane": {
-              "refFrameNames": ["Laser_1_B",
-                              "Laser_2_B",
-                              "Laser_3_B",
-                              "Laser_4_B"],
+              "refFrameNames": [
+                "Laser_1_B",
+                "Laser_2_B",
+                "Laser_3_B",
+                "Laser_4_B"
+              ],
               "planeOffset": 0.0,
               "normalAxis": "z"
             }
@@ -801,10 +813,12 @@
               "frame_orthogonal_connection_axis": "x"
             },
             "inPlane": {
-              "refFrameNames": ["Laser_1_T",
-                                "Laser_2_T",
-                                "Laser_3_T",
-                                "Laser_4_T"],
+              "refFrameNames": [
+                "Laser_1_T",
+                "Laser_2_T",
+                "Laser_3_T",
+                "Laser_4_T"
+              ],
               "planeOffset": 0.0,
               "normalAxis": "z"
             }
@@ -848,10 +862,12 @@
               "frame_orthogonal_connection_axis": "x"
             },
             "inPlane": {
-              "refFrameNames": ["Laser_1_B",
-                              "Laser_2_B",
-                              "Laser_3_B",
-                              "Laser_4_B"],
+              "refFrameNames": [
+                "Laser_1_B",
+                "Laser_2_B",
+                "Laser_3_B",
+                "Laser_4_B"
+              ],
               "planeOffset": 0.0,
               "normalAxis": "z"
             }
@@ -895,10 +911,12 @@
               "frame_orthogonal_connection_axis": "x"
             },
             "inPlane": {
-              "refFrameNames": ["Laser_1_T",
-                              "Laser_2_T",
-                              "Laser_3_T",
-                              "Laser_4_T"],
+              "refFrameNames": [
+                "Laser_1_T",
+                "Laser_2_T",
+                "Laser_3_T",
+                "Laser_4_T"
+              ],
               "planeOffset": 0.0,
               "normalAxis": "z"
             }
@@ -942,10 +960,12 @@
               "frame_orthogonal_connection_axis": "x"
             },
             "inPlane": {
-              "refFrameNames": ["Laser_1_B",
-                              "Laser_2_B",
-                              "Laser_3_B",
-                              "Laser_4_B"],
+              "refFrameNames": [
+                "Laser_1_B",
+                "Laser_2_B",
+                "Laser_3_B",
+                "Laser_4_B"
+              ],
               "planeOffset": 0.0,
               "normalAxis": "z"
             }
@@ -989,10 +1009,12 @@
               "frame_orthogonal_connection_axis": "x"
             },
             "inPlane": {
-              "refFrameNames": ["Laser_1_T",
-              "Laser_2_T",
-              "Laser_3_T",
-              "Laser_4_T"],
+              "refFrameNames": [
+                "Laser_1_T",
+                "Laser_2_T",
+                "Laser_3_T",
+                "Laser_4_T"
+              ],
               "planeOffset": 0.0,
               "normalAxis": "z"
             }
@@ -1036,10 +1058,12 @@
               "frame_orthogonal_connection_axis": "x"
             },
             "inPlane": {
-              "refFrameNames": ["Laser_1_B",
-                              "Laser_2_B",
-                              "Laser_3_B",
-                              "Laser_4_B"],
+              "refFrameNames": [
+                "Laser_1_B",
+                "Laser_2_B",
+                "Laser_3_B",
+                "Laser_4_B"
+              ],
               "planeOffset": 0.0,
               "normalAxis": "z"
             }
@@ -1083,10 +1107,12 @@
               "frame_orthogonal_connection_axis": "x"
             },
             "inPlane": {
-              "refFrameNames": ["Laser_1_T",
-                                "Laser_2_T",
-                                "Laser_3_T",
-                                "Laser_4_T"],
+              "refFrameNames": [
+                "Laser_1_T",
+                "Laser_2_T",
+                "Laser_3_T",
+                "Laser_4_T"
+              ],
               "planeOffset": 0.0,
               "normalAxis": "z"
             }
@@ -1120,12 +1146,12 @@
               ]
             },
             "orthogonal": {
-              "frame_1": "Vision_Point_1_T",
-              "frame_2": "Vision_Point_2_T",
+              "frame_1": "Vision_Point_2_T",
+              "frame_2": "Vision_Point_1_T",
               "frame_3": "Vision_Point_3_T",
               "distance_from_f1": 3.0,
               "unit_distance_from_f1": "mm",
-              "distance_from_f1_f2_connection": 3.0,
+              "distance_from_f1_f2_connection": -3.0,
               "frame_normal_plane_axis": "z",
               "frame_orthogonal_connection_axis": "x"
             },
@@ -1164,12 +1190,12 @@
               ]
             },
             "orthogonal": {
-              "frame_1": "Vision_Point_2_T",
-              "frame_2": "Vision_Point_3_T",
+              "frame_1": "Vision_Point_3_T",
+              "frame_2": "Vision_Point_2_T",
               "frame_3": "Vision_Point_4_T",
               "distance_from_f1": 3.0,
               "unit_distance_from_f1": "mm",
-              "distance_from_f1_f2_connection": 3.0,
+              "distance_from_f1_f2_connection": -3.0,
               "frame_normal_plane_axis": "z",
               "frame_orthogonal_connection_axis": "x"
             },
@@ -1208,12 +1234,12 @@
               ]
             },
             "orthogonal": {
-              "frame_1": "Vision_Point_3_T",
-              "frame_2": "Vision_Point_4_T",
+              "frame_1": "Vision_Point_4_T",
+              "frame_2": "Vision_Point_3_T",
               "frame_3": "Vision_Point_1_T",
               "distance_from_f1": 3.0,
               "unit_distance_from_f1": "mm",
-              "distance_from_f1_f2_connection": 3.0,
+              "distance_from_f1_f2_connection": -3.0,
               "frame_normal_plane_axis": "z",
               "frame_orthogonal_connection_axis": "x"
             },
@@ -1252,12 +1278,12 @@
               ]
             },
             "orthogonal": {
-              "frame_1": "Vision_Point_4_T",
-              "frame_2": "Vision_Point_1_T",
+              "frame_1": "Vision_Point_1_T",
+              "frame_2": "Vision_Point_4_T",
               "frame_3": "Vision_Point_2_T",
               "distance_from_f1": 3.0,
               "unit_distance_from_f1": "mm",
-              "distance_from_f1_f2_connection": 3.0,
+              "distance_from_f1_f2_connection": -3.0,
               "frame_normal_plane_axis": "z",
               "frame_orthogonal_connection_axis": "x"
             },
