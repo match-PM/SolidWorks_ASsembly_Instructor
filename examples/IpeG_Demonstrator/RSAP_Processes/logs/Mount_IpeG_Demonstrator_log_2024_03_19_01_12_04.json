@@ -1,0 +1,40 @@
+{
+    "action_sequence_name": "Mount_IpeG_Demonstrator",
+    "action_log": [
+        {
+            "18_/pm_vision_manager/ExecuteVision": {
+                "service_client": "/pm_vision_manager/ExecuteVision",
+                "service_type": "pm_vision_interfaces/srv/ExecuteVision",
+                "srv_start_time": "2024-03-19_01:12:04.214428",
+                "srv_end_time": "2024-03-19_01:12:04.727975",
+                "execution_time": "0:00:00.513547",
+                "srv_request": {
+                    "process_filename": "process_demo.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "test",
+                    "image_display_time": 20,
+                    "run_cross_validation": false
+                },
+                "srv_response": {
+                    "success": true,
+                    "results_dict": "{'vision_process_name': 'process_demo.json', 'exec_timestamp': '19_03_2024_01_12_04', 'vision_OK': True, 'process_UID': 'test', 'vision_results': [{'Circles': [{'axis_1': 325.0, 'axis_2': -75.0, 'axis_1_suffix': 'x', 'axis_2_suffix': 'y', 'radius': 330.0, 'Unit': 'um'}]}, {'Image saved:': '/home/niklas/ros2_ws/src/pm_vision_manager/pm_vision_manager/vision_db/process_demo/test_19_03_2024_01_12_04l.png'}]}",
+                    "results_path": "/home/niklas/ros2_ws/src/pm_vision_manager/pm_vision_manager/vision_processes/process_demo_results_Webcam.json",
+                    "points": [
+                        {
+                            "x": 1.5,
+                            "y": 2.5,
+                            "z": 3.5
+                        },
+                        {
+                            "x": 4.5,
+                            "y": 5.5,
+                            "z": 6.5
+                        }
+                    ],
+                    "process_uid": "test"
+                },
+                "success": true
+            }
+        }
+    ]
+}

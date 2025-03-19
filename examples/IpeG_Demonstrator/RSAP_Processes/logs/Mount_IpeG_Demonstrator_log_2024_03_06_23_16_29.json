@@ -1,0 +1,263 @@
+{
+    "action_sequence_name": "Mount_IpeG_Demonstrator",
+    "action_log": [
+        {
+            "0_Spawn Assembly From Description": {
+                "service_client": "/assembly_manager/create_assembly_instruction_from_description",
+                "service_type": "assembly_manager_interfaces/srv/CreateAssemblyInstructionFromDescription",
+                "srv_start_time": "2024-03-06_22:31:57.605632",
+                "srv_end_time": "2024-03-06_22:31:59.608410",
+                "execution_time": "0:00:02.002778",
+                "srv_request": {
+                    "file_path": "/home/niklas/Documents/SolidWorks_ASsembly_Instructor/examples/IpeG_Demonstrator/SWASI_Exports/assemblies/Assembly_IpeG_Demonstrator.json",
+                    "spawn_components": true
+                },
+                "srv_response": {
+                    "Error": "Client not available"
+                },
+                "message": "Client not available! Exited with error!",
+                "success": false
+            }
+        },
+        {
+            "0_Spawn Assembly From Description": {
+                "service_client": "/assembly_manager/create_assembly_instruction_from_description",
+                "service_type": "assembly_manager_interfaces/srv/CreateAssemblyInstructionFromDescription",
+                "srv_start_time": "2024-03-06_22:31:57.605632",
+                "srv_end_time": "2024-03-06_22:31:59.608410",
+                "execution_time": "0:00:02.002778",
+                "srv_request": {
+                    "file_path": "/home/niklas/Documents/SolidWorks_ASsembly_Instructor/examples/IpeG_Demonstrator/SWASI_Exports/assemblies/Assembly_IpeG_Demonstrator.json",
+                    "spawn_components": true
+                },
+                "srv_response": {
+                    "Error": "Client not available"
+                },
+                "message": "Client not available! Exited with error!",
+                "success": false
+            }
+        },
+        {
+            "0_Spawn Assembly From Description": {
+                "service_client": "/assembly_manager/create_assembly_instruction_from_description",
+                "service_type": "assembly_manager_interfaces/srv/CreateAssemblyInstructionFromDescription",
+                "srv_start_time": "2024-03-06_22:31:57.605632",
+                "srv_end_time": "2024-03-06_22:31:59.608410",
+                "execution_time": "0:00:02.002778",
+                "srv_request": {
+                    "file_path": "/home/niklas/Documents/SolidWorks_ASsembly_Instructor/examples/IpeG_Demonstrator/SWASI_Exports/assemblies/Assembly_IpeG_Demonstrator.json",
+                    "spawn_components": true
+                },
+                "srv_response": {
+                    "Error": "Client not available"
+                },
+                "message": "Client not available! Exited with error!",
+                "success": false
+            }
+        },
+        {
+            "0_Spawn Assembly From Description": {
+                "service_client": "/assembly_manager/create_assembly_instruction_from_description",
+                "service_type": "assembly_manager_interfaces/srv/CreateAssemblyInstructionFromDescription",
+                "srv_start_time": "2024-03-06_22:31:57.605632",
+                "srv_end_time": "2024-03-06_22:31:59.608410",
+                "execution_time": "0:00:02.002778",
+                "srv_request": {
+                    "file_path": "/home/niklas/Documents/SolidWorks_ASsembly_Instructor/examples/IpeG_Demonstrator/SWASI_Exports/assemblies/Assembly_IpeG_Demonstrator.json",
+                    "spawn_components": true
+                },
+                "srv_response": {
+                    "Error": "Client not available"
+                },
+                "message": "Client not available! Exited with error!",
+                "success": false
+            }
+        },
+        {
+            "0_Spawn Assembly From Description": {
+                "service_client": "/assembly_manager/create_assembly_instruction_from_description",
+                "service_type": "assembly_manager_interfaces/srv/CreateAssemblyInstructionFromDescription",
+                "srv_start_time": "2024-03-06_22:31:57.605632",
+                "srv_end_time": "2024-03-06_22:31:59.608410",
+                "execution_time": "0:00:02.002778",
+                "srv_request": {
+                    "file_path": "/home/niklas/Documents/SolidWorks_ASsembly_Instructor/examples/IpeG_Demonstrator/SWASI_Exports/assemblies/Assembly_IpeG_Demonstrator.json",
+                    "spawn_components": true
+                },
+                "srv_response": {
+                    "Error": "Client not available"
+                },
+                "message": "Client not available! Exited with error!",
+                "success": false
+            }
+        },
+        {
+            "0_Spawn Assembly From Description": {
+                "service_client": "/assembly_manager/create_assembly_instruction_from_description",
+                "service_type": "assembly_manager_interfaces/srv/CreateAssemblyInstructionFromDescription",
+                "srv_start_time": "2024-03-06_22:31:57.605632",
+                "srv_end_time": "2024-03-06_22:31:59.608410",
+                "execution_time": "0:00:02.002778",
+                "srv_request": {
+                    "file_path": "/home/niklas/Documents/SolidWorks_ASsembly_Instructor/examples/IpeG_Demonstrator/SWASI_Exports/assemblies/Assembly_IpeG_Demonstrator.json",
+                    "spawn_components": true
+                },
+                "srv_response": {
+                    "Error": "Client not available"
+                },
+                "message": "Client not available! Exited with error!",
+                "success": false
+            }
+        },
+        {
+            "0_Spawn Assembly From Description": {
+                "service_client": "/assembly_manager/create_assembly_instruction_from_description",
+                "service_type": "assembly_manager_interfaces/srv/CreateAssemblyInstructionFromDescription",
+                "srv_start_time": "2024-03-06_22:31:57.605632",
+                "srv_end_time": "2024-03-06_22:31:59.608410",
+                "execution_time": "0:00:02.002778",
+                "srv_request": {
+                    "file_path": "/home/niklas/Documents/SolidWorks_ASsembly_Instructor/examples/IpeG_Demonstrator/SWASI_Exports/assemblies/Assembly_IpeG_Demonstrator.json",
+                    "spawn_components": true
+                },
+                "srv_response": {
+                    "Error": "Client not available"
+                },
+                "message": "Client not available! Exited with error!",
+                "success": false
+            }
+        },
+        {
+            "0_Spawn Assembly From Description": {
+                "service_client": "/assembly_manager/create_assembly_instruction_from_description",
+                "service_type": "assembly_manager_interfaces/srv/CreateAssemblyInstructionFromDescription",
+                "srv_start_time": "2024-03-06_22:31:57.605632",
+                "srv_end_time": "2024-03-06_22:31:59.608410",
+                "execution_time": "0:00:02.002778",
+                "srv_request": {
+                    "file_path": "/home/niklas/Documents/SolidWorks_ASsembly_Instructor/examples/IpeG_Demonstrator/SWASI_Exports/assemblies/Assembly_IpeG_Demonstrator.json",
+                    "spawn_components": true
+                },
+                "srv_response": {
+                    "Error": "Client not available"
+                },
+                "message": "Client not available! Exited with error!",
+                "success": false
+            }
+        },
+        {
+            "0_Spawn Assembly From Description": {
+                "service_client": "/assembly_manager/create_assembly_instruction_from_description",
+                "service_type": "assembly_manager_interfaces/srv/CreateAssemblyInstructionFromDescription",
+                "srv_start_time": "2024-03-06_22:31:57.605632",
+                "srv_end_time": "2024-03-06_22:31:59.608410",
+                "execution_time": "0:00:02.002778",
+                "srv_request": {
+                    "file_path": "/home/niklas/Documents/SolidWorks_ASsembly_Instructor/examples/IpeG_Demonstrator/SWASI_Exports/assemblies/Assembly_IpeG_Demonstrator.json",
+                    "spawn_components": true
+                },
+                "srv_response": {
+                    "Error": "Client not available"
+                },
+                "message": "Client not available! Exited with error!",
+                "success": false
+            }
+        },
+        {
+            "0_Spawn Assembly From Description": {
+                "service_client": "/assembly_manager/create_assembly_instruction_from_description",
+                "service_type": "assembly_manager_interfaces/srv/CreateAssemblyInstructionFromDescription",
+                "srv_start_time": "2024-03-06_22:31:57.605632",
+                "srv_end_time": "2024-03-06_22:31:59.608410",
+                "execution_time": "0:00:02.002778",
+                "srv_request": {
+                    "file_path": "/home/niklas/Documents/SolidWorks_ASsembly_Instructor/examples/IpeG_Demonstrator/SWASI_Exports/assemblies/Assembly_IpeG_Demonstrator.json",
+                    "spawn_components": true
+                },
+                "srv_response": {
+                    "Error": "Client not available"
+                },
+                "message": "Client not available! Exited with error!",
+                "success": false
+            }
+        },
+        {
+            "0_Spawn Assembly From Description": {
+                "service_client": "/assembly_manager/create_assembly_instruction_from_description",
+                "service_type": "assembly_manager_interfaces/srv/CreateAssemblyInstructionFromDescription",
+                "srv_start_time": "2024-03-06_22:31:57.605632",
+                "srv_end_time": "2024-03-06_22:31:59.608410",
+                "execution_time": "0:00:02.002778",
+                "srv_request": {
+                    "file_path": "/home/niklas/Documents/SolidWorks_ASsembly_Instructor/examples/IpeG_Demonstrator/SWASI_Exports/assemblies/Assembly_IpeG_Demonstrator.json",
+                    "spawn_components": true
+                },
+                "srv_response": {
+                    "Error": "Client not available"
+                },
+                "message": "Client not available! Exited with error!",
+                "success": false
+            }
+        },
+        {
+            "0_Spawn Assembly From Description": {
+                "service_client": "/assembly_manager/create_assembly_instruction_from_description",
+                "service_type": "assembly_manager_interfaces/srv/CreateAssemblyInstructionFromDescription",
+                "srv_start_time": "2024-03-06_22:31:57.605632",
+                "srv_end_time": "2024-03-06_22:31:59.608410",
+                "execution_time": "0:00:02.002778",
+                "srv_request": {
+                    "file_path": "/home/niklas/Documents/SolidWorks_ASsembly_Instructor/examples/IpeG_Demonstrator/SWASI_Exports/assemblies/Assembly_IpeG_Demonstrator.json",
+                    "spawn_components": true
+                },
+                "srv_response": {
+                    "Error": "Client not available"
+                },
+                "message": "Client not available! Exited with error!",
+                "success": false
+            }
+        },
+        {
+            "0_Spawn Assembly From Description": {
+                "service_client": "/assembly_manager/create_assembly_instruction_from_description",
+                "service_type": "assembly_manager_interfaces/srv/CreateAssemblyInstructionFromDescription",
+                "srv_start_time": "2024-03-06_22:31:57.605632",
+                "srv_end_time": "2024-03-06_22:31:59.608410",
+                "execution_time": "0:00:02.002778",
+                "srv_request": {
+                    "file_path": "/home/niklas/Documents/SolidWorks_ASsembly_Instructor/examples/IpeG_Demonstrator/SWASI_Exports/assemblies/Assembly_IpeG_Demonstrator.json",
+                    "spawn_components": true
+                },
+                "srv_response": {
+                    "Error": "Client not available"
+                },
+                "message": "Client not available! Exited with error!",
+                "success": false
+            }
+        },
+        {
+            "18_/pm_vision_manager/StartVisionAssistant": {
+                "service_client": "/pm_vision_manager/StartVisionAssistant",
+                "service_type": "pm_vision_interfaces/srv/StartVisionAssistant",
+                "srv_start_time": "2024-03-06_23:16:29.422976",
+                "srv_end_time": "2024-03-06_23:16:29.446477",
+                "execution_time": "0:00:00.023501",
+                "srv_request": {
+                    "process_filename": "demo_pipeline.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "test",
+                    "db_cross_val_only": true,
+                    "run_cross_validation": true,
+                    "show_image_on_error": false,
+                    "step_through_images": true,
+                    "open_process_file": false
+                },
+                "srv_response": {
+                    "success": false,
+                    "process_uid": ""
+                },
+                "success": true
+            }
+        }
+    ]
+}

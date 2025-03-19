@@ -1,0 +1,173 @@
+{
+    "action_sequence_name": "Mount_IpeG_Demonstrator",
+    "action_log": [
+        {
+            "18_/pm_vision_manager/StartVisionAssistant": {
+                "service_client": "/pm_vision_manager/StartVisionAssistant",
+                "service_type": "pm_vision_interfaces/srv/StartVisionAssistant",
+                "srv_start_time": "2024-03-08_00:46:30.385341",
+                "srv_end_time": "2024-03-08_00:46:30.396151",
+                "execution_time": "0:00:00.010810",
+                "srv_request": {
+                    "process_filename": "process_demo.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "test",
+                    "db_cross_val_only": false,
+                    "run_cross_validation": false,
+                    "show_image_on_error": false,
+                    "step_through_images": false,
+                    "open_process_file": false
+                },
+                "srv_response": {
+                    "success": false,
+                    "process_uid": ""
+                },
+                "success": true
+            }
+        },
+        {
+            "18_/pm_vision_manager/StartVisionAssistant": {
+                "service_client": "/pm_vision_manager/StartVisionAssistant",
+                "service_type": "pm_vision_interfaces/srv/StartVisionAssistant",
+                "srv_start_time": "2024-03-08_00:46:30.385341",
+                "srv_end_time": "2024-03-08_00:46:30.396151",
+                "execution_time": "0:00:00.010810",
+                "srv_request": {
+                    "process_filename": "process_demo.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "test",
+                    "db_cross_val_only": false,
+                    "run_cross_validation": false,
+                    "show_image_on_error": false,
+                    "step_through_images": false,
+                    "open_process_file": false
+                },
+                "srv_response": {
+                    "success": false,
+                    "process_uid": ""
+                },
+                "success": true
+            }
+        },
+        {
+            "18_/pm_vision_manager/StartVisionAssistant": {
+                "service_client": "/pm_vision_manager/StartVisionAssistant",
+                "service_type": "pm_vision_interfaces/srv/StartVisionAssistant",
+                "srv_start_time": "2024-03-08_00:46:30.385341",
+                "srv_end_time": "2024-03-08_00:46:30.396151",
+                "execution_time": "0:00:00.010810",
+                "srv_request": {
+                    "process_filename": "process_demo.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "test",
+                    "db_cross_val_only": false,
+                    "run_cross_validation": false,
+                    "show_image_on_error": false,
+                    "step_through_images": false,
+                    "open_process_file": false
+                },
+                "srv_response": {
+                    "success": false,
+                    "process_uid": ""
+                },
+                "success": true
+            }
+        },
+        {
+            "18_/pm_vision_manager/StartVisionAssistant": {
+                "service_client": "/pm_vision_manager/StartVisionAssistant",
+                "service_type": "pm_vision_interfaces/srv/StartVisionAssistant",
+                "srv_start_time": "2024-03-08_00:46:30.385341",
+                "srv_end_time": "2024-03-08_00:46:30.396151",
+                "execution_time": "0:00:00.010810",
+                "srv_request": {
+                    "process_filename": "process_demo.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "test",
+                    "db_cross_val_only": false,
+                    "run_cross_validation": false,
+                    "show_image_on_error": false,
+                    "step_through_images": false,
+                    "open_process_file": false
+                },
+                "srv_response": {
+                    "success": false,
+                    "process_uid": ""
+                },
+                "success": true
+            }
+        },
+        {
+            "18_/pm_vision_manager/StartVisionAssistant": {
+                "service_client": "/pm_vision_manager/StartVisionAssistant",
+                "service_type": "pm_vision_interfaces/srv/StartVisionAssistant",
+                "srv_start_time": "2024-03-08_00:46:30.385341",
+                "srv_end_time": "2024-03-08_00:46:30.396151",
+                "execution_time": "0:00:00.010810",
+                "srv_request": {
+                    "process_filename": "process_demo.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "test",
+                    "db_cross_val_only": false,
+                    "run_cross_validation": false,
+                    "show_image_on_error": false,
+                    "step_through_images": false,
+                    "open_process_file": false
+                },
+                "srv_response": {
+                    "success": false,
+                    "process_uid": ""
+                },
+                "success": true
+            }
+        },
+        {
+            "18_/pm_vision_manager/StartVisionAssistant": {
+                "service_client": "/pm_vision_manager/StartVisionAssistant",
+                "service_type": "pm_vision_interfaces/srv/StartVisionAssistant",
+                "srv_start_time": "2024-03-08_00:46:30.385341",
+                "srv_end_time": "2024-03-08_00:46:30.396151",
+                "execution_time": "0:00:00.010810",
+                "srv_request": {
+                    "process_filename": "process_demo.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "test",
+                    "db_cross_val_only": false,
+                    "run_cross_validation": false,
+                    "show_image_on_error": false,
+                    "step_through_images": false,
+                    "open_process_file": false
+                },
+                "srv_response": {
+                    "success": false,
+                    "process_uid": ""
+                },
+                "success": true
+            }
+        },
+        {
+            "19_vision2": {
+                "service_client": "/pm_vision_manager/StartVisionAssistant",
+                "service_type": "pm_vision_interfaces/srv/StartVisionAssistant",
+                "srv_start_time": "2024-03-08_00:46:37.875915",
+                "srv_end_time": "2024-03-08_00:46:37.887099",
+                "execution_time": "0:00:00.011184",
+                "srv_request": {
+                    "process_filename": "process_demo.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "test2",
+                    "db_cross_val_only": false,
+                    "run_cross_validation": false,
+                    "show_image_on_error": false,
+                    "step_through_images": false,
+                    "open_process_file": false
+                },
+                "srv_response": {
+                    "success": false,
+                    "process_uid": ""
+                },
+                "success": false
+            }
+        }
+    ]
+}

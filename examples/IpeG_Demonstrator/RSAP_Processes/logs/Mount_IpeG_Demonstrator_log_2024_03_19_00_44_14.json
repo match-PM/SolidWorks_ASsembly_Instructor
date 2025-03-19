@@ -1,0 +1,40 @@
+{
+    "action_sequence_name": "Mount_IpeG_Demonstrator",
+    "action_log": [
+        {
+            "18_/pm_vision_manager/ExecuteVision": {
+                "service_client": "/pm_vision_manager/ExecuteVision",
+                "service_type": "pm_vision_interfaces/srv/ExecuteVision",
+                "srv_start_time": "2024-03-19_00:44:13.797321",
+                "srv_end_time": "2024-03-19_00:44:14.309835",
+                "execution_time": "0:00:00.512514",
+                "srv_request": {
+                    "process_filename": "process_demo.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "test",
+                    "image_display_time": 20,
+                    "run_cross_validation": true
+                },
+                "srv_response": {
+                    "success": true,
+                    "results_dict": "{'vision_process_name': 'process_demo.json', 'exec_timestamp': '19_03_2024_00_44_14', 'vision_OK': True, 'process_UID': 'test', 'image_name': 'OIG_19_03_2024_00_40_47_19_03_2024_00_43_35', 'vision_results': [{'Image saved:': '/home/niklas/ros2_ws/src/pm_vision_manager/pm_vision_manager/vision_db/process_demo/test_19_03_2024_00_44_14.png'}, {'Lines': [{'Point_1': {'axis_1': 1494.0, 'axis_2': -152.0}, 'Point_2': {'axis_1': 1548.0, 'axis_2': -152.0}, 'axis_1_suffix': 'x', 'axis_2_suffix': 'y', 'angle': 'to be added', 'length': 'to be added', 'Unit': 'um', 'angle_unit': 'degree'}]}, {'Circles': [{'axis_1': 325.0, 'axis_2': -125.0, 'axis_1_suffix': 'x', 'axis_2_suffix': 'y', 'radius': 330.0, 'Unit': 'um'}]}, {'Image saved:': '/home/niklas/ros2_ws/src/pm_vision_manager/pm_vision_manager/vision_db/process_demo/test_19_03_2024_00_44_14.png'}]}",
+                    "results_path": "/home/niklas/ros2_ws/src/pm_vision_manager/pm_vision_manager/vision_processes/process_demo_results_Webcam.json",
+                    "points": [
+                        {
+                            "x": 1.5,
+                            "y": 2.5,
+                            "z": 3.5
+                        },
+                        {
+                            "x": 4.5,
+                            "y": 5.5,
+                            "z": 6.5
+                        }
+                    ],
+                    "process_uid": "test"
+                },
+                "success": true
+            }
+        }
+    ]
+}

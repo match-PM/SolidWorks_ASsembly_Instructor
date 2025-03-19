@@ -1,0 +1,46 @@
+{
+    "action_sequence_name": "Mount_IpeG_Demonstrator",
+    "action_log": [
+        {
+            "18_/pm_vision_manager/ExecuteVision": {
+                "service_client": "/pm_vision_manager/ExecuteVision",
+                "service_type": "pm_vision_interfaces/srv/ExecuteVision",
+                "srv_start_time": "2024-04-23_13:45:20.759275",
+                "srv_end_time": "2024-04-23_13:45:21.271648",
+                "execution_time": "0:00:00.512373",
+                "srv_request": {
+                    "process_filename": "/process_demo.json",
+                    "camera_config_filename": "/webcam_config.yaml",
+                    "process_uid": "test",
+                    "image_display_time": 20,
+                    "run_cross_validation": false
+                },
+                "srv_response": {
+                    "success": true,
+                    "results_dict": "{'vision_process_name': '/process_demo.json', 'exec_timestamp': '23_04_2024_13_45_21', 'vision_OK': True, 'process_UID': 'test', 'vision_results': [{'Circles': [{'axis_1': 915.0, 'axis_2': 265.0, 'axis_1_suffix': 'x', 'axis_2_suffix': 'y', 'radius': 330.0, 'Unit': 'um'}]}]}",
+                    "results_path": "/home/niklas/ros2_ws/src/pm_vision_manager/pm_vision_manager/vision_processesprocess_demo_results_Webcam.json",
+                    "points": [],
+                    "vision_results": {
+                        "vision_ok": true,
+                        "process_name": "/process_demo.json",
+                        "process_uid": "test",
+                        "exec_timestamp": "23_04_2024_13_45_21",
+                        "cross_validation": {
+                            "image_source_name": "",
+                            "vision_ok": false,
+                            "failed_images": [],
+                            "numb_images": 0,
+                            "counter_error": 0
+                        },
+                        "points": [],
+                        "lines": [],
+                        "areas": [],
+                        "circles": []
+                    },
+                    "process_uid": "test"
+                },
+                "success": true
+            }
+        }
+    ]
+}

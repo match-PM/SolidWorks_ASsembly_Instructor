@@ -1,0 +1,41 @@
+{
+    "action_sequence_name": "Mount_IpeG_Demonstrator",
+    "action_log": [
+        {
+            "20_/pm_vision_manager/ExecuteVision": {
+                "service_client": "/pm_vision_manager/ExecuteVision",
+                "service_type": "pm_vision_interfaces/srv/ExecuteVision",
+                "srv_start_time": "2024-03-10_00:15:30.816128",
+                "srv_end_time": "2024-03-10_00:15:40.835585",
+                "execution_time": "0:00:10.019457",
+                "srv_request": {
+                    "process_filename": "process_demo.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "bla2",
+                    "db_cross_val_only": false,
+                    "image_display_time": 4,
+                    "run_cross_validation": false
+                },
+                "srv_response": {
+                    "success": true,
+                    "results_dict": "{}",
+                    "results_path": "None",
+                    "points": [
+                        {
+                            "x": 1.5,
+                            "y": 2.5,
+                            "z": 3.5
+                        },
+                        {
+                            "x": 4.5,
+                            "y": 5.5,
+                            "z": 6.5
+                        }
+                    ],
+                    "process_uid": "bla2"
+                },
+                "success": true
+            }
+        }
+    ]
+}

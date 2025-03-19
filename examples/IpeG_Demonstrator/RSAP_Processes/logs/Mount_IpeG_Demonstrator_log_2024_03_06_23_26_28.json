@@ -1,0 +1,29 @@
+{
+    "action_sequence_name": "Mount_IpeG_Demonstrator",
+    "action_log": [
+        {
+            "18_/pm_vision_manager/StartVisionAssistant": {
+                "service_client": "/pm_vision_manager/StartVisionAssistant",
+                "service_type": "pm_vision_interfaces/srv/StartVisionAssistant",
+                "srv_start_time": "2024-03-06_23:26:26.210540",
+                "srv_end_time": "2024-03-06_23:26:28.213686",
+                "execution_time": "0:00:02.003146",
+                "srv_request": {
+                    "process_filename": "demo_pipeline.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "test",
+                    "db_cross_val_only": true,
+                    "run_cross_validation": true,
+                    "show_image_on_error": false,
+                    "step_through_images": true,
+                    "open_process_file": false
+                },
+                "srv_response": {
+                    "Error": "Client not available"
+                },
+                "success": false,
+                "message": "Client not available! Exited with error!"
+            }
+        }
+    ]
+}

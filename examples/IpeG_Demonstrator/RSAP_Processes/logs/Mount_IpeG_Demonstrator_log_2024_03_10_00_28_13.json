@@ -1,0 +1,108 @@
+{
+    "action_sequence_name": "Mount_IpeG_Demonstrator",
+    "action_log": [
+        {
+            "18_/pm_vision_manager/StartVisionAssistant": {
+                "service_client": "/pm_vision_manager/StartVisionAssistant",
+                "service_type": "pm_vision_interfaces/srv/StartVisionAssistant",
+                "srv_start_time": "2024-03-10_00:27:53.380058",
+                "srv_end_time": "2024-03-10_00:27:53.392640",
+                "execution_time": "0:00:00.012582",
+                "srv_request": {
+                    "process_filename": "process_demo.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "test2",
+                    "db_cross_val_only": false,
+                    "run_cross_validation": true,
+                    "show_image_on_error": false,
+                    "step_through_images": true,
+                    "open_process_file": false
+                },
+                "srv_response": {
+                    "success": false,
+                    "process_uid": "test2"
+                },
+                "success": true,
+                "message": "Client not available! Exited with error!"
+            }
+        },
+        {
+            "19_/pm_vision_manager/StopVisionAssistant": {
+                "service_client": "/pm_vision_manager/StopVisionAssistant",
+                "service_type": "pm_vision_interfaces/srv/StopVisionAssistant",
+                "srv_start_time": "2024-03-10_00:25:34.037676",
+                "srv_end_time": "2024-03-10_00:25:37.038444",
+                "execution_time": "0:00:03.000768",
+                "srv_request": {
+                    "process_uid": "test2"
+                },
+                "srv_response": {
+                    "success": false,
+                    "process_uid": "test2"
+                },
+                "success": false
+            }
+        },
+        {
+            "18_/pm_vision_manager/StartVisionAssistant": {
+                "service_client": "/pm_vision_manager/StartVisionAssistant",
+                "service_type": "pm_vision_interfaces/srv/StartVisionAssistant",
+                "srv_start_time": "2024-03-10_00:27:53.380058",
+                "srv_end_time": "2024-03-10_00:27:53.392640",
+                "execution_time": "0:00:00.012582",
+                "srv_request": {
+                    "process_filename": "process_demo.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "test2",
+                    "db_cross_val_only": false,
+                    "run_cross_validation": true,
+                    "show_image_on_error": false,
+                    "step_through_images": true,
+                    "open_process_file": false
+                },
+                "srv_response": {
+                    "success": false,
+                    "process_uid": "test2"
+                },
+                "success": true,
+                "message": "Client not available! Exited with error!"
+            }
+        },
+        {
+            "20_/pm_vision_manager/ExecuteVision": {
+                "service_client": "/pm_vision_manager/ExecuteVision",
+                "service_type": "pm_vision_interfaces/srv/ExecuteVision",
+                "srv_start_time": "2024-03-10_00:28:02.871507",
+                "srv_end_time": "2024-03-10_00:28:13.872352",
+                "execution_time": "0:00:11.000845",
+                "srv_request": {
+                    "process_filename": "process_demo.json",
+                    "camera_config_filename": "webcam_config.yaml",
+                    "process_uid": "bla2",
+                    "db_cross_val_only": false,
+                    "image_display_time": 4,
+                    "run_cross_validation": false
+                },
+                "srv_response": {
+                    "success": true,
+                    "results_dict": "{'vision_process_name': 'process_demo.json', 'exec_timestamp': '10_03_2024_00_22_34', 'vision_OK': True, 'process_UID': 'bla2', 'VisionOK_cross_val': True, 'failed_images_cross_val': [], 'vision_results': [{'Image saved:': '/home/niklas/ros2_ws/src/pm_vision_manager/pm_vision_manager/vision_db/process_demo/bla2_10_03_2024_00_22_32.png'}]}",
+                    "results_path": "/home/niklas/ros2_ws/src/pm_vision_manager/pm_vision_manager/vision_processes/process_demo_results_Webcam.json",
+                    "points": [
+                        {
+                            "x": 1.5,
+                            "y": 2.5,
+                            "z": 3.5
+                        },
+                        {
+                            "x": 4.5,
+                            "y": 5.5,
+                            "z": 6.5
+                        }
+                    ],
+                    "process_uid": "bla2"
+                },
+                "success": false
+            }
+        }
+    ]
+}

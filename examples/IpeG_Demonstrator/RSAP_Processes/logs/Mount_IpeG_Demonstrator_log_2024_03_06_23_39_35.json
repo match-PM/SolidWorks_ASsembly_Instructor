@@ -1,0 +1,36 @@
+{
+    "action_sequence_name": "Mount_IpeG_Demonstrator",
+    "action_log": [
+        {
+            "19_/pm_vision_manager/StopVisionAssistant": {
+                "service_client": "/pm_vision_manager/StopVisionAssistant",
+                "service_type": "pm_vision_interfaces/srv/StopVisionAssistant",
+                "srv_start_time": "2024-03-06_23:39:31.897811",
+                "srv_end_time": "2024-03-06_23:39:32.399887",
+                "execution_time": "0:00:00.502076",
+                "srv_request": {
+                    "process_uid": "test"
+                },
+                "srv_response": {
+                    "success": true,
+                    "process_uid": "test"
+                },
+                "success": true
+            }
+        },
+        {
+            "20_/pm_vision_manager/GetRunningAssistants": {
+                "service_client": "/pm_vision_manager/GetRunningAssistants",
+                "service_type": "pm_vision_interfaces/srv/GetRunningAssistants",
+                "srv_start_time": "2024-03-06_23:39:35.216997",
+                "srv_end_time": "2024-03-06_23:39:35.218595",
+                "execution_time": "0:00:00.001598",
+                "srv_request": {},
+                "srv_response": {
+                    "running_assistants": []
+                },
+                "success": true
+            }
+        }
+    ]
+}
