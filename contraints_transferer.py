@@ -3,7 +3,10 @@ import json
 path_target_file = r'C:\Users\terei\NTerei\Programmierung\SolidWorks_ASsembly_Instructor\SolidWorks_ASsembly_Instructor\examples\SWASI_6D_Example_Ideal\SWASI_Exports\components\Glas_6D_ideal.json'
 path_source_file = r'C:\Users\terei\NTerei\Programmierung\SolidWorks_ASsembly_Instructor\SolidWorks_ASsembly_Instructor\examples\SWASI_6D_Example\SWASI_Exports\components\Glas_6D_tol.json'
 
-path_target_file_test = r'C:\Users\terei\NTerei\Programmierung\SolidWorks_ASsembly_Instructor\SolidWorks_ASsembly_Instructor\examples\SWASI_6D_Example_Ideal\SWASI_Exports\components\Glas_6D_ideal_test.json'
+#path_target_file_test = r'C:\Users\terei\NTerei\Programmierung\SolidWorks_ASsembly_Instructor\SolidWorks_ASsembly_Instructor\examples\SWASI_6D_Example_Ideal\SWASI_Exports\components\Glas_6D_ideal_test.json'
+
+path_target_file = r'/home/mll/SolidWorks_ASsembly_Instructor/examples/SWASI_6D_Example_Ideal/SWASI_Exports/components/UFC_6D_ideal.json'
+path_source_file = r'/home/mll/SolidWorks_ASsembly_Instructor/examples/SWASI_6D_Example/SWASI_Exports/components/UFC_6D_tol.json'
 
 # open json file in path
 with open(path_target_file, 'r') as file:

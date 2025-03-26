@@ -1,0 +1,22 @@
+{
+    "action_sequence_name": "Tolerance_Measurement_SWASI_Paper",
+    "action_log": [
+        {
+            "3_/smaract_hexapod_hw_interface/add_two_ints": {
+                "service_client": "/smaract_hexapod_hw_interface/add_two_ints",
+                "service_type": "example_interfaces/srv/AddTwoInts",
+                "srv_start_time": "2024-05-15_17:07:01.776488",
+                "srv_end_time": "2024-05-15_17:07:01.795068",
+                "execution_time": "0:00:00.018580",
+                "srv_request": {
+                    "a": 3,
+                    "b": 4
+                },
+                "srv_response": {
+                    "sum": 7
+                },
+                "success": true
+            }
+        }
+    ]
+}
