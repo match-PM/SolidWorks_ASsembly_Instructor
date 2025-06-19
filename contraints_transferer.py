@@ -1,12 +1,15 @@
 import json
 
-path_target_file = r'C:\Users\terei\NTerei\Programmierung\SolidWorks_ASsembly_Instructor\SolidWorks_ASsembly_Instructor\examples\SWASI_6D_Example_Ideal\SWASI_Exports\components\Glas_6D_ideal.json'
-path_source_file = r'C:\Users\terei\NTerei\Programmierung\SolidWorks_ASsembly_Instructor\SolidWorks_ASsembly_Instructor\examples\SWASI_6D_Example\SWASI_Exports\components\Glas_6D_tol.json'
+path_target_file = r'C:\Users\terei\Desktop\components\SH0001400066_00015_11020065_P39_Modulcarrier_SWASI.json'
+path_source_file = r'C:\Users\terei\Desktop\components\SH0001400066_00015_11020065_P39_Modulcarrier_SWASI_const.json'
+
+path_target_file = r'C:\Users\terei\Desktop\components\SH0001352249_00006_11020051_P39_Sensorboard_SWASI.json'
+path_source_file = r'C:\Users\terei\Desktop\components\SH0001352249_00006_11020051_P39_Sensorboard_SWASI_const.json'
 
 #path_target_file_test = r'C:\Users\terei\NTerei\Programmierung\SolidWorks_ASsembly_Instructor\SolidWorks_ASsembly_Instructor\examples\SWASI_6D_Example_Ideal\SWASI_Exports\components\Glas_6D_ideal_test.json'
 
-path_target_file = r'/home/mll/SolidWorks_ASsembly_Instructor/examples/SWASI_6D_Example_Ideal/SWASI_Exports/components/UFC_6D_ideal.json'
-path_source_file = r'/home/mll/SolidWorks_ASsembly_Instructor/examples/SWASI_6D_Example/SWASI_Exports/components/UFC_6D_tol.json'
+#path_target_file = r'/home/mll/SolidWorks_ASsembly_Instructor/examples/SWASI_6D_Example_Ideal/SWASI_Exports/components/UFC_6D_ideal.json'
+#path_source_file = r'/home/mll/SolidWorks_ASsembly_Instructor/examples/SWASI_6D_Example/SWASI_Exports/components/UFC_6D_tol.json'
 
 # open json file in path
 with open(path_target_file, 'r') as file:

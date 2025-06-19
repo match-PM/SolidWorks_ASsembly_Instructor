@@ -55,6 +55,21 @@
             }
         }
 
+        public int GetComponentIndex(string ComponentName)
+        {
+            if (component_1 == ComponentName)
+            {
+                return 1;
+            }
+            else if (component_2 == ComponentName)
+            {
+                return 2;
+            }
+            else
+            {
+                return 0; // Not found
+            }
+        }
 
 
         public bool SetName()

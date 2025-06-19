@@ -148,6 +148,7 @@ namespace SolidWorks_ASsembly_Instructor
                     {
                         outputTkn.Add(nameTkn1);
                     }
+
                 }
                 else if (nameTkn1 != null)
                 {

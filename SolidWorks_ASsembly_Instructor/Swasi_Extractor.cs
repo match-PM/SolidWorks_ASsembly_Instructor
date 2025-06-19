@@ -873,9 +873,19 @@ namespace SolidWorks_ASsembly_Instructor
                         Log($"Can't determin moveComponent_1, because of {ex.Message}", "Error");
                     }
 
+                    int component_1_index = MountingDesc.assemblyConstraints[ConstraintIndex].GetComponentIndex(ComponentNames[0]);
+
+                    if (component_1_index == 0)
+                    {
+                        Log($"Error while extracting feature {Feature.Name}, component {ComponentNames[0]} not found in MountingDescription. Contact Maintainer", "Error");
+                        return MountingDesc;
+                    }   
+      
+
                     object _Feature = Feature.GetDefinition();
                     string[] PlaneNames = new string[] { null, null };
-
+                    string plane_1 = "";
+                    string plane_2 = "";
                     // If feature is a IDistanceMateFeatureData
                     if (_Feature is IDistanceMateFeatureData)
                     {
@@ -891,8 +901,27 @@ namespace SolidWorks_ASsembly_Instructor
                             }
                         }
 
+                        if (component_1_index == 1)
+                        {
+                            plane_1 = PlaneNames[0].Replace(SWASI_IDENTIFIER, "");
+                            plane_2 = PlaneNames[1].Replace(SWASI_IDENTIFIER, "");
+                           // Log($"Case 1", "Error");
+                        }
+                        if (component_1_index == 2)
+                        {
+                            plane_1 = PlaneNames[1].Replace(SWASI_IDENTIFIER, "");
+                            plane_2 = PlaneNames[0].Replace(SWASI_IDENTIFIER, "");
+                            //Log($"Case 2", "Error");
+                        }
+                        //Log($"Component 1 {ComponentNames[0]}", "Error");
+                        //Log($"Component 2 {ComponentNames[1]}", "Error");
+                        //Log($"Plane 1 {plane_1}", "Error");
+                        //Log($"Plane 2 {plane_2}", "Error");
+
                         // Set the plane names to the Description, returns the index at which the Plane match has been inserted (could only be 1, 2, 3, zero in case it could not be added)
-                        var Output = MountingDesc.assemblyConstraints[ConstraintIndex].description.SetPlaneMatch(PlaneNames[0].Replace(SWASI_IDENTIFIER, ""), PlaneNames[1].Replace(SWASI_IDENTIFIER, ""));
+                        //var Output = MountingDesc.assemblyConstraints[ConstraintIndex].description.SetPlaneMatch(PlaneNames[0].Replace(SWASI_IDENTIFIER, ""), PlaneNames[1].Replace(SWASI_IDENTIFIER, ""));
+                        var Output = MountingDesc.assemblyConstraints[ConstraintIndex].description.SetPlaneMatch(plane_1, plane_2);
+
                         PlaneMatchIndex = Output.Item1;
                         SetSuccess = Output.Item2;
 
@@ -927,12 +956,33 @@ namespace SolidWorks_ASsembly_Instructor
                             }
                         }
 
+
                         //int PlaneMatchIndex = -1;
                         SetSuccess = false;
 
+                        if (component_1_index == 1)
+                        {
+                            plane_1 = PlaneNames[0].Replace(SWASI_IDENTIFIER, "");
+                            plane_2 = PlaneNames[1].Replace(SWASI_IDENTIFIER, "");
+                            //Log($"Case 1", "Error");
+                        }
+                        if (component_1_index == 2)
+                        {
+                            plane_1 = PlaneNames[1].Replace(SWASI_IDENTIFIER, "");
+                            plane_2 = PlaneNames[0].Replace(SWASI_IDENTIFIER, "");
+                            //Log($"Case 2", "Error");
+                        }
+
+                        //Log($"Component 1 {ComponentNames[0]}", "Error");
+                        //Log($"Component 2 {ComponentNames[1]}", "Error");
+                        //Log($"Plane 1 {plane_1}", "Error");
+                        //Log($"Plane 2 {plane_2}", "Error");
+
                         if (PlaneNames[0].Contains(SWASI_IDENTIFIER) && PlaneNames[0].Contains(SWASI_IDENTIFIER))
                         {
-                            var Output = MountingDesc.assemblyConstraints[ConstraintIndex].description.SetPlaneMatch(PlaneNames[0].Replace(SWASI_IDENTIFIER, ""), PlaneNames[1].Replace(SWASI_IDENTIFIER, ""));
+                            //var Output = MountingDesc.assemblyConstraints[ConstraintIndex].description.SetPlaneMatch(PlaneNames[0].Replace(SWASI_IDENTIFIER, ""), PlaneNames[1].Replace(SWASI_IDENTIFIER, ""));
+                            var Output = MountingDesc.assemblyConstraints[ConstraintIndex].description.SetPlaneMatch(plane_1, plane_2);
+
                             PlaneMatchIndex = Output.Item1;
                             SetSuccess = Output.Item2;
                         }
