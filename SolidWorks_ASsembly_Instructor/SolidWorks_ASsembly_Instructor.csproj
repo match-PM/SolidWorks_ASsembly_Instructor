@@ -94,6 +94,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JsonHelper.cs" />
+    <Compile Include="Json\RefFrameProperties.cs" />
+    <Compile Include="Json\RefVisionFrameDescription.cs" />
     <Compile Include="Swasi_Extractor.cs" />
     <Compile Include="Json\ComponentDescription.cs" />
     <Compile Include="Json\MountingReferences.cs" />

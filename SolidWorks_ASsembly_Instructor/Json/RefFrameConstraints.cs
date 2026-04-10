@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SolidWorks_ASsembly_Instructor;
+using System.Collections.Generic;
 
 namespace SolidWorks_ASsembly_Instructor
 {
@@ -70,5 +71,17 @@ public class RefFrameInPlaneConstraint
         refFrameNames = new List<string>();
         planeOffset = 0;
         normalAxis = "z";
+    }
+}
+
+public class RefFrameTransformConstraint
+{
+    public string refFrame;
+    public CoordinateSystemDescription transform;
+
+    public RefFrameTransformConstraint()
+    {
+        refFrame = "";
+        transform = new CoordinateSystemDescription();
     }
 }

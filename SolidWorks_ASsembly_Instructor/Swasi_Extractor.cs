@@ -17,6 +17,15 @@ namespace SolidWorks_ASsembly_Instructor
     {
         private const string SWASI_IDENTIFIER = "SWASI_";
         private const string SWASI_ORIGIN_IDENTIFIER = "SWASI_Origin_";
+        private const string SWASI_VISION_IDENTIFIER = "Vision";
+        private const string SWASI_LASER_IDENTIFIER = "Laser";
+        private const string SWASI_ASS_TARGET_IDENTIFIER = "Target";
+        private const string SWASI_ASS_ASSEMBLY_IDENTIFIER = "Assembly";
+        private const string SWASI_GLUE_PT_IDENTIFIER = "Glue";
+        private const string SWASI_GRIP_IDENTIFIER = "Grip";
+
+
+
 
         private SldWorks app = null;
         private ModelDoc2 activeDoc = null;
@@ -58,7 +67,9 @@ namespace SolidWorks_ASsembly_Instructor
             try
             {
                 // Check if AssemblyDocument has been loaded.
-                activeDoc = app.ActiveDoc as ModelDoc2;     // Top-level Assembly
+                //activeDoc = app.ActiveDoc as ModelDoc2;     // Top-level Assembly
+                activeDoc = app.IActiveDoc2 as ModelDoc2;     // Top-level Assembly
+
                 if (activeDoc == null)
                 {
                     app.SendMsgToUser("No active document found.");
@@ -89,14 +100,40 @@ namespace SolidWorks_ASsembly_Instructor
                 {
                     currentDoc = ModDoc;
 
+
+                    int componentType;
+
+                    try
+                    {
+                        componentType = currentDoc.GetType();
+                    }
+                    catch (Exception ex)
+                    {
+                        //Log(ex.Message, "Error");
+                        Log($"Could not get valid type. Component supressed?", "warning");
+                        continue;
+                    }
+
+
+
                     // if this ModDoc is the first in list, it is the main assembly and is treated normaly
                     bool isMainAssembly = checkIfMainAssembly(modelDoc2s, ModDoc);
-
-                    mainAssamblyName = currentDoc.GetTitle().Split('.')[0];    // Name of folder
-                    int componentType = currentDoc.GetType();
+                    string title;
 
                     if (componentType == (int)swDocumentTypes_e.swDocPART || componentType == (int)swDocumentTypes_e.swDocASSEMBLY)
                     {
+
+                        if (string.IsNullOrEmpty(currentDoc.GetTitle()))
+                        {
+                            title = "could not load title.";
+                        }
+                        else
+                        {
+                            title = currentDoc.GetTitle();
+                        }
+
+                        mainAssamblyName = title.Split('.')[0];
+
                         FeatureManager swFeatureManager = currentDoc.FeatureManager;
                         MountingDescription mountingDescription = new MountingDescription();
 
@@ -145,12 +182,16 @@ namespace SolidWorks_ASsembly_Instructor
                                 else
                                 {
                                     PartDoc swPartRes;
-                                    swPartRes = ConvertCurrentDocToPart(); // XX Vielleicht etwas ungeschickt das mit der globalen Variable zu machen, sollte so aber erstmal funktionieren
-                                    modelDoc2s.Append(swPartRes as ModelDoc2);
+                                    swPartRes = ConvertCurrentDocToPart();
+                                    
+                                    // Check if conversion was successful
                                     if (swPartRes == null)
                                     {
-                                        Log("Could'nt convert assembly to part");
+                                        Log("Could not convert assembly to part. Skipping this component.", "Error");
+                                        continue;
                                     }
+
+                                    modelDoc2s.Append(swPartRes as ModelDoc2);
 
                                     fileExportPath = componentsPath;
                                     Component.mountingDescription = mountingDescription;
@@ -285,93 +326,147 @@ namespace SolidWorks_ASsembly_Instructor
         private PartDoc ConvertCurrentDocToPart()
         {
             PartDoc swPartRes = null;
-            // Ensure the document is active
-            app.ActivateDoc2(currentDoc.GetTitle(), true, 0);
-
-            // Select all entities in the document
-            ModelDocExtension swCurrentDocExt = currentDoc.Extension;
-            swCurrentDocExt.SelectAll();
-
-            SelectionMgr swSelMgr = (SelectionMgr)currentDoc.SelectionManager;
-
-            int componentCount = swSelMgr.GetSelectedObjectCount2(-1);
-
-            List<Component2> swComponents = new List<Component2>();
-            for (int i = 1; i <= componentCount; i++)
+            try
             {
-                Component2 swComp = (Component2)swSelMgr.GetSelectedObjectsComponent2(i);
-                if (swComp != null)
+                // Ensure the document is active
+                if (currentDoc == null)
                 {
-                    swComponents.Add(swComp);
-                }
-            }
-
-            List<MathTransform> swXforms = new List<MathTransform>();
-            List<Body2> swBodys = new List<Body2>();
-            List<Body2> swBodyCopys = new List<Body2>();
-            List<bool> bRets = new List<bool>();
-
-            foreach (Component2 swComp in swComponents)
-            {
-                MathTransform swXform = swComp.Transform2;
-                swXforms.Add(swXform);
-
-                Body2 swBody = (Body2)swComp.GetBody();
-                swBodys.Add(swBody);
-
-                Body2 swBodyCopy = (Body2)swBody.Copy();
-                swBodyCopys.Add(swBodyCopy);
-
-                bool bRet = swBodyCopy.ApplyTransform(swXform);
-                bRets.Add(bRet);
-            }
-
-            object[] combBodyRes = null;
-
-            if (swBodyCopys.Count > 0)
-            {
-                Body2 combinedBody = swBodyCopys[0];
-
-                for (int i = 1; i < swBodyCopys.Count; i++)
-                {
-                    combBodyRes = (object[])combinedBody.Operations2((int)swBodyOperationType_e.SWBODYADD, swBodyCopys[i], out int nRetval);
+                    Log("Error: Current document is null", "Error");
+                    return null;
                 }
 
-                if (combinedBody != null)
+                app.ActivateDoc2(currentDoc.GetTitle(), true, 0);
+
+                // Select all entities in the document
+                ModelDocExtension swCurrentDocExt = currentDoc.Extension;
+                swCurrentDocExt.SelectAll();
+
+                SelectionMgr swSelMgr = (SelectionMgr)currentDoc.SelectionManager;
+
+                int componentCount = swSelMgr.GetSelectedObjectCount2(-1);
+
+                List<Component2> swComponents = new List<Component2>();
+                for (int i = 1; i <= componentCount; i++)
                 {
-                    Body2 swBody = default(Body2);
-                    swBody = (Body2)combBodyRes[0];
+                    Component2 swComp = (Component2)swSelMgr.GetSelectedObjectsComponent2(i);
+                    if (swComp != null)
+                    {
+                        swComponents.Add(swComp);
+                    }
+                }
 
-                    string revNumber = app.RevisionNumber();
-                    // split the revision number to get the last part
-                    string[] revNumberParts = revNumber.Split('.');
+                List<MathTransform> swXforms = new List<MathTransform>();
+                List<Body2> swBodys = new List<Body2>();
+                List<Body2> swBodyCopys = new List<Body2>();
+                List<bool> bRets = new List<bool>();
 
-                    //XX Hier muss der Pfad zum Template angepasst werden
+                foreach (Component2 swComp in swComponents)
+                {
+                    MathTransform swXform = swComp.Transform2;
+                    swXforms.Add(swXform);
 
-                    //convert string to int
-                    int version = Convert.ToInt32(revNumberParts[0])+2020-28;
-                    Log("Template version: " + version);
-                    string template_path = @"C:\ProgramData\SolidWorks\SOLIDWORKS " + Convert.ToString(version) + @"\templates\Teil.prtdot";
+                    Body2 swBody = (Body2)swComp.GetBody();
+                    if (swBody != null)
+                    {
+                        swBodys.Add(swBody);
 
-                    swPartRes = (PartDoc)app.NewDocument(template_path, (int)swDwgPaperSizes_e.swDwgPaperA4size, 0, 0);
+                        Body2 swBodyCopy = (Body2)swBody.Copy();
+                        if (swBodyCopy != null)
+                        {
+                            swBodyCopys.Add(swBodyCopy);
 
+                            bool bRet = swBodyCopy.ApplyTransform(swXform);
+                            bRets.Add(bRet);
+                        }
+                    }
+                }
 
-                    Feature swFeatRes = swPartRes.CreateFeatureFromBody3(swBody, false, (int)swCreateFeatureBodyOpts_e.swCreateFeatureBodyCheck + (int)swCreateFeatureBodyOpts_e.swCreateFeatureBodySimplify);
-                    System.Diagnostics.Debug.Assert(swFeatRes != null);
+                object[] combBodyRes = null;
 
+                if (swBodyCopys.Count > 0)
+                {
+                    Body2 combinedBody = swBodyCopys[0];
 
-                    // set the main document active again
-                    //app.ActivateDoc2(activeDoc.GetTitle(), false, 0);
-                    Log("Assembly converted to Part successfully!");
+                    // Combine all bodies
+                    for (int i = 1; i < swBodyCopys.Count; i++)
+                    {
+                        combBodyRes = (object[])combinedBody.Operations2((int)swBodyOperationType_e.SWBODYADD, swBodyCopys[i], out int nRetval);
+                        
+                        // Check if the operation was successful
+                        if (combBodyRes == null || combBodyRes.Length == 0)
+                        {
+                            Log($"Error combining body {i}: Operations2 returned null or empty result", "Error");
+                            return null;
+                        }
+                        
+                        // Update the combined body for the next iteration
+                        combinedBody = (Body2)combBodyRes[0];
+                        if (combinedBody == null)
+                        {
+                            Log($"Error: Combined body at iteration {i} is null", "Error");
+                            return null;
+                        }
+                    }
+
+                    // Final combined body
+                    if (combBodyRes != null && combBodyRes.Length > 0)
+                    {
+                        Body2 swBody = (Body2)combBodyRes[0];
+
+                        if (swBody != null)
+                        {
+                            string revNumber = app.RevisionNumber();
+                            // split the revision number to get the last part
+                            string[] revNumberParts = revNumber.Split('.');
+
+                            //XX Hier muss der Pfad zum Template angepasst werden
+
+                            //convert string to int
+                            int version = Convert.ToInt32(revNumberParts[0]) + 2020 - 28;
+                            Log("Template version: " + version);
+                            string template_path = @"C:\ProgramData\SolidWorks\SOLIDWORKS " + Convert.ToString(version) + @"\templates\Teil.prtdot";
+
+                            swPartRes = (PartDoc)app.NewDocument(template_path, (int)swDwgPaperSizes_e.swDwgPaperA4size, 0, 0);
+
+                            if (swPartRes != null)
+                            {
+                                Feature swFeatRes = swPartRes.CreateFeatureFromBody3(swBody, false, (int)swCreateFeatureBodyOpts_e.swCreateFeatureBodyCheck + (int)swCreateFeatureBodyOpts_e.swCreateFeatureBodySimplify);
+                                
+                                if (swFeatRes != null)
+                                {
+                                    Log("Assembly converted to Part successfully!");
+                                }
+                                else
+                                {
+                                    Log("Error: CreateFeatureFromBody3 returned null", "Error");
+                                    return null;
+                                }
+                            }
+                            else
+                            {
+                                Log("Error: Could not create new part document from template", "Error");
+                                return null;
+                            }
+                        }
+                        else
+                        {
+                            Log("Error: Combined body is null after assembly", "Error");
+                        }
+                    }
+                    else
+                    {
+                        Log("Error combining body meshes: combBodyRes is null or empty.", "Error");
+                    }
                 }
                 else
                 {
-                    Log("Error combining body meshes.");
+                    Log("No valid bodies found.", "Error");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Log("No valid bodies found.");
+                Log($"Exception in ConvertCurrentDocToPart: {ex.Message}", "Error");
+                Log($"Stack trace: {ex.StackTrace}", "Error");
             }
 
             return swPartRes;
@@ -393,6 +488,13 @@ namespace SolidWorks_ASsembly_Instructor
             Dictionary<string, string> guidMap = new Dictionary<string, string>();
             foreach (ModelDoc2 ModDoc in modelDoc2s)
             {
+                if (ModDoc == null)
+                    continue; // skip null entries
+
+                string title = ModDoc.GetTitle();
+                if (string.IsNullOrEmpty(title))
+                    continue; // safety: skip if title is empty
+
                 if (!guidMap.ContainsKey(ModDoc.GetTitle().Split('.')[0]))
                 {
                     guidMap.Add(ModDoc.GetTitle().Split('.')[0], Guid.NewGuid().ToString());
@@ -491,6 +593,9 @@ namespace SolidWorks_ASsembly_Instructor
                 {
                     Feature feature = (Feature)featureObj;
 
+                    //Log($"Checking feature: {feature.Name} of type {feature.GetTypeName2()}");
+
+                    // Check for CoordSys origin
                     if (feature.GetTypeName2() == "CoordSys" && feature.Name.Contains(SWASI_ORIGIN_IDENTIFIER))
                     {
                         if (!extractSuccess)
@@ -505,20 +610,83 @@ namespace SolidWorks_ASsembly_Instructor
 
                             coordSys.ReleaseSelectionAccess();
                             extractSuccess = true;
-
-                            //Moved to somewhere else
-                            //string exportPath = ((int)currentDoc.GetType() == (int)swDocumentTypes_e.swDocPART) ? componentsPath : assembliesPath;
-
-                            //bool saveSuccess = SaveToSTL(app, currentDoc, exportPath, mainAssamblyName, feature.Name, (int)swLengthUnit_e.swMETER);
-
-                            //if (!saveSuccess)
-                            //{
-                            //    Log($"Error saving STL for SWASI Origin: {feature.Name}", "Error");
-                            //}
                         }
                         else
                         {
-                            // The for loop should only find one SWASI origin. If it finds two, it should return false
+                            // Multiple origins found - error condition
+                            Log($"Error finding SWASI Origin. There have been defined two origins with the naming convention.", "Error");
+                            return (false, swasiOrigin);
+                        }
+                    }
+                    // Check for OriginProfileFeature origin
+                    else if (feature.GetTypeName2() == "OriginProfileFeature" && feature.Name.Contains(SWASI_ORIGIN_IDENTIFIER))
+                    {
+                        if (!extractSuccess)
+                        {
+                            try
+                            {
+                                // For OriginProfileFeature, attempt to get the transform from the feature itself
+                                // or from the reference coordinate system it may contain
+                                IFeature specificFeature = feature.GetSpecificFeature2();
+                                
+                                // Try to get transform data - OriginProfileFeature may have associated geometry
+                                MathTransform transform = null;
+                                
+                                // Check if the feature has a coordinate system associated with it
+                                if (specificFeature != null && specificFeature is IRefPlane)
+                                {
+                                    IRefPlane refPlane = (IRefPlane)specificFeature;
+                                    transform = refPlane.Transform;
+                                }
+                                else
+                                {
+                                    // Try to get from the feature definition if available
+                                    object featureDef = feature.GetDefinition();
+                                    
+                                    // For origin profile features, we may need to extract position differently
+                                    // This is a fallback - the actual transform should come from the profile geometry
+                                    if (featureDef != null)
+                                    {
+                                        try
+                                        {
+                                            // Attempt to access transform through reflection or dynamic typing
+                                            dynamic defDynamic = featureDef;
+                                            transform = defDynamic.Transform as MathTransform;
+                                        }
+                                        catch
+                                        {
+                                            // If Transform property doesn't exist, log a warning
+                                            Log($"Warning: Could not extract transform from OriginProfileFeature '{feature.Name}' - using default identity transform", "warning");
+                                            // Use identity transform as fallback
+                                            transform = null;
+                                        }
+                                    }
+                                }
+
+                                if (transform != null)
+                                {
+                                    swasiOrigin.fromArrayData(transform.ArrayData);
+                                }
+                                else
+                                {
+                                    // Use identity transform if no transform could be extracted
+                                    Log($"Using identity transform for OriginProfileFeature '{feature.Name}'", "debug");
+                                }
+
+                                swasiOrigin.name = feature.Name.Replace(SWASI_ORIGIN_IDENTIFIER, "");
+                                Log($"Found SWASI Origin (OriginProfileFeature): {swasiOrigin.name}");
+
+                                extractSuccess = true;
+                            }
+                            catch (Exception ex)
+                            {
+                                Log($"Error extracting OriginProfileFeature: {ex.Message}", "Error");
+                                return (false, swasiOrigin);
+                            }
+                        }
+                        else
+                        {
+                            // Multiple origins found - error condition
                             Log($"Error finding SWASI Origin. There have been defined two origins with the naming convention.", "Error");
                             return (false, swasiOrigin);
                         }
@@ -562,6 +730,44 @@ namespace SolidWorks_ASsembly_Instructor
 
 
         /// <summary>
+        /// Helper method to set properties on a RefFrameDescription based on feature name identifiers.
+        /// </summary>
+        /// <param name="refFrameDesc">The RefFrameDescription to set properties on.</param>
+        /// <param name="featureName">The feature name to check for identifiers.</param>
+        private void SetRefFrameProperties(RefFrameDescription refFrameDesc, string featureName)
+        {
+            if (featureName.Contains(SWASI_VISION_IDENTIFIER))
+            {
+                refFrameDesc.properties.setVision(true);
+            }
+
+            if (featureName.Contains(SWASI_LASER_IDENTIFIER))
+            {
+                refFrameDesc.properties.setLaser(true);
+            }
+
+            if (featureName.Contains(SWASI_GRIP_IDENTIFIER))
+            {
+                refFrameDesc.properties.setGripping(true);
+            }
+
+            if (featureName.Contains(SWASI_ASS_TARGET_IDENTIFIER))
+            {
+                refFrameDesc.properties.setTarget(true);
+            }
+
+            if (featureName.Contains(SWASI_ASS_ASSEMBLY_IDENTIFIER))
+            {
+                refFrameDesc.properties.setAssembly(true);
+            }
+
+            if (featureName.Contains(SWASI_GLUE_PT_IDENTIFIER))
+            {
+                refFrameDesc.properties.setGluePt(true);
+            }
+        }
+
+        /// <summary>
         /// Extracts a reference frame from the given feature, applying the specified relative transformation.
         /// </summary>
         /// <param name="feature">The feature to extract a reference frame from.</param>
@@ -578,15 +784,6 @@ namespace SolidWorks_ASsembly_Instructor
                 return (false, refFrame);
             }
 
-            // Check if the frame is tagged with the SWASI_IDENTIFIER or SWASI_ORIGIN_IDENTIFIER
-            //if (!feature.Name.Contains(SWASI_IDENTIFIER) || !feature.Name.Contains(SWASI_ORIGIN_IDENTIFIER))
-            //{
-            //    // pops up on SW-Frames
-            //    Log($"RefFrame ({feature.Name}) was ignored. Wrong Identifier?", "warning");
-            //    return (false, refFrame);
-            //}
-
-
             if (!feature.Name.Contains(SWASI_IDENTIFIER) || feature.Name.Contains(SWASI_ORIGIN_IDENTIFIER))
             {
                 // Pops up on SW-Frames
@@ -594,6 +791,8 @@ namespace SolidWorks_ASsembly_Instructor
                 return (false, refFrame);
             }
 
+            // Set properties based on feature name identifiers
+            SetRefFrameProperties(refFrame, feature.Name);
 
             ICoordinateSystemFeatureData coordSys = (ICoordinateSystemFeatureData)feature.GetDefinition();
             coordSys.AccessSelections(currentDoc, null);
@@ -611,7 +810,6 @@ namespace SolidWorks_ASsembly_Instructor
 
             return (true, refFrame);
         }
-
 
         /// <summary>
         /// Extracts reference points from an array of SolidWorks features.
@@ -674,6 +872,9 @@ namespace SolidWorks_ASsembly_Instructor
                 Log($"RefPoint ({point_feature.Name}) was ignored. Wrong Identifier?", "warning");
                 return (false, refPointDescription);
             }
+
+            // Set properties based on feature name identifiers
+            SetRefFrameProperties(refPointDescription, point_feature.Name);
 
             // Get the specific feature as RefPoint
             IFeature specificFeature = point_feature.GetSpecificFeature2();
