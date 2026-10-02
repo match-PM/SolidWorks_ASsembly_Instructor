@@ -1,9 +1,13 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidWorks_ASsembly_Instructor", "SolidWorks_ASsembly_Instructor\SolidWorks_ASsembly_Instructor.csproj", "{40C224B7-A2AD-4719-B86B-574A851CD011}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidWorks_ASsembly_Instructor", "src\Swasi.AddIn\Swasi.AddIn.csproj", "{40C224B7-A2AD-4719-B86B-574A851CD011}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swasi.Core", "src\Swasi.Core\Swasi.Core.csproj", "{A8C788DA-DA4C-4C84-A546-E0B220A2B131}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swasi.Core.Tests", "tests\Swasi.Core.Tests\Swasi.Core.Tests.csproj", "{E9325D45-94A5-471B-966E-18E61A462EA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,6 +15,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E9325D45-94A5-471B-966E-18E61A462EA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9325D45-94A5-471B-966E-18E61A462EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9325D45-94A5-471B-966E-18E61A462EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9325D45-94A5-471B-966E-18E61A462EA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8C788DA-DA4C-4C84-A546-E0B220A2B131}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8C788DA-DA4C-4C84-A546-E0B220A2B131}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8C788DA-DA4C-4C84-A546-E0B220A2B131}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8C788DA-DA4C-4C84-A546-E0B220A2B131}.Release|Any CPU.Build.0 = Release|Any CPU
 		{40C224B7-A2AD-4719-B86B-574A851CD011}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{40C224B7-A2AD-4719-B86B-574A851CD011}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40C224B7-A2AD-4719-B86B-574A851CD011}.Release|Any CPU.ActiveCfg = Release|Any CPU

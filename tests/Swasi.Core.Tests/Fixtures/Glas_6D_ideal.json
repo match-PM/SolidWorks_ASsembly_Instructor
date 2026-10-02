@@ -1,0 +1,1307 @@
+{
+    "mountingDescription": {
+        "components": [],
+        "assemblyConstraints": [],
+        "mountingReferences": {
+            "spawningOrigin": "Gonio_Left_Part_Origin",
+            "spawningTransformation": {
+                "translation": {
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 0.0
+                },
+                "rotation": {
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 0.0,
+                    "W": 1.0,
+                    "IsIdentity": true
+                }
+            },
+            "ref_planes": [
+                {
+                    "name": "Top_Plane",
+                    "refPointNames": [
+                        "Vision_Point_1_T",
+                        "Vision_Point_2_T",
+                        "Vision_Point_3_T"
+                    ],
+                    "refAxisNames": [
+                        "",
+                        ""
+                    ],
+                    "normalVector": {
+                        "X": 3.66923051e-19,
+                        "Y": -3.48679419e-15,
+                        "Z": -1.0
+                    }
+                },
+                {
+                    "name": "Bottom_Plane",
+                    "refPointNames": [
+                        "Vision_Point_1_B",
+                        "Vision_Point_2_B",
+                        "Vision_Point_3_B"
+                    ],
+                    "refAxisNames": [
+                        "",
+                        ""
+                    ],
+                    "normalVector": {
+                        "X": 0.0,
+                        "Y": 0.0,
+                        "Z": -1.0
+                    }
+                },
+                {
+                    "name": "Axis_T_Plane",
+                    "refPointNames": [
+                        "Axis_Center_T",
+                        "",
+                        ""
+                    ],
+                    "refAxisNames": [
+                        "Top_Axis",
+                        ""
+                    ],
+                    "normalVector": {
+                        "X": -1.0,
+                        "Y": 3.24046451e-15,
+                        "Z": -4.916521e-24
+                    }
+                },
+                {
+                    "name": "Axis_B_Plane",
+                    "refPointNames": [
+                        "Axis_Center_B",
+                        "",
+                        ""
+                    ],
+                    "refAxisNames": [
+                        "Bottom_Axis",
+                        ""
+                    ],
+                    "normalVector": {
+                        "X": -1.0,
+                        "Y": -1.73472348e-16,
+                        "Z": 0.0
+                    }
+                },
+                {
+                    "name": "Front_Plane_B",
+                    "refPointNames": [
+                        "Front_Bottom_Reference",
+                        "Vision_Point_3_B",
+                        "Vision_Point_4_B"
+                    ],
+                    "refAxisNames": [
+                        "",
+                        ""
+                    ],
+                    "normalVector": {
+                        "X": -1.734717e-16,
+                        "Y": 1.0,
+                        "Z": 1.15648235e-15
+                    }
+                },
+                {
+                    "name": "Front_Plane_T",
+                    "refPointNames": [
+                        "Front_Top_Reference",
+                        "Vision_Point_3_T",
+                        "Vision_Point_4_T"
+                    ],
+                    "refAxisNames": [
+                        "",
+                        ""
+                    ],
+                    "normalVector": {
+                        "X": -3.23522328e-15,
+                        "Y": -1.0,
+                        "Z": -3.46944759e-15
+                    }
+                }
+            ],
+            "ref_axes": [
+                {
+                    "name": "Bottom_Axis",
+                    "refPointNames": [
+                        "Vision_Point_3_B",
+                        "Vision_Point_4_B"
+                    ]
+                },
+                {
+                    "name": "Top_Axis",
+                    "refPointNames": [
+                        "Vision_Point_3_T",
+                        "Vision_Point_4_T"
+                    ]
+                }
+            ],
+            "ref_frames": [
+                {
+                    "name": "Vision_Point_1_T",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -32.0,
+                            "Y": -2.0,
+                            "Z": 1.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [],
+                            "dim": "",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [
+                                "Laser_1_T",
+                                "Laser_2_T",
+                                "Laser_3_T",
+                                "Laser_4_T"
+                            ],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Vision_Point_1_B",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -32.0,
+                            "Y": -2.0,
+                            "Z": 0.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [],
+                            "dim": "",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [
+                                "Laser_1_B",
+                                "Laser_2_B",
+                                "Laser_3_B",
+                                "Laser_4_B"
+                            ],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Vision_Point_2_T",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -2.0,
+                            "Y": -2.0,
+                            "Z": 1.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [],
+                            "dim": "",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [
+                                "Laser_1_T",
+                                "Laser_2_T",
+                                "Laser_3_T",
+                                "Laser_4_T"
+                            ],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Vision_Point_2_B",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -2.0,
+                            "Y": -2.0,
+                            "Z": 0.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [],
+                            "dim": "",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [
+                                "Laser_1_B",
+                                "Laser_2_B",
+                                "Laser_3_B",
+                                "Laser_4_B"
+                            ],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Vision_Point_3_T",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -2.0,
+                            "Y": -22.0,
+                            "Z": 1.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [],
+                            "dim": "",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [
+                                "Laser_1_T",
+                                "Laser_2_T",
+                                "Laser_3_T",
+                                "Laser_4_T"
+                            ],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Vision_Point_3_B",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -2.0,
+                            "Y": -22.0,
+                            "Z": 0.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [],
+                            "dim": "",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [
+                                "Laser_1_B",
+                                "Laser_2_B",
+                                "Laser_3_B",
+                                "Laser_4_B"
+                            ],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Vision_Point_4_T",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -32.0,
+                            "Y": -22.0,
+                            "Z": 1.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [],
+                            "dim": "",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [
+                                "Laser_1_T",
+                                "Laser_2_T",
+                                "Laser_3_T",
+                                "Laser_4_T"
+                            ],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Vision_Point_4_B",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -32.0,
+                            "Y": -22.0,
+                            "Z": 0.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [],
+                            "dim": "",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [
+                                "Laser_1_B",
+                                "Laser_2_B",
+                                "Laser_3_B",
+                                "Laser_4_B"
+                            ],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Laser_1_T",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -31.0,
+                            "Y": -3.0,
+                            "Z": 1.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [],
+                            "dim": "",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Laser_2_T",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -3.0,
+                            "Y": -3.0,
+                            "Z": 1.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [],
+                            "dim": "",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Laser_3_T",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -3.0,
+                            "Y": -21.0,
+                            "Z": 1.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [],
+                            "dim": "",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Laser_4_T",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -31.0,
+                            "Y": -21.0,
+                            "Z": 1.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [],
+                            "dim": "",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Gripping_Point",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -17.0,
+                            "Y": -12.0,
+                            "Z": 1.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [
+                                "Vision_Point_1_T",
+                                "Vision_Point_2_T",
+                                "Vision_Point_3_T",
+                                "Vision_Point_4_T"
+                            ],
+                            "dim": "xyz",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Laser_1_B",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -31.0,
+                            "Y": -3.0,
+                            "Z": 0.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [],
+                            "dim": "",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Laser_2_B",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -3.0,
+                            "Y": -3.0,
+                            "Z": 0.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [],
+                            "dim": "",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Laser_3_B",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -3.0,
+                            "Y": -21.0,
+                            "Z": 0.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [],
+                            "dim": "",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Laser_4_B",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -31.0,
+                            "Y": -21.0,
+                            "Z": 0.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [],
+                            "dim": "",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Axis_Center_B",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -17.0,
+                            "Y": -22.0,
+                            "Z": 0.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [
+                                "Vision_Point_3_B",
+                                "Vision_Point_4_B"
+                            ],
+                            "dim": "xyz",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Axis_Center_T",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -17.0,
+                            "Y": -22.0,
+                            "Z": 1.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [
+                                "Vision_Point_3_T",
+                                "Vision_Point_4_T"
+                            ],
+                            "dim": "xyz",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Front_Bottom_Reference",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -32.0,
+                            "Y": -22.0,
+                            "Z": 3.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [
+                                "Vision_Point_3_B"
+                            ],
+                            "dim": "xyz",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                3.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Front_Top_Reference",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -2.0,
+                            "Y": -22.0,
+                            "Z": -2.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [
+                                "Vision_Point_3_T"
+                            ],
+                            "dim": "xyz",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                -3.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "",
+                            "frame_2": "",
+                            "frame_3": "",
+                            "distance_from_f1": 0.0,
+                            "unit_distance_from_f1": "%",
+                            "distance_from_f1_f2_connection": 0.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Glue_Point_1",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -1.0,
+                            "Y": -1.0,
+                            "Z": 0.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [],
+                            "dim": "",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "Vision_Point_2_T",
+                            "frame_2": "Vision_Point_1_T",
+                            "frame_3": "Vision_Point_3_T",
+                            "distance_from_f1": 3.0,
+                            "unit_distance_from_f1": "mm",
+                            "distance_from_f1_f2_connection": -3.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Glue_Point_2",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -1.0,
+                            "Y": -1.0,
+                            "Z": 0.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [],
+                            "dim": "",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "Vision_Point_3_T",
+                            "frame_2": "Vision_Point_2_T",
+                            "frame_3": "Vision_Point_4_T",
+                            "distance_from_f1": 3.0,
+                            "unit_distance_from_f1": "mm",
+                            "distance_from_f1_f2_connection": -3.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Glue_Point_3",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -1.0,
+                            "Y": -1.0,
+                            "Z": 0.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [],
+                            "dim": "",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "Vision_Point_4_T",
+                            "frame_2": "Vision_Point_3_T",
+                            "frame_3": "Vision_Point_1_T",
+                            "distance_from_f1": 3.0,
+                            "unit_distance_from_f1": "mm",
+                            "distance_from_f1_f2_connection": -3.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                },
+                {
+                    "name": "Glue_Point_4",
+                    "type": "point",
+                    "transformation": {
+                        "translation": {
+                            "X": -1.0,
+                            "Y": -1.0,
+                            "Z": 0.0
+                        },
+                        "rotation": {
+                            "X": 0.0,
+                            "Y": 0.0,
+                            "Z": 0.0,
+                            "W": 1.0,
+                            "IsIdentity": true
+                        }
+                    },
+                    "constraints": {
+                        "centroid": {
+                            "refFrameNames": [],
+                            "dim": "",
+                            "offsetValues": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "orthogonal": {
+                            "frame_1": "Vision_Point_1_T",
+                            "frame_2": "Vision_Point_4_T",
+                            "frame_3": "Vision_Point_2_T",
+                            "distance_from_f1": 3.0,
+                            "unit_distance_from_f1": "mm",
+                            "distance_from_f1_f2_connection": -3.0,
+                            "frame_normal_plane_axis": "z",
+                            "frame_orthogonal_connection_axis": "x"
+                        },
+                        "inPlane": {
+                            "refFrameNames": [],
+                            "planeOffset": 0.0,
+                            "normalAxis": "z"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "documentUnits": "mm",
+    "cadPath": "Glas_6D_tol.STL",
+    "name": "Glas_6D_ideal",
+    "description": "",
+    "guid": "82c74a97-b914-4e29-8969-212d80998177",
+    "type": "Component",
+    "saveDate": "2025-03-26T09:23:11.0996771+01:00"
+}

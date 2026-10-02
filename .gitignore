@@ -132,3 +132,8 @@ $RECYCLE.BIN/
 
 _NCrunch*
 /SolidWorks_ASsembly_Instructor/outputFolder/*
+
+# Local export runs and Python caches; curated examples remain tracked.
+/output/
+__pycache__/
+*.pyc

@@ -1,0 +1,14 @@
+name: Build and regression tests
+on: [push, pull_request]
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: microsoft/setup-msbuild@v2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Build and test without launching SolidWorks
+        shell: pwsh
+        run: ./tools/build.ps1 -Configuration Release -Restore
