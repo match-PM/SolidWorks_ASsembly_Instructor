@@ -24,5 +24,10 @@ namespace SolidWorks_ASsembly_Instructor
                 constraints = new RefFrameConstraints();
                 properties = new RefFrameProperties();
             }
+
+            public bool ShouldSerializeconstraints()
+            {
+                return constraints != null && constraints.HasAny();
+            }
     }
 }

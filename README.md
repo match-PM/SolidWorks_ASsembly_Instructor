@@ -22,8 +22,8 @@ descriptions and STL meshes for downstream assembly planning.
    If upgrading from the old layout, deregister the previous DLL location and
    register this new location. Close SolidWorks when replacing a loaded DLL.
 4. Enable the add-in in SolidWorks, select an output folder in its task pane, and
-   choose **Export as JSON**. The summary lists successful, skipped and failed
-   documents; each successful document has JSON and STL output.
+   choose **Export JSON and STL** at the bottom. A log window opens when the run
+   finishes; each successful document has JSON and STL output.
 
 The add-in is a DLL, so debug it by attaching Visual Studio to `SLDWORKS.exe`.
 
@@ -59,6 +59,60 @@ JSON field names and coordinate conventions are retained. Re-export preserves
 existing IDs and authored frame constraints while updating extracted geometry;
 see the architecture document for the exact precedence and retention rules.
 
+## Frame editor and constraints
+
+To duplicate a constraint-created frame, select it in the task pane and use
+**Copy constraint frame** and **Paste constraint frame...** from the right-click
+menu, or press **Ctrl+C** and **Ctrl+V** while the frame list has focus. Paste opens
+the constraint editor with the copied settings and a suggested unused name.
+Change the name and settings, then choose **Apply** to create the new frame.
+Copies retain frame types, properties, and in-plane checks; editing a copy does
+not change the source. The copied frame stays available for repeated pastes
+until another frame is copied or the add-in is unloaded.
+
+Error and update-warning dialogs have selectable text and a **Copy** button.
+For errors, Copy includes diagnostic details that can be pasted into a bug report.
+Deleted frames do not reserve their names through leftover metadata; creating or
+pasting a frame with a reused name replaces that name's stale settings.
+
+Constraint fields display nine decimal places and preserve the stored value
+when left unedited. CAD reference reads, constraint calculations, numerical
+frame creation and helper-point placement use double precision. Reload the
+rebuilt add-in and run Update to recalculate existing frames and correct old
+helper points. Values already saved with rounding cannot be recovered
+automatically. Legacy JSON models and their stored inputs retain their existing
+numeric types; they are converted at the calculation boundary.
+
+The task pane stores frame types, their properties, component color, and
+constraints in the SolidWorks document. Select a SWASI point or coordinate system,
+then use an icon to assign Vision, Laser, Gripping, Target, Assembly, or Glue.
+The property grid edits the associated gripper, target/assembly, and glue values.
+The output field accepts local paths and UNC paths such as `\\server\share\folder`.
+
+The origin selector renames `SWASI_Origin` (or an existing named SWASI origin) to
+`SWASI_Origin_<selection>`. Centroid, orthogonal, and transform actions create an
+actual `(auto)SWASI_<name>` numerical coordinate-system feature without helper
+sketches. A reference point at its origin is constructed using three offset
+planes and an axis, grouped in `(auto)_SWASI_helper`. The construction planes
+and axis are hidden. The visible point, generated frame, and regular `SWASI_`
+features (including planes, axes and origin) are grouped in a separate `SWASI`
+folder. Grouping runs through **Update frames** and constraint edits; existing features are moved without
+recreation. SolidWorks dependency restrictions that prevent a move are logged.
+The point stays selectable for defining user planes. Offset
+planes are edited in place during synchronization, preserving the point and its dependents.
+Only the frame is exported: the generated point resolves to its frame name in
+exported plane/axis references, and construction geometry is excluded. If helper
+creation fails, the frame is retained and a detailed warning is logged.
+After changing defining geometry, finish the SolidWorks command and click
+**Update frames** to recalculate constraints before exporting. Export reads the
+current geometry without synchronizing frames, organizing folders or forcing a rebuild.
+Native rebuild notifications and ordinary UI refreshes do not modify the model,
+so creating planes or editing features does not trigger nested SWASI rebuilds.
+Unchanged helper sets skip selection access, modification and rebuilding. Point
+references inherit the SWASI-origin orientation. **Assign in-plane** attaches a
+validation rule to the selected existing point or frame; it reports an out-of-plane
+distance without moving that feature.
+
 ## Deutsche Kurzanleitung
 
 Das Add-in exportiert Bauteile und Baugruppen als JSON-Montagebeschreibungen und
@@ -70,9 +124,10 @@ Die DLL liegt jetzt unter `src/Swasi.AddIn/bin/Debug/`. Diesen neuen Pfad mit de
 SolidWorks Add-In Installer registrieren und die abhaengigen DLLs im selben Ordner
 belassen. SolidWorks vor dem Austausch geladener DLLs schliessen.
 
-Im Taskpane einen Ausgabeordner waehlen und **Export as JSON** starten. Die
-Zusammenfassung unterscheidet erfolgreiche, uebersprungene und fehlgeschlagene
+Im Taskpane einen Ausgabeordner waehlen und unten **Export JSON and STL** starten.
+Danach zeigt ein Logfenster erfolgreiche, uebersprungene und fehlgeschlagene
 Dokumente. Referenzen muessen mit `SWASI_`, der eindeutige Exportursprung mit
 `SWASI_Origin_` beginnen. Beim erneuten Export bleiben vorhandene IDs und manuell
-bearbeitete Frame-Constraints erhalten. Historische Demonstratoren und Messdaten
+bearbeitete Frame-Constraints erhalten, solange sie nicht im neuen Dokumenteditor
+ersetzt wurden. Historische Demonstratoren und Messdaten
 liegen unter `examples/archive/`.

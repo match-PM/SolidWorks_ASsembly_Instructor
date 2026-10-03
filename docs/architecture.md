@@ -10,9 +10,9 @@ Deploy the whole output directory, including `Swasi.Core.dll` and `Newtonsoft.Js
 | Area | Responsibility |
 | --- | --- |
 | `Swasi.AddIn/Integration` | COM registration and task-pane lifetime |
-| `Swasi.AddIn/UI` | Folder selection, settings and displaying progress/results |
+| `Swasi.AddIn/UI` | Folder selection, frame metadata, constraint editing and export logs |
 | `Swasi.AddIn/Export` | Coordinating a complete export and assigning persistent document identities |
-| `Swasi.AddIn/SolidWorks` | Reading features/mates, activating documents, exporting STL, restoring host state |
+| `Swasi.AddIn/SolidWorks` | Reading features/mates, document metadata, managed constraint frames, STL and host state |
 | `Swasi.Core/Models` | Existing JSON contract classes |
 | `Swasi.Core/Geometry` | Matrix conversion, inversion and units |
 | `Swasi.Core/Export` | Feature naming rules and export result types |
@@ -60,15 +60,51 @@ case. Concurrent exports to the same output directory are not supported.
 not mutate either input:
 
 1. Existing non-null document `guid` and `saveDate` survive.
-2. For matching frame names, generated geometry and properties win; existing
-   non-null `constraints` survive, including centroid, orthogonal and in-plane rules.
+2. For matching frame names, generated geometry wins. Properties edited in the
+   document UI override existing JSON properties. Constraints created in the UI
+   override existing JSON constraints; legacy manually edited constraints survive
+   until a document-backed constraint replaces them.
 3. Frames present only in the existing JSON are retained because they may have
    been manually authored. This also retains CAD-deleted frames; remove obsolete
    frames explicitly from the saved JSON when appropriate.
 4. Generated component membership and transformations win. Existing GUIDs survive
    for component instances with matching names; removed components are not resurrected.
-5. Other fields come from the newly generated model. Missing optional arrays do
-   not prevent identity preservation.
+5. Existing component color survives until a color is explicitly chosen in the
+   document UI. Other fields come from the newly generated model. Missing optional
+   arrays do not prevent identity preservation.
+
+Frame metadata is compressed and split across document custom properties named
+`SWASI_Metadata_v1*`. Managed constraint coordinate systems use numerical values
+and create no helper sketches. Only the numerical coordinate system is replaced
+when its pose changes. `ConstraintOriginPointManager` maintains three offset
+planes, their intersection axis, and an axis/plane intersection reference point.
+The base planes are found in feature-history order and their transforms determine
+signed offsets, independent of localized feature names. Zero offsets use coincident
+planes. Existing planes are modified in place, retaining the axis, point and any
+user features that reference the point. The three planes and axis are placed in the
+shared `(auto)_SWASI_helper` folder. The visible point remains outside it; points
+grouped by earlier versions are moved outside on update without recreation.
+`SwasiFeatureFolders` groups regular `SWASI_` features and generated frames/points
+in a separate `SWASI` folder on explicit constraint updates. Folder features
+and legacy construction sketches are excluded. Helper axes are appended after
+their parent planes, and folder membership is checked after moves. Rejected
+dependency-sensitive moves are logged rather than deleting/recreating geometry.
+Folder organization also guards rebuild callbacks. Construction names deliberately
+do not match the export prefix. Generated points are skipped by frame extraction;
+plane/axis references to them resolve to the owning exported frame name.
+Native rebuild callbacks do no model work and enqueue no UI/model work. Automatic
+rebuild-driven synchronization is disabled: users synchronize with Update frames
+or constraint edits after completing native feature commands. Export reads current
+geometry without constraint synchronization, folder organization or a forced rebuild;
+coordinate-system replacement during synchronization can delete dependent user features.
+UI reloads and export coordinate-system reads
+are read-only and coordinate transforms are read through
+`GetCoordinateSystemTransformByName`, without `AccessSelections` rollback.
+Complete helper sets already at the desired position return before selection,
+plane editing, folder moves or rebuilding. This avoids repeated full synchronization
+and nested rebuilds during plane creation and other native operations.
+Point/helper failures are logged without rolling back the coordinate system or its
+metadata. Legacy `SWASI_CONSTRAINT_HELPER_*` names are retained only for cleanup.
 
 This replaces the previous array-size-dependent precedence. JSON property names,
 including their existing capitalization, are intentionally retained. C# method

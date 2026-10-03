@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace SolidWorks_ASsembly_Instructor
 {
@@ -7,13 +9,33 @@ namespace SolidWorks_ASsembly_Instructor
         public RefFrameCentroidConstraint centroid;
         public RefFrameOrthogonalConstraint orthogonal;
         public RefFrameInPlaneConstraint inPlane;
+        public RefFrameTransformConstraint transform;
 
         public RefFrameConstraints()
         {
             centroid = new RefFrameCentroidConstraint();
             orthogonal = new RefFrameOrthogonalConstraint();
             inPlane = new RefFrameInPlaneConstraint();
+            transform = new RefFrameTransformConstraint();
         }
+
+        public bool ShouldSerializecentroid() =>
+            centroid?.refFrameNames != null && centroid.refFrameNames.Count > 0;
+
+        public bool ShouldSerializeorthogonal() =>
+            orthogonal != null &&
+            !string.IsNullOrWhiteSpace(orthogonal.frame_1) &&
+            !string.IsNullOrWhiteSpace(orthogonal.frame_2) &&
+            !string.IsNullOrWhiteSpace(orthogonal.frame_3);
+
+        public bool ShouldSerializeinPlane() =>
+            inPlane?.refFrameNames != null && inPlane.refFrameNames.Count > 0;
+
+        public bool ShouldSerializetransform() =>
+            transform != null && !string.IsNullOrWhiteSpace(transform.refFrame);
+
+        public bool HasAny() => ShouldSerializecentroid() || ShouldSerializeorthogonal() ||
+            ShouldSerializeinPlane() || ShouldSerializetransform();
     }
 
     public class RefFrameCentroidConstraint
@@ -21,6 +43,8 @@ namespace SolidWorks_ASsembly_Instructor
 
         public List<string> refFrameNames;
         public string dim;
+        // Replace the constructor's zero vector when loading or cloning saved offsets.
+        [JsonProperty(ObjectCreationHandling = ObjectCreationHandling.Replace)]
         public List<float> offsetValues;
 
         public RefFrameCentroidConstraint()
@@ -28,6 +52,18 @@ namespace SolidWorks_ASsembly_Instructor
             refFrameNames = new List<string>();
             dim = "";
             offsetValues = new List<float>() {0, 0, 0};
+        }
+
+        [OnDeserialized]
+        private void RestoreLegacyOffsets(StreamingContext context)
+        {
+            // Older editor clones prepended one default zero triplet per copy.
+            // Recover only this known pattern; leave other malformed input intact.
+            if (offsetValues == null || offsetValues.Count <= 3 || offsetValues.Count % 3 != 0) return;
+            int padding = offsetValues.Count - 3;
+            for (int i = 0; i < padding; i++)
+                if (offsetValues[i] != 0f) return;
+            offsetValues = offsetValues.GetRange(padding, 3);
         }
     }
 

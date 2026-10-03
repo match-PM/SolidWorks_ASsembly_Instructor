@@ -33,7 +33,9 @@ namespace SolidWorks_ASsembly_Instructor
                 app.SetUserPreferenceToggle(positive, true);
                 app.SetUserPreferenceIntegerValue(units, (int)swLengthUnit_e.swMETER);
                 app.SetUserPreferenceIntegerValue(quality, (int)swSTLQuality_e.swSTLQuality_Fine);
-                if (!document.SetUserPreferenceStringValue(coordinateSystem, FeatureNameRules.OriginPrefix + originName))
+                string coordinateSystemName = string.IsNullOrEmpty(originName)
+                    ? FeatureNameRules.OriginBase : FeatureNameRules.OriginPrefix + originName;
+                if (!document.SetUserPreferenceStringValue(coordinateSystem, coordinateSystemName))
                     throw new InvalidOperationException("Could not select the STL export coordinate system.");
                 int errors = 0, warnings = 0;
                 bool saved = document.Extension.SaveAs3(temporaryPath,

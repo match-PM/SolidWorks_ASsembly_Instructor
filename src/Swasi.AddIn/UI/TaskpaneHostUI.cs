@@ -1,172 +1,426 @@
-using SolidWorks.Interop.sldworks;
-using SolidWorks_ASsembly_Instructor.Properties;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using SolidWorks.Interop.sldworks;
+using SolidWorks.Interop.swconst;
+using SolidWorks_ASsembly_Instructor.Properties;
 
 namespace SolidWorks_ASsembly_Instructor
 {
     [ProgId(TaskpaneIntegration.SWTASKPANE_PROGID)]
     public partial class TaskpaneHostUI : UserControl
     {
-        public SldWorks app = null; // hanndle to Solid works
+        private SldWorks app;
+        private readonly SwasiMetadataStore metadataStore = new SwasiMetadataStore();
+        private readonly SwasiFeatureCatalog featureCatalog = new SwasiFeatureCatalog();
+        private readonly List<LogEntry> logs = new List<LogEntry>();
+        private ConstraintFrameManager constraintFrames;
+        private SwasiDocumentMetadata metadata;
+        private IReadOnlyList<SwasiFeatureItem> frames = new List<SwasiFeatureItem>();
+        private ModelDoc2 observedDocument;
+        private DPartDocEvents_Event partEvents;
+        private DAssemblyDocEvents_Event assemblyEvents;
+        private DSldWorksEvents_Event appEvents;
+        private ContextMenuStrip frameContextMenu;
+        private ContextMenuStrip addConstraintMenu;
+        private SwasiFrameMetadata copiedFrame;
+        private string copiedFrameName;
 
-        #region Path variables
-        string componentsPath;
-        string assembliesPath;
-
-        string savepath; // Save in settings
-        #endregion
-
-        /// <summary>
-        /// Constructor of the UI-Element
-        /// </summary>
         public TaskpaneHostUI()
         {
             InitializeComponent();
-            savepath = Settings.Default.savePath;
-            tb_BrowseFolder.Text = savepath;
-            _CombineOutputPaths(savepath);
+            outputPathTextBox.Text = Settings.Default.savePath;
+            BuildMenus();
+            versionLabel.Text = "V" + Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
         }
 
-        #region Debug Log
-        /// <summary>
-        /// Loggt Debug-Nachrichten in das RichTextBox-Steuerelement.
-        /// </summary>
-        /// <param name="message">Die zu loggende Nachricht.</param>
-        public void LogDebug(string message)
+        public void Initialize(SldWorks solidWorks)
         {
-            AppendTextToRTB(message + "\r\n", Color.DarkGray);
-        }
-        public void Log(string message)
-        {
-           AppendTextToRTB(message + "\r\n", Color.Black);
-        }
-        public void WarningLog(string message)
-        {
-            AppendTextToRTB(message + "\r\n", Color.Orange);
-        }
-        public void ErrorLog(string message)
-        {
-            AppendTextToRTB(message + "\r\n", Color.Red);
+            app = solidWorks ?? throw new ArgumentNullException(nameof(solidWorks));
+            appEvents = (DSldWorksEvents_Event)app;
+            appEvents.ActiveDocChangeNotify += App_ActiveDocChangeNotify;
+            constraintFrames = new ConstraintFrameManager(Report);
+            ReloadFrames();
         }
 
-        public void AppendTextToRTB(string text, Color color, bool addNewLine = false)
+        private ModelDoc2 ActiveDocument()
         {
-            rtDebug.SuspendLayout();
-            rtDebug.SelectionColor = color;
-            rtDebug.AppendText(addNewLine
-                ? $"{text}{System.Environment.NewLine}"
-                : text);
-            rtDebug.ScrollToCaret();
-            rtDebug.ResumeLayout();
-        }
-        #endregion
-
-        #region UI Events
-        /// <summary>
-        /// Ereignisbehandlung für die Aktualisierung der Debug-Ausgabe.
-        /// </summary>
-        private void btn_clearLog_Click(object sender, EventArgs e)
-        {
-            rtDebug.Clear();
+            var document = app?.IActiveDoc2 as ModelDoc2;
+            if (document == null) throw new InvalidOperationException("Open a SolidWorks part or assembly first.");
+            int type = document.GetType();
+            if (type != (int)swDocumentTypes_e.swDocPART && type != (int)swDocumentTypes_e.swDocASSEMBLY)
+                throw new InvalidOperationException("The active document must be a part or assembly.");
+            return document;
         }
 
-        /// <summary>
-        /// Ereignisbehandlung für das Durchsuchen von Ordnern.
-        /// </summary>
-        private void tb_BrowseFolder_Click(object sender, EventArgs e)
+        private void ReloadFrames(string selectName = null)
         {
-            folderBrowserDialog1.SelectedPath = tb_BrowseFolder.Text;
-            DialogResult result = folderBrowserDialog1.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                tb_BrowseFolder.Text = folderBrowserDialog1.SelectedPath;
-                Settings.Default.savePath = folderBrowserDialog1.SelectedPath;
-                Settings.Default.Save();
-            }
-        }
-
-        /// <summary>
-        /// Ereignisbehandlung für den Export von JSON-Daten.
-        /// </summary>
-        private void exportJson_Click(object sender, EventArgs e)
-        {
-            rtDebug.Clear();
-            exportJson.Enabled = false;
+            if (app == null) return;
             try
             {
-                if (!CreateFolder()) return;
-                var coordinator = new ExportCoordinator(app, componentsPath, assembliesPath, Report);
-                var result = coordinator.Run();
+                ModelDoc2 document = ActiveDocument();
+                AttachDocumentEvents(document);
+                metadata = metadataStore.Load(document);
+                var origin = featureCatalog.FindOrigin(document);
+                if (origin != null)
+                    originComboBox.Text = FeatureNameRules.OriginSuffix(origin.Name);
+                frames = featureCatalog.Read(document);
+                string previous = selectName ?? SelectedFrameName;
+                frameGrid.Rows.Clear();
+                foreach (var frame in frames)
+                {
+                    metadata.frames.TryGetValue(frame.Name, out var item);
+                    string displayName = frame.Feature != null && FeatureNameRules.IsAutoGenerated(frame.Feature.Name)
+                        ? frame.Feature.Name : frame.Name;
+                    var constraints = new List<string>();
+                    if (item != null && item.isConstraintFrame) constraints.Add(item.constraintKind.ToString());
+                    if ((item?.constraints?.inPlane?.refFrameNames?.Count ?? 0) > 0) constraints.Add("In-plane");
+                    int row = frameGrid.Rows.Add(displayName, frame.GeometryType,
+                        (item?.role ?? SwasiFrameRole.None).ToString(),
+                        string.Join(", ", constraints));
+                    frameGrid.Rows[row].Tag = frame.Name;
+                }
+                if (previous != null)
+                    foreach (DataGridViewRow row in frameGrid.Rows)
+                        if ((string)row.Tag == previous) { row.Selected = true; frameGrid.CurrentCell = row.Cells[0]; break; }
+                UpdateColorButton();
+            }
+            catch (Exception ex)
+            {
+                frameGrid.Rows.Clear();
+                Report(ex.Message, "warning");
+            }
+        }
+
+        private string SelectedFrameName => frameGrid.SelectedRows.Count == 0 ? null : frameGrid.SelectedRows[0].Tag as string;
+
+        private void BuildMenus()
+        {
+            frameContextMenu = new ContextMenuStrip();
+            var edit = frameContextMenu.Items.Add("Edit point / frame...");
+            edit.Click += (sender, args) => EditSelectedFrame();
+            var rename = frameContextMenu.Items.Add("Rename constraint frame...");
+            rename.Click += (sender, args) => RenameSelectedConstraintFrame();
+            var delete = frameContextMenu.Items.Add("Delete constraint frame...");
+            delete.Click += (sender, args) => DeleteSelectedConstraintFrame();
+            frameContextMenu.Items.Add(new ToolStripSeparator());
+            var copy = new ToolStripMenuItem("Copy constraint frame") { ShortcutKeyDisplayString = "Ctrl+C" };
+            var paste = new ToolStripMenuItem("Paste constraint frame...") { ShortcutKeyDisplayString = "Ctrl+V" };
+            frameContextMenu.Items.Add(copy); frameContextMenu.Items.Add(paste);
+            copy.Click += (sender, args) => CopySelectedConstraintFrame();
+            paste.Click += (sender, args) => PasteConstraintFrame();
+            frameContextMenu.Opening += (sender, args) =>
+            {
+                edit.Enabled = SelectedFrameName != null;
+                rename.Enabled = delete.Enabled = copy.Enabled = SelectedFrameName != null && metadata != null
+                    && metadata.frames.TryGetValue(SelectedFrameName, out var selected) && selected.isConstraintFrame;
+                paste.Enabled = copiedFrame != null && frameGrid.Rows.Count > 0;
+            };
+            frameGrid.ContextMenuStrip = frameContextMenu;
+            frameGrid.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
+            frameGrid.KeyDown += (sender, args) =>
+            {
+                if (args.KeyData == (Keys.Control | Keys.C))
+                { args.SuppressKeyPress = true; CopySelectedConstraintFrame(); }
+                else if (args.KeyData == (Keys.Control | Keys.V))
+                { args.SuppressKeyPress = true; PasteConstraintFrame(); }
+            };
+
+            addConstraintMenu = new ContextMenuStrip();
+            AddConstraintMenuItem("Centroid frame...", ConstraintKind.Centroid);
+            AddConstraintMenuItem("Orthogonal frame...", ConstraintKind.Orthogonal);
+            AddConstraintMenuItem("Transform frame...", ConstraintKind.Transform);
+        }
+
+        private void AddConstraintMenuItem(string text, ConstraintKind kind)
+        { var item = addConstraintMenu.Items.Add(text); item.Tag = kind; item.Click += (sender, args) => AddConstraint((ConstraintKind)((ToolStripItem)sender).Tag); }
+
+        private void frameGrid_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right || e.RowIndex < 0) return;
+            frameGrid.ClearSelection(); frameGrid.Rows[e.RowIndex].Selected = true;
+            frameGrid.CurrentCell = frameGrid.Rows[e.RowIndex].Cells[Math.Max(0, e.ColumnIndex)];
+        }
+
+        private void CopySelectedConstraintFrame()
+        {
+            try
+            {
+                string name = SelectedFrameName;
+                if (name == null) return;
+                var current = metadataStore.Load(ActiveDocument());
+                if (!current.frames.TryGetValue(name, out var source) || !source.isConstraintFrame) return;
+                copiedFrame = source.Clone();
+                copiedFrameName = name;
+                Report("Copied constraint frame '" + name + "'. Use Paste to create an editable copy.", "info");
+            }
+            catch (Exception ex) { ShowError(ex); }
+        }
+
+        private void PasteConstraintFrame()
+        {
+            if (copiedFrame == null) return;
+            try
+            {
+                var document = ActiveDocument();
+                var currentFrames = featureCatalog.Read(document);
+                var usedNames = new HashSet<string>(currentFrames.Select(f => f.Name), StringComparer.OrdinalIgnoreCase);
+                string baseName = copiedFrameName + "_Copy";
+                string newName = baseName;
+                for (int suffix = 2; usedNames.Contains(newName); suffix++) newName = baseName + "_" + suffix;
+                using (var dialog = ConstraintEditorDialog.ForCopy(currentFrames.Select(f => f.Name), newName, copiedFrame))
+                {
+                    while (dialog.ShowDialog(this) == DialogResult.OK)
+                    {
+                        try
+                        {
+                            constraintFrames.CreateOrUpdate(document, dialog.FrameName, dialog.FrameMetadata, requireNew: true);
+                        }
+                        catch (Exception ex) { ShowError(ex); continue; }
+                        document.ForceRebuild3(false);
+                        ReloadFrames(dialog.FrameName);
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex) { ShowError(ex); }
+        }
+
+        private void frameGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            frameGrid.ClearSelection();
+            frameGrid.Rows[e.RowIndex].Selected = true;
+            frameGrid.CurrentCell = frameGrid.Rows[e.RowIndex].Cells[Math.Max(0, e.ColumnIndex)];
+            EditSelectedFrame();
+        }
+
+        private void RenameSelectedConstraintFrame()
+        {
+            string name = SelectedFrameName;
+            if (name == null) return;
+            using (var dialog = new Form { Text = "Rename constraint frame", Width = 420, Height = 165,
+                FormBorderStyle = FormBorderStyle.FixedDialog, StartPosition = FormStartPosition.CenterParent,
+                MinimizeBox = false, MaximizeBox = false })
+            {
+                var label = new Label { Text = "Frame name (without SWASI_ prefix)", Left = 12, Top = 12, AutoSize = true };
+                var input = new TextBox { Text = name, Left = 12, Top = 35, Width = 380 };
+                var apply = new Button { Text = "Rename", Left = 225, Top = 75, Width = 80 };
+                var cancel = new Button { Text = "Cancel", Left = 312, Top = 75, Width = 80, DialogResult = DialogResult.Cancel };
+                apply.Click += (sender, args) =>
+                {
+                    try
+                    {
+                        string newName = input.Text.Trim();
+                        constraintFrames.Rename(ActiveDocument(), name, newName);
+                        ReloadFrames(newName);
+                        dialog.DialogResult = DialogResult.OK;
+                        dialog.Close();
+                    }
+                    catch (Exception ex) { ShowError(ex); }
+                };
+                dialog.Controls.AddRange(new Control[] { label, input, apply, cancel });
+                dialog.AcceptButton = apply; dialog.CancelButton = cancel;
+                dialog.Shown += (sender, args) => { input.Focus(); input.SelectAll(); };
+                dialog.ShowDialog(this);
+            }
+        }
+
+        private void DeleteSelectedConstraintFrame()
+        {
+            string name = SelectedFrameName;
+            if (name == null) return;
+            try
+            {
+                if (!metadata.frames.TryGetValue(name, out var item) || !item.isConstraintFrame)
+                    throw new InvalidOperationException("Only automatically generated constraint frames can be deleted here.");
+                if (MessageBox.Show($"Delete constraint frame '{name}' and its generated point?", "SWASI",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes) return;
+                constraintFrames.Delete(ActiveDocument(), name);
+                ActiveDocument().ForceRebuild3(false);
+                ReloadFrames();
+            }
+            catch (Exception ex) { ShowError(ex); }
+        }
+
+        private void EditSelectedFrame()
+        {
+            string name = SelectedFrameName; if (name == null) return;
+            SwasiFrameMetadata current = metadata.frames.TryGetValue(name, out var item) ? item : new SwasiFrameMetadata();
+            string geometryType = frames.FirstOrDefault(f => f.Name == name)?.GeometryType ?? "Frame";
+            try
+            {
+                using (var dialog = new FrameEditorDialog(name, geometryType, current, frames.Select(f => f.Name).Where(n => n != name)))
+                {
+                    DialogResult result = dialog.ShowDialog(this);
+                    if (result == DialogResult.Abort)
+                    {
+                        if (MessageBox.Show($"Delete constraint frame '{name}'?", "SWASI", MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning) == DialogResult.Yes)
+                        { constraintFrames.Delete(ActiveDocument(), name); ReloadFrames(); }
+                        return;
+                    }
+                    if (result != DialogResult.OK) return;
+                    if (dialog.FrameMetadata.isConstraintFrame)
+                        constraintFrames.CreateOrUpdate(ActiveDocument(), name, dialog.FrameMetadata);
+                    else
+                    { metadata.frames[name] = dialog.FrameMetadata; SaveMetadata(); }
+                    ActiveDocument().ForceRebuild3(false); ReloadFrames(name);
+                }
+            }
+            catch (Exception ex) { ShowError(ex); }
+        }
+
+        private void SaveMetadata() => metadataStore.Save(ActiveDocument(), metadata);
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                refreshButton.Enabled = false;
+                var document = ActiveDocument();
+                var warnings = constraintFrames.UpdateAll(document, true);
+                document.EditRebuild3();
+                ReloadFrames(SelectedFrameName);
+                if (warnings.Count > 0)
+                    CopyableMessageDialog.ShowMessage(this, "SWASI update", string.Join(System.Environment.NewLine, warnings));
+            }
+            catch (Exception ex) { ShowError(ex); }
+            finally { refreshButton.Enabled = true; }
+        }
+
+        private void assignOriginButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                featureCatalog.RenameOrigin(ActiveDocument(), originComboBox.Text);
+                ActiveDocument().ForceRebuild3(false);
+                Report("Origin renamed to " + FeatureNameRules.OriginPrefix + originComboBox.Text.Trim(), "log"); ReloadFrames();
+            }
+            catch (Exception ex) { ShowError(ex); }
+        }
+
+        private void colorButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var dialog = new ColorDialog())
+                {
+                    dialog.Color = Color.FromArgb(metadata.componentColor.R, metadata.componentColor.G, metadata.componentColor.B);
+                    if (dialog.ShowDialog(this) != DialogResult.OK) return;
+                    metadata.componentColor = new ColorComp(dialog.Color.R, dialog.Color.G, dialog.Color.B);
+                    metadata.hasComponentColor = true;
+                    SaveMetadata(); UpdateColorButton();
+                }
+            }
+            catch (Exception ex) { ShowError(ex); }
+        }
+        private void UpdateColorButton()
+        {
+            if (metadata?.componentColor == null) return;
+            colorButton.BackColor = Color.FromArgb(metadata.componentColor.R, metadata.componentColor.G, metadata.componentColor.B);
+            colorButton.ForeColor = colorButton.BackColor.GetBrightness() < .45f ? Color.White : Color.Black;
+        }
+
+        private void addConstraintButton_Click(object sender, EventArgs e) =>
+            addConstraintMenu.Show(addConstraintButton, new Point(0, addConstraintButton.Height));
+
+        private void AddConstraint(ConstraintKind kind)
+        {
+            try
+            {
+                using (var dialog = new ConstraintEditorDialog(kind, frames.Select(f => f.Name), null, null))
+                {
+                    if (dialog.ShowDialog(this) != DialogResult.OK) return;
+                    constraintFrames.CreateOrUpdate(ActiveDocument(), dialog.FrameName, dialog.FrameMetadata);
+                    ActiveDocument().ForceRebuild3(false); ReloadFrames(dialog.FrameName);
+                }
+            }
+            catch (Exception ex) { ShowError(ex); }
+        }
+
+        private void browseButton_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new FolderBrowserDialog())
+            {
+                dialog.Description = "Choose a local or network output folder";
+                if (Directory.Exists(outputPathTextBox.Text)) dialog.SelectedPath = outputPathTextBox.Text;
+                if (dialog.ShowDialog(this) == DialogResult.OK) outputPathTextBox.Text = dialog.SelectedPath;
+            }
+        }
+        private void outputPathTextBox_TextChanged(object sender, EventArgs e)
+        { Settings.Default.savePath = outputPathTextBox.Text; Settings.Default.Save(); }
+
+        private void exportButton_Click(object sender, EventArgs e)
+        {
+            logs.Clear(); exportButton.Enabled = false;
+            try
+            {
+                string root = outputPathTextBox.Text.Trim();
+                if (string.IsNullOrWhiteSpace(root)) throw new InvalidOperationException("Choose an output folder.");
+                Directory.CreateDirectory(root);
+                var coordinator = new ExportCoordinator(app, Path.Combine(root, "components"), Path.Combine(root, "assemblies"), Report);
+                ExportResult result = coordinator.Run();
                 foreach (var item in result.Items)
-                    if (item.Status != ExportStatus.Succeeded)
-                        Report($"{item.Name}: {item.Message}", item.Status == ExportStatus.Failed ? "error" : "warning");
+                    Report($"{item.Name}: {item.Message}", item.Status == ExportStatus.Failed ? "error" : item.Status == ExportStatus.Skipped ? "warning" : "log");
                 Report(result.ToString(), result.IsCompleteSuccess ? "log" : "warning");
             }
-            catch (Exception ex) { ErrorLog(ex.Message); }
-            finally { exportJson.Enabled = true; }
-        }
-
-        private void Report(string message, string level)
-        {
-            switch (level.ToLowerInvariant())
+            catch (Exception ex) { Report(ex.ToString(), "error"); }
+            finally
             {
-                case "error": ErrorLog(message); break;
-                case "warning": WarningLog(message); break;
-                case "debug": LogDebug(message); break;
-                default: Log(message); break;
+                exportButton.Enabled = true;
+                using (var window = new LogWindow(logs)) window.ShowDialog(this);
+                ReloadFrames();
             }
         }
 
-        private void tb_BrowseFolder_TextChanged(object sender, EventArgs e)
+        private void Report(string message, string level) => logs.Add(new LogEntry(DateTime.Now, level, message));
+        private void ShowError(Exception ex)
+        { Report(ex.ToString(), "error"); CopyableMessageDialog.ShowMessage(this, "SWASI error", ex.Message, ex.ToString()); }
+
+        private void AttachDocumentEvents(ModelDoc2 document)
         {
-            savepath = tb_BrowseFolder.Text;
-            _CombineOutputPaths(savepath);
-            Settings.Default.savePath = savepath;
-            Settings.Default.Save();
+            if (ReferenceEquals(document, observedDocument)) return;
+            DetachActiveDocumentEvents(); observedDocument = document;
+            if (document.GetType() == (int)swDocumentTypes_e.swDocPART)
+            { partEvents = (DPartDocEvents_Event)document; partEvents.RegenPostNotify += Document_RegenPostNotify; }
+            else
+            { assemblyEvents = (DAssemblyDocEvents_Event)document; assemblyEvents.RegenPostNotify += Document_RegenPostNotify; }
         }
-
-        #endregion
-
-        #region Utilities
-        public bool CreateFolder()
+        private int Document_RegenPostNotify()
         {
-            // Überprüfen, ob der ausgewählte Ordner existiert
-            if (!Directory.Exists(tb_BrowseFolder.Text))
-            {
-                DialogResult result = MessageBox.Show("Der Ausgabeordner existiert nicht. Möchten Sie ihn erstellen?", "Ordner erstellen", MessageBoxButtons.YesNo);
-
-                if (result == DialogResult.Yes)
-                {
-                    // Erstellen Sie den Ausgabeordner
-                    Directory.CreateDirectory(tb_BrowseFolder.Text);
-                }
-                else
-                {
-                    // Der Benutzer hat "Nein" ausgewählt, brechen Sie ab
-                    app.SendMsgToUser("Vorgang abgebrochen.");
-                    return false;
-                }
-            }
-            return true;
+            // Rebuild/rollback notifications can occur inside native feature
+            // commands. Do not edit, select, reorder, rebuild, or queue model
+            // work here. Synchronize through an explicit SWASI action instead.
+            return 0;
         }
-
-        private void _CombineOutputPaths(string savepath)
+        private int App_ActiveDocChangeNotify()
         {
-            componentsPath = Path.Combine(savepath, "components");
-            assembliesPath = Path.Combine(savepath, "assemblies");
+            if (IsHandleCreated) BeginInvoke(new Action(() => ReloadFrames()));
+            return 0;
         }
-
-        private void TaskpaneHostUI_Load(object sender, EventArgs e)
+        private void DetachDocumentEvents()
         {
-            Version ver = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            lbl_Version_No.Text = "V" + ver.Major + "." + ver.Minor + "." + ver.Build;
+            DetachActiveDocumentEvents();
+            if (appEvents != null) appEvents.ActiveDocChangeNotify -= App_ActiveDocChangeNotify;
+            appEvents = null;
+        }
+        private void DetachActiveDocumentEvents()
+        {
+            if (partEvents != null) partEvents.RegenPostNotify -= Document_RegenPostNotify;
+            if (assemblyEvents != null) assemblyEvents.RegenPostNotify -= Document_RegenPostNotify;
+            partEvents = null; assemblyEvents = null; observedDocument = null;
         }
     }
 
-    #endregion
-
+    internal sealed class LogEntry
+    {
+        public DateTime Time { get; } public string Level { get; } public string Message { get; }
+        public LogEntry(DateTime time, string level, string message) { Time = time; Level = level; Message = message; }
+        public override string ToString() => $"{Time:HH:mm:ss} [{Level.ToUpperInvariant()}] {Message}";
+    }
 }

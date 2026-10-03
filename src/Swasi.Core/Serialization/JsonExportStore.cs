@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace SolidWorks_ASsembly_Instructor
 {
@@ -12,10 +13,12 @@ namespace SolidWorks_ASsembly_Instructor
         public JsonExportStore(ExportMergePolicy mergePolicy) { this.mergePolicy = mergePolicy; }
         public JObject Read(string path) => File.Exists(path) ? JObject.Parse(File.ReadAllText(path)) : null;
 
-        public void Save(string path, object model)
+        public void Save(string path, object model, ISet<string> authoritativePropertyFrameNames = null,
+            ISet<string> authoritativeConstraintFrameNames = null, bool authoritativeColor = false)
         {
             var serializer = JsonSerializer.Create(new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-            var output = mergePolicy.Merge(JObject.FromObject(model, serializer), Read(path));
+            var output = mergePolicy.Merge(JObject.FromObject(model, serializer), Read(path),
+                authoritativePropertyFrameNames, authoritativeConstraintFrameNames, authoritativeColor);
             string temporaryPath = path + "." + Guid.NewGuid().ToString("N") + ".tmp";
             try
             {

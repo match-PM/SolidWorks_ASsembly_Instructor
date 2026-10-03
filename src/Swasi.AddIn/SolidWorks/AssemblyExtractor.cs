@@ -139,6 +139,16 @@ namespace SolidWorks_ASsembly_Instructor
                         return mountingDescription;
                     }
 
+                    // Components without an origin are intentionally omitted.
+                    // Their mates must also be omitted, rather than producing
+                    // dangling references or failing the valid parent assembly.
+                    if (componentNames.Any(name => !mountingDescription.components.Any(component =>
+                        component.name.Replace(FeatureNameRules.Prefix, "") == name)))
+                    {
+                        Log($"Skipping mate '{Feature.Name}': it references a component excluded from export.", "warning");
+                        continue;
+                    }
+
                     // Try to add the components to one of the three constraints, the function returns the index at which the constraints should be added, this is important if there are more than two parts in SolidWorks
                     int constraintIndex = mountingDescription.AddComponentsAssemblyConstraint(componentNames[0], componentNames[1]);
 

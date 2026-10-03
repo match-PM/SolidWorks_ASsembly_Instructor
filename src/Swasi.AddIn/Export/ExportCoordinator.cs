@@ -90,6 +90,12 @@ namespace SolidWorks_ASsembly_Instructor
             };
             try
             {
+                var metadataStore = new SwasiMetadataStore();
+                var documentMetadata = metadataStore.Load(document);
+                // Export the existing geometry. Updating constraint frames can
+                // delete/recreate coordinate systems and remove dependent user
+                // features; folder organization also changes model history.
+                // Keep those operations in the explicit Update frames action.
                 var references = new ReferenceFeatureExtractor(report);
                 var assemblies = new AssemblyExtractor(references, report);
                 var features = (object[])document.FeatureManager.GetFeatures(false) ?? new object[0];
@@ -106,6 +112,9 @@ namespace SolidWorks_ASsembly_Instructor
                 mounting.mountingReferences.ref_frames.AddRange(references.ExtractRefPoints(features, relative));
                 mounting.mountingReferences.ref_frames.AddRange(references.ExtractRefFrames(document, features, relative));
                 mounting.mountingReferences.ref_axes.AddRange(references.ExtractRefAxes(document, features));
+                foreach (var frame in mounting.mountingReferences.ref_frames)
+                    if (documentMetadata.frames.TryGetValue(frame.name, out var frameMetadata))
+                        FrameMetadataApplicator.Apply(frame, frameMetadata);
 
                 bool isAssembly = document.GetType() == (int)swDocumentTypes_e.swDocASSEMBLY;
                 bool isMainAssembly = isAssembly && document == active;
@@ -125,12 +134,26 @@ namespace SolidWorks_ASsembly_Instructor
                     model = new AssemblyDescription { name = name, guid = identities[name], mountingDescription = mounting, cadPath = name + ".STL" };
                 }
                 else
-                    model = new ComponentDescription { name = name, guid = identities[name], mountingDescription = mounting, cadPath = name + ".STL", type = isAssembly ? "Assembly" : "Component" };
+                    model = new ComponentDescription
+                    {
+                        name = name,
+                        guid = identities[name],
+                        mountingDescription = mounting,
+                        cadPath = name + ".STL",
+                        type = isAssembly ? "Assembly" : "Component",
+                        color = documentMetadata.componentColor
+                    };
 
                 if (extractionErrors.Count > 0) throw new InvalidOperationException(string.Join(System.Environment.NewLine, extractionErrors));
                 session.Activate(document);
                 new StlExporter(app).Export(document, Path.Combine(folder, name + ".STL"), origin.Item2.name);
-                store.Save(Path.Combine(folder, name + ".json"), model);
+                var constraintFrames = new HashSet<string>(documentMetadata.frames
+                    .Where(entry => entry.Value.isConstraintFrame ||
+                        (entry.Value.constraints?.inPlane?.refFrameNames?.Count ?? 0) > 0)
+                    .Select(entry => entry.Key), StringComparer.Ordinal);
+                store.Save(Path.Combine(folder, name + ".json"), model,
+                    new HashSet<string>(documentMetadata.frames.Keys, StringComparer.Ordinal),
+                    constraintFrames, documentMetadata.hasComponentColor);
                 result.Add(name, ExportStatus.Succeeded, "JSON and STL exported.");
                 log($"Exported {name}.", "log");
             }

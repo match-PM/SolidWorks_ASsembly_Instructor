@@ -2,166 +2,118 @@ namespace SolidWorks_ASsembly_Instructor
 {
     partial class TaskpaneHostUI
     {
-        /// <summary> 
-        /// Erforderliche Designervariable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private System.ComponentModel.IContainer components;
+        private System.Windows.Forms.TextBox outputPathTextBox;
+        private System.Windows.Forms.Button browseButton;
+        private System.Windows.Forms.ComboBox originComboBox;
+        private System.Windows.Forms.Button assignOriginButton;
+        private System.Windows.Forms.Button colorButton;
+        private System.Windows.Forms.Button refreshButton;
+        private System.Windows.Forms.DataGridView frameGrid;
+        private System.Windows.Forms.Button addConstraintButton;
+        private System.Windows.Forms.Button exportButton;
+        private System.Windows.Forms.Label versionLabel;
+        private System.Windows.Forms.ToolTip toolTip;
 
-        /// <summary> 
-        /// Verwendete Ressourcen bereinigen.
-        /// </summary>
-        /// <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing)
             {
-                components.Dispose();
+                DetachDocumentEvents();
+                frameContextMenu?.Dispose(); addConstraintMenu?.Dispose();
+                components?.Dispose();
             }
             base.Dispose(disposing);
         }
 
-        #region Vom Komponenten-Designer generierter Code
-
-        /// <summary> 
-        /// Erforderliche Methode für die Designerunterstützung. 
-        /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
-        /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TaskpaneHostUI));
-            this.exportJson = new System.Windows.Forms.Button();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tb_BrowseFolder = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btn_clearLog = new System.Windows.Forms.Button();
-            this.rtDebug = new System.Windows.Forms.RichTextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lbl_Version_No = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // exportJson
-            // 
-            this.exportJson.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.exportJson.Location = new System.Drawing.Point(3, 127);
-            this.exportJson.Name = "exportJson";
-            this.exportJson.Size = new System.Drawing.Size(333, 23);
-            this.exportJson.TabIndex = 0;
-            this.exportJson.Text = "Export as Json";
-            this.exportJson.UseVisualStyleBackColor = true;
-            this.exportJson.Click += new System.EventHandler(this.exportJson_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 86);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Choose output folder:";
-            // 
-            // tb_BrowseFolder
-            // 
-            this.tb_BrowseFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_BrowseFolder.Location = new System.Drawing.Point(3, 102);
-            this.tb_BrowseFolder.Name = "tb_BrowseFolder";
-            this.tb_BrowseFolder.Size = new System.Drawing.Size(333, 20);
-            this.tb_BrowseFolder.TabIndex = 4;
-            this.tb_BrowseFolder.Text = "Browse folder";
-            this.tb_BrowseFolder.Click += new System.EventHandler(this.tb_BrowseFolder_Click);
-            this.tb_BrowseFolder.TextChanged += new System.EventHandler(this.tb_BrowseFolder_TextChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(0, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(308, 31);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "SW ASsembly Instructor";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btn_clearLog
-            // 
-            this.btn_clearLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_clearLog.Location = new System.Drawing.Point(3, 372);
-            this.btn_clearLog.Name = "btn_clearLog";
-            this.btn_clearLog.Size = new System.Drawing.Size(292, 23);
-            this.btn_clearLog.TabIndex = 9;
-            this.btn_clearLog.Text = "Clear log";
-            this.btn_clearLog.UseVisualStyleBackColor = true;
-            this.btn_clearLog.Click += new System.EventHandler(this.btn_clearLog_Click);
-            // 
-            // rtDebug
-            // 
-            this.rtDebug.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtDebug.Location = new System.Drawing.Point(3, 156);
-            this.rtDebug.Name = "rtDebug";
-            this.rtDebug.Size = new System.Drawing.Size(333, 210);
-            this.rtDebug.TabIndex = 10;
-            this.rtDebug.Text = "";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(3, 34);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(333, 49);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
-            // 
-            // lbl_Version_No
-            // 
-            this.lbl_Version_No.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbl_Version_No.AutoSize = true;
-            this.lbl_Version_No.Location = new System.Drawing.Point(301, 382);
-            this.lbl_Version_No.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbl_Version_No.Name = "lbl_Version_No";
-            this.lbl_Version_No.Size = new System.Drawing.Size(41, 13);
-            this.lbl_Version_No.TabIndex = 11;
-            this.lbl_Version_No.Text = "V 0.1.0";
-            this.lbl_Version_No.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // TaskpaneHostUI
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lbl_Version_No);
-            this.Controls.Add(this.rtDebug);
-            this.Controls.Add(this.btn_clearLog);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.tb_BrowseFolder);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.exportJson);
-            this.Name = "TaskpaneHostUI";
-            this.Size = new System.Drawing.Size(339, 397);
-            this.Load += new System.EventHandler(this.TaskpaneHostUI_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            components = new System.ComponentModel.Container();
+            toolTip = new System.Windows.Forms.ToolTip(components);
+            var root = new System.Windows.Forms.TableLayoutPanel();
+            var pathPanel = new System.Windows.Forms.TableLayoutPanel();
+            var originPanel = new System.Windows.Forms.TableLayoutPanel();
+            var actionPanel = new System.Windows.Forms.FlowLayoutPanel();
+            var title = new System.Windows.Forms.Label();
+            var outputLabel = new System.Windows.Forms.Label();
+            var originLabel = new System.Windows.Forms.Label();
+            var frameLabel = new System.Windows.Forms.Label();
+            outputPathTextBox = new System.Windows.Forms.TextBox(); browseButton = new System.Windows.Forms.Button();
+            originComboBox = new System.Windows.Forms.ComboBox(); assignOriginButton = new System.Windows.Forms.Button();
+            colorButton = new System.Windows.Forms.Button(); refreshButton = new System.Windows.Forms.Button();
+            frameGrid = new System.Windows.Forms.DataGridView(); addConstraintButton = new System.Windows.Forms.Button();
+            exportButton = new System.Windows.Forms.Button();
+            versionLabel = new System.Windows.Forms.Label();
 
+            SuspendLayout();
+            root.Dock = System.Windows.Forms.DockStyle.Fill; root.Padding = new System.Windows.Forms.Padding(6);
+            root.ColumnCount = 1; root.RowCount = 9;
+            root.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
+            root.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
+            root.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
+            root.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
+            root.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
+            root.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
+            root.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
+            root.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100));
+            root.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
+
+            title.Text = "SWASI Frame Editor"; title.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            title.AutoSize = true; title.Dock = System.Windows.Forms.DockStyle.Fill; title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            root.Controls.Add(title, 0, 0);
+
+            outputLabel.Text = "Output folder (local or network/UNC):"; outputLabel.AutoSize = true; root.Controls.Add(outputLabel, 0, 1);
+            pathPanel.ColumnCount = 2; pathPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            pathPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100));
+            pathPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.AutoSize));
+            outputPathTextBox.Dock = System.Windows.Forms.DockStyle.Fill; outputPathTextBox.TextChanged += outputPathTextBox_TextChanged;
+            browseButton.Text = "Browse..."; browseButton.AutoSize = true; browseButton.Click += browseButton_Click;
+            pathPanel.Controls.Add(outputPathTextBox, 0, 0); pathPanel.Controls.Add(browseButton, 1, 0); root.Controls.Add(pathPanel, 0, 2);
+
+            originLabel.Text = "SWASI origin:"; originLabel.AutoSize = true; root.Controls.Add(originLabel, 0, 3);
+            originPanel.ColumnCount = 2; originPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            originPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100));
+            originPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.AutoSize));
+            originComboBox.Dock = System.Windows.Forms.DockStyle.Fill; originComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            originComboBox.Items.AddRange(new object[] {
+                "Gonio_Right_Part_1_Origin",
+                "Gonio_Right_Part_2_Origin",
+                "Gonio_Left_Part_Origin",
+                "Smarpod_Part_Spawn",
+                "Smarpod_Part_Spawn_Center"
+            });
+            assignOriginButton.Text = "Assign"; assignOriginButton.AutoSize = true; assignOriginButton.Click += assignOriginButton_Click;
+            originPanel.Controls.Add(originComboBox, 0, 0); originPanel.Controls.Add(assignOriginButton, 1, 0); root.Controls.Add(originPanel, 0, 4);
+
+            actionPanel.Dock = System.Windows.Forms.DockStyle.Fill; actionPanel.AutoSize = true;
+            refreshButton.Text = "Update frames"; refreshButton.AutoSize = true; refreshButton.Click += refreshButton_Click;
+            colorButton.Text = "Component color"; colorButton.AutoSize = true; colorButton.Click += colorButton_Click;
+            actionPanel.Controls.Add(refreshButton); actionPanel.Controls.Add(colorButton); root.Controls.Add(actionPanel, 0, 5);
+
+            frameLabel.Text = "SWASI points and frames:"; frameLabel.AutoSize = true; root.Controls.Add(frameLabel, 0, 6);
+            frameGrid.Dock = System.Windows.Forms.DockStyle.Fill; frameGrid.AllowUserToAddRows = false; frameGrid.AllowUserToDeleteRows = false;
+            frameGrid.AllowUserToResizeRows = false; frameGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            frameGrid.BackgroundColor = System.Drawing.SystemColors.Window; frameGrid.MultiSelect = false; frameGrid.ReadOnly = true;
+            frameGrid.RowHeadersVisible = false; frameGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            frameGrid.Columns.Add("Name", "Name"); frameGrid.Columns.Add("Geometry", "Geometry");
+            frameGrid.Columns.Add("Role", "Type"); frameGrid.Columns.Add("Constraint", "Constraint");
+            frameGrid.Columns["Constraint"].DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            frameGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            frameGrid.CellMouseDown += frameGrid_CellMouseDown;
+            frameGrid.CellDoubleClick += frameGrid_CellDoubleClick;
+            root.Controls.Add(frameGrid, 0, 7);
+
+            addConstraintButton.Text = "Add constraint frame..."; addConstraintButton.AutoSize = true;
+            addConstraintButton.Dock = System.Windows.Forms.DockStyle.Fill; addConstraintButton.Height = 32;
+            addConstraintButton.Click += addConstraintButton_Click; root.Controls.Add(addConstraintButton, 0, 8);
+
+            exportButton.Text = "Export JSON and STL"; exportButton.Dock = System.Windows.Forms.DockStyle.Bottom; exportButton.Height = 36;
+            exportButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold); exportButton.Click += exportButton_Click;
+            versionLabel.Text = "V1.1.0"; versionLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            versionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight; versionLabel.Height = 18;
+            Controls.Add(root); Controls.Add(versionLabel); Controls.Add(exportButton);
+            Name = "TaskpaneHostUI"; MinimumSize = new System.Drawing.Size(340, 620); Size = new System.Drawing.Size(420, 760);
+            ResumeLayout(false);
         }
-
-        #endregion
-
-        private System.Windows.Forms.Button exportJson;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tb_BrowseFolder;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btn_clearLog;
-        private System.Windows.Forms.RichTextBox rtDebug;
-        private System.Windows.Forms.Label lbl_Version_No;
     }
 }

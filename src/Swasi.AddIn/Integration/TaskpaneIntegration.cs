@@ -69,7 +69,7 @@ namespace SolidWorks_ASsembly_Instructor
             mTaskpaneView = mSolidWorksApplication.CreateTaskpaneView2($@".\face.bmp", "SolidWorks_ASsembly_Instructor");
 
             mTaskpaneHost = (TaskpaneHostUI)mTaskpaneView.AddControl(TaskpaneIntegration.SWTASKPANE_PROGID, string.Empty);
-            mTaskpaneHost.app = mSolidWorksApplication;
+            mTaskpaneHost.Initialize(mSolidWorksApplication);
         }
 
         private void UnloadUI()
