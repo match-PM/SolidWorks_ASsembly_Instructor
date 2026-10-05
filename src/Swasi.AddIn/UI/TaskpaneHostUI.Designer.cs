@@ -1,4 +1,4 @@
-namespace SolidWorks_ASsembly_Instructor
+﻿namespace SolidWorks_ASsembly_Instructor
 {
     partial class TaskpaneHostUI
     {
@@ -91,6 +91,8 @@ namespace SolidWorks_ASsembly_Instructor
             refreshButton.Text = "Update frames"; refreshButton.AutoSize = true; refreshButton.Click += refreshButton_Click;
             colorButton.Text = "Component color"; colorButton.AutoSize = true; colorButton.Click += colorButton_Click;
             actionPanel.Controls.Add(refreshButton); actionPanel.Controls.Add(colorButton); root.Controls.Add(actionPanel, 0, 5);
+            var importFramesButton = new System.Windows.Forms.Button { Text = "Import constrained frames...", AutoSize = true };
+            importFramesButton.Click += importFramesButton_Click; actionPanel.Controls.Add(importFramesButton);
             assemblyMatchesButton.Text = "Assembly Matches"; assemblyMatchesButton.AutoSize = true; assemblyMatchesButton.Enabled = false;
             assemblyMatchesButton.Click += assemblyMatchesButton_Click; actionPanel.Controls.Add(assemblyMatchesButton);
 

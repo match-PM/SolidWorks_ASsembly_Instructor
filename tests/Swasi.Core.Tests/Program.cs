@@ -15,6 +15,66 @@ internal static class Program
     [STAThread]
     private static void Main()
     {
+        Test("Constraint JSON import resolves chains, preserves existing frames and isolates failures", () =>
+        {
+            Func<string, string, JObject> row = (name, dependency) => new JObject {
+                ["name"]=name, ["type"]="frame", ["constraints"]=new JObject {
+                    ["transform"]=new JObject { ["refFrame"]=dependency } } };
+            var rows = new JArray(row("Child", "Parent"), row("Parent", "Base"), row("Missing", "Absent"),
+                row("Blocked", "Missing"), row("CycleA", "CycleB"), row("CycleB", "CycleA"),
+                row("Base", "Absent"), row("Failure", "Base"), row("FailedChild", "Failure"), row("Independent", "Base"));
+            var root = new JObject { ["documentUnits"]="mm", ["mountingDescription"]=new JObject {
+                ["mountingReferences"]=new JObject { ["spawningOrigin"]="Spawn", ["ref_frames"]=rows } } };
+            var created = new System.Collections.Generic.List<string>();
+            var result = ConstraintFrameImporter.Import(root.ToString(), "Spawn", new[] { "Base" }, (name, metadata) => {
+                Check(metadata.isConstraintFrame); Equal(ConstraintKind.Transform, metadata.constraintKind);
+                if (name == "Failure") throw new InvalidOperationException("Native creation failed");
+                created.Add(name);
+            });
+            Equal("Parent,Independent,Child",string.Join(",",created));
+            Equal(3,result.Created.Count); Equal(7,result.Skipped.Count);
+            Check(result.Skipped.Any(n => n.Contains("Native creation failed")));
+            Equal(10,ConstraintFrameImporter.ReadFrameNames(root.ToString(), "Spawn").Count);
+            var subset=ConstraintFrameImporter.Import(root.ToString(), "Spawn", new[] { "Base" },
+                (n,m) => Equal("Independent",n), new[] { "Independent", "Child" });
+            Equal(1,subset.Created.Count); Equal(1,subset.Skipped.Count);
+            Check(subset.Skipped[0].Contains("Parent"));
+            var existingParent=ConstraintFrameImporter.Import(root.ToString(), "Spawn", new[] { "Base", "Parent" },
+                (n,m) => Equal("Child",n), new[] { "Child" });
+            Equal(1,existingParent.Created.Count); Equal(0,existingParent.Skipped.Count);
+            var empty=ConstraintFrameImporter.Import(root.ToString(), "Spawn", new[] { "Base" },
+                (n,m) => { throw new Exception("No frames should be created"); }, new string[0]);
+            Equal(0,empty.Created.Count); Equal(0,empty.Skipped.Count);
+            int calls=0;
+            Throws<InvalidOperationException>(() => ConstraintFrameImporter.Import(root.ToString(), "Wrong", new[] { "Base" }, (n,m) => calls++));
+            Equal(0,calls);
+            root["documentUnits"]="m";
+            Throws<InvalidOperationException>(() => ConstraintFrameImporter.Import(root.ToString(), "Spawn", new[] { "Base" }, (n,m) => calls++));
+            Equal(0,calls);
+        });
+        Test("Constraint JSON import preserves offsets and roles and rejects ambiguous entries", () =>
+        {
+            var centroid = new JObject { ["name"]="Center", ["type"]="frame", ["constraints"]=new JObject {
+                ["centroid"]=new JObject { ["refFrameNames"]=new JArray("A"), ["offsetValues"]=new JArray(10.25, -2.5, 0) } },
+                ["properties"]=new JObject { ["assemblyProperties"]=new JObject {
+                    ["isAssemblyFrame"]=true, ["associatedFrame"]="OldTarget" } } };
+            var duplicate = (JObject)centroid.DeepClone(); duplicate["name"]="Duplicate";
+            var duplicate2 = (JObject)duplicate.DeepClone(); duplicate2["name"]="duplicate";
+            var ambiguous=(JObject)centroid.DeepClone(); ambiguous["name"]="Ambiguous";
+            ambiguous["constraints"]["transform"]=new JObject { ["refFrame"]="A" };
+            var bad=(JObject)centroid.DeepClone(); bad["name"]="Bad";
+            bad["constraints"]["centroid"]["offsetValues"]=new JArray(1,2);
+            var root = new JObject { ["mountingDescription"]=new JObject { ["mountingReferences"]=new JObject {
+                ["spawningOrigin"]="Spawn", ["ref_frames"]=new JArray(centroid,duplicate,duplicate2,ambiguous,bad) } } };
+            var result=ConstraintFrameImporter.Import(root.ToString(),"Spawn",new[] {"A"},(name,metadata) => {
+                Equal("Center",name); Equal(ConstraintKind.Centroid,metadata.constraintKind);
+                Equal(3,metadata.constraints.centroid.offsetValues.Count);
+                Near(10.25f,metadata.constraints.centroid.offsetValues[0]);
+                Equal(SwasiFrameRole.Assembly,metadata.role);
+                Equal("",metadata.properties.assemblyProperties.associatedFrame);
+            });
+            Equal(1,result.Created.Count); Equal(4,result.Skipped.Count);
+        });
         Test("Assembly match dropdowns reserve pending selections and release changed or removed matches", () =>
         {
             using (var grid = new System.Windows.Forms.DataGridView { AllowUserToAddRows = false })

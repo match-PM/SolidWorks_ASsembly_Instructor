@@ -83,6 +83,12 @@ and `associatedComponent`. These override the shared component definition for
 that assembly instance; this avoids ambiguity when the same part is inserted
 more than once. See [the JSON schema example](docs/assembly-matches.md).
 
+Use **Import constrained frames...** to create frames defined by constraints in a
+SWASI JSON file. The spawn name must match the current document. Dependencies
+are resolved from existing frames and successfully imported frames; missing or
+invalid dependencies are skipped without blocking independent frames. Existing
+frames are kept. See [the import format and example](docs/constraint-frame-import.md).
+
 To duplicate a constraint-created frame, select it in the task pane and use
 **Copy constraint frame** and **Paste constraint frame...** from the right-click
 menu, or press **Ctrl+C** and **Ctrl+V** while the frame list has focus. Paste opens

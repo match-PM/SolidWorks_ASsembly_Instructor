@@ -83,6 +83,7 @@
     <Compile Include="UI\FramePropertyEditorModel.cs" />
     <Compile Include="UI\FrameEditorDialog.cs" />
     <Compile Include="UI\ConstraintEditorDialog.cs" />
+    <Compile Include="UI\ConstraintImportSelectionDialog.cs" />
     <Compile Include="UI\ConstraintNumberBox.cs" />
     <Compile Include="UI\CopyableMessageDialog.cs" />
     <Compile Include="UI\AssemblyMatchesDialog.cs" />

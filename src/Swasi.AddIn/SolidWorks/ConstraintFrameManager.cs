@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using SolidWorks.Interop.sldworks;
@@ -17,6 +17,12 @@ namespace SolidWorks_ASsembly_Instructor
         public ConstraintFrameManager(Action<string, string> log) { this.log = log; }
 
         public void CreateOrUpdate(ModelDoc2 document, string frameName, SwasiFrameMetadata frameMetadata, bool requireNew = false)
+            => CreateOrUpdateCore(document, frameName, frameMetadata, requireNew, false);
+
+        public void ImportNew(ModelDoc2 document, string frameName, SwasiFrameMetadata frameMetadata)
+            => CreateOrUpdateCore(document, frameName, frameMetadata, true, true);
+
+        private void CreateOrUpdateCore(ModelDoc2 document, string frameName, SwasiFrameMetadata frameMetadata, bool requireNew, bool updateOnlyRequested)
         {
             ValidateFrameName(frameName);
             if (frameMetadata == null || frameMetadata.constraintKind == ConstraintKind.None)
@@ -28,7 +34,7 @@ namespace SolidWorks_ASsembly_Instructor
             frameMetadata.isConstraintFrame = true;
             metadata.SetConstraintFrame(frameName, frameMetadata, existingNames, requireNew);
             store.Save(document, metadata);
-            try { UpdateAll(document, true); }
+            try { UpdateFrames(document, true, updateOnlyRequested ? frameName : null); }
             catch
             {
                 metadata.frames = previousFrames;
@@ -41,12 +47,15 @@ namespace SolidWorks_ASsembly_Instructor
         internal static bool IsUpdating { get; private set; }
 
         public IReadOnlyList<string> UpdateAll(ModelDoc2 document, bool createMissing)
+            => UpdateFrames(document, createMissing, null);
+
+        private IReadOnlyList<string> UpdateFrames(ModelDoc2 document, bool createMissing, string onlyFrame)
         {
             if (IsUpdating) return new List<string>();
             IsUpdating = true;
             try
             {
-                var warnings = UpdateAllCore(document, createMissing).ToList();
+                var warnings = UpdateAllCore(document, createMissing, onlyFrame).ToList();
                 SwasiFeatureFolders.Organize(document, (message, level) =>
                 {
                     warnings.Add(message);
@@ -57,7 +66,7 @@ namespace SolidWorks_ASsembly_Instructor
             finally { IsUpdating = false; }
         }
 
-        private IReadOnlyList<string> UpdateAllCore(ModelDoc2 document, bool createMissing)
+        private IReadOnlyList<string> UpdateAllCore(ModelDoc2 document, bool createMissing, string onlyFrame)
         {
             var warnings = new List<string>();
             var metadata = store.Load(document);
@@ -77,7 +86,7 @@ namespace SolidWorks_ASsembly_Instructor
                 try
                 {
                     PrecisePose pose;
-                    if (metadata.frames.TryGetValue(name, out var frame) && frame.isConstraintFrame)
+                    if ((onlyFrame == null || name == onlyFrame) && metadata.frames.TryGetValue(name, out var frame) && frame.isConstraintFrame)
                         pose = Calculate(frame, resolve, axisReference);
                     else if (items.TryGetValue(name, out var item))
                         pose = item.Pose;
@@ -89,7 +98,7 @@ namespace SolidWorks_ASsembly_Instructor
                 finally { visiting.Remove(name); }
             };
 
-            foreach (var entry in metadata.frames.Where(e => e.Value.isConstraintFrame).ToList())
+            foreach (var entry in metadata.frames.Where(e => e.Value.isConstraintFrame && (onlyFrame == null || e.Key == onlyFrame)).ToList())
             {
                 try
                 {
@@ -104,7 +113,7 @@ namespace SolidWorks_ASsembly_Instructor
                 }
             }
 
-            foreach (var entry in metadata.frames)
+            foreach (var entry in metadata.frames.Where(e => onlyFrame == null || e.Key == onlyFrame))
             {
                 var inPlane = entry.Value.constraints?.inPlane;
                 if (inPlane == null || inPlane.refFrameNames == null || inPlane.refFrameNames.Count == 0) continue;

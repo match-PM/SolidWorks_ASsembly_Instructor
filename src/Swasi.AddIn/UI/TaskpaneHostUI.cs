@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -110,6 +110,39 @@ namespace SolidWorks_ASsembly_Instructor
                 ReloadFrames();
             }
             catch (Exception ex) { ShowError(ex); }
+        }
+
+        private void importFramesButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var document = ActiveDocument();
+                var origin = featureCatalog.FindOrigin(document);
+                if (origin == null) throw new InvalidOperationException("Assign a SWASI origin before importing constrained frames.");
+                using (var picker = new OpenFileDialog { Title = "Import constrained frames", Filter = "SWASI JSON (*.json)|*.json", CheckFileExists = true })
+                {
+                    if (picker.ShowDialog(this) != DialogResult.OK) return;
+                    string json = File.ReadAllText(picker.FileName);
+                    string spawn = FeatureNameRules.OriginSuffix(origin.Name);
+                    string[] selected;
+                    using (var selection = new ConstraintImportSelectionDialog(ConstraintFrameImporter.ReadFrameNames(json, spawn)))
+                    {
+                        if (selection.ShowDialog(this) != DialogResult.OK) return;
+                        selected = selection.SelectedFrames;
+                    }
+                    if (selected.Length == 0) return;
+                    var messages = new List<string>();
+                    var importer = new ConstraintFrameManager((message, level) => { messages.Add(message); Report(message, level); });
+                    var result = ConstraintFrameImporter.Import(json, spawn,
+                        featureCatalog.Read(document).Select(f => f.Name),
+                        (name, frame) => importer.ImportNew(document, name, frame), selected);
+                    ReloadFrames(result.Created.LastOrDefault());
+                    string report = result.ToString();
+                    if (messages.Count > 0) report += System.Environment.NewLine + System.Environment.NewLine + string.Join(System.Environment.NewLine, messages);
+                    CopyableMessageDialog.ShowMessage(this, "Constraint frame import", report, report);
+                }
+            }
+            catch (Exception ex) { ReloadFrames(); ShowError(ex); }
         }
 
         private void BuildMenus()
