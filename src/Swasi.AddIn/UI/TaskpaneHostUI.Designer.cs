@@ -9,6 +9,7 @@ namespace SolidWorks_ASsembly_Instructor
         private System.Windows.Forms.Button assignOriginButton;
         private System.Windows.Forms.Button colorButton;
         private System.Windows.Forms.Button refreshButton;
+        private System.Windows.Forms.Button assemblyMatchesButton;
         private System.Windows.Forms.DataGridView frameGrid;
         private System.Windows.Forms.Button addConstraintButton;
         private System.Windows.Forms.Button exportButton;
@@ -41,6 +42,7 @@ namespace SolidWorks_ASsembly_Instructor
             outputPathTextBox = new System.Windows.Forms.TextBox(); browseButton = new System.Windows.Forms.Button();
             originComboBox = new System.Windows.Forms.ComboBox(); assignOriginButton = new System.Windows.Forms.Button();
             colorButton = new System.Windows.Forms.Button(); refreshButton = new System.Windows.Forms.Button();
+            assemblyMatchesButton = new System.Windows.Forms.Button();
             frameGrid = new System.Windows.Forms.DataGridView(); addConstraintButton = new System.Windows.Forms.Button();
             exportButton = new System.Windows.Forms.Button();
             versionLabel = new System.Windows.Forms.Label();
@@ -89,6 +91,8 @@ namespace SolidWorks_ASsembly_Instructor
             refreshButton.Text = "Update frames"; refreshButton.AutoSize = true; refreshButton.Click += refreshButton_Click;
             colorButton.Text = "Component color"; colorButton.AutoSize = true; colorButton.Click += colorButton_Click;
             actionPanel.Controls.Add(refreshButton); actionPanel.Controls.Add(colorButton); root.Controls.Add(actionPanel, 0, 5);
+            assemblyMatchesButton.Text = "Assembly Matches"; assemblyMatchesButton.AutoSize = true; assemblyMatchesButton.Enabled = false;
+            assemblyMatchesButton.Click += assemblyMatchesButton_Click; actionPanel.Controls.Add(assemblyMatchesButton);
 
             frameLabel.Text = "SWASI points and frames:"; frameLabel.AutoSize = true; root.Controls.Add(frameLabel, 0, 6);
             frameGrid.Dock = System.Windows.Forms.DockStyle.Fill; frameGrid.AllowUserToAddRows = false; frameGrid.AllowUserToDeleteRows = false;

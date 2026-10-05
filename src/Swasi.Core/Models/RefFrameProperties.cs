@@ -132,6 +132,8 @@ namespace SolidWorks_ASsembly_Instructor
         public bool isAssemblyFrame;
         public bool isTargetFrame;
         public string associatedFrame;
+        public string associatedComponent;
+        public bool ShouldSerializeassociatedComponent() => !string.IsNullOrEmpty(associatedComponent);
 
         public AssemblyProperties()
         {

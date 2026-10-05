@@ -34,7 +34,7 @@ namespace SolidWorks_ASsembly_Instructor
             Matrix4x4 SA_T_OA = relativeTransform; // Transformation from the Origin of the Assembly to the SWASI Origin of the Assembly
 
             // Get Sub components
-            object[] componentsObj = assemblyDoc.GetComponents(true);
+            object[] componentsObj = assemblyDoc.GetComponents(true) ?? new object[0];
             Component2[] components = componentsObj.Cast<Component2>().ToArray();
 
             // Check each subcomponent
@@ -53,7 +53,7 @@ namespace SolidWorks_ASsembly_Instructor
 
                 // Set component type based on SolidWorks document type
                 componentDescription.type = (componentType == (int)swDocumentTypes_e.swDocASSEMBLY) ? "assembly" : "component";
-                componentDescription.name = component.Name;
+                componentDescription.name = component.Name2;
 
                 MathTransform swXForm = component.Transform2;
                 CoordinateSystemDescription OA_T_OB = new CoordinateSystemDescription();
@@ -94,7 +94,7 @@ namespace SolidWorks_ASsembly_Instructor
             return mountingDescription;
         }
 
-        public MountingDescription ExtractAssemblyMates(MountingDescription mountingDescription, object[] _Features)
+        public MountingDescription ExtractAssemblyMates(MountingDescription mountingDescription, object[] _Features, ISet<string> frameMateNames = null)
         {
             foreach (object Feat in _Features)
             {
@@ -104,6 +104,7 @@ namespace SolidWorks_ASsembly_Instructor
                 }
 
                 Feature Feature = (Feature)Feat;
+                if (frameMateNames != null && frameMateNames.Contains(Feature.Name)) continue;
                 if (!FeatureNameRules.IsReference(Feature.Name))
                 {
                     continue;
@@ -156,7 +157,8 @@ namespace SolidWorks_ASsembly_Instructor
                     // Make sure that the MountingDescription holds the components before you call ExtractAssemblyMates
                     try
                     {
-                        bool moveComponent_1 = IdentifyComponent1MovingPart(mountingDescription.components, componentNames[0], componentNames[1]);
+                        var constraint = mountingDescription.assemblyConstraints[constraintIndex];
+                        bool moveComponent_1 = IdentifyComponent1MovingPart(mountingDescription.components, constraint.component_1, constraint.component_2);
                         mountingDescription.assemblyConstraints[constraintIndex].moveComponent_1 = moveComponent_1;
                     }
                     catch (Exception ex)
@@ -304,24 +306,6 @@ namespace SolidWorks_ASsembly_Instructor
         }
 
         public bool IdentifyComponent1MovingPart(List<AssemblyComponentDescription> components, string componentName1, string componentName2)
-        {
-            float zValue1 = 0;
-            float zValue2 = 0;
-
-            for (int i = 0; i < components.Count; i++)
-            {
-                if (components[i].name == componentName1)
-                {
-                    zValue1 = components[i].transformation.translation.Z;
-                }
-
-                if (components[i].name == componentName2)
-                {
-                    zValue2 = components[i].transformation.translation.Z;
-                }
-            }
-
-            return zValue1 >= zValue2;
-        }
+            => AssemblyMatchRules.IdentifyComponent1MovingPart(components, componentName1, componentName2);
     }
 }

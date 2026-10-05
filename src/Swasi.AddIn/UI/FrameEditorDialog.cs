@@ -51,6 +51,11 @@ namespace SolidWorks_ASsembly_Instructor
             rolePanel.AutoSize = true; rolePanel.Dock = DockStyle.Fill; rolePanel.WrapContents = true;
             root.Controls.Add(rolePanel, 0, 2);
             BuildRoleButtons();
+            foreach (var pair in roleButtons)
+                pair.Value.Enabled = AssemblyMatchRules.CanAssignRole(geometryType, pair.Key);
+            if (geometryType != "Frame")
+                FrameMetadata.role &= ~(SwasiFrameRole.Assembly | SwasiFrameRole.Target);
+            FrameMetadataApplicator.ApplyRole(FrameMetadata.properties, FrameMetadata.role);
 
             propertyGrid.Dock = DockStyle.Fill; propertyGrid.ToolbarVisible = false; propertyGrid.HelpVisible = true;
             propertyGrid.SelectedObject = new FramePropertyEditorModel(frameName, FrameMetadata);

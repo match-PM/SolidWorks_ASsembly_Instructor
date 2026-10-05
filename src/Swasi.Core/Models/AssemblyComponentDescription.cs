@@ -9,6 +9,9 @@ namespace SolidWorks_ASsembly_Instructor
         public CoordinateSystemDescription transformation;
 
         public string guid;
+        public System.Collections.Generic.Dictionary<string, RefFrameProperties> frameProperties =
+            new System.Collections.Generic.Dictionary<string, RefFrameProperties>(System.StringComparer.Ordinal);
+        public bool ShouldSerializeframeProperties() => frameProperties.Count > 0;
 
         public AssemblyComponentDescription()
         {

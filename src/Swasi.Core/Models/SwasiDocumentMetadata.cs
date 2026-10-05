@@ -30,6 +30,7 @@ namespace SolidWorks_ASsembly_Instructor
             new Dictionary<string, SwasiFrameMetadata>(StringComparer.Ordinal);
         public ColorComp componentColor = new ColorComp(255, 255, 255);
         public bool hasComponentColor;
+        public List<AssemblyFrameMatch> assemblyMatches = new List<AssemblyFrameMatch>();
 
         public void SetConstraintFrame(string name, SwasiFrameMetadata frame, IEnumerable<string> existingFeatureNames, bool requireNew)
         {

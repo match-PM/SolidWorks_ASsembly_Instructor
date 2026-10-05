@@ -123,7 +123,12 @@ namespace SolidWorks_ASsembly_Instructor
                 if (isMainAssembly)
                 {
                     assemblies.ExtractAssemblyComponents(mounting, document, relative);
-                    assemblies.ExtractAssemblyMates(mounting, features);
+                    var frameMatches = new AssemblyMatchManager().ForExport(document);
+                    // Also exclude inactive-configuration generated mates from legacy plane extraction.
+                    var generatedMates = new HashSet<string>(documentMetadata.assemblyMatches.Select(m => m.mateName), StringComparer.Ordinal);
+                    generatedMates.UnionWith(frameMatches.Select(m => m.mateName));
+                    assemblies.ExtractAssemblyMates(mounting, features, generatedMates);
+                    AssemblyMatchRules.ApplyExport(mounting, frameMatches);
                     foreach (var component in mounting.components)
                     {
                         string componentName = component.name;

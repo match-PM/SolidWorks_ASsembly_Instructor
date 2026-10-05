@@ -85,6 +85,8 @@
     <Compile Include="UI\ConstraintEditorDialog.cs" />
     <Compile Include="UI\ConstraintNumberBox.cs" />
     <Compile Include="UI\CopyableMessageDialog.cs" />
+    <Compile Include="UI\AssemblyMatchesDialog.cs" />
+    <Compile Include="UI\AssemblyMatchChoices.cs" />
     <Compile Include="UI\LogWindow.cs" />
     <Compile Include="Integration\TaskpaneIntegration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

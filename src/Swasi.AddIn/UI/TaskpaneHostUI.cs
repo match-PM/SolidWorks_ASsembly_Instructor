@@ -60,6 +60,7 @@ namespace SolidWorks_ASsembly_Instructor
 
         private void ReloadFrames(string selectName = null)
         {
+            assemblyMatchesButton.Enabled = app?.IActiveDoc2 is IAssemblyDoc;
             if (app == null) return;
             try
             {
@@ -98,6 +99,18 @@ namespace SolidWorks_ASsembly_Instructor
         }
 
         private string SelectedFrameName => frameGrid.SelectedRows.Count == 0 ? null : frameGrid.SelectedRows[0].Tag as string;
+
+        private void assemblyMatchesButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var document = ActiveDocument();
+                if (!(document is IAssemblyDoc)) return;
+                using (var dialog = new AssemblyMatchesDialog(document)) dialog.ShowDialog(this);
+                ReloadFrames();
+            }
+            catch (Exception ex) { ShowError(ex); }
+        }
 
         private void BuildMenus()
         {

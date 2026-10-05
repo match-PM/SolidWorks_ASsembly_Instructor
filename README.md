@@ -61,6 +61,28 @@ see the architecture document for the exact precedence and retention rules.
 
 ## Frame editor and constraints
 
+**Assembly Matches** is enabled only for assemblies. Assign **Assembly** or
+**Target** to coordinate frames in the component documents, then open the assembly
+and click **Assembly Matches**. Points cannot receive these two types.
+The dialog lists first-level component instances only; subassembly contents are
+not traversed. Add a row, name the match, and select an Assembly and a Target
+frame on different instances. Each frame can participate once in that role.
+Apply creates a coordinate-system mate with coincident origins and aligned axes named
+`(auto)SWASI_<match-name>_<id>`. Existing matches are loaded when reopening the
+dialog. Edit a row to rematch it, or remove the row and Apply to delete its mate.
+Matches are stored in the parent assembly for its active configuration.
+
+The association is not written into the component document. During assembly
+export, `mountingDescription.assemblyConstraints` contains both `"PlaneMatch"` and
+`"FrameMatch"` entries, identified by `type`. Frame matches include `component_1`
+(Assembly, the moving component) and `component_2` (Target). Frame matches omit
+`move_component_1` because their roles determine the direction; plane matches
+retain their movement setting. Each matched component instance also
+has `frameProperties` overrides containing `assemblyProperties.associatedFrame`
+and `associatedComponent`. These override the shared component definition for
+that assembly instance; this avoids ambiguity when the same part is inserted
+more than once. See [the JSON schema example](docs/assembly-matches.md).
+
 To duplicate a constraint-created frame, select it in the task pane and use
 **Copy constraint frame** and **Paste constraint frame...** from the right-click
 menu, or press **Ctrl+C** and **Ctrl+V** while the frame list has focus. Paste opens

@@ -23,8 +23,8 @@ namespace SolidWorks_ASsembly_Instructor
             int index = 0;
             foreach (AssemblyConstraintDescription constraint in assemblyConstraints)
             {
-                if ((constraint.component_1 == NameComponent1 && constraint.component_2 == NameComponent2) ||
-                    (constraint.component_2 == NameComponent1 && constraint.component_1 == NameComponent2))
+                if (constraint.type == "PlaneMatch" && ((constraint.component_1 == NameComponent1 && constraint.component_2 == NameComponent2) ||
+                    (constraint.component_2 == NameComponent1 && constraint.component_1 == NameComponent2)))
                 {
                     return index;
                 }

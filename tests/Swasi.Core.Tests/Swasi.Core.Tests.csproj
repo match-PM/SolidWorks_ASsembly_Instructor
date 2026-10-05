@@ -33,6 +33,9 @@
     <Compile Include="..\..\src\Swasi.AddIn\UI\CopyableMessageDialog.cs">
       <Link>UI\CopyableMessageDialog.cs</Link>
     </Compile>
+    <Compile Include="..\..\src\Swasi.AddIn\UI\AssemblyMatchChoices.cs">
+      <Link>UI\AssemblyMatchChoices.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Swasi.Core\Swasi.Core.csproj">

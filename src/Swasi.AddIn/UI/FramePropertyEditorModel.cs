@@ -58,7 +58,7 @@ namespace SolidWorks_ASsembly_Instructor
         {
             var allowed = new HashSet<string>(StringComparer.Ordinal) { nameof(Name), nameof(Type) };
             if (metadata.role.HasFlag(SwasiFrameRole.Gripping)) allowed.UnionWith(new[] { nameof(CompatibleGrippers), nameof(CompatibleGripperTips) });
-            if (metadata.role.HasFlag(SwasiFrameRole.Target) || metadata.role.HasFlag(SwasiFrameRole.Assembly)) allowed.Add(nameof(AssociatedFrame));
+            // Associations belong to an assembly instance and are configured in Assembly Matches.
             if (metadata.role.HasFlag(SwasiFrameRole.Glue)) allowed.UnionWith(new[] { nameof(GlueTimeMs), nameof(GlueDispenseOffsetMm) });
             return new PropertyDescriptorCollection(TypeDescriptor.GetProperties(this, true).Cast<PropertyDescriptor>().Where(p => allowed.Contains(p.Name)).ToArray());
         }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Numerics;
@@ -15,6 +15,153 @@ internal static class Program
     [STAThread]
     private static void Main()
     {
+        Test("Assembly match dropdowns reserve pending selections and release changed or removed matches", () =>
+        {
+            using (var grid = new System.Windows.Forms.DataGridView { AllowUserToAddRows = false })
+            {
+                grid.Columns.Add("Name", "Name");
+                foreach (string column in new[] { "Assembly", "Target" })
+                {
+                    var combo = new System.Windows.Forms.DataGridViewComboBoxColumn { Name = column };
+                    combo.Items.AddRange("", "A1", "A2", "A3", "T1", "T2", "Missing");
+                    grid.Columns.Add(combo);
+                }
+                grid.Rows.Add("Saved", "A1", "T1");
+                grid.Rows.Add("New", "", "");
+                new AssemblyMatchChoices(grid, new[] { "A1", "A2", "A3" }, new[] { "T1", "T2" });
+                Func<int, int, string, bool> offers = (row, column, value) =>
+                    ((System.Windows.Forms.DataGridViewComboBoxCell)grid.Rows[row].Cells[column]).Items.Contains(value);
+                Check(offers(0, 1, "A1")); Check(offers(0, 2, "T1"));
+                Check(!offers(1, 1, "A1")); Check(!offers(1, 2, "T1"));
+                grid.Rows[1].Cells[1].Value = "A2"; grid.Rows[1].Cells[2].Value = "T2";
+                Check(!offers(0, 1, "A2")); Check(!offers(0, 2, "T2"));
+                grid.Rows[0].Cells[1].Value = "A3";
+                Check(offers(1, 1, "A1")); Check(!offers(1, 1, "A3"));
+                grid.Rows[0].Cells[2].Value = "";
+                Check(offers(1, 2, "T1"));
+                grid.Rows.Add("Third", "", "");
+                Check(!offers(2, 1, "A2")); Check(!offers(2, 1, "A3")); Check(!offers(2, 2, "T2"));
+                grid.Rows.RemoveAt(1);
+                Check(offers(1, 1, "A2")); Check(offers(1, 2, "T2"));
+                grid.Rows[0].Cells[1].Value = "Missing";
+                Check(offers(0, 1, "Missing")); Check(!offers(1, 1, "Missing"));
+                Equal("Missing", (string)grid.Rows[0].Cells[1].Value);
+            }
+        });
+        Test("Assembly matches enforce oriented frames, instance identity and one-to-one endpoints", () =>
+        {
+            Check(!AssemblyMatchRules.CanAssignRole("Point", SwasiFrameRole.Target));
+            Check(!AssemblyMatchRules.CanAssignRole("Point", SwasiFrameRole.Assembly));
+            Check(AssemblyMatchRules.CanAssignRole("Point", SwasiFrameRole.Vision));
+            Check(AssemblyMatchRules.CanAssignRole("Frame", SwasiFrameRole.Target));
+            var a = new AssemblyFrameEndpoint { component = "Part-1", configuration = "Default", frame = "Mount" };
+            var b = new AssemblyFrameEndpoint { component = "Part-2", configuration = "Default", frame = "Target" };
+            var c = new AssemblyFrameEndpoint { component = "Part-3", configuration = "Default", frame = "Mount" };
+            var options = new[] { new AssemblyFrameOption { endpoint=a, role=SwasiFrameRole.Assembly, isCoordinateSystem=true },
+                new AssemblyFrameOption { endpoint=b, role=SwasiFrameRole.Target, isCoordinateSystem=true },
+                new AssemblyFrameOption { endpoint=c, role=SwasiFrameRole.Assembly, isCoordinateSystem=true } };
+            var match = new AssemblyFrameMatch { name="Match", assemblyFrame=a, targetFrame=b };
+            AssemblyMatchRules.Validate(new[] {match}, options);
+            var duplicate = new AssemblyFrameMatch { name="Other", assemblyFrame=c, targetFrame=b };
+            Throws<InvalidOperationException>(() => AssemblyMatchRules.Validate(new[] {match,duplicate},options));
+            options[0].isCoordinateSystem=false;
+            Throws<InvalidOperationException>(() => AssemblyMatchRules.Validate(new[] {match},options));
+            options[0].isCoordinateSystem=true;
+            options[1].role=SwasiFrameRole.Assembly;
+            Throws<InvalidOperationException>(() => AssemblyMatchRules.Validate(new[] {match},options));
+            options[1].role=SwasiFrameRole.Target;
+            var missing=match.Clone(); missing.targetFrame.component="Deleted-1";
+            Throws<InvalidOperationException>(() => AssemblyMatchRules.Validate(new[] {missing},options));
+            var wrongConfig=match.Clone(); wrongConfig.targetFrame.configuration="Other";
+            Throws<InvalidOperationException>(() => AssemblyMatchRules.Validate(new[] {wrongConfig},options));
+            var same=match.Clone(); same.targetFrame=a;
+            options[0].role |= SwasiFrameRole.Target;
+            Throws<InvalidOperationException>(() => AssemblyMatchRules.Validate(new[] {same},options));
+        });
+        Test("Frame matches export beside plane constraints with instance-specific properties", () =>
+        {
+            var mounting = new MountingDescription();
+            mounting.components.Add(new AssemblyComponentDescription { name="Part-1" });
+            mounting.components.Add(new AssemblyComponentDescription { name="Part-2" });
+            mounting.components.Add(new AssemblyComponentDescription { name="Part-3" });
+            mounting.AddComponentsAssemblyConstraint("Part-1","Part-3");
+            var match = new AssemblyFrameMatch { name="Mount", mateName="(auto)SWASI_Mount", configuration="Default",
+                assemblyFrame=new AssemblyFrameEndpoint {component="Part-2",configuration="Default",frame="Mount"},
+                targetFrame=new AssemblyFrameEndpoint {component="Part-1",configuration="Default",frame="Target"},
+                mateReference="internal-persistent-reference" };
+            string before=JsonConvert.SerializeObject(match);
+            AssemblyMatchRules.ApplyExport(mounting,new[] {match});
+            var generated=JObject.FromObject(new {mountingDescription=mounting});
+            Equal(2, ((JArray)generated.SelectToken("mountingDescription.assemblyConstraints")).Count);
+            Equal("PlaneMatch", (string)generated.SelectToken("mountingDescription.assemblyConstraints[0].type"));
+            Equal("FrameMatch", (string)generated.SelectToken("mountingDescription.assemblyConstraints[1].type"));
+            Equal("Part-2", (string)generated.SelectToken("mountingDescription.assemblyConstraints[1].component_1"));
+            Equal("Part-1", (string)generated.SelectToken("mountingDescription.assemblyConstraints[1].component_2"));
+            Check(generated.SelectToken("mountingDescription.assemblyConstraints[1].move_component_1") == null);
+            Check(generated.SelectToken("mountingDescription.assemblyConstraints[1].description") == null);
+            Check(generated.SelectToken("mountingDescription.assemblyConstraints[0].assemblyFrame") == null);
+            Check(generated.SelectToken("mountingDescription.frameMatches") == null);
+            Equal("Part-2", (string)generated.SelectToken("mountingDescription.components[0].frameProperties.Target.assemblyProperties.associatedComponent"));
+            Equal("Mount", (string)generated.SelectToken("mountingDescription.components[0].frameProperties.Target.assemblyProperties.associatedFrame"));
+            Check(generated.SelectToken("mountingDescription.components[2].frameProperties") == null);
+            Check(!generated.ToString().Contains("internal-persistent-reference"));
+            Equal(before,JsonConvert.SerializeObject(match));
+            var metadata = new SwasiDocumentMetadata(); metadata.assemblyMatches.Add(match);
+            var loaded=JsonConvert.DeserializeObject<SwasiDocumentMetadata>(JsonConvert.SerializeObject(metadata));
+            Equal(match.id,loaded.assemblyMatches.Single().id);
+            Equal("internal-persistent-reference",loaded.assemblyMatches.Single().mateReference);
+            AssemblyMatchRules.ApplyExport(mounting,new AssemblyFrameMatch[0]);
+            // Old exports used a separate list; it must not survive the next export.
+            generated["mountingDescription"]["frameMatches"] = new JArray(new JObject { ["type"]="coincidentFrames" });
+            var merged=Policy.Merge(JObject.FromObject(new {mountingDescription=mounting}),generated);
+            Check(merged.SelectToken("mountingDescription.frameMatches") == null);
+            Check(merged.SelectToken("mountingDescription.components[0].frameProperties") == null);
+            Equal(1,((JArray)merged.SelectToken("mountingDescription.assemblyConstraints")).Count);
+        });
+        Test("Frame match export uses frame roles and omits movement while preserving plane movement", () =>
+        {
+            var mounting = new MountingDescription();
+            var assembly = new AssemblyComponentDescription { name="Assembly-1" };
+            var target = new AssemblyComponentDescription { name="Target-1" };
+            mounting.components.Add(assembly); mounting.components.Add(target);
+            var match = new AssemblyFrameMatch { name="Match", mateName="(auto)SWASI_Match",
+                assemblyFrame=new AssemblyFrameEndpoint { component=assembly.name, frame="Mount" },
+                targetFrame=new AssemblyFrameEndpoint { component=target.name, frame="Target" } };
+            foreach (float z in new[] {-100f, 0f, 100f})
+            {
+                assembly.transformation.translation.Z=z;
+                AssemblyMatchRules.ApplyExport(mounting,new[] {match});
+                var frameJson=JObject.FromObject(mounting.assemblyConstraints.Single());
+                Equal("Assembly-1",(string)frameJson["component_1"]);
+                Equal("Target-1",(string)frameJson["component_2"]);
+                Check(frameJson["move_component_1"] == null);
+                Check(frameJson["moveComponent_1"] == null);
+            }
+            // Ignore obsolete movement overrides in previously saved match metadata.
+            var oldMetadata=JObject.FromObject(match);
+            oldMetadata["move_component_1"]=false;
+            var restored=oldMetadata.ToObject<AssemblyFrameMatch>().Clone();
+            Check(JObject.FromObject(restored)["move_component_1"] == null);
+            AssemblyMatchRules.ApplyExport(mounting,new[] {restored});
+            Check(JObject.FromObject(mounting.assemblyConstraints.Single())["move_component_1"] == null);
+            assembly.transformation.translation.Z=10; target.transformation.translation.Z=20;
+            Check(!AssemblyMatchRules.IdentifyComponent1MovingPart(mounting.components,assembly.name,target.name));
+            assembly.transformation.translation.Z=30;
+            Check(AssemblyMatchRules.IdentifyComponent1MovingPart(mounting.components,assembly.name,target.name));
+            target.transformation.translation.Z=30;
+            Check(AssemblyMatchRules.IdentifyComponent1MovingPart(mounting.components,assembly.name,target.name));
+            var legacy=JsonConvert.DeserializeObject<AssemblyConstraintDescription>("{\"moveComponent_1\":true}");
+            Check(legacy.moveComponent_1);
+            var json=JObject.FromObject(legacy);
+            Check((bool)json["move_component_1"]); Check(json["moveComponent_1"] == null);
+            Equal("PlaneMatch",(string)json["type"]);
+            var roundTrip=JsonConvert.DeserializeObject<MountingDescription>(JsonConvert.SerializeObject(mounting));
+            Equal("FrameMatch",roundTrip.assemblyConstraints.Single().type);
+            Equal("Mount",roundTrip.assemblyConstraints.Single().assemblyFrame.frame);
+            int planeIndex=roundTrip.AddComponentsAssemblyConstraint(assembly.name,target.name);
+            Equal("PlaneMatch",roundTrip.assemblyConstraints[planeIndex].type);
+            Equal(2,roundTrip.assemblyConstraints.Count);
+        });
         Test("Double constraint geometry preserves plane normals and chained orthogonality", () =>
         {
             var engine = new PreciseConstraintEngine();
