@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using SolidWorks.Interop.sldworks;
@@ -13,6 +13,7 @@ namespace SolidWorks_ASsembly_Instructor
         private readonly SwasiFeatureCatalog catalog = new SwasiFeatureCatalog();
         private readonly PreciseConstraintEngine engine = new PreciseConstraintEngine();
         private readonly Action<string, string> log;
+        private bool deferOrganization;
 
         public ConstraintFrameManager(Action<string, string> log) { this.log = log; }
 
@@ -21,6 +22,21 @@ namespace SolidWorks_ASsembly_Instructor
 
         public void ImportNew(ModelDoc2 document, string frameName, SwasiFrameMetadata frameMetadata)
             => CreateOrUpdateCore(document, frameName, frameMetadata, true, true);
+
+        public ConstraintFrameImportResult ImportJson(ModelDoc2 document, string json, string spawn, IEnumerable<string> selected)
+        {
+            deferOrganization = true;
+            try
+            {
+                return ConstraintFrameImporter.Import(json, spawn, catalog.Read(document).Select(f => f.Name),
+                    (name, frame) => ImportNew(document, name, frame), selected);
+            }
+            finally
+            {
+                deferOrganization = false;
+                SwasiFeatureFolders.Organize(document, log);
+            }
+        }
 
         private void CreateOrUpdateCore(ModelDoc2 document, string frameName, SwasiFrameMetadata frameMetadata, bool requireNew, bool updateOnlyRequested)
         {
@@ -56,7 +72,7 @@ namespace SolidWorks_ASsembly_Instructor
             try
             {
                 var warnings = UpdateAllCore(document, createMissing, onlyFrame).ToList();
-                SwasiFeatureFolders.Organize(document, (message, level) =>
+                if (!deferOrganization) SwasiFeatureFolders.Organize(document, (message, level) =>
                 {
                     warnings.Add(message);
                     log(message, level);
@@ -75,6 +91,9 @@ namespace SolidWorks_ASsembly_Instructor
             PrecisePose axisReference = originFeature == null
                 ? new PrecisePose()
                 : SwasiFeatureCatalog.ReadPreciseCoordinateSystemPose(document, originFeature);
+            // Reuse one feature-name snapshot across this update. Each frame owns
+            // its coordinate system/helpers; entries for other frames remain valid.
+            var features = SwasiFeatureCatalog.Features(document).ToDictionary(f => f.Name, StringComparer.Ordinal);
             var resolved = new Dictionary<string, PrecisePose>(StringComparer.Ordinal);
             var visiting = new HashSet<string>(StringComparer.Ordinal);
 
@@ -103,7 +122,7 @@ namespace SolidWorks_ASsembly_Instructor
                 try
                 {
                     PrecisePose pose = resolve(entry.Key);
-                    UpdateSolidWorksFrame(document, entry.Key, pose, createMissing, warnings);
+                    UpdateSolidWorksFrame(document, entry.Key, pose, createMissing, warnings, features);
                 }
                 catch (Exception ex)
                 {
@@ -233,10 +252,11 @@ namespace SolidWorks_ASsembly_Instructor
         }
 
         private void UpdateSolidWorksFrame(ModelDoc2 document, string frameName,
-            PrecisePose pose, bool createMissing, List<string> warnings)
+            PrecisePose pose, bool createMissing, List<string> warnings, IReadOnlyDictionary<string, Feature> features)
         {
             string coordinateName = FeatureNameRules.AutoPrefix + FeatureNameRules.Prefix + frameName;
-            Feature coordinate = FindFeature(document, coordinateName) ?? FindFeature(document, FeatureNameRules.Prefix + frameName);
+            features.TryGetValue(coordinateName, out var coordinate);
+            if (coordinate == null) features.TryGetValue(FeatureNameRules.Prefix + frameName, out coordinate);
             if (coordinate == null && !createMissing)
                 throw new InvalidOperationException("The SolidWorks coordinate-system feature is missing.");
 
@@ -253,7 +273,7 @@ namespace SolidWorks_ASsembly_Instructor
                 }
                 CreateFrame(document, frameName, pose);
             }
-            try { ConstraintOriginPointManager.Update(document, frameName, pose.translation); }
+            try { ConstraintOriginPointManager.Update(document, frameName, pose.translation, features); }
             catch (Exception ex)
             {
                 string message = $"Constraint frame '{frameName}' was retained, but its origin point/helpers could not be synchronized: {ex.Message}";

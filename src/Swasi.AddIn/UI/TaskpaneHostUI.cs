@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -133,9 +133,7 @@ namespace SolidWorks_ASsembly_Instructor
                     if (selected.Length == 0) return;
                     var messages = new List<string>();
                     var importer = new ConstraintFrameManager((message, level) => { messages.Add(message); Report(message, level); });
-                    var result = ConstraintFrameImporter.Import(json, spawn,
-                        featureCatalog.Read(document).Select(f => f.Name),
-                        (name, frame) => importer.ImportNew(document, name, frame), selected);
+                    var result = importer.ImportJson(document, json, spawn, selected);
                     ReloadFrames(result.Created.LastOrDefault());
                     string report = result.ToString();
                     if (messages.Count > 0) report += System.Environment.NewLine + System.Environment.NewLine + string.Join(System.Environment.NewLine, messages);

@@ -48,7 +48,11 @@ namespace SolidWorks_ASsembly_Instructor
                 // Do not require moving the folder to the end first. SolidWorks
                 // can reject that operation even when individual members can move,
                 // which previously left a newly created SWASI folder empty.
-                var pending = features.Where(f => !Contains(folder, f)).ToList();
+                // Read membership once for the common already-organized case.
+                // Verify each actual move below against fresh native membership.
+                var members = new HashSet<string>((((IFeatureFolder)folder.GetSpecificFeature2()).GetFeatures() as object[] ?? new object[0])
+                    .OfType<Feature>().Select(f => f.Name), StringComparer.Ordinal);
+                var pending = features.Where(f => !members.Contains(f.Name)).ToList();
                 for (int pass = 0; pass < 2 && pending.Count > 0; pass++)
                 {
                     var order = pass == 0 ? pending.AsEnumerable().Reverse().ToList() : pending.ToList();

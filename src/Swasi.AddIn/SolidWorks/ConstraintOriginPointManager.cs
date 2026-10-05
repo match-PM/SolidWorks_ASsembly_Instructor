@@ -23,11 +23,11 @@ namespace SolidWorks_ASsembly_Instructor
         private static string PointName(string frameName) =>
             FeatureNameRules.AutoPrefix + FeatureNameRules.Prefix + frameName + "_Point";
 
-        internal static void Update(ModelDoc2 document, string frameName, Vector3d positionMm)
+        internal static void Update(ModelDoc2 document, string frameName, Vector3d positionMm, IReadOnlyDictionary<string, Feature> featureSnapshot = null)
         {
             // No selection access, ModifyDefinition, visibility edits or rebuild
             // for a complete helper set already at the desired origin.
-            var existing = SwasiFeatureCatalog.Features(document).ToDictionary(f => f.Name, StringComparer.Ordinal);
+            var existing = featureSnapshot ?? SwasiFeatureCatalog.Features(document).ToDictionary(f => f.Name, StringComparer.Ordinal);
             if (FeatureNames(frameName).All(existing.ContainsKey)
                 && existing[PointName(frameName)].GetTypeName2() == "RefPoint")
             {

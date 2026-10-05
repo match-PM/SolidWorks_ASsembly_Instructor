@@ -59,7 +59,7 @@ public static class ConstraintPrecisionProbe
             {
                 var values = (double[])((IRefPoint)points[i].GetSpecificFeature2()).GetRefPoint().ArrayData;
                 var rounded = new Vector3d((float)(values[0]*1000), (float)(values[1]*1000), (float)(values[2]*1000));
-                updatePoint.Invoke(null, new object[] { doc, "P"+i, rounded });
+                updatePoint.Invoke(null, new object[] { doc, "P"+i, rounded, null });
             }
             managerType.GetMethod("UpdateAll").Invoke(manager, new object[] { doc, true });
             doc.ForceRebuild3(false);
